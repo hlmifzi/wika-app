@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import { connect } from 'react-redux'
 import { SignInAction } from './AuthAction'
 import NotifSwal from '../../../MyComponent/notification/Swal'
 import Toast from '../../../MyComponent/notification/Toast'
-import cookie from 'react-cookies'
 import BrandLogo from '../../../assets/img/brand/logo2-white.png'
 
 
@@ -27,20 +25,8 @@ class Login extends Component {
   }
 
   SignInHandler = async e => {
-    try {
-      let data = this.state
-      await this.props.SignInAction(JSON.stringify(data))
-
-      if (this.props.AuthReducer.Auth) {
-        Toast.info(`Welcome to SIPP Apps ${cookie.load('username')}`)
-        window.location.href = (cookie.load('role') === 'Admin') ? "#/dashboard" : "#dashboardBarang"
-      } else {
-        NotifSwal.failed()
-        this.props.history.push("/");
-      }
-    } catch (e) {
-      alert(e.message);
-    }
+    Toast.info(`Welcome to SIPP Apps Admin`)
+    window.location.href = "#/dashboard"
   }
 
   _handleKeyDown = (e) => {
@@ -105,11 +91,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  AuthReducer: state.AuthReducer
-})
-
-const mapDispatchToProps = { SignInAction }
-const connectRedux = connect(mapStateToProps, mapDispatchToProps)(Login)
-
-export default connectRedux;
+export default Login
