@@ -5,6 +5,7 @@ import { SignInAction } from './AuthAction'
 import NotifSwal from '../../../MyComponent/notification/Swal'
 import Toast from '../../../MyComponent/notification/Toast'
 import cookie from 'react-cookies'
+import BrandLogo from '../../../assets/img/brand/logo2-white.png'
 
 
 
@@ -85,11 +86,13 @@ class Login extends Component {
                     </Form>
                   </CardBody>
                 </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+                <Card className="text-white py-5 d-md-down-none" style={{ width: '44%', backgroundColor: '#eff3f6' }}>
                   <CardBody className="text-center">
                     <div>
-                      <img src={'https://i.ibb.co/RQH7bws/logo2-white.png'} className="img-avatar" alt="Logo SIPP" />
-                      <p><b>Sistem Informasi Penjualan & Pengadaan Barang</b>, sebagai pendukung berjalannya operasional sesuai dengan kebutuhan perusahaan anda .</p>
+                      <img src={BrandLogo} alt="Logo SIPP" width="70%" />
+                      <p style={{ color: '#3ea3e9' }}>
+                        <b>Sistem Informasi Manajemen Karyawan</b><br />
+                        sebagai pendukung berjalannya operasional sesuai dengan kebutuhan perusahaan anda .</p>
                     </div>
                   </CardBody>
                 </Card>
@@ -97,7 +100,7 @@ class Login extends Component {
             </Col>
           </Row>
         </Container>
-      </div>
+      </div >
     );
   }
 }
