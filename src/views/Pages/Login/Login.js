@@ -60,8 +60,8 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardBody>
                     <Form>
-                      <h1>Login</h1>
-                      <p className="text-muted">Sign In to your account</p>
+                      <h1>HRMIS</h1>
+                      <p className="text-muted">Human Resources Management Information System</p>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
