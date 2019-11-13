@@ -2,6 +2,10 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
+import { SignOuthAction } from '../../views/Pages/Login/AuthAction'
+import { connect } from 'react-redux'
+import cookie from 'react-cookies'
+
 
 import {
   AppAside,
@@ -16,7 +20,7 @@ import {
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
-import navigation from '../../_nav';
+import {menuAdmin, menuTenant} from '../../_nav';
 // routes config
 import routes from '../../routes';
 
@@ -24,16 +28,30 @@ const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
+
+
 class DefaultLayout extends Component {
 
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+  loading = () =><div className="spinner-grow text-primary animated fadeIn pt-1 d-flex justify-content-center"></div>
 
   signOut(e) {
     e.preventDefault()
     this.props.history.push('/login')
   }
 
+  
+  OnLogout = async e => {
+    try {
+      await this.props.SignOuthAction()
+      this.props.history.push("/login");
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+
   render() {
+    let navigation = cookie.load('role') === 'Admin' ?  menuAdmin : menuTenant
     return (
       <div className="app">
         <AppHeader fixed>
@@ -68,7 +86,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/dashboard" />
+                  <Redirect from="/" to="/login" />
                 </Switch>
               </Suspense>
             </Container>
@@ -89,4 +107,13 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+
+const mapStateToProps = state => ({
+  AuthReducer: state.AuthReducer
+})
+
+const mapDispatchToProps = { SignOuthAction }
+const connectRedux = connect(mapStateToProps, mapDispatchToProps)(DefaultLayout)
+
+export default connectRedux;
+

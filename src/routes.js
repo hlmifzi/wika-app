@@ -1,84 +1,56 @@
 import React from 'react';
 
-const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
-const Cards = React.lazy(() => import('./views/Base/Cards'));
-const Carousels = React.lazy(() => import('./views/Base/Carousels'));
-const Collapses = React.lazy(() => import('./views/Base/Collapses'));
-const Dropdowns = React.lazy(() => import('./views/Base/Dropdowns'));
-const Forms = React.lazy(() => import('./views/Base/Forms'));
-const Jumbotrons = React.lazy(() => import('./views/Base/Jumbotrons'));
-const ListGroups = React.lazy(() => import('./views/Base/ListGroups'));
-const Navbars = React.lazy(() => import('./views/Base/Navbars'));
-const Navs = React.lazy(() => import('./views/Base/Navs'));
-const Paginations = React.lazy(() => import('./views/Base/Paginations'));
-const Popovers = React.lazy(() => import('./views/Base/Popovers'));
-const ProgressBar = React.lazy(() => import('./views/Base/ProgressBar'));
-const Switches = React.lazy(() => import('./views/Base/Switches'));
-const Tables = React.lazy(() => import('./views/Base/Tables'));
-const Tabs = React.lazy(() => import('./views/Base/Tabs'));
-const Tooltips = React.lazy(() => import('./views/Base/Tooltips'));
-const BrandButtons = React.lazy(() => import('./views/Buttons/BrandButtons'));
-const ButtonDropdowns = React.lazy(() => import('./views/Buttons/ButtonDropdowns'));
-const ButtonGroups = React.lazy(() => import('./views/Buttons/ButtonGroups'));
-const Buttons = React.lazy(() => import('./views/Buttons/Buttons'));
-const Charts = React.lazy(() => import('./views/Charts'));
+const Login = React.lazy(() => import('./views/Pages/Login/Login'));
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
-const CoreUIIcons = React.lazy(() => import('./views/Icons/CoreUIIcons'));
-const Flags = React.lazy(() => import('./views/Icons/Flags'));
-const FontAwesome = React.lazy(() => import('./views/Icons/FontAwesome'));
-const SimpleLineIcons = React.lazy(() => import('./views/Icons/SimpleLineIcons'));
-const Alerts = React.lazy(() => import('./views/Notifications/Alerts'));
-const Badges = React.lazy(() => import('./views/Notifications/Badges'));
-const Modals = React.lazy(() => import('./views/Notifications/Modals'));
-const Colors = React.lazy(() => import('./views/Theme/Colors'));
-const Typography = React.lazy(() => import('./views/Theme/Typography'));
-const Widgets = React.lazy(() => import('./views/Widgets/Widgets'));
-const Users = React.lazy(() => import('./views/Users/Users'));
-const User = React.lazy(() => import('./views/Users/User'));
+const DashboardBarang = React.lazy(() => import('./views/Dashboard/DashboardBarang'));
+const DashboardPenjualan = React.lazy(() => import('./views/Dashboard/DashboardPenjualan'));
+const UserManagement = React.lazy(() => import('./views/DataMasters/userManagement/Users'));
+const UserManagementAdd = React.lazy(() => import('./views/DataMasters/userManagement/UserAdd'));
+const TenantManagement = React.lazy(() => import('./views/DataMasters/tenantManagement/Tenants'));
+const TenantManagementAdd = React.lazy(() => import('./views/DataMasters/tenantManagement/TenantsAdds'));
+const ManageProduct = React.lazy(() => import('./views/ProductManagement/ManageAllProduct'));
+const ListProduct = React.lazy(() => import('./views/ProductManagement/ListProduct'));
+const ManageProductAdd = React.lazy(() => import('./views/ProductManagement/ManageAllProductAdd'));
+const Entry = React.lazy(() => import('./views/ProductManagement/Entry'));
+const Depreciation = React.lazy(() => import('./views/ProductManagement/Depreciation'));
+const Retur = React.lazy(() => import('./views/ProductManagement/Retur'));
+const Selling = React.lazy(() => import('./views/ProductManagement/Selling'));
+const ReportEntry = React.lazy(() => import('./views/Report/Entry'));
+const ReportDepreciation = React.lazy(() => import('./views/Report/Depreciation'));
+const ReportRetur = React.lazy(() => import('./views/Report/Retur'));
+const ReportSelling = React.lazy(() => import('./views/Report/Selling'));
+
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
+  { path: '/login', name: 'login', component: Login },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/theme', exact: true, name: 'Theme', component: Colors },
-  { path: '/theme/colors', name: 'Colors', component: Colors },
-  { path: '/theme/typography', name: 'Typography', component: Typography },
-  { path: '/base', exact: true, name: 'Base', component: Cards },
-  { path: '/base/cards', name: 'Cards', component: Cards },
-  { path: '/base/forms', name: 'Forms', component: Forms },
-  { path: '/base/switches', name: 'Switches', component: Switches },
-  { path: '/base/tables', name: 'Tables', component: Tables },
-  { path: '/base/tabs', name: 'Tabs', component: Tabs },
-  { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
-  { path: '/base/carousels', name: 'Carousel', component: Carousels },
-  { path: '/base/collapses', name: 'Collapse', component: Collapses },
-  { path: '/base/dropdowns', name: 'Dropdowns', component: Dropdowns },
-  { path: '/base/jumbotrons', name: 'Jumbotrons', component: Jumbotrons },
-  { path: '/base/list-groups', name: 'List Groups', component: ListGroups },
-  { path: '/base/navbars', name: 'Navbars', component: Navbars },
-  { path: '/base/navs', name: 'Navs', component: Navs },
-  { path: '/base/paginations', name: 'Paginations', component: Paginations },
-  { path: '/base/popovers', name: 'Popovers', component: Popovers },
-  { path: '/base/progress-bar', name: 'Progress Bar', component: ProgressBar },
-  { path: '/base/tooltips', name: 'Tooltips', component: Tooltips },
-  { path: '/buttons', exact: true, name: 'Buttons', component: Buttons },
-  { path: '/buttons/buttons', name: 'Buttons', component: Buttons },
-  { path: '/buttons/button-dropdowns', name: 'Button Dropdowns', component: ButtonDropdowns },
-  { path: '/buttons/button-groups', name: 'Button Groups', component: ButtonGroups },
-  { path: '/buttons/brand-buttons', name: 'Brand Buttons', component: BrandButtons },
-  { path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons },
-  { path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons },
-  { path: '/icons/flags', name: 'Flags', component: Flags },
-  { path: '/icons/font-awesome', name: 'Font Awesome', component: FontAwesome },
-  { path: '/icons/simple-line-icons', name: 'Simple Line Icons', component: SimpleLineIcons },
-  { path: '/notifications', exact: true, name: 'Notifications', component: Alerts },
-  { path: '/notifications/alerts', name: 'Alerts', component: Alerts },
-  { path: '/notifications/badges', name: 'Badges', component: Badges },
-  { path: '/notifications/modals', name: 'Modals', component: Modals },
-  { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  { path: '/DashboardBarang', name: 'Product Dashboard', component: DashboardBarang },
+  { path: '/DashboardPenjualan', name: 'Sales Dashboard', component: DashboardPenjualan },
+  { path: '/dataMaster', exact: true, name: 'Data Master', component: "" },
+  { path: '/dataMaster/userManagement', exact: true, name: 'User Management', component: UserManagement },
+  { path: '/dataMaster/userManagement/add',exact: true, name: 'Add', component: UserManagementAdd },
+  { path: '/dataMaster/userManagement/edit/:id',exact: true, name: 'Edit', component: UserManagementAdd },
+  { path: '/dataMaster/tenantManagement',exact: true, name: 'Tenant Management', component: TenantManagement },
+  { path: '/dataMaster/tenantManagement/add', name: 'Add', component: TenantManagementAdd },
+  { path: '/dataMaster/tenantManagement/edit/:id', name: 'Edit', component: TenantManagementAdd },
+  { path: '/productManagement', exact: true, name: 'Product Management', component: "" },
+  { path: '/productManagement/ListProduct', exact: true, name: 'List Product', component: ListProduct },
+  { path: '/productManagement/ManageProduct', name: 'Manage All Product', component: ManageProduct },
+  { path: '/productManagement/ManageProductAdd',  exact: true, name: 'Product', component: ManageProductAdd },
+  { path: '/productManagement/ManageProductAdd/:id',  exact: true, name: 'Product', component: ManageProductAdd },
+  { path: '/productManagement/Entry', name: 'Entry Product Management', component: Entry },
+  { path: '/productManagement/Depreciation', name: 'Depreciation Product Management', component: Depreciation },
+  { path: '/productManagement/Retur', name: 'Retur Product Management', component: Retur },
+  { path: '/productManagement/Selling', name: 'Selling Product Management', component: Selling },
+  { path: '/report', exact: true, name: 'Report', component: "" },
+  { path: '/report/Entry', name: 'Entry Report', component: ReportEntry },
+  { path: '/report/Depreciation', name: 'Depreciation Report', component: ReportDepreciation },
+  { path: '/report/Retur', name: 'Retur Report', component: ReportRetur },
+  { path: '/report/Selling', name: 'Selling Report', component: ReportSelling },
+
+
 ];
 
 export default routes;
