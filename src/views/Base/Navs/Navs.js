@@ -66,7 +66,7 @@ class Navs extends Component {
               <NavItem>
                 <NavLink href="#" active>Link</NavLink>
               </NavItem>
-              <Dropdown nav isOpen={this.state.dropdownOpen[0]} toggle={() => {this.toggle(0);}}>
+              <Dropdown nav isOpen={this.state.dropdownOpen[0]} toggle={() => { this.toggle(0); }}>
                 <DropdownToggle nav caret>
                   Dropdown
                 </DropdownToggle>
@@ -99,7 +99,7 @@ class Navs extends Component {
               <NavItem>
                 <NavLink href="#" active>Link</NavLink>
               </NavItem>
-              <Dropdown nav isOpen={this.state.dropdownOpen[1]} toggle={() => {this.toggle(1);}}>
+              <Dropdown nav isOpen={this.state.dropdownOpen[1]} toggle={() => { this.toggle(1); }}>
                 <DropdownToggle nav caret>
                   Dropdown
                 </DropdownToggle>
