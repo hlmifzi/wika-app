@@ -7,8 +7,8 @@ class Dashboard extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col xs={12} sm={6} md={9}>
-            <Col xs={12} sm={6} md={3}>
+          <Col xs={12} sm={6} md={3}>
+            <Col xs={12} sm={12} md={12}>
               <Widget03 dataBox={() => ({ variant: 'twitter', followers: '973k', tweets: '1.792' })} >
               </Widget03>
             </Col>
