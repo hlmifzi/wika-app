@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from 'reactstrap/lib/utils';
+import { Badge, CardHeader, ListGroup, ListGroupItem } from 'reactstrap';
+import { CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'
+
 
 const propTypes = {
   children: PropTypes.node,
@@ -29,7 +32,6 @@ class Widget03 extends Component {
     }
 
     const back = 'bg-' + variant;
-    const icon = 'fa fa-' + variant;
     const keys = Object.keys(data);
     const vals = Object.values(data);
 
@@ -39,22 +41,49 @@ class Widget03 extends Component {
     const classes = mapToCssModules(classNames(classCard, className), cssModule);
 
     return (
-      <div className={classes}>
-        <div className={classCardHeader}>
-          <i className={icon}></i>
-          {children}
-        </div>
-        <div className={classCardBody}>
-          <div>
-            <div className="text-value">{vals[1]}</div>
-            <div className="text-uppercase text-muted small">{keys[1]}</div>
+      <>
+        <div className={classes}>
+          <div className={classCardHeader}>
+            <div className="avatar" style={{ width: '100px', position: 'relative' }}>
+              <img src={'https://content-static.upwork.com/uploads/2014/10/01073427/profilephoto1.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" width="900em" />
+            </div>
           </div>
-          <div>
-            <div className="text-value">{vals[2]}</div>
-            <div className="text-uppercase text-muted small">{keys[2]}</div>
+          <div className={classCardBody}>
+            <div style={{ marginTop: '40px' }}>
+              <div className="text-value">Fitrah Rahmawati</div>
+              <div className="text-uppercase text-muted small">Manager - Proyek HSR</div>
+              <div className="text-uppercase text-muted small"><Badge pill color="warning">Organik</Badge></div>
+            </div>
           </div>
+        </div >
+
+        <div className={classes}>
+          <CardDefaulSideProfiletComponent text="Riwayat Proyek" total="18" fontSize="1.1 rem">
+            <ListGroup>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Mega <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Besar <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Menengah<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Kecil<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+            </ListGroup>
+          </CardDefaulSideProfiletComponent>
         </div>
-      </div>
+
+        <div className={classes}>
+          <CardDefaulSideProfiletComponent text="Riwayat Fungsi " total="18" fontSize="1.1 rem">
+            <ListGroup style={{ height: '180px', overflowY: 'auto' }}>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+            </ListGroup>
+          </CardDefaulSideProfiletComponent>
+        </div>
+
+      </>
     );
   }
 }
