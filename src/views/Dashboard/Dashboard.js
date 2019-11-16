@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
 
       title: {
-        text: 'Passing Grade vs Actual',
+        text: 'Passing Grade vs Assessment',
       },
 
       pane: {
