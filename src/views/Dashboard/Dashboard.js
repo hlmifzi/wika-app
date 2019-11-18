@@ -236,14 +236,15 @@ class Dashboard extends Component {
                   <div className="card-header">
                     <CardDefaulSideProfiletComponent text="Target Pelatihan" fontSize="1.1 rem">
                       <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
+
                       </ListGroup>
                     </CardDefaulSideProfiletComponent>
                   </div>

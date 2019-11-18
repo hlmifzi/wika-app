@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card, CardBody, Nav, NavItem, NavLink } from 'reactstrap';
 
 const NavbarComponent = props => {
@@ -6,15 +7,15 @@ const NavbarComponent = props => {
         <Card>
             <CardBody>
                 <Nav>
-                    <NavItem active={true}>
-                        <NavLink href="#">Overview</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="#">Assesment</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="#">KUK</NavLink>
-                    </NavItem>
+                    <Link to="/">
+                        <NavLink >Overview</NavLink>
+                    </Link>
+                    <Link to="/assessmen">
+                        <NavLink>Assesment</NavLink>
+                    </Link>
+                    <Link to="/kuk">
+                        <NavLink>KUK</NavLink>
+                    </Link>
                 </Nav>
             </CardBody>
         </Card>
