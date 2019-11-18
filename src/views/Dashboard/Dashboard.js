@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactHighcharts from 'react-highcharts'
 import HighchartsMore from 'highcharts-more'
 
-import { Col, Row } from 'reactstrap';
+import { Col, Row, Progress, ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import Widget03 from '../Widgets/Widget03';
 import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
 import { CardWhiteComponent, CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'
@@ -69,11 +69,11 @@ class Dashboard extends Component {
 
       series: [{
         name: 'Passing Grade',
-        data: [2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3],
+        data: [2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3],
         pointPlacement: 'on'
       }, {
         name: 'Assessmen',
-        data: [3, 2, 1, 2, 4, 4, 2, 3, 4, 4, 3, 2, 4, 3],
+        data: [3, 2, 1, 2, 4, 4, 2, 3, 4, 4, 3, 2, 4, 3, 3],
         pointPlacement: 'on'
       }],
 
@@ -148,13 +148,110 @@ class Dashboard extends Component {
                 </Row>
               </Col>
             </CardWhiteComponent>
+
             <CardWhiteComponent text="Grafik Assessmen">
               <Row>
                 <Col xs={12} sm={6} md={6}>
                   <ReactHighcharts config={config} />
                 </Col>
+                <Col xs={12} sm={6} md={6} style={{ marginBottom: '20px' }}>
+                  <Col xs={12} sm={12} md={12}>
+                    <CardDefaulSideProfiletComponent text="Assessmen">
+                      <Row>
+                        <Col xs={12} sm={6} md={6}>
+                          <div className="text-left" style={{ padding: '5px' }}>IF (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>LA (min 3)</div>
+                          <Progress value="50" >2/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>IT (min 3)</div>
+                          <Progress value="100" >4/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>IN (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>CO (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>EM (min 3)</div>
+                          <Progress value="50" color="danger">2/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>CL (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>IP (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                        </Col>
+                        <Col xs={12} sm={6} md={6}>
+                          <div className="text-left" style={{ padding: '5px' }}>PS (min 3)</div>
+                          <Progress value="50" color="danger">2/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>DE (min 3)</div>
+                          <Progress value="100" >4/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>DR (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>BA (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>SO (min 3)</div>
+                          <Progress value="50" color="danger">2/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>CF (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                          <div className="text-left" style={{ padding: '5px' }}>BP (min 3)</div>
+                          <Progress value="75" >3/4</Progress>
+                        </Col>
+                      </Row>
+                    </CardDefaulSideProfiletComponent >
+                  </Col>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12} sm={12} md={6}>
+                  <div className="card-header">
+                    <CardDefaulSideProfiletComponent text="Target Pengembangan" fontSize="1.1 rem">
+                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
+                      </ListGroup>
+                    </CardDefaulSideProfiletComponent>
+                  </div>
+                </Col>
+                <Col xs={12} sm={12} md={6}>
+                  <div className="card-header">
+                    <CardDefaulSideProfiletComponent text="Program Pengembangan" fontSize="1.1 rem">
+                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
+                      </ListGroup>
+                    </CardDefaulSideProfiletComponent>
+                  </div>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12} sm={12} md={12}>
+                  <div className="card-header">
+                    <CardDefaulSideProfiletComponent text="Target Pelatihan" fontSize="1.1 rem">
+                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+                      </ListGroup>
+                    </CardDefaulSideProfiletComponent>
+                  </div>
+                </Col>
               </Row>
             </CardWhiteComponent>
+
+
           </Col>
         </Row>
       </div >
