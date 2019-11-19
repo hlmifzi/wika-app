@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactHighcharts from 'react-highcharts'
 import HighchartsMore from 'highcharts-more'
 
-import { Col, Row, Progress, ListGroup, ListGroupItem } from 'reactstrap';
+import { Col, Row, Progress, ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import Widget03 from '../Widgets/Widget03';
 import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
 import { CardWhiteComponent, CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'
@@ -111,7 +111,7 @@ class Dashboard extends Component {
                   <Col xs={12} sm={12} md={6}>
                     <div className="brand-card text-center">
                       <CardDefaulSideProfiletComponent text="Assessmen">
-                        <span className="h1" style={{ padding: '20px' }}>24.00</span>
+                        <span className="h1" style={{ padding: '20px' }}><Badge color="success">Disarankan</Badge></span>
                       </CardDefaulSideProfiletComponent>
                     </div>
                   </Col>

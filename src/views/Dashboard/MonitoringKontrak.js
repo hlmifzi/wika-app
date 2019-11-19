@@ -35,7 +35,7 @@ class MonitoringKontrak extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col xl={6}>
+          <Col xl={12}>
             <Card>
               <CardHeader>
                 <i className="fa fa-users"></i> Daftar Karyawan Habis Kontrak

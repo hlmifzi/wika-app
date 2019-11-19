@@ -48,7 +48,7 @@ class Widget03 extends Component {
           </div>
           <div className={classCardBody}>
             <div style={{ marginTop: '40px' }}>
-              <div className="text-value">Fitrah Rahmawati</div>
+              <div className="text-value">Luthfi</div>
               <div className="text-uppercase text-muted small">Manager - Proyek HSR</div>
               <div className="text-uppercase text-muted small"><Badge pill color="warning">Organik</Badge></div>
             </div>
@@ -68,15 +68,16 @@ class Widget03 extends Component {
 
         <div className={classes}>
           <CardDefaulSideProfiletComponent text="Riwayat Fungsi " total="18" fontSize="1.1 rem">
-            <ListGroup style={{ height: '180px', overflowY: 'auto' }}>
-              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
-              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
-              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
+            <ListGroup style={{ height: '200px', overflowY: 'auto' }}>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production <Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering <Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan<Badge className="float-right" pill color="danger">0</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom<Badge className="float-right" pill color="danger">0</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE <Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
               <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
               <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
-              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other <Badge className="float-right" pill color="success">2</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Utama <Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
+              <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other <Badge className="float-right" pill color="danger">0</Badge></ListGroupItem>
             </ListGroup>
           </CardDefaulSideProfiletComponent>
         </div>

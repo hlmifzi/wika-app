@@ -27,7 +27,7 @@ function UserRow(props) {
       <td>{user.role}</td>
       <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status}</Badge></Link></td>
       <td>
-        <button type="submit" class="btn btn-primary btn-sm">Isi</button>
+        <Link to={userLink}><button type="submit" class="btn btn-primary btn-sm">Isi</button></Link>
       </td>
     </tr>
   )
