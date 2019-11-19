@@ -25,7 +25,7 @@ class Login extends Component {
   }
 
   SignInHandler = async e => {
-    Toast.info(`Welcome to SIPP Apps Admin`)
+    Toast.info(`Welcome to HRMIS Management`)
     window.location.href = "#/dashboard"
   }
 
@@ -47,7 +47,7 @@ class Login extends Component {
                   <CardBody>
                     <Form>
                       <h1>HRMIS</h1>
-                      <p className="text-muted">Human Resources Management Information System</p>
+                      <p className="text-muted">Sistem Aplikasi Promosi Jabatan</p>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>

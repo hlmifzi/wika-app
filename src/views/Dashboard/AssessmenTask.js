@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
-import { Col, Row, CardBody, Table, Badge, Button } from 'reactstrap';
+import {
+  Col, Row, CardBody, Table, Badge, Button,
+  Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup
+} from 'reactstrap';
+
 import Widget03 from '../Widgets/Widget03';
 import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
 import { CardWhiteComponent } from '../../MyComponent/CardCustom/CardComponent'
@@ -35,9 +39,13 @@ function UserRow(props) {
 
 
 class AssessmenTask extends Component {
-
+  state = {
+    Modal: false
+  }
   render() {
     const userList = usersData.filter((user) => user.id < 10)
+    const toggle = () => this.setState({ Modal: !this.state.Modal })
+
 
     return (
       <div className="animated fadeIn">
@@ -54,7 +62,9 @@ class AssessmenTask extends Component {
                   <Col xl={6}>
                     <CardBody>
                       <div style={{ float: 'right' }}>
-                        <Button type="submit" size="sm" color="primary"><i className="fa fa-plus"></i> Tambah</Button>
+                        <Button type="submit" size="sm" color="primary"
+                          onClick={toggle}
+                        ><i className="fa fa-plus"></i> Tambah</Button>
                       </div>
                       <Table responsive hover>
                         <thead>
@@ -83,6 +93,50 @@ class AssessmenTask extends Component {
             </CardWhiteComponent>
           </Col>
         </Row>
+        <Modal isOpen={this.state.Modal} toggle={toggle}>
+          <ModalHeader toggle={toggle} style={{ backgroundColor: '#f0f3f5' }}>Kirim Assessmen</ModalHeader>
+          <ModalBody>
+            <Col xs="12" md="12">
+              <FormGroup row>
+                <Col md="12">
+                  <Label htmlFor="selectSm">Pilih Assessmen</Label>
+                </Col>
+                <Col xs="12" md="12">
+                  <Input type="select" name="select" id="select">
+                    <option value="0">Pilih</option>
+                    <option value="1">Assessmen Manager</option>
+                    <option value="1">Assessmen GM</option>
+                    <option value="1">Assessmen Kepala Proyek</option>
+                  </Input>
+                </Col>
+              </FormGroup>
+            </Col>
+            <Col xs="12" md="12">
+              <FormGroup row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label htmlFor="name">Nama Konsultan</Label>
+                    <Input type="text" id="name" placeholder="Masukkan Nama Konsultan" required />
+                  </FormGroup>
+                </Col>
+              </FormGroup>
+            </Col>
+            <Col xs="12" md="12">
+              <FormGroup row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label htmlFor="name">Tanggal Assessmen</Label>
+                    <Input type="date" id="name" placeholder="Masukkan Nama Konsultan" required />
+                  </FormGroup>
+                </Col>
+              </FormGroup>
+            </Col>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={toggle}>Send</Button>{' '}
+            <Button color="secondary" onClick={toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
       </div >
     );
   }

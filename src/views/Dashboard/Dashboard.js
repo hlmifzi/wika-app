@@ -231,7 +231,7 @@ class Dashboard extends Component {
                   </div>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col xs={12} sm={12} md={12}>
                   <div className="card-header">
                     <CardDefaulSideProfiletComponent text="Target Pelatihan" fontSize="1.1 rem">
@@ -249,7 +249,7 @@ class Dashboard extends Component {
                     </CardDefaulSideProfiletComponent>
                   </div>
                 </Col>
-              </Row>
+              </Row> */}
             </CardWhiteComponent>
 
 
