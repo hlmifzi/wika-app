@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactHighcharts from 'react-highcharts'
 import HighchartsMore from 'highcharts-more'
 
-import { Col, Row, Progress, ListGroup, ListGroupItem, Badge } from 'reactstrap';
+import { Col, Row, Progress, ListGroup, ListGroupItem } from 'reactstrap';
 import Widget03 from '../Widgets/Widget03';
 import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
 import { CardWhiteComponent, CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'

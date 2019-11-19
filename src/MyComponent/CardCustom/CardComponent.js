@@ -26,3 +26,16 @@ export const CardDefaulSideProfiletComponent = ({ children, fontSize, text, tota
         </>
     )
 }
+
+
+export const CardAssessmen = ({ children, color, text }) => {
+    return (
+        <Card>
+            <CardHeader style={{ backgroundColor: '#4dbd74' }}>
+                <b style={{ fontSize: '1.5em', display: 'flex', alignItems: 'center', justifyContent: 'center', color:'#fff' }}>
+                    {text}
+                </b>
+            </CardHeader>
+        </Card>
+    )
+}

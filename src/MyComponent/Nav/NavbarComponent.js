@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, CardBody, Nav, NavItem, NavLink } from 'reactstrap';
+import { Card, CardBody, Nav, NavLink } from 'reactstrap';
 
 const NavbarComponent = props => {
     return (
