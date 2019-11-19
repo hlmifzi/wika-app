@@ -82,6 +82,10 @@ class Widget03 extends Component {
           </CardDefaulSideProfiletComponent>
         </div>
 
+        <div className='btn btn-primary text-center col-md-12' style={{ marginBottom: '30px' }}>
+          Print Previiew
+        </div>
+
       </>
     );
   }
