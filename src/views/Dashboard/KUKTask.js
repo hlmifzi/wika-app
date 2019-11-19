@@ -10,7 +10,7 @@ import usersData from './UsersData'
 
 function UserRow(props) {
   const user = props.user
-  const userLink = `/users/${user.id}`
+  const userLink = `/kuk-detail/${user.id}`
 
   const getBadge = (status) => {
     return status === 'Done' ? 'success' :

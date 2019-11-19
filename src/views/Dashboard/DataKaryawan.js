@@ -9,25 +9,26 @@ function UserRow(props) {
   const userLink = `/users/${user.id}`
 
   const getBadge = (status) => {
-    return status === 'organik' ? 'success' :
-      status === 'kontrak' ? 'warning' :
-        status === 'magang' ? 'danger' :
+    return status === 'Disarankan' ? 'success' :
+      status === 'Disarankan Dengan Pengembangan' ? 'warning' :
+        status === 'Tidak Disarankan' ? 'danger' :
           'primary'
   }
 
   return (
     <tr key={user.id.toString()}>
       <th scope="row"><Link to={userLink}>{user.id}</Link></th>
+      <th><Link to={userLink}>2019012</Link></th>
       <td><Link to={userLink}>{user.name}</Link></td>
-      <td>{user.registered}</td>
-      <td>{user.role}</td>
-      <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status} </Badge></Link></td>
       <td>{user.posisi}<br /><Badge color="primary">{user.lama_posisi}</Badge></td>
+      <td>10 tahun 2 Bulan</td>
+      <td>{user.role}</td>
       <td>{user.EK}</td>
       <td>{user.PK}</td>
       <td>{user.KUK}</td>
-      <td>{user.assessmen}</td>
-    </tr>
+      <td>{user.KUK}</td>
+      <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status} </Badge></Link></td>
+    </tr >
   )
 }
 
@@ -40,7 +41,7 @@ class DataKaryawan extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col xl={6}>
+          <Col xl={12}>
             <Card>
               <CardHeader>
                 <i className="fa fa-users"></i> Daftar Seluruh Karyawan
@@ -49,9 +50,12 @@ class DataKaryawan extends Component {
                 <Row>
                   <Col xs="12" md="3">
                     <FormGroup row>
+                      <Col md="12">
+                        <Label htmlFor="selectSm">Masa jabatan</Label>
+                      </Col>
                       <Col xs="12" md="12">
                         <Input type="select" name="select" id="select">
-                          <option value="0">Pilih Logic</option>
+                          <option value="0">Pilih</option>
                           <option value="1">Lebih Dari</option>
                           <option value="2">Kurang Dari</option>
                           <option value="3">Sama Dengan</option>
@@ -59,14 +63,40 @@ class DataKaryawan extends Component {
                       </Col>
                     </FormGroup>
                   </Col>
-                  <Col md="2">
+                  <Col xs="12" md="3">
                     <FormGroup row>
-                      <Input type="number" id="cvv" placeholder="tahun" required />
+                      <Col md="12">
+                        <Label htmlFor="selectSm">Pilih Tahun</Label>
+                      </Col>
+                      <Col xs="12" md="12">
+                        <Input type="select" name="select" id="select">
+                          <option value="0">Pilih</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="3">4</option>
+                          <option value="3">5</option>
+                          <option value="3">6</option>
+                          <option value="3">7</option>
+                          <option value="3">8</option>
+                        </Input>
+                      </Col>
                     </FormGroup>
                   </Col>
-                  <Col md="2" row>
-                    <FormGroup>
-                      <Label htmlFor="cvv">tahun</Label>
+                  <Col xs="12" md="3">
+                    <FormGroup row>
+                      <Col md="12">
+                        <Label htmlFor="selectSm">Target Jabatan</Label>
+                      </Col>
+                      <Col xs="12" md="12">
+                        <Input type="select" name="select" id="select">
+                          <option value="0">Pilih</option>
+                          <option value="1">General Manager</option>
+                          <option value="2">Manager Divisi</option>
+                          <option value="2">Manager Biro</option>
+                          <option value="3">Manager Proyek</option>
+                        </Input>
+                      </Col>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -74,14 +104,15 @@ class DataKaryawan extends Component {
                   <thead>
                     <tr>
                       <th scope="col">No</th>
+                      <th scope="col">NIP</th>
                       <th scope="col">Nama</th>
-                      <th scope="col">Masa Jabatan</th>
-                      <th scope="col">Departemen</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Posisi Sekarang</th>
+                      <th scope="col">Jabatan</th>
+                      <th scope="col">Masa Kerja</th>
+                      <th scope="col">Unit Kerja</th>
                       <th scope="col">EK</th>
                       <th scope="col">PK</th>
-                      <th scope="col">KUK</th>
+                      <th scope="col">KUK Teori</th>
+                      <th scope="col">KUK Praktek</th>
                       <th scope="col">Assessmen</th>
                     </tr>
                   </thead>
