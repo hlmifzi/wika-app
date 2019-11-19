@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { AppAsideToggler, AppNavbarBrand } from '@coreui/react';
+import { AppNavbarBrand } from '@coreui/react';
 import logo from '../../assets/img/brand/logo2.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 
@@ -28,10 +28,10 @@ class DefaultHeader extends Component {
 
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink to="/dashboard" className="nav-link" >Data Karyawan</NavLink>
+            <NavLink to="/data-karyawan" className="nav-link" >Data Karyawan</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <Link to="/users" className="nav-link"> Monitoring Kontrak</Link>
+            <Link to="/monitoring-kontrak" className="nav-link"> Monitoring Kontrak</Link>
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>

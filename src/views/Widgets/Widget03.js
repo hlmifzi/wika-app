@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from 'reactstrap/lib/utils';
-import { Badge, CardHeader, ListGroup, ListGroupItem } from 'reactstrap';
+import { Badge, ListGroup, ListGroupItem } from 'reactstrap';
 import { CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'
 
 
@@ -32,8 +32,6 @@ class Widget03 extends Component {
     }
 
     const back = 'bg-' + variant;
-    const keys = Object.keys(data);
-    const vals = Object.values(data);
 
     const classCard = 'brand-card';
     const classCardHeader = classNames(`${classCard}-header`, back);
