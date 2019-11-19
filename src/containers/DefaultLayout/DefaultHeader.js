@@ -40,15 +40,18 @@ class DefaultHeader extends Component {
               <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem><i className="fa fa-users"></i>Profile Saya</DropdownItem>
+              <DropdownItem onClick={e => this.props.onProfile(e)}><i className="fa fa-users"></i>Profile Saya</DropdownItem>
               <DropdownItem header tag="div" className="text-center"><strong>Management</strong></DropdownItem>
-              <DropdownItem><i className="fa fa-users"></i>Karyawan<Badge color="info">42</Badge></DropdownItem>
-              <DropdownItem><i className="fa fa-tv"></i>Kontrak<Badge color="success">42</Badge></DropdownItem>
+              <DropdownItem onClick={e => this.props.onKaryawan(e)}>
+                <i className="fa fa-users"></i>
+                Karyawan
+                </DropdownItem>
+              <DropdownItem onClick={e => this.props.onMonitoring(e)}><i className="fa fa-tv"></i>Kontrak</DropdownItem>
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
