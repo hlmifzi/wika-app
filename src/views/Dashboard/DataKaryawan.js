@@ -34,7 +34,7 @@ function UserRow(props) {
 
 class DataKaryawan extends Component {
   state = {
-    nama: ""
+    nama: "",
   }
   render() {
 
@@ -132,7 +132,7 @@ class DataKaryawan extends Component {
                       <th scope="col">No</th>
                       <th scope="col">NIP</th>
                       <th scope="col">Nama</th>
-                      <th scope="col">Jabatan</th>
+                      <th scope="col">Fungsi</th>
                       <th scope="col">Masa Kerja</th>
                       <th scope="col">Unit Kerja</th>
                       <th scope="col">EK</th>

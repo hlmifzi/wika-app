@@ -68,7 +68,7 @@ class AssessmenTask extends Component {
                       <Table responsive hover>
                         <thead>
                           <tr>
-                            <th scope="col">Jenis KUK</th>
+                            <th scope="col">KUK Fungsi</th>
                             <th scope="col">Deadline</th>
                             <th scope="col">Assign By</th>
                             <th scope="col">status</th>
