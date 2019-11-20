@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import {
   Col, Row, CardBody, Table, Badge, Button,
-  Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup
+  Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, FormGroup
 } from 'reactstrap';
 
 import Widget03 from '../Widgets/Widget03';
@@ -59,7 +59,7 @@ class AssessmenTask extends Component {
             <CardWhiteComponent text="Assessmen">
               <Col xs={12} sm={12} md={12}>
                 <Row>
-                  <Col xl={6}>
+                  <Col xl={12}>
                     <CardBody>
                       <div style={{ float: 'right' }}>
                         <Button type="submit" size="sm" color="primary"

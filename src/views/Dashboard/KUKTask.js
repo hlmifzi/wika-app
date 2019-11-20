@@ -58,7 +58,7 @@ class AssessmenTask extends Component {
             <CardWhiteComponent text="KUK">
               <Col xs={12} sm={12} md={12}>
                 <Row>
-                  <Col xl={6}>
+                  <Col xl={12}>
                     <CardBody>
                       <div style={{ float: 'right' }}>
                         <Button type="submit" size="sm" color="primary" onClick={toggle}><i className="fa fa-plus"></i> Tambah</Button>
