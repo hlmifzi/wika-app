@@ -44,11 +44,11 @@ class MonitoringKontrak extends Component {
                 <Table responsive hover>
                   <thead>
                     <tr>
-                      <th scope="col">id</th>
-                      <th scope="col">name</th>
-                      <th scope="col">habis kontrak</th>
-                      <th scope="col">role</th>
-                      <th scope="col">status</th>
+                      <th scope="col">No</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">Habis Kontrak</th>
+                      <th scope="col">Biro</th>
+                      <th scope="col">Status</th>
                     </tr>
                   </thead>
                   <tbody>

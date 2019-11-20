@@ -6,7 +6,7 @@ import usersData from './sourceDataKaryawan'
 
 function UserRow(props) {
   const user = props.user
-  const userLink = `/users/${user.id}`
+  const userLink = `/dashboard/${user.id}`
 
   const getBadge = (status) => {
     return status === 'Disarankan' ? 'success' :

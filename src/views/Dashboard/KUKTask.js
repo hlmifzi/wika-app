@@ -101,9 +101,9 @@ class AssessmenTask extends Component {
                 <Col xs="12" md="12">
                   <Input type="select" name="select" id="select">
                     <option value="0">Pilih</option>
-                    <option value="1">Assessmen Manager</option>
-                    <option value="1">Assessmen GM</option>
-                    <option value="1">Assessmen Kepala Proyek</option>
+                    <option value="1">KUK Manager</option>
+                    <option value="1">KUK GM</option>
+                    <option value="1">KUK Kepala Proyek</option>
                   </Input>
                 </Col>
               </FormGroup>
