@@ -50,6 +50,16 @@ class DataKaryawan extends Component {
               </CardHeader>
               <CardBody>
                 <Row>
+                  <Col xs="12" md="12">
+                    <FormGroup row>
+                      <Col md="12">
+                        <Label htmlFor="selectSm">Nama</Label>
+                      </Col>
+                      <Col xs="12" md="12">
+                        <Input type="number" id="name" placeholder="Nama Karyawan" onChange={(e) => this.setState({ nama: e.target.value })} required />
+                      </Col>
+                    </FormGroup>
+                  </Col>
                   <Col xs="12" md="3">
                     <FormGroup row>
                       <Col md="12">
@@ -104,11 +114,14 @@ class DataKaryawan extends Component {
                   <Col xs="12" md="3">
                     <FormGroup row>
                       <Col md="12">
-                        <Label htmlFor="selectSm">Nama</Label>
+                        <Label htmlFor="selectSm">Unit Kerja</Label>
                       </Col>
                       <Col xs="12" md="12">
-                        <Input type="number" id="name" placeholder="Nama Karyawan" onChange={(e) => this.setState({ nama: e.target.value })} required />
-
+                        <Input type="select" name="select" id="select">
+                          <option value="0">Pilih</option>
+                          <option value="1">LRT</option>
+                          <option value="2">MRT</option>
+                        </Input>
                       </Col>
                     </FormGroup>
                   </Col>
