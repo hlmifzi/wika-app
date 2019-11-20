@@ -28,7 +28,9 @@ function UserRow(props) {
       <td>{user.PK}</td>
       <td>{user.KUK}</td>
       <td>{user.KUK}</td>
-      <td><Link to={userLinkb}><br /><Badge color={getBadge(user.status)}>{user.jobAssessmen}<br />{user.status} </Badge></Link></td>
+      <td><Link to={userLinkb}><br /><Badge color={getBadge(user.status)}>{user.status} </Badge></Link></td>
+      <td><Link to={userLinkb}><br /><Badge color={getBadge(user.status)}>{user.status} </Badge></Link></td>
+      <td><Link to={userLinkb}><br /><Badge color={getBadge(user.status)}>{user.status} </Badge></Link></td>
     </tr >
   )
 }
@@ -140,7 +142,9 @@ class DataKaryawan extends Component {
                       <th scope="col">PK</th>
                       <th scope="col">KUK Teori</th>
                       <th scope="col">KUK Praktek</th>
-                      <th scope="col">Assessmen</th>
+                      <th scope="col">Assessmen Job Fit</th>
+                      <th scope="col">Assessmen Job Target 1</th>
+                      <th scope="col">Assessmen Job Target 2</th>
                     </tr>
                   </thead>
                   <tbody>
