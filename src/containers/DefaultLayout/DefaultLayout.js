@@ -21,13 +21,28 @@ class DefaultLayout extends Component {
     e.preventDefault()
     this.props.history.push('/login')
   }
+  Karyawan(e) {
+    e.preventDefault()
+    this.props.history.push('/data-karyawan')
+  }
+  monitoring(e) {
+    e.preventDefault()
+    this.props.history.push('/monitoring-kontrak')
+  }
+  profile(e) {
+    e.preventDefault()
+    this.props.history.push('/dashboard')
+  }
 
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
           <Suspense fallback={this.loading()}>
-            <DefaultHeader onLogout={e => this.signOut(e)} />
+            <DefaultHeader onLogout={e => this.signOut(e)}
+              onKaryawan={e => this.Karyawan(e)}
+              onMonitoring={e => this.monitoring(e)}
+              onProfile={e => this.profile(e)} />
           </Suspense>
         </AppHeader>
         <div className="app-body">
