@@ -204,12 +204,8 @@ class Dashboard extends Component {
                       <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
                         <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Mampu menginspirasi  </ListGroupItem>
                         <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Mampu Beradaptasi </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Mampu Berkolaborasi</ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Mampu Memimpin</ListGroupItem>
                       </ListGroup>
                     </CardDefaulSideProfiletComponent>
                   </div>
