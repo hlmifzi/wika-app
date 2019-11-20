@@ -55,7 +55,7 @@ class Widget03 extends Component {
           </div>
         </div >
 
-        <div className={classes}>
+        {/* <div className={classes}>
           <CardDefaulSideProfiletComponent text="Riwayat Proyek" total="18" fontSize="1.1 rem">
             <ListGroup>
               <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Mega <Badge className="float-right" pill color="success">14</Badge></ListGroupItem>
@@ -64,7 +64,7 @@ class Widget03 extends Component {
               <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Kecil<Badge className="float-right" pill color="success">1</Badge></ListGroupItem>
             </ListGroup>
           </CardDefaulSideProfiletComponent>
-        </div>
+        </div> */}
 
         <div className={classes}>
           <CardDefaulSideProfiletComponent text="Riwayat Fungsi " total="18" fontSize="1.1 rem">
