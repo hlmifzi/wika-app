@@ -27,20 +27,9 @@ class Dashboard extends Component {
               <Col xs={12} sm={12} md={12}>
                 <Row>
                   <KUKCard title="Memahami Document Gambar Tender" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEARNING AGILITY" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="INTEGRITY" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
-                  <KUKCard title="INNOVATIF" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
-                  <KUKCard title="COLLABORATION" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="EMPOWERING" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEAD SELF" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEAD SELF" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
-                  <KUKCard title="LEAD SELF" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEAD SELF" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
-                  <KUKCard title="LEAD SELF" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEAD SELF" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEAD SELF" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
-                  <KUKCard title="LEAD SELF" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
-                  <KUKCard title="LEAD SELF" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
+                  <KUKCard title="Survey Lapangan" assessmen={3} fet={2} gap={+1} color='#4dbd74' />
+                  <KUKCard title="Mampu Menyusun Metode Kerja" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
+                  <KUKCard title="Menyusun Rencana Kerja" assessmen={2} fet={3} gap={-1} color='#f86c6b' />
                 </Row>
               </Col>
 

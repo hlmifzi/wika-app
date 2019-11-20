@@ -33,7 +33,9 @@ function UserRow(props) {
 }
 
 class DataKaryawan extends Component {
-
+  state = {
+    nama: ""
+  }
   render() {
 
     const userList = usersData.filter((user) => user.id < 10)
@@ -96,6 +98,17 @@ class DataKaryawan extends Component {
                           <option value="2">Manager Biro</option>
                           <option value="3">Manager Proyek</option>
                         </Input>
+                      </Col>
+                    </FormGroup>
+                  </Col>
+                  <Col xs="12" md="3">
+                    <FormGroup row>
+                      <Col md="12">
+                        <Label htmlFor="selectSm">Nama</Label>
+                      </Col>
+                      <Col xs="12" md="12">
+                        <Input type="number" id="name" placeholder="Nama Karyawan" onChange={(e) => this.setState({ nama: e.target.value })} required />
+
                       </Col>
                     </FormGroup>
                   </Col>

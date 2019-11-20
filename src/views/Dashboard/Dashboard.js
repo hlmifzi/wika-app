@@ -214,7 +214,7 @@ class Dashboard extends Component {
                   <div className="card-header">
                     <CardDefaulSideProfiletComponent text="Program Pengembangan" fontSize="1.1 rem">
                       <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>ESQ </ListGroupItem>
+                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>SELF DEVELOPMENT </ListGroupItem>
                         <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Training </ListGroupItem>
                       </ListGroup>
                     </CardDefaulSideProfiletComponent>
