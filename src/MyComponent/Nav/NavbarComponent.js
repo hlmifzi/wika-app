@@ -44,13 +44,13 @@ const NavbarComponent = props => {
                         <NavLink>KUK</NavLink>
                     </Link>
                     <Link to="/kuk" style={KUK}>
+                        <NavLink>Posisi Pegawai</NavLink>
+                    </Link>
+                    <Link to="/kuk" style={KUK}>
                         <NavLink>MBTI</NavLink>
                     </Link>
                     <Link to="/kuk" style={KUK}>
                         <NavLink>Dashboard</NavLink>
-                    </Link>
-                    <Link to="/kuk" style={KUK}>
-                        <NavLink>Posisi Pegawai</NavLink>
                     </Link>
                 </Nav>
             </CardBody>
