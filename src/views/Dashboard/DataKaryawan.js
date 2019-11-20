@@ -29,7 +29,7 @@ function UserRow(props) {
       <td>{user.KUK}</td>
       <td>{user.KUK}</td>
       <td><Link to={userLinkb}>
-        <Badge color={getBadge(user.status)}> Assessmen Job Fit<br />{user.status} </Badge><br />
+        <Badge color={getBadge(user.status)}> Assessmen Job Fit<br />{user.statusgit} </Badge><br />
         <Badge color={getBadge(user.status2)}>Assessmen Job Target 1<br />{user.status2} </Badge><br />
         <Badge color={getBadge(user.status3)}>Assessmen Job Target 2<br />{user.status3} </Badge><br />
       </Link></td>
