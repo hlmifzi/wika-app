@@ -3,8 +3,10 @@ import ReactHighcharts from 'react-highcharts'
 import HighchartsMore from 'highcharts-more'
 
 import { Col, Row, Progress, ListGroup, ListGroupItem, Badge } from 'reactstrap';
-import Widget03 from '../Widgets/Widget03';
-import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
+
+import Widget04 from '../Widgets/Widget04';
+
+import NavbarDashboardComponent from '../../MyComponent/Nav/NavbarDashboardComponent'
 import { CardWhiteComponent, CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'
 
 HighchartsMore(ReactHighcharts.Highcharts)
@@ -14,230 +16,523 @@ class Dashboard extends Component {
 
   render() {
     let config = {
-
       chart: {
-        polar: true,
-        type: 'line'
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
       },
-
-
       title: {
-        text: 'Passing Grade vs Assessment',
+        text: 'Pendidikan'
       },
-
-      pane: {
-        size: '100%'
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (1300 orang)'
       },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    }
 
+    let configMasaKerja = {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Masa Kerja'
+      },
+      subtitle: {
+        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+      },
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
       xAxis: {
-        categories: [
-          'IF',
-          'LA',
-          'IT',
-          'IN',
-          'CO',
-          'EM',
-          'CL',
-          'IP',
-          'PS',
-          'DE',
-          'DR',
-          'BA',
-          'SO',
-          'CF',
-          'BP',
-        ],
-        tickmarkPlacement: 'on',
-        lineWidth: 0
+        type: 'category'
       },
-
       yAxis: {
-        gridLineInterpolation: 'polygon',
-        lineWidth: 0,
-        min: 0
+        title: {
+          text: 'Total percent market share'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}%'
+          }
+        }
       },
 
       tooltip: {
-        shared: true,
-        pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
       },
 
-      legend: {
-        align: 'right',
-        verticalAlign: 'middle'
-      },
-
-      series: [{
-        name: 'Passing Grade',
-        data: [2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3],
-        pointPlacement: 'on'
-      }, {
-        name: 'Assessmen',
-        data: [3, 2, 1, 2, 4, 4, 2, 3, 4, 4, 3, 2, 4, 3, 3],
-        pointPlacement: 'on'
-      }],
-
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500
-          },
-          chartOptions: {
-            legend: {
-              align: 'center',
-              verticalAlign: 'bottom'
+      series: [
+        {
+          name: "Browsers",
+          colorByPoint: true,
+          data: [
+            {
+              name: "Chrome",
+              y: 62.74
             },
-            pane: {
-              size: '70%'
+            {
+              name: "Firefox",
+              y: 10.57
+            },
+            {
+              name: "Internet Explorer",
+              y: 7.23
+            },
+            {
+              name: "Safari",
+              y: 5.58
+            },
+            {
+              name: "Edge",
+              y: 4.02
+            },
+            {
+              name: "Opera",
+              y: 1.92
+            },
+            {
+              name: "Other",
+              y: 7.62
             }
-          }
-        }]
-      }
+          ]
+        }
+      ]
+    }
 
+    let configStatusPegawai = {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Status Pegawai'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (1300 orang)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    }
+
+    let configBODGroup = {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'BOD Group'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (1300 orang)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    }
+
+    let configAssessment = {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Assessment'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (1300 orang)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    }
+
+    let configUnitKerja = {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Unit Kerja'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (1300 orang)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    }
+
+    let configKategoriProyek = {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Kategori Proyek'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> (1300 orang)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    }
+
+    let configMBTI = {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'MBTI'
+      },
+      subtitle: {
+        text: 'Potensional Pegawai'
+      },
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Total percent market share'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}%'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+      },
+
+      series: [
+        {
+          name: "Browsers",
+          colorByPoint: true,
+          data: [
+            {
+              name: "Chrome",
+              y: 62.74
+            },
+            {
+              name: "Firefox",
+              y: 10.57
+            },
+            {
+              name: "Internet Explorer",
+              y: 7.23
+            },
+            {
+              name: "Safari",
+              y: 5.58
+            },
+            {
+              name: "Edge",
+              y: 4.02
+            },
+            {
+              name: "Opera",
+              y: 1.92
+            },
+            {
+              name: "Other",
+              y: 7.62
+            }
+          ]
+        }
+      ]
     }
 
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col xs={12} sm={6} md={3}>
-            <Widget03 dataBox={() => ({ variant: 'twitter', followers: '973k', tweets: '1.792' })} >
-            </Widget03>
-          </Col>
-          <Col xs={12} sm={12} md={9}>
-            <NavbarComponent />
-            <CardWhiteComponent text="Penilaian">
+          <Col xs={12} sm={12} md={12}>
+            <CardWhiteComponent text="Statistik">
               <Col xs={12} sm={12} md={12}>
                 <Row>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="Assessmen">
-                        <span className="h1" style={{ padding: '20px' }}><Badge color="success">Disarankan</Badge></span>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
+                  <Col sm="12" md="4">
+                    <Widget04 icon="icon-people" color="info" header="87.500" value="25" invert>Jumlah Pegawai</Widget04>
                   </Col>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="KUK">
-                        <Row style={{ padding: '20px' }}>
-                          <Col xs={12} sm={12} md={6} style={{ borderRight: '1px solid black' }}>
-                            <div className="text-value">80</div>
-                            <div className="text-uppercase text-muted small">Teori</div>
-                          </Col>
-                          <Col xs={12} sm={12} md={6}>
-                            <div className="text-value">90</div>
-                            <div className="text-uppercase text-muted small">Praktek</div>
-                          </Col>
-                        </Row>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
+                  <Col sm="12" md="4">
+                    <Widget04 icon="icon-user-follow" color="success" header="385" value="25" invert>Jumlah Proyek</Widget04>
                   </Col>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="EK">
-                        <span className="h1" style={{ padding: '20px' }}>94.09</span>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
-                  </Col>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="PK">
-                        <span className="h1" style={{ padding: '20px' }}>96.19</span>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
+                  <Col sm="12" md="4">
+                    <Widget04 icon="icon-basket-loaded" color="warning" header="1238" value="25" invert>Jumlah Unit Kerja</Widget04>
                   </Col>
                 </Row>
               </Col>
             </CardWhiteComponent>
+            <Row>
+              <Col xs={12} sm={12} md={12}>
+                <NavbarDashboardComponent />
+              </Col>
+            </Row>
 
-            <CardWhiteComponent text="Grafik Assessmen">
-              <Row>
-                <Col xs={12} sm={6} md={6}>
-                  <ReactHighcharts config={config} />
-                </Col>
-                <Col xs={12} sm={6} md={6} style={{ marginBottom: '20px' }}>
-                  <Col xs={12} sm={12} md={12}>
-                    <CardDefaulSideProfiletComponent text="Assessmen">
-                      <Row>
-                        <Col xs={12} sm={6} md={6}>
-                          <div className="text-left" style={{ padding: '5px' }}>IF (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>LA (min 3)</div>
-                          <Progress value="50" >2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>IT (min 3)</div>
-                          <Progress value="100" >4/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>IN (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>CO (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>EM (min 3)</div>
-                          <Progress value="50" color="danger">2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>CL (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>IP (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                        </Col>
-                        <Col xs={12} sm={6} md={6}>
-                          <div className="text-left" style={{ padding: '5px' }}>PS (min 3)</div>
-                          <Progress value="50" color="danger">2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>DE (min 3)</div>
-                          <Progress value="100" >4/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>DR (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>BA (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>SO (min 3)</div>
-                          <Progress value="50" color="danger">2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>CF (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>BP (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                        </Col>
-                      </Row>
-                    </CardDefaulSideProfiletComponent >
-                  </Col>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} sm={12} md={6}>
-                  <div className="card-header">
-                    <CardDefaulSideProfiletComponent text="Target Pengembangan" fontSize="1.1 rem">
-                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Mampu menginspirasi  </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Mampu Beradaptasi </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Mampu Berkolaborasi</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Mampu Memimpin</ListGroupItem>
-                      </ListGroup>
-                    </CardDefaulSideProfiletComponent>
-                  </div>
-                </Col>
-                <Col xs={12} sm={12} md={6}>
-                  <div className="card-header">
-                    <CardDefaulSideProfiletComponent text="Program Pengembangan" fontSize="1.1 rem">
-                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>SELF DEVELOPMENT </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Training </ListGroupItem>
-                      </ListGroup>
-                    </CardDefaulSideProfiletComponent>
-                  </div>
-                </Col>
-              </Row>
+            <CardWhiteComponent text="Detail Statistik Pegawai">
               <Row>
                 <Col xs={12} sm={12} md={12}>
-                  <div className="card-header">
-                    <CardDefaulSideProfiletComponent text="Target Pelatihan" fontSize="1.1 rem">
-                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Kemampuan Membaca Gambar </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Membuat Dokumen Teknis </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Membuat Dokumen Pengadaan</ListGroupItem>
-
-                      </ListGroup>
-                    </CardDefaulSideProfiletComponent>
-                  </div>
+                  <ReactHighcharts config={configMasaKerja} />
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <ReactHighcharts config={config} />
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <ReactHighcharts config={configStatusPegawai} />
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <ReactHighcharts config={configBODGroup} />
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <ReactHighcharts config={configAssessment} />
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <ReactHighcharts config={configUnitKerja} />
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <ReactHighcharts config={configKategoriProyek} />
                 </Col>
               </Row>
             </CardWhiteComponent>
 
-
+            <CardWhiteComponent text="Detail Statistik Pegawai">
+              <Row>
+                <Col>
+                  <ReactHighcharts style={{ width: '100%' }} config={configMBTI} />
+                </Col>
+              </Row>
+            </CardWhiteComponent>
           </Col>
         </Row>
       </div >

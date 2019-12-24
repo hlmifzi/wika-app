@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { AppNavbarBrand } from '@coreui/react';
+import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logo2.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 
@@ -25,6 +25,7 @@ class DefaultHeader extends Component {
           full={{ src: logo, width: 60, height: 40, alt: 'CoreUI Logo' }}
           minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
         />
+        <AppSidebarToggler className="d-md-down-none" display="lg" />
 
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
