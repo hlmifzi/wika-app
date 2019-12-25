@@ -597,7 +597,7 @@ class Dashboard extends Component {
             </CardWhiteComponent>
           </Col>
 
-          <Col xs={12} sm={6} md={6}>
+          <Col xs={12} sm={4} md={4}>
             <CardWhiteComponent text="Status Pegawai">
               <Row>
                 <Col xs={12} sm={12} md={12}>
@@ -607,7 +607,7 @@ class Dashboard extends Component {
             </CardWhiteComponent>
           </Col>
 
-          <Col xs={12} sm={6} md={6}>
+          <Col xs={12} sm={4} md={4}>
             <CardWhiteComponent text="Pendidikan">
               <Row>
                 <Col xs={12} sm={12} md={12}>
@@ -616,27 +616,6 @@ class Dashboard extends Component {
               </Row>
             </CardWhiteComponent>
           </Col>
-
-          <Col xs={12} sm={4} md={4}>
-            <CardWhiteComponent text="Assessment">
-              <Row>
-                <Col xs={12} sm={12} md={12}>
-                  <ReactHighcharts config={configAssessment} />
-                </Col>
-              </Row>
-            </CardWhiteComponent>
-          </Col>
-
-          <Col xs={12} sm={4} md={4}>
-            <CardWhiteComponent text="BOD GROUP">
-              <Row>
-                <Col xs={12} sm={12} md={12}>
-                  <ReactHighcharts config={configBODGroup} />
-                </Col>
-              </Row>
-            </CardWhiteComponent>
-          </Col>
-
 
 
           <Col xs={12} sm={4} md={4}>
@@ -648,6 +627,29 @@ class Dashboard extends Component {
               </Row>
             </CardWhiteComponent>
           </Col>
+
+
+          <Col xs={12} sm={6} md={6}>
+            <CardWhiteComponent text="Assessment">
+              <Row>
+                <Col xs={12} sm={12} md={12}>
+                  <ReactHighcharts config={configAssessment} />
+                </Col>
+              </Row>
+            </CardWhiteComponent>
+          </Col>
+
+          <Col xs={12} sm={6} md={6}>
+            <CardWhiteComponent text="BOD GROUP">
+              <Row>
+                <Col xs={12} sm={12} md={12}>
+                  <ReactHighcharts config={configBODGroup} />
+                </Col>
+              </Row>
+            </CardWhiteComponent>
+          </Col>
+
+
 
 
         </Row>
