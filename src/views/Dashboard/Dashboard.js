@@ -196,12 +196,11 @@ class Dashboard extends Component {
           }
         },
         data: [
-          { name: 'Chrome', y: 61.41, },
-          { name: 'Internet Explorer', y: 11.84 },
-          { name: 'Firefox', y: 10.85 },
-          { name: 'Edge', y: 4.67 },
-          { name: 'Safari', y: 4.18 },
-          { name: 'Other', y: 7.05 }
+          { name: 'Organik', y: 61.41, },
+          { name: 'Terampil', y: 11.84 },
+          { name: 'Outsource', y: 8.85 },
+          { name: 'PPCP', y: 7.67 },
+          { name: 'Magang', y: 4.18 }
         ]
       }],
       credits: {
@@ -246,12 +245,11 @@ class Dashboard extends Component {
       series: [{
         name: 'Share',
         data: [
-          { name: 'Chrome', y: 61.41 },
-          { name: 'Internet Explorer', y: 11.84 },
-          { name: 'Firefox', y: 10.85 },
-          { name: 'Edge', y: 4.67 },
-          { name: 'Safari', y: 4.18 },
-          { name: 'Other', y: 7.05 }
+          { name: 'BOD-5', y: 20.41 },
+          { name: 'BOD-4', y: 31.84 },
+          { name: 'BOD-3', y: 10.85 },
+          { name: 'BOD-2', y: 24.67 },
+          { name: 'BOD-1', y: 4.18 },
         ]
       }],
       credits: {
@@ -296,12 +294,9 @@ class Dashboard extends Component {
       series: [{
         name: 'Share',
         data: [
-          { name: 'Chrome', y: 61.41 },
-          { name: 'Internet Explorer', y: 11.84 },
-          { name: 'Firefox', y: 10.85 },
-          { name: 'Edge', y: 4.67 },
-          { name: 'Safari', y: 4.18 },
-          { name: 'Other', y: 7.05 }
+          { name: 'Disarankan', y: 21.41 },
+          { name: 'Disarankan dengan Pengembangan', y: 31.84 },
+          { name: 'Tidak Disarankan', y: 30.85 },
         ]
       }],
       credits: {
@@ -309,51 +304,132 @@ class Dashboard extends Component {
       },
     }
 
+    // let configUnitKerja = {
+    //   chart: {
+    //     plotBackgroundColor: null,
+    //     plotBorderWidth: null,
+    //     plotShadow: false,
+    //     type: 'pie'
+    //   },
+    //   title: false,
+    //   tooltip: {
+    //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    //   },
+    //   accessibility: {
+    //     point: {
+    //       valueSuffix: '%'
+    //     }
+    //   },
+    //   plotOptions: {
+    //     pie: {
+    //       allowPointSelect: true,
+    //       cursor: 'pointer',
+    //       // colors: pieColors,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+    //         distance: -50,
+    //         filter: {
+    //           property: 'percentage',
+    //           operator: '>',
+    //           value: 4
+    //         }
+    //       },
+    //       showInLegend: true
+    //     },
+    //   },
+    //   series: [{
+    //     name: 'Share',
+    //     data: [
+    //       { name: 'Divisi Pemasaran Sipil Umum', y: 61.41 },
+    //       { name: 'Kantor Departemen', y: 10.85 },
+    //       { name: 'Kantor Divisi', y: 4.67 },
+    //       { name: 'Proyek Bandara Banyuwangi', y: 4.18 },
+    //       { name: 'Proyek Double Double Track Manggarai - Jatinegara', y: 7.05 },
+    //       { name: 'Proyek Gerbang Tol Bogor', y: 61.41 },
+    //       { name: 'Proyek High Speed Railway Contractor Consotium (HSRCC) JO - Comittee Management', y: 10.85 },
+    //       { name: 'Proyek High Speed Railway Contractor Consotium (HSRCC) JO - Project Team', y: 4.67 },
+    //       { name: 'Proyek Lanjutan Pekerjaan Aksesbilitas', y: 4.18 },
+    //       { name: 'Proyek LRT Kelapa Gading Velodrome (Main Works)', y: 7.05 },
+    //       { name: 'Proyek Mass Rapid Transit (MRT CP101 & CP102 )', y: 61.41 },
+    //       { name: 'Proyek MRT 104 & 105', y: 10.85 },
+    //       { name: 'Proyek Pekerjaan Paket Penanganan Mendesak Bencana Alam Tanah Longsor Ruas Ciawi - Puncak - BTS, Kota Cianjur', y: 4.67 },
+    //       { name: 'Proyek Pembangunan 6 Ruas Tol Dalam Kota', y: 4.18 },
+    //       { name: 'Proyek Pembangunan Jalan Tol Serpong - Balaraja Seksi I A', y: 7.05 },
+    //       { name: 'Proyek Rehabilitasi Saluran Tarum Barat Ruas Bekasi Cawang', y: 61.41 },
+    //       { name: 'Proyek Soil Investigation', y: 10.85 },
+    //       { name: 'Proyek Tol Kunciran', y: 4.67 }
+    //     ]
+    //   }],
+    //   credits: {
+    //     enabled: false
+    //   },
+    // }
+
     let configUnitKerja = {
       chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
+        type: 'column'
       },
       title: false,
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
       accessibility: {
-        point: {
-          valueSuffix: '%'
+        announceNewData: {
+          enabled: true
         }
       },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Total Karyawan'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
       plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          // colors: pieColors,
+        series: {
+          borderWidth: 0,
           dataLabels: {
             enabled: true,
-            format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-            distance: -50,
-            filter: {
-              property: 'percentage',
-              operator: '>',
-              value: 4
-            }
+            format: '{point.y:.1f}%'
           },
           showInLegend: true
-        },
+        }
       },
-      series: [{
-        name: 'Share',
-        data: [
-          { name: 'Chrome', y: 61.41 },
-          { name: 'Internet Explorer', y: 11.84 },
-          { name: 'Firefox', y: 10.85 },
-          { name: 'Edge', y: 4.67 },
-          { name: 'Safari', y: 4.18 },
-          { name: 'Other', y: 7.05 }
-        ]
-      }],
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/> 800 orang'
+      },
+
+      series: [
+        {
+          name: "Browsers",
+          colorByPoint: true,
+          data: [
+            { name: 'Divisi Pemasaran Sipil Umum', y: 61.41 },
+            { name: 'Kantor Departemen', y: 30.85 },
+            { name: 'Kantor Divisi', y: 4.67 },
+            { name: 'Proyek Bandara Banyuwangi', y: 4.18 },
+            { name: 'Proyek Double Double Track Manggarai - Jatinegara', y: 7.05 },
+            { name: 'Proyek Gerbang Tol Bogor', y: 11.41 },
+            { name: 'Proyek High Speed Railway Contractor Consotium (HSRCC) JO - Comittee Management', y: 10.85 },
+            { name: 'Proyek High Speed Railway Contractor Consotium (HSRCC) JO - Project Team', y: 4.67 },
+            { name: 'Proyek Lanjutan Pekerjaan Aksesbilitas', y: 4.18 },
+            { name: 'Proyek LRT Kelapa Gading Velodrome (Main Works)', y: 7.05 },
+            { name: 'Proyek Mass Rapid Transit (MRT CP101 & CP102 )', y: 21.41 },
+            { name: 'Proyek MRT 104 & 105', y: 10.85 },
+            { name: 'Proyek Pekerjaan Paket Penanganan Mendesak Bencana Alam Tanah Longsor Ruas Ciawi - Puncak - BTS, Kota Cianjur', y: 4.67 },
+            { name: 'Proyek Pembangunan 6 Ruas Tol Dalam Kota', y: 4.18 },
+            { name: 'Proyek Pembangunan Jalan Tol Serpong - Balaraja Seksi I A', y: 7.05 },
+            { name: 'Proyek Rehabilitasi Saluran Tarum Barat Ruas Bekasi Cawang', y: 21.41 },
+            { name: 'Proyek Soil Investigation', y: 10.85 },
+            { name: 'Proyek Tol Kunciran', y: 4.67 }
+          ]
+        }
+      ],
       credits: {
         enabled: false
       },
@@ -396,12 +472,10 @@ class Dashboard extends Component {
       series: [{
         name: 'Share',
         data: [
-          { name: 'Chrome', y: 61.41 },
-          { name: 'Internet Explorer', y: 11.84 },
-          { name: 'Firefox', y: 10.85 },
-          { name: 'Edge', y: 4.67 },
-          { name: 'Safari', y: 4.18 },
-          { name: 'Other', y: 7.05 }
+          { name: 'Mega', y: 11.41 },
+          { name: 'Besar', y: 21.84 },
+          { name: 'Kecil', y: 30.85 },
+          { name: 'Menengah', y: 24.67 },
         ]
       }],
       credits: {
@@ -512,7 +586,18 @@ class Dashboard extends Component {
               </Row>
             </CardWhiteComponent>
           </Col>
-          <Col xs={12} sm={4} md={4}>
+
+          <Col xs={12} sm={12} md={12}>
+            <CardWhiteComponent text="Unit Kerja">
+              <Row>
+                <Col xs={12} sm={12} md={12}>
+                  <ReactHighcharts config={configUnitKerja} />
+                </Col>
+              </Row>
+            </CardWhiteComponent>
+          </Col>
+
+          <Col xs={12} sm={6} md={6}>
             <CardWhiteComponent text="Status Pegawai">
               <Row>
                 <Col xs={12} sm={12} md={12}>
@@ -522,7 +607,7 @@ class Dashboard extends Component {
             </CardWhiteComponent>
           </Col>
 
-          <Col xs={12} sm={4} md={4}>
+          <Col xs={12} sm={6} md={6}>
             <CardWhiteComponent text="Pendidikan">
               <Row>
                 <Col xs={12} sm={12} md={12}>
@@ -552,15 +637,7 @@ class Dashboard extends Component {
             </CardWhiteComponent>
           </Col>
 
-          <Col xs={12} sm={4} md={4}>
-            <CardWhiteComponent text="Unit Kerja">
-              <Row>
-                <Col xs={12} sm={12} md={12}>
-                  <ReactHighcharts config={configUnitKerja} />
-                </Col>
-              </Row>
-            </CardWhiteComponent>
-          </Col>
+
 
           <Col xs={12} sm={4} md={4}>
             <CardWhiteComponent text="Kategori Proyek">

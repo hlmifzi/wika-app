@@ -26,89 +26,106 @@ const menuAdmin = {
     },
     {
       "title": true,
-      "name": "Product Management",
+      "name": "POSISI PEGAWAI",
       "wrapper": {
         "element": "",
         "attributes": {}
       }
     },
     {
-      "name": "List Product",
+      "name": "Sortir Usulan Pegawai",
       "url": "/productManagement/ListProduct",
       "icon": "icon-list"
     },
     {
-      "name": "Manage All Product",
+      "name": "Summary Pegawai",
+      "url": "/productManagement/ManageProduct",
+      "icon": "icon-layers"
+    },
+    {
+      "name": "Mutasi / Promosi",
+      "url": "/Transaction",
+      "icon": "icon-cursor",
+      "children": [
+        {
+          "name": "Input Mutasi",
+          "url": "/productManagement/Entry",
+          "icon": "icon-action-redo"
+        },
+        {
+          "name": "Report Mutasi / Rotasi",
+          "url": "/productManagement/Depreciation",
+          "icon": "icon-book-open"
+        }
+      ]
+    },
+    {
+      "name": "PJS Orientasi",
       "url": "/productManagement/ManageProduct",
       "icon": "icon-layers"
     },
     {
       "title": true,
-      "name": "Product Management",
+      "name": "Training Management",
       "wrapper": {
         "element": "",
         "attributes": {}
       }
     },
     {
-      "name": "List Product",
+      "name": "Ceklis Kepesertaan",
       "url": "/productManagement/ListProduct",
       "icon": "icon-list"
     },
     {
-      "name": "Transaction",
-      "url": "/Transaction",
-      "icon": "icon-cursor",
-      "children": [
-        {
-          "name": "Entry",
-          "url": "/productManagement/Entry",
-          "icon": "icon-action-redo"
-        },
-        {
-          "name": "Depreciation",
-          "url": "/productManagement/Depreciation",
-          "icon": "icon-arrow-down"
-        },
-        {
-          "name": "Retur",
-          "url": "/productManagement/Retur",
-          "icon": "icon-action-undo"
-        },
-        {
-          "name": "Selling",
-          "url": "/productManagement/Selling",
-          "icon": "icon-basket"
-        }
-      ]
+      "name": "Evaluasi Quartal",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
+
+    {
+      "title": true,
+      "name": "File Management",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
     },
     {
-      "name": "Product Report",
-      "url": "/pages",
-      "icon": "icon-book-open",
-      "children": [
-        {
-          "name": "Entry",
-          "url": "/report/Entry",
-          "icon": "icon-action-redo"
-        },
-        {
-          "name": "Depreciation",
-          "url": "/report/Depreciation",
-          "icon": "icon-arrow-down"
-        },
-        {
-          "name": "Retur",
-          "url": "/report/Retur",
-          "icon": "icon-action-undo"
-        },
-        {
-          "name": "Selling",
-          "url": "/report/Selling",
-          "icon": "icon-basket"
-        }
-      ]
-    }
+      "name": "List Important File",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
+
+    {
+      "title": true,
+      "name": "Kebutuhan Pegawai",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
+    {
+      "name": "List Important File",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
+
+    {
+      "title": true,
+      "name": "Biaya",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
+    {
+      "name": "List Important File",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
+
+
   ]
 };
 
