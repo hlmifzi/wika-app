@@ -304,68 +304,6 @@ class Dashboard extends Component {
       },
     }
 
-    // let configUnitKerja = {
-    //   chart: {
-    //     plotBackgroundColor: null,
-    //     plotBorderWidth: null,
-    //     plotShadow: false,
-    //     type: 'pie'
-    //   },
-    //   title: false,
-    //   tooltip: {
-    //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    //   },
-    //   accessibility: {
-    //     point: {
-    //       valueSuffix: '%'
-    //     }
-    //   },
-    //   plotOptions: {
-    //     pie: {
-    //       allowPointSelect: true,
-    //       cursor: 'pointer',
-    //       // colors: pieColors,
-    //       dataLabels: {
-    //         enabled: true,
-    //         format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-    //         distance: -50,
-    //         filter: {
-    //           property: 'percentage',
-    //           operator: '>',
-    //           value: 4
-    //         }
-    //       },
-    //       showInLegend: true
-    //     },
-    //   },
-    //   series: [{
-    //     name: 'Share',
-    //     data: [
-    //       { name: 'Divisi Pemasaran Sipil Umum', y: 61.41 },
-    //       { name: 'Kantor Departemen', y: 10.85 },
-    //       { name: 'Kantor Divisi', y: 4.67 },
-    //       { name: 'Proyek Bandara Banyuwangi', y: 4.18 },
-    //       { name: 'Proyek Double Double Track Manggarai - Jatinegara', y: 7.05 },
-    //       { name: 'Proyek Gerbang Tol Bogor', y: 61.41 },
-    //       { name: 'Proyek High Speed Railway Contractor Consotium (HSRCC) JO - Comittee Management', y: 10.85 },
-    //       { name: 'Proyek High Speed Railway Contractor Consotium (HSRCC) JO - Project Team', y: 4.67 },
-    //       { name: 'Proyek Lanjutan Pekerjaan Aksesbilitas', y: 4.18 },
-    //       { name: 'Proyek LRT Kelapa Gading Velodrome (Main Works)', y: 7.05 },
-    //       { name: 'Proyek Mass Rapid Transit (MRT CP101 & CP102 )', y: 61.41 },
-    //       { name: 'Proyek MRT 104 & 105', y: 10.85 },
-    //       { name: 'Proyek Pekerjaan Paket Penanganan Mendesak Bencana Alam Tanah Longsor Ruas Ciawi - Puncak - BTS, Kota Cianjur', y: 4.67 },
-    //       { name: 'Proyek Pembangunan 6 Ruas Tol Dalam Kota', y: 4.18 },
-    //       { name: 'Proyek Pembangunan Jalan Tol Serpong - Balaraja Seksi I A', y: 7.05 },
-    //       { name: 'Proyek Rehabilitasi Saluran Tarum Barat Ruas Bekasi Cawang', y: 61.41 },
-    //       { name: 'Proyek Soil Investigation', y: 10.85 },
-    //       { name: 'Proyek Tol Kunciran', y: 4.67 }
-    //     ]
-    //   }],
-    //   credits: {
-    //     enabled: false
-    //   },
-    // }
-
     let configUnitKerja = {
       chart: {
         type: 'column'
