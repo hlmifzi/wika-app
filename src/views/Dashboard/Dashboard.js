@@ -562,8 +562,27 @@ const Dashboard = () => {
         </Col>
 
 
-        <Col xs={12} sm={6} md={6}>
-          <CardWhiteComponent text="Assessment">
+
+        <Col xs={12} sm={4} md={4}>
+          <CardWhiteComponent text="BOD GROUP 1">
+            <Row>
+              <Col xs={12} sm={12} md={12}>
+                <ReactHighcharts config={configBODGroup} />
+              </Col>
+            </Row>
+          </CardWhiteComponent>
+        </Col>
+        <Col xs={12} sm={4} md={4}>
+          <CardWhiteComponent text="Assessment BOD GROUP 1">
+            <Row>
+              <Col xs={12} sm={12} md={12}>
+                <ReactHighcharts config={configAssessment} />
+              </Col>
+            </Row>
+          </CardWhiteComponent>
+        </Col>
+        <Col xs={12} sm={4} md={4}>
+          <CardWhiteComponent text="Assessment BOD GROUP 2">
             <Row>
               <Col xs={12} sm={12} md={12}>
                 <ReactHighcharts config={configAssessment} />
@@ -572,15 +591,7 @@ const Dashboard = () => {
           </CardWhiteComponent>
         </Col>
 
-        <Col xs={12} sm={6} md={6}>
-          <CardWhiteComponent text="BOD GROUP">
-            <Row>
-              <Col xs={12} sm={12} md={12}>
-                <ReactHighcharts config={configBODGroup} />
-              </Col>
-            </Row>
-          </CardWhiteComponent>
-        </Col>
+
       </Row>
     </div >
   );
