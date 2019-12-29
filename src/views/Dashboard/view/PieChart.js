@@ -37,7 +37,7 @@ const PieChart = props => {
         },
         title: false,
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>  ( {point.qty} orang)'
         },
         accessibility: {
             point: {
@@ -63,7 +63,7 @@ const PieChart = props => {
             }
         },
         series: [{
-            name: 'Share',
+            name: 'Karyawan',
             point: {
                 events: {
                     click: function (event) {

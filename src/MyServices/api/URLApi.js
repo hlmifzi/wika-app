@@ -13,14 +13,11 @@ const ROOT_API = axios.create({
 })
 
 export const client = async (endPoint, { method, params = "", body = "" }) => {
-   console.log("TCL: client -> endPoint", endPoint)
-   console.log("TCL: client -> methode", method)
    try {
       let getData
       switch (method) {
          case 'GET':
             getData = await ROOT_API.get(endPoint, params)
-            console.log("TCL: ROOT_API", getData)
             break;
          case 'POST':
             getData = await ROOT_API.post(endPoint, body)

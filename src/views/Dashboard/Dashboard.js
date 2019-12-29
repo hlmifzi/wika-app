@@ -3,7 +3,18 @@ import { useReducer, useState } from "reinspect"
 import PieChart from './view/PieChart'
 import BarChart from './view/BarChart'
 import { Col, Row } from 'reactstrap';
-import { getDataStatistikEndPoint } from './endpoint/DasboardEndpoint'
+import {
+  getDataStatistikEndPoint,
+  getDataKomposisiPegawaiEndPoint,
+  getDataPendidikanEndPoint,
+  getDataDKategoriProyekEndPoint,
+  getDataBODGroupEndPoint,
+  getDataAssessmentEndPoint,
+  getDataAssessment2EndPoint,
+  getDataMasaKerjaEndPoint,
+  getDataUnitKerjaEndPoint,
+  getDataMBTIEndPoint
+} from './endpoint/DasboardEndpoint'
 import { initialState, reducer } from "./DashboardReducer";
 
 import Widget04 from '../Widgets/Widget04';
@@ -22,7 +33,7 @@ const Dashboard = () => {
 
   const getDataStatistik = async () => {
     let { data } = await getDataStatistikEndPoint()
-    // dispatch({ type: "get-list", payload: data });
+    dispatch({ type: "get-list", payload: data });
   }
   const getDataKomposisiPegawai = async () => {
     setIsLoadingDataKomposisiPegawai(false)
@@ -43,12 +54,18 @@ const Dashboard = () => {
     setIsLoadingDataAssessment2(false)
   }
   const getDataMasaKerja = async () => {
+    let { data } = await getDataMasaKerjaEndPoint()
+    dispatch({ type: "get-list-dataMasaKerja", payload: data });
     setIsLoadingDataMasaKerja(false)
   }
   const getDataUnitKerja = async () => {
+    let { data } = await getDataUnitKerjaEndPoint()
+    dispatch({ type: "get-list-dataUnitKerja", payload: data });
     setIsLoadingDataUnitKerja(false)
   }
   const getDataMBTI = async () => {
+    let { data } = await getDataMBTIEndPoint()
+    dispatch({ type: "get-list-dataMBTI", payload: data });
     setIsLoadingMBTI(false)
   }
 
@@ -65,10 +82,6 @@ const Dashboard = () => {
     getDataMBTI()
   }
 
-  const emptyComponent = () => {
-
-  }
-
   useEffect(() => {
     getAll()
   }, [])
@@ -79,16 +92,16 @@ const Dashboard = () => {
         <Col xs={12} sm={12} md={12}>
           <Row>
             <Col sm="12" md="6">
-              <Widget04 icon="icon-people" color="info" header={state.qtyPegawai} invert>Jumlah Pegawai</Widget04>
+              <Widget04 icon="icon-people" color="info" header={state.pegawai.qty} invert>Jumlah Pegawai</Widget04>
             </Col>
             <Col sm="12" md="6">
-              <Widget04 icon="icon-user-follow" color="success" header={state.qtyProyek} invert>Jumlah Proyek</Widget04>
+              <Widget04 icon="icon-user-follow" color="success" header={state.proyek.qty} invert>Jumlah Proyek</Widget04>
             </Col>
           </Row>
         </Col>
-        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={state.dataMasaKerja} />
-        <BarChart colSm={7} colMd={7} title="Myers-Briggs Type Indicator (MBTI) " data={state.dataMBTI} />
-        <BarChart colSm={12} colMd={12} title="Unit Kerja" data={state.dataUnitKerja} />
+        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={state.dataMasaKerja} isLoading={isLoadingdataMasaKerja} />
+        <BarChart colSm={7} colMd={7} title="Myers-Briggs Type Indicator (MBTI) " data={state.dataMBTI} isLoading={isLoadingdataMBTI} />
+        <BarChart colSm={12} colMd={12} title="Unit Kerja" data={state.dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
 
         <PieChart title="Komposisi Pegawai" data={state.dataKomposisiPegawai} />
         <PieChart title="Pendidikan" data={state.dataPendidikan} />

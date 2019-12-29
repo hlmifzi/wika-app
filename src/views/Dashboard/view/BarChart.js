@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactHighcharts from 'react-highcharts'
-import { Col, Row } from 'reactstrap';
+import { Col, Row, Spinner } from 'reactstrap';
 import { CardWhiteComponent } from '../../../MyComponent/CardCustom/CardComponent'
 import HighchartsMore from 'highcharts-more'
 HighchartsMore(ReactHighcharts.Highcharts)
@@ -57,7 +57,7 @@ const PieChart = props => {
 
         tooltip: {
             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f} %</b> of total<br/> <b>700 orang</b>'
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f} %</b> of total ({point.qty} orang)<br/>'
         },
 
         series: [
@@ -71,13 +71,15 @@ const PieChart = props => {
             enabled: false
         },
     }
-
     return (
         <Col xs={12} sm={props.colSm} md={props.colMd}>
             <CardWhiteComponent text={props.title}>
                 <Row>
                     <Col>
-                        <ReactHighcharts style={{ width: '100%' }} config={config} />
+                        {props.isLoading ?
+                            <Spinner animation="border" variant="primary" className='mr-auto' style={{ margin: 'auto',color:'blue' }} /> :
+                            <ReactHighcharts style={{ width: '100%' }} config={config} />
+                        }
                     </Col>
                 </Row>
             </CardWhiteComponent>

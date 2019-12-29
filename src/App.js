@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import './App.scss';
+import './scss/style.scss';
 import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { hot } from "react-hot-loader";
