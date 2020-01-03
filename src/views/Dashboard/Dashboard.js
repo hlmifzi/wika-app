@@ -92,7 +92,6 @@ const Dashboard = () => {
         <Col xs={12} sm={12} md={12}>
           <Row>
             <Col sm="12" md="6">
-              {console.log(state, '<< stet')}
               <Widget04 icon="icon-people" color="info" header={state.pegawai.qty} invert>Jumlah Pegawai</Widget04>
             </Col>
             <Col sm="12" md="6">
@@ -104,7 +103,6 @@ const Dashboard = () => {
         <BarChart colSm={7} colMd={7} title="Myers-Briggs Type Indicator (MBTI) " data={state.dataMBTI} isLoading={isLoadingdataMBTI} />
         <BarChart colSm={12} colMd={12} title="Unit Kerja" data={state.dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
 
-        {console.log(state.dataKomposisiPegawai)}
         <PieChart title="Komposisi Pegawai" data={state.dataKomposisiPegawai} />
         <PieChart title="Pendidikan" data={state.dataPendidikan} />
         <PieChart title="Kategori Proyek" data={state.dataKategoriProyek} />

@@ -33,7 +33,7 @@ const menuAdmin = {
       }
     },
     {
-      "name": "Sortir Usulan Pegawai",
+      "name": "Laporan Pegawai",
       "url": "/productManagement/ListProduct",
       "icon": "icon-list"
     },

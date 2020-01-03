@@ -27,9 +27,6 @@ const NavbarComponent = props => {
         }
     }
 
-    console.log(pathname)
-    console.log(Assesment)
-    console.log(KUK)
     return (
         <Card>
             <CardBody>
