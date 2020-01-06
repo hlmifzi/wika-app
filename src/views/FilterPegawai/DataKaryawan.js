@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from '../../MyComponent/table/FilterSearchSortTable'
 
-class DataKaryawan extends Component {
-  state = {
-    nama: "",
-    data: [
+
+const DataKaryawan = () => {
+  const [dataPegawai, setDataPegawai] = useState([])
+
+  const getData = () => {
+    setDataPegawai([
       {
         key: '1',
         nip: 2019012,
@@ -61,28 +63,28 @@ class DataKaryawan extends Component {
         kukTeori: 90,
         kukPraktek: 80,
       },
-
-    ]
+    ])
   }
 
-  render() {
-    return (
-      <div className="animated fadeIn">
-        <Row>
-          <Col xl={12}>
-            <Card>
-              <CardHeader>
-                <i className="fa fa-users"></i> Daftar Seluruh Karyawan
-              </CardHeader>
-              <CardBody>
-                <StandardTable data={this.state.data} />
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    )
-  }
+  useEffect(() => {
+    getData()
+  }, [])
+
+  return (
+    <div className="animated fadeIn">
+      <Row>
+        <Col xl={12}>
+          <Card>
+            <CardHeader>
+              <i className="fa fa-users"></i> Daftar Seluruh Karyawan
+          </CardHeader>
+            <CardBody>
+              <StandardTable data={dataPegawai} />
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+  )
 }
-
 export default DataKaryawan;
