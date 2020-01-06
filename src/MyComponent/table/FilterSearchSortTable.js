@@ -17,27 +17,6 @@ class FilterSearchSortTable extends React.Component {
             sortedInfo: sorter,
         });
     };
-
-    clearFilters = () => {
-        this.setState({ filteredInfo: null });
-    };
-
-    clearAll = () => {
-        this.setState({
-            filteredInfo: null,
-            sortedInfo: null,
-        });
-    };
-
-    setAgeSort = () => {
-        this.setState({
-            sortedInfo: {
-                order: 'descend',
-                columnKey: 'age',
-            },
-        });
-    };
-
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div style={{ padding: 8 }}>
@@ -202,11 +181,6 @@ class FilterSearchSortTable extends React.Component {
 
         return (
             <div>
-                <div className="table-operations" style={{ marginBottom: '50px' }}>
-                    <Button onClick={this.setAgeSort}>Sort age</Button>
-                    <Button onClick={this.clearFilters}>Clear filters</Button>
-                    <Button onClick={this.clearAll}>Clear filters and sorters</Button>
-                </div>
                 <Table columns={columns} dataSource={this.props.data} onChange={this.handleChange} size="small" scroll={{ x: 1200, y: 500 }} />
             </div>
         );
