@@ -15,15 +15,15 @@ const menuAdmin = {
       "class": ""
     },
     {
-      "name": "Users Management",
+      "name": "List Pegawai",
       "url": "/dataMaster/userManagement",
       "icon": "icon-user"
     },
-    {
-      "name": "Tenants Management",
-      "url": "/dataMaster/tenantManagement",
-      "icon": "icon-screen-desktop"
-    },
+    // {
+    //   "name": "Tenants Management",
+    //   "url": "/dataMaster/tenantManagement",
+    //   "icon": "icon-screen-desktop"
+    // },
     {
       "title": true,
       "name": "POSISI PEGAWAI",
@@ -33,8 +33,8 @@ const menuAdmin = {
       }
     },
     {
-      "name": "Laporan Pegawai",
-      "url": "/productManagement/ListProduct",
+      "name": "Filter Promosi Pegawai",
+      "url": "/filter-pegawai",
       "icon": "icon-list"
     },
     {
@@ -92,7 +92,7 @@ const menuAdmin = {
       }
     },
     {
-      "name": "List Important File",
+      "name": "File Manager",
       "url": "/productManagement/ListProduct",
       "icon": "icon-list"
     },

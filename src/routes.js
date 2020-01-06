@@ -8,7 +8,7 @@ const DataKaryawan = React.lazy(() => import('./views/Dashboard/DataKaryawan'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/data-karyawan', exact: true, name: 'User Details', component: DataKaryawan },
+  { path: '/filter-pegawai', exact: true, name: 'Filter Pegawai', component: DataKaryawan },
   { path: '/karyawan/:id', exact: true, name: 'User Details', component: Dashboard },
 ];
 

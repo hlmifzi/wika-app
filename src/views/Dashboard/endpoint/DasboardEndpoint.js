@@ -11,7 +11,7 @@ const endPointGetDataMasaKerja = 'v2/5e07a10f32000089801f9cff'
 const endPointGetDataUnitKerja = 'v2/5e07a12332000086801f9d00'
 const endPointGetDataMBTI = 'v2/5e07a13832000086801f9d01'
 
-export const getDataStatistikEndPoint = () => client(endPointGetDataStatistik, { method: "GET" })
+export const getDataStatistikEndPoint = params => client(endPointGetDataStatistik, { method: "GET", params })
 export const getDataKomposisiPegawaiEndPoint = params => client(endPointGetDataKomposisiPegawai, { method: "GET" })
 export const getDataPendidikanEndPoint = params => client(endPointGetDataPendidikan, { method: "GET" })
 export const getDataDKategoriProyekEndPoint = params => client(endPointGetDataDKategoriProyek, { method: "GET" })
