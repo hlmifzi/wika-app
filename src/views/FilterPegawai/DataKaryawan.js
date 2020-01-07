@@ -76,7 +76,7 @@ const DataKaryawan = () => {
         <Col xl={12}>
           <Card>
             <CardHeader>
-              <i className="fa fa-users"></i> Daftar Seluruh Karyawan
+              <i className="fa fa-users"></i> Filter Pegawai
           </CardHeader>
             <CardBody>
               <StandardTable data={dataPegawai} />

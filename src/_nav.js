@@ -16,7 +16,7 @@ const menuAdmin = {
     },
     {
       "name": "List Pegawai",
-      "url": "/dataMaster/userManagement",
+      "url": "/karyawan",
       "icon": "icon-user"
     },
     // {
@@ -61,7 +61,7 @@ const menuAdmin = {
     },
     {
       "name": "PJS Orientasi",
-      "url": "/productManagement/ManageProduct",
+      "url": "/pjs-orientasi",
       "icon": "icon-layers"
     },
     {
