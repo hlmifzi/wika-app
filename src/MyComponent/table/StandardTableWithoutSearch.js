@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'antd';
+import { Table, Divider, Tag } from 'antd';
 import PropTypes from 'prop-types'
 
 
@@ -20,14 +20,14 @@ function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
 }
 
-const StandardTable = ({ data, columns }) => {
+const StandardTableWithoutSearch = ({ data, columns }) => {
     return (
         <Table columns={columns} dataSource={data} onChange={onChange} />
     )
 }
 
 
-StandardTable.propTypes = PropTypesParam
-StandardTable.defaultProps = DefaultPropsParam
+StandardTableWithoutSearch.propTypes = PropTypesParam
+StandardTableWithoutSearch.defaultProps = DefaultPropsParam
 
-export default StandardTable
+export default StandardTableWithoutSearch
