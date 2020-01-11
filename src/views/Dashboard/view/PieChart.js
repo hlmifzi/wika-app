@@ -1,20 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactHighcharts from 'react-highcharts'
-import { Col, Row } from 'reactstrap';
+import { Col, Row, Spinner } from 'reactstrap';
 import { CardWhiteComponent } from '../../../MyComponent/CardCustom/CardComponent'
 import HighchartsMore from 'highcharts-more'
 HighchartsMore(ReactHighcharts.Highcharts)
 
-//const pieColors = (function () {
-//   let colors = []
-//   let base = ReactHighcharts.Highcharts.getOptions().colors[0]
-//   let i
-//   for (i = 0; i < 10; i += 1) {
-//     colors.push(ReactHighcharts.Highcharts.Color(base).brighten((i - 3) / 7).get());
-//   }
-//   return colors;
-// }())
 
 const PropTypesParam = {
     data: PropTypes.array,
@@ -84,7 +75,10 @@ const PieChart = props => {
             <CardWhiteComponent text={props.title}>
                 <Row>
                     <Col xs={12} sm={12} md={12}>
-                        <ReactHighcharts config={config} />
+                        {props.isLoading ?
+                            <Spinner animation="border" variant="primary" className='mr-auto' style={{ margin: 'auto', color: 'blue' }} /> :
+                             <ReactHighcharts config={config} />
+                        }
                     </Col>
                 </Row>
             </CardWhiteComponent>

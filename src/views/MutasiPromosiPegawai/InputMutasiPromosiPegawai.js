@@ -1,7 +1,12 @@
 import React from 'react'
+import { useState } from 'reinspect'
 import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
-const InputMutasiPromosiPegawai = props => {
+import { DatePicker } from 'antd';
+import moment from 'moment';
+const dateFormat = 'YYYY/MM/DD';
 
+const InputMutasiPromosiPegawai = props => {
+    const [state, setstate] = useState("")
     return (
         <div className="animated fadeIn">
             <Row>
@@ -57,11 +62,19 @@ const InputMutasiPromosiPegawai = props => {
                                 </Col>
                             </Row>
                             <Row>
+                                <Col xs="3">
+                                    <FormGroup>
+                                        <Label htmlFor="ccmonth">Tanggal</Label><br />
+                                        <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row>
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Unit Kerja</Label>
                                         <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> pILIH  Gudang</option>
+                                            <option value="0"> Pilih  Gudang</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
@@ -125,11 +138,19 @@ const InputMutasiPromosiPegawai = props => {
                                 </Col>
                             </Row>
                             <Row>
+                                <Col xs="3">
+                                    <FormGroup>
+                                        <Label htmlFor="ccmonth">Tanggal</Label><br />
+                                        <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row>
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Unit Kerja</Label>
                                         <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> pILIH  Gudang</option>
+                                            <option value="0"> Pilih  Gudang</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
@@ -183,57 +204,45 @@ const InputMutasiPromosiPegawai = props => {
                         </CardHeader>
                         <CardBody>
                             <Row>
-                                <Col xs="4">
+                                <Col xs="3">
                                     <FormGroup>
-                                        <Label htmlFor="ccmonth">Jenis Mutasi</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Pilih Jenis mutasi</option>
-                                            <option value="0"> Utama</option>
-                                            <option value="0"> Rangkapan</option>
-                                            <option value="0"> Utama (PJS)</option>
-                                        </Input>
+                                        <Label htmlFor="ccmonth">Tanggal</Label><br />
+                                        <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
                                     </FormGroup>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs="4">
                                     <FormGroup>
-                                        <Label htmlFor="ccmonth">Unit Kerja</Label>
+                                        <Label htmlFor="ccmonth">Pilih Status</Label>
                                         <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> pILIH  Gudang</option>
+                                            <option value="0">Pilih Status</option>
+                                            <option value="0">Organik</option>
+                                            <option value="0">Terampil</option>
+                                            <option value="0">Manager Training</option>
+                                            <option value="0">PKWT</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
-                                <Col xs="4">
+                            </Row>
+                        </CardBody>
+                        <CardFooter>
+                            <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
+                        </CardFooter>
+                    </Card>
+                </Col>
+
+                <Col xl={12}>
+                    <Card>
+                        <CardHeader>
+                            <i className="fa fa-user"></i> Mutasi Non Aktif
+                        </CardHeader>
+                        <CardBody>
+                            <Row>
+                                <Col xs="3">
                                     <FormGroup>
-                                        <Label htmlFor="ccmonth">Jabatan</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
-                                        </Input>
-                                    </FormGroup>
-                                </Col>
-                                <Col xs="4">
-                                    <FormGroup>
-                                        <Label htmlFor="ccmonth">Posisi</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
-                                        </Input>
-                                    </FormGroup>
-                                </Col>
-                                <Col xs="4">
-                                    <FormGroup>
-                                        <Label htmlFor="ccmonth">Fungsi Bidang</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
-                                        </Input>
-                                    </FormGroup>
-                                </Col>
-                                <Col xs="4">
-                                    <FormGroup>
-                                        <Label htmlFor="ccmonth">Grade</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
-                                        </Input>
+                                        <Label htmlFor="ccmonth">Tanggal Keluar</Label><br />
+                                        <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
                                     </FormGroup>
                                 </Col>
                             </Row>

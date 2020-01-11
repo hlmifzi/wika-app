@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useReducer, useState } from "reinspect"
+import { useState } from "reinspect"
 import PieChart from './view/PieChart'
 import BarChart from './view/BarChart'
 import { Col, Row } from 'reactstrap';
@@ -10,28 +10,31 @@ import {
   getDataDKategoriProyekEndPoint,
   getDataBODGroupEndPoint,
   getDataAssessmentEndPoint,
-  getDataAssessment2EndPoint,
   getDataMasaKerjaEndPoint,
   getDataUnitKerjaEndPoint,
   getDataMBTIEndPoint
 } from './endpoint/DasboardEndpoint'
-import { initialState, reducer } from "./DashboardReducer";
 
 import Widget04 from '../Widgets/Widget04';
 
 const Dashboard = () => {
-  const [state, dispatch] = useReducer(reducer, initialState, 'Analytic');
   const [isLoadingDataKomposisiPegawai, setIsLoadingDataKomposisiPegawai] = useState(true, 'isLoadingDataKomposisiPegawai')
   const [isLoadingdataPendidikan, setIsLoadingDataPendidikan] = useState(true, 'isLoadingdataPendidikan')
   const [isLoadingdataKategoriProyek, setIsLoadingdatDKategoriProyek] = useState(true, 'isLoadingdataKategoriProyek')
   const [isLoadingdataBODGroup, DetIsLoadingdataBODGroup] = useState(true, 'isLoadingdataBODGroup')
   const [isLoadingdataAssessment, seDIsLoadingdataAssessment] = useState(true, 'isLoadingdataAssessment')
-  const [isLoadingdataAssessment2, setIsLoadingDataAssessment2] = useState(true, 'isLoadingdataAssessment2')
   const [isLoadingdataMasaKerja, setIsLoadingDataMasaKerja] = useState(true, 'isLoadingdataMasaKerja')
   const [isLoadingdataUnitKerja, setIsLoadingDataUnitKerja] = useState(true, 'isLoadingdataUnitKerja')
   const [isLoadingdataMBTI, setIsLoadingMBTI] = useState(true, 'isLoadingdataMBTI')
 
-  const [dataStatistik, setDataStatistik] = useState([])
+  const [dataStatistik, setDataStatistik] = useState({
+    "pegawai": {
+      "qty": 0
+    },
+    "proyek": {
+      "qty": 0
+    }
+  })
   const [dataKomposisiPegawai, setDataKomposisiPegawai] = useState([])
   const [dataPendidikan, setDataPendidikan] = useState([])
   const [dataKategoriProyek, setDataKategoriProyek] = useState([])
@@ -43,58 +46,60 @@ const Dashboard = () => {
 
   const getDataStatistik = async () => {
     let { data } = await getDataStatistikEndPoint()
-    setDataStatistik([])
+    setDataStatistik(data)
   }
   const getDataKomposisiPegawai = async () => {
+    let { data } = await getDataKomposisiPegawaiEndPoint()
+    setDataKomposisiPegawai(data)
     setIsLoadingDataKomposisiPegawai(false)
-    let { data } = await getDataStatistikEndPoint()
-    setDataKomposisiPegawai([])
   }
   const getDataPendidikan = async () => {
+    let { data } = await getDataPendidikanEndPoint()
     setIsLoadingDataPendidikan(false)
-    setDataPendidikan([])
+    setDataPendidikan(data)
   }
   const getDataKategoriProyek = async () => {
+    let { data } = await getDataDKategoriProyekEndPoint()
     setIsLoadingdatDKategoriProyek(false)
-    setDataKategoriProyek([])
+    setDataKategoriProyek(data)
   }
   const getDataBODGroup = async () => {
+    let { data } = await getDataBODGroupEndPoint()
     DetIsLoadingdataBODGroup(false)
-    setDataBODGroup([])
-  }
-  const getDataAssessment = async () => {
-    seDIsLoadingdataAssessment(false)
-  }
-  const getDataAssessment2 = async () => {
-    setIsLoadingDataAssessment2(false)
+    setDataBODGroup(data)
   }
   const getDataMasaKerja = async () => {
     let { data } = await getDataMasaKerjaEndPoint()
-    setDataMasaKerja([])
+    setDataMasaKerja(data)
     setIsLoadingDataMasaKerja(false)
   }
-  const getDataUnitKerja = async () => {
+  const getDataDivisi = async () => {
     let { data } = await getDataUnitKerjaEndPoint()
-    setDataUnitKerja([])
+    setDataUnitKerja(data)
     setIsLoadingDataUnitKerja(false)
   }
   const getDataMBTI = async () => {
     let { data } = await getDataMBTIEndPoint()
-    setDataMBTI([])
+    setDataMBTI(data)
     setIsLoadingMBTI(false)
   }
 
+  const getDataAssessment = async () => {
+    let { data } = await getDataAssessmentEndPoint()
+    console.log("TCL: getDataAssessment -> data", data)
+    seDIsLoadingdataAssessment(false)
+    setDataAssessment(data)
+  }
   const getAll = () => {
     getDataStatistik()
+    getDataMasaKerja()
+    getDataMBTI()
+    getDataDivisi()
     getDataKomposisiPegawai()
     getDataPendidikan()
     getDataKategoriProyek()
     getDataBODGroup()
     getDataAssessment()
-    getDataAssessment2()
-    getDataMasaKerja()
-    getDataUnitKerja()
-    getDataMBTI()
   }
 
   useEffect(() => {
@@ -107,23 +112,24 @@ const Dashboard = () => {
         <Col xs={12} sm={12} md={12}>
           <Row>
             <Col sm="12" md="6">
-              <Widget04 icon="icon-people" color="info" header={state.pegawai.qty} invert>Jumlah Pegawai</Widget04>
+              <Widget04 icon="icon-people" color="info" header={dataStatistik.pegawai.qty} invert>Jumlah Pegawai</Widget04>
             </Col>
             <Col sm="12" md="6">
-              <Widget04 icon="icon-user-follow" color="success" header={state.proyek.qty} invert>Jumlah Proyek</Widget04>
+              <Widget04 icon="icon-user-follow" color="success" header={dataStatistik.proyek.qty} invert>Jumlah Proyek</Widget04>
             </Col>
           </Row>
         </Col>
-        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={state.dataMasaKerja} isLoading={isLoadingdataMasaKerja} />
-        <BarChart colSm={7} colMd={7} title="Myers-Briggs Type Indicator (MBTI) " data={state.dataMBTI} isLoading={isLoadingdataMBTI} />
-        <BarChart colSm={12} colMd={12} title="Unit Kerja" data={state.dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
+        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={dataMasaKerja} isLoading={isLoadingdataMasaKerja} />
+        <BarChart colSm={7} colMd={7} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} />
+        <BarChart colSm={12} colMd={12} title="Unit Kerja" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
 
-        <PieChart title="Komposisi Pegawai" data={state.dataKomposisiPegawai} />
-        <PieChart title="Pendidikan" data={state.dataPendidikan} />
-        <PieChart title="Kategori Proyek" data={state.dataKategoriProyek} />
-        <PieChart title="BOD Group" data={state.dataBODGroup} />
-        <PieChart title="Assessment BOD Group 1" data={state.dataAssessment} />
-        <PieChart title="Assessment BOD Group 2" data={state.dataAssessment2} />
+        <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} />
+        <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} />
+        <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} />
+        <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} />
+        {dataAssessment.map((v, i) =>
+          <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />
+        )}
       </Row>
     </div >
   );

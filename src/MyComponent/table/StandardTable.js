@@ -1,12 +1,7 @@
 import React from 'react'
-
 import { Table } from 'antd';
 import PropTypes from 'prop-types'
 
-
-function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra);
-}
 
 const PropTypesParam = {
     isPagination: PropTypes.bool,
@@ -21,14 +16,18 @@ const DefaultPropsParam = {
 };
 
 
-const ListPegawaiTable = ({ data, columns }) => {
+function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra);
+}
+
+const StandardTable = ({ data, columns }) => {
     return (
         <Table columns={columns} dataSource={data} onChange={onChange} />
     )
 }
 
 
-ListPegawaiTable.propTypes = PropTypesParam
-ListPegawaiTable.defaultProps = DefaultPropsParam
+StandardTable.propTypes = PropTypesParam
+StandardTable.defaultProps = DefaultPropsParam
 
-export default ListPegawaiTable
+export default StandardTable

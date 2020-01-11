@@ -14,7 +14,7 @@ const ListPegawai = () => {
         name: 'cohn Brown',
         fieldFunction: 'ENGINEERING',
         titleName: 'AHLI UTAMA 1',
-        dateStartPJS: 'LRT',
+        dateStartPJS: '12 Januari 1998',
         remainingPJS: '5 tahun 2 bulan',
       },
       {
@@ -23,7 +23,7 @@ const ListPegawai = () => {
         name: 'cohn Brown',
         fieldFunction: 'ENGINEERING',
         titleName: 'AHLI UTAMA 1',
-        dateStartPJS: 'LRT',
+        dateStartPJS: '10 Januari 2010',
         remainingPJS: '4 tahun 2 bulan',
       },
     ])

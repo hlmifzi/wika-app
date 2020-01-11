@@ -1,5 +1,5 @@
-import { client } from '../../../MyServices/api/URLApi'
+import { clientGet } from '../../../../MyServices/api/URLApi'
 
-const endPointGetFilterPegawai = 'v2/5e133b253100004f00d476b5'
+const endPointGetFilterPegawai = 'user'
 
-export const getDataFilterPegawai = () => client(endPointGetFilterPegawai, { method: "GET" })
+export const getDataFilterPegawai = () => clientGet(endPointGetFilterPegawai, {})

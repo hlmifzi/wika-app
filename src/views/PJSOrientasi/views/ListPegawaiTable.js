@@ -114,7 +114,7 @@ class ListPegawaiTable extends React.Component {
                 onFilter: (value, record) => record.nama.includes(value),
             },
             {
-                title: 'Tanggal Mulai PJS',
+                title: 'Jabatan',
                 dataIndex: 'titleName',
                 key: 'titleName',
                 width: '10%',

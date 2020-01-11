@@ -1,32 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
-
+import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 
 const ListPegawai = () => {
-  const [dataPegawai, setDataPegawai] = useState([])
+  const [dataPegawai, setDataPegawai] = useState([], 'dataPegawai')
 
-  const getData = () => {
-    setDataPegawai([
-      {
-        key: '1',
-        nip: 2019012,
-        name: 'cohn Brown',
-        statusPegawai: 'Organik',
-        fieldFunction: 'ENGINEERING',
-        titleName: 'AHLI UTAMA 1',
-        bodGroup: 'LRT',
-      },
-      {
-        key: '2',
-        nip: 2019012,
-        name: 'cohn Brown',
-        statusPegawai: 'Organik',
-        fieldFunction: 'ENGINEERING',
-        titleName: 'AHLI UTAMA 1',
-        bodGroup: 'LRT',
-      },
-    ])
+  const getData = async () => {
+    let { data } = await getDataFilterPegawai()
+    setDataPegawai(data)
   }
 
   useEffect(() => {

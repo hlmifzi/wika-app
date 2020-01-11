@@ -11,14 +11,17 @@ const PropTypesParam = {
     data: PropTypes.array,
     title: PropTypes.string,
     colSm: PropTypes.number,
-    colMd: PropTypes.number
+    colMd: PropTypes.number,
+    isLoading: PropTypes.bool
 }
 
 const DefaultPropsParam = {
     data: [],
     data: '',
     colSm: 12,
-    colMd: 12
+    colMd: 12,
+    isLoading: true
+
 };
 
 const PieChart = props => {
@@ -77,7 +80,7 @@ const PieChart = props => {
                 <Row>
                     <Col>
                         {props.isLoading ?
-                            <Spinner animation="border" variant="primary" className='mr-auto' style={{ margin: 'auto',color:'blue' }} /> :
+                            <Spinner animation="border" variant="primary" className='mr-auto' style={{ margin: 'auto', color: 'blue' }} /> :
                             <ReactHighcharts style={{ width: '100%' }} config={config} />
                         }
                     </Col>
