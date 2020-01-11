@@ -39,7 +39,7 @@ const menuAdmin = {
     },
     {
       "name": "Summary Pegawai",
-      "url": "/productManagement/ManageProduct",
+      "url": "/summary-pegawai",
       "icon": "icon-layers"
     },
     {
@@ -49,12 +49,12 @@ const menuAdmin = {
       "children": [
         {
           "name": "Input Mutasi",
-          "url": "/productManagement/Entry",
+          "url": "/input-mutasi-rotasi-pegawai",
           "icon": "icon-action-redo"
         },
         {
           "name": "Report Mutasi / Rotasi",
-          "url": "/productManagement/Depreciation",
+          "url": "/report-mutasi-rotasi-pegawai",
           "icon": "icon-book-open"
         }
       ]

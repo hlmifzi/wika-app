@@ -21,31 +21,46 @@ import Widget04 from '../Widgets/Widget04';
 
 const Dashboard = () => {
   const [state, dispatch] = useReducer(reducer, initialState, 'Analytic');
-  const [isLoadingDataKomposisiPegawai, setIsLoadingDataKomposisiPegawai] = useState(true)
-  const [isLoadingdataPendidikan, setIsLoadingDataPendidikan] = useState(true)
-  const [isLoadingdataKategoriProyek, setIsLoadingdatDKategoriProyek] = useState(true)
-  const [isLoadingdataBODGroup, DetIsLoadingdataBODGroup] = useState(true)
-  const [isLoadingdataAssessment, seDIsLoadingdataAssessment] = useState(true)
-  const [isLoadingdataAssessment2, setIsLoadingDataAssessment2] = useState(true)
-  const [isLoadingdataMasaKerja, setIsLoadingDataMasaKerja] = useState(true)
-  const [isLoadingdataUnitKerja, setIsLoadingDataUnitKerja] = useState(true)
-  const [isLoadingdataMBTI, setIsLoadingMBTI] = useState(true)
+  const [isLoadingDataKomposisiPegawai, setIsLoadingDataKomposisiPegawai] = useState(true, 'isLoadingDataKomposisiPegawai')
+  const [isLoadingdataPendidikan, setIsLoadingDataPendidikan] = useState(true, 'isLoadingdataPendidikan')
+  const [isLoadingdataKategoriProyek, setIsLoadingdatDKategoriProyek] = useState(true, 'isLoadingdataKategoriProyek')
+  const [isLoadingdataBODGroup, DetIsLoadingdataBODGroup] = useState(true, 'isLoadingdataBODGroup')
+  const [isLoadingdataAssessment, seDIsLoadingdataAssessment] = useState(true, 'isLoadingdataAssessment')
+  const [isLoadingdataAssessment2, setIsLoadingDataAssessment2] = useState(true, 'isLoadingdataAssessment2')
+  const [isLoadingdataMasaKerja, setIsLoadingDataMasaKerja] = useState(true, 'isLoadingdataMasaKerja')
+  const [isLoadingdataUnitKerja, setIsLoadingDataUnitKerja] = useState(true, 'isLoadingdataUnitKerja')
+  const [isLoadingdataMBTI, setIsLoadingMBTI] = useState(true, 'isLoadingdataMBTI')
+
+  const [dataStatistik, setDataStatistik] = useState([])
+  const [dataKomposisiPegawai, setDataKomposisiPegawai] = useState([])
+  const [dataPendidikan, setDataPendidikan] = useState([])
+  const [dataKategoriProyek, setDataKategoriProyek] = useState([])
+  const [dataBODGroup, setDataBODGroup] = useState([])
+  const [dataMasaKerja, setDataMasaKerja] = useState([])
+  const [dataUnitKerja, setDataUnitKerja] = useState([])
+  const [dataMBTI, setDataMBTI] = useState([])
+  const [dataAssessment, setDataAssessment] = useState([])
 
   const getDataStatistik = async () => {
     let { data } = await getDataStatistikEndPoint()
-    dispatch({ type: "get-list", payload: data });
+    setDataStatistik([])
   }
   const getDataKomposisiPegawai = async () => {
     setIsLoadingDataKomposisiPegawai(false)
+    let { data } = await getDataStatistikEndPoint()
+    setDataKomposisiPegawai([])
   }
   const getDataPendidikan = async () => {
     setIsLoadingDataPendidikan(false)
+    setDataPendidikan([])
   }
   const getDataKategoriProyek = async () => {
     setIsLoadingdatDKategoriProyek(false)
+    setDataKategoriProyek([])
   }
   const getDataBODGroup = async () => {
     DetIsLoadingdataBODGroup(false)
+    setDataBODGroup([])
   }
   const getDataAssessment = async () => {
     seDIsLoadingdataAssessment(false)
@@ -55,17 +70,17 @@ const Dashboard = () => {
   }
   const getDataMasaKerja = async () => {
     let { data } = await getDataMasaKerjaEndPoint()
-    // dispatch({ type: "get-list-dataMasaKerja", payload: data });
+    setDataMasaKerja([])
     setIsLoadingDataMasaKerja(false)
   }
   const getDataUnitKerja = async () => {
     let { data } = await getDataUnitKerjaEndPoint()
-    // dispatch({ type: "get-list-dataUnitKerja", payload: data });
+    setDataUnitKerja([])
     setIsLoadingDataUnitKerja(false)
   }
   const getDataMBTI = async () => {
     let { data } = await getDataMBTIEndPoint()
-    // dispatch({ type: "get-list-dataMBTI", payload: data });
+    setDataMBTI([])
     setIsLoadingMBTI(false)
   }
 
