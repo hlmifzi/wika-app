@@ -65,7 +65,7 @@ const PieChart = props => {
 
         series: [
             {
-                name: "Browsers",
+                name: props.title,
                 colorByPoint: true,
                 data: props.data
             }

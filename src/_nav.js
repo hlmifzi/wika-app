@@ -64,66 +64,66 @@ const menuAdmin = {
       "url": "/pjs-orientasi",
       "icon": "icon-layers"
     },
-    {
-      "title": true,
-      "name": "Training Management",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "Ceklis Kepesertaan",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
-    {
-      "name": "Evaluasi Quartal",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Training Management",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "Ceklis Kepesertaan",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
+    // {
+    //   "name": "Evaluasi Quartal",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "File Management",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "File Manager",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "File Management",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "File Manager",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "Kebutuhan Pegawai",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "List Important File",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Kebutuhan Pegawai",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "List Important File",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "Biaya",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "List Important File",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Biaya",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "List Important File",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
 
   ]

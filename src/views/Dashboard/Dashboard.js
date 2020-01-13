@@ -35,14 +35,14 @@ const Dashboard = () => {
       "qty": 0
     }
   })
-  const [dataKomposisiPegawai, setDataKomposisiPegawai] = useState([])
-  const [dataPendidikan, setDataPendidikan] = useState([])
-  const [dataKategoriProyek, setDataKategoriProyek] = useState([])
-  const [dataBODGroup, setDataBODGroup] = useState([])
-  const [dataMasaKerja, setDataMasaKerja] = useState([])
-  const [dataUnitKerja, setDataUnitKerja] = useState([])
-  const [dataMBTI, setDataMBTI] = useState([])
-  const [dataAssessment, setDataAssessment] = useState([])
+  const [dataKomposisiPegawai, setDataKomposisiPegawai] = useState([], 'dataKomposisiPegawai')
+  const [dataPendidikan, setDataPendidikan] = useState([], 'dataPendidikan')
+  const [dataKategoriProyek, setDataKategoriProyek] = useState([], 'dataKategoriProyek')
+  const [dataBODGroup, setDataBODGroup] = useState([], 'dataBODGroup')
+  const [dataMasaKerja, setDataMasaKerja] = useState([], 'dataMasaKerja')
+  const [dataUnitKerja, setDataUnitKerja] = useState([], 'dataUnitKerja')
+  const [dataMBTI, setDataMBTI] = useState([], 'dataMBTI')
+  const [dataAssessment, setDataAssessment] = useState([], 'dataAssessment')
 
   const getDataStatistik = async () => {
     let { data } = await getDataStatistikEndPoint()
@@ -120,16 +120,18 @@ const Dashboard = () => {
           </Row>
         </Col>
         <BarChart colSm={5} colMd={5} title="Masa Kerja" data={dataMasaKerja} isLoading={isLoadingdataMasaKerja} />
-        <BarChart colSm={7} colMd={7} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} />
-        <BarChart colSm={12} colMd={12} title="Unit Kerja" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
+        <BarChart colSm={7} colMd={7} title="Unit Kerja" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
+        <BarChart colSm={12} colMd={12} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} />
 
         <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} />
         <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} />
         <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} />
         <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} />
-        {dataAssessment.map((v, i) =>
-          <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />
-        )}
+        {
+          dataAssessment.map((v, i) =>{
+            if(v.data.length > 0)return <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />
+          })
+        }
       </Row>
     </div >
   );

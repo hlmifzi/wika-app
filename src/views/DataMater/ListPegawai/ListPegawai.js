@@ -1,3 +1,5 @@
+
+
 import React, { useEffect } from 'react';
 import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
@@ -7,11 +9,12 @@ import { getDataFilterPegawai } from './endpoint/ListPegawaiEndpoint'
 
 const ListPegawai = () => {
   const [dataPegawai, setDataPegawai] = useState([], 'dataPegawai')
-  const [pagination, setPagination] = useState([], 'pagination')
+  const [dataFungsi, setDataFungsi] = useState([], 'fungsi')
+  const [dataJabatan, setDataJabatan] = useState([], 'jabatan')
+  const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
 
   const getData = async () => {
     let { data } = await getDataFilterPegawai()
-
     setDataPegawai(data)
   }
 
@@ -28,7 +31,7 @@ const ListPegawai = () => {
               <i className="fa fa-users"></i> Daftar Seluruh Karyawan
             </CardHeader>
             <CardBody>
-              <StandardTable data={dataPegawai} isPagination={false} />
+              <StandardTable data={dataPegawai} isPagination={true} />
             </CardBody>
           </Card>
         </Col>
