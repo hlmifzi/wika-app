@@ -67,7 +67,14 @@ const PieChart = props => {
             {
                 name: props.title,
                 colorByPoint: true,
-                data: props.data
+                data: props.data,
+                point: {
+                    events: {
+                        click: function (event) {
+                            window.open(`#/karyawan-filtered/${props.type}/${this.name}`, '_blank');
+                        }
+                    }
+                },
             }
         ],
         credits: {
