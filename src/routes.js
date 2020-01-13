@@ -2,16 +2,13 @@ import React from 'react';
 
 
 const Dashboard = React.lazy(() => import('./views/Dashboard/Dashboard'));
-<<<<<<< HEAD
 const FilterDataKaryawan = React.lazy(() => import('./views/FilterPegawai/DataKaryawan'));
 const ListPegawai = React.lazy(() => import('./views/DataMater/ListPegawai/ListPegawai'));
 const ListPegawaiPJSOrientasi = React.lazy(() => import('./views/PJSOrientasi/ListPegawaiPJSOrientasi'));
 const SummaryPegawai = React.lazy(() => import('./views/SummaryPegawai/SummaryPegawai'));
 const InputMutasiRotasiPegawai = React.lazy(() => import('./views/MutasiPromosiPegawai/InputMutasiPromosiPegawai'));
 const ReportMutasiPromosiPegawai = React.lazy(() => import('./views/MutasiPromosiPegawai/ReportMutasiPromosiPegawai'));
-=======
 const DataKaryawan = React.lazy(() => import('./views/Dashboard/DataKaryawan'));
->>>>>>> b26eda6c5214080861f05d139d3eeb1fa1690035
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
