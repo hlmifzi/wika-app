@@ -4,18 +4,26 @@ import React, { useEffect } from 'react';
 import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
-import { getDataFilterPegawai } from './endpoint/ListPegawaiEndpoint'
+import { getDataFilterPegawai,getDataFilterDashboard } from './endpoint/ListPegawaiEndpoint'
 
 
-const ListPegawai = () => {
+const ListPegawai = ({match}) => {
   const [dataPegawai, setDataPegawai] = useState([], 'dataPegawai')
   const [dataFungsi, setDataFungsi] = useState([], 'fungsi')
   const [dataJabatan, setDataJabatan] = useState([], 'jabatan')
   const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
 
   const getData = async () => {
-    let { data } = await getDataFilterPegawai()
-    setDataPegawai(data)
+    let datas;
+    if(match.params.type) {
+      let {data}  = await getDataFilterDashboard(match.params)
+      datas=data
+    } else {
+      let { data } = await getDataFilterPegawai()
+      datas=data
+    }
+
+    setDataPegawai(datas)
   }
 
   useEffect(() => {

@@ -123,10 +123,10 @@ const Dashboard = () => {
         <BarChart colSm={7} colMd={7} title="Unit Kerja" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} />
         <BarChart colSm={12} colMd={12} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} />
 
-        <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} />
-        <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} />
-        <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} />
-        <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} />
+        <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} type="employeeComposition" />
+        <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} type="educations"/>
+        <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} type="projectCategory" />
+        <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} type="bodGroup" />
         {
           dataAssessment.map((v, i) =>{
             if(v.data.length > 0)return <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />

@@ -11,7 +11,7 @@ const ListPegawai = () => {
     let { data } = await getDataFilterPegawai()
     setDataPegawai(data)
   }
-
+  
   useEffect(() => {
     getData()
   }, [])

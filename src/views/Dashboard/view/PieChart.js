@@ -9,12 +9,14 @@ HighchartsMore(ReactHighcharts.Highcharts)
 
 const PropTypesParam = {
     data: PropTypes.array,
-    title: PropTypes.string
+    title: PropTypes.string,
+    type: PropTypes.string
 }
 
 const DefaultPropsParam = {
     data: [],
     data: '',
+    type: '',
 };
 
 const PieChart = props => {
@@ -58,8 +60,8 @@ const PieChart = props => {
             point: {
                 events: {
                     click: function (event) {
-                        alert(this.name);
-                        window.open('#/data-karyawan', '_blank');
+                        alert();
+                        window.open(`#/karyawan-filtered/${props.type}/${this.name}`, '_blank');
                     }
                 }
             },
