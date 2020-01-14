@@ -71,7 +71,7 @@ const PieChart = props => {
                 point: {
                     events: {
                         click: function (event) {
-                            window.open(`#/karyawan-filtered/${props.type}/${this.name}`, '_blank');
+                            window.open(`#/karyawan-filtered/${props.type}/${this.name}`);
                         }
                     }
                 },
