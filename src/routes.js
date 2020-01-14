@@ -9,14 +9,12 @@ const InputMutasiRotasiPegawai = React.lazy(() => import('./views/MutasiPromosiP
 const ReportMutasiPromosiPegawai = React.lazy(() => import('./views/MutasiPromosiPegawai/ReportMutasiPromosiPegawai'));
 const DataKaryawan = React.lazy(() => import('./views/Dashboard/DataKaryawan'));
 const DetailPegawai = React.lazy(() => import('./views/DetailPegawai/DetailPegawai'));
-// const DetailPegawai = React.lazy(() => import('./views/Widgets'));
 
-// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/filter-pegawai', exact: true, name: 'Filter Pegawai', component: FilterDataKaryawan },
-  { path: '/karyawan/:id', exact: true, name: 'User Details', component: Dashboard },
+  { path: '/karyawan/:id', exact: true, name: 'User Details', component: DetailPegawai },
   { path: '/karyawan-filtered/:type/:field', exact: true, name: 'User Details', component: ListPegawai },
   { path: '/karyawan', exact: true, name: 'List Karyawan', component: ListPegawai },
   { path: '/summary-pegawai', exact: true, name: 'List Karyawan', component: SummaryPegawai },

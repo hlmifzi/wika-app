@@ -1,11 +1,10 @@
 import React from 'react'
-// import { Badge, Card, CardHeader, CardBody } from 'reactstrap';
 import { CardWithCustom, CardWithCustomNoHeader } from '../../MyComponent/CardCustom/CardComponent'
 import { Col, Row, Badge, FormGroup, Label, Input, Button } from 'reactstrap';
 import Widget02 from '../Widgets/Widget02';
 import WidgetCustom from '../Widgets/WidgetCustom';
 
-export const BasicInformation = ({ children, color, text }) => {
+export const Personal = ({ children, color, text }) => {
   return (
     <CardWithCustom classHeader={"bg-primary text-white"} text="Basic Information">
       <Row className="card-custom">
