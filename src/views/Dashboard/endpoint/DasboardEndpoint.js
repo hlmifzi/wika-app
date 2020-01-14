@@ -1,23 +1,21 @@
-import { client } from '../../../MyServices/api/URLApi'
+import { clientGet } from '../../../MyServices/api/URLApi'
 
-const endPointGetDataStatistik = 'v2/5e07a05532000073001f9cf8'
-const endPointGetDataKomposisiPegawai = 'v2/5e07a09832000086801f9cfa'
-const endPointGetDataPendidikan = 'v2/5e07a07a32000073001f9cf9'
-const endPointGetDataDKategoriProyek = 'v2/5e07a0b0320000f9741f9cfb'
-const endPointGetDataBODGroup = 'v2/5e07a0c732000087801f9cfc'
-const endPointGetDataAssessment = 'v2/5e07a0dd32000093001f9cfd'
-const endPointGetDataAssessment2 = 'v2/5e07a0f332000073001f9cfe'
-const endPointGetDataMasaKerja = 'v2/5e07a10f32000089801f9cff'
-const endPointGetDataUnitKerja = 'v2/5e07a12332000086801f9d00'
-const endPointGetDataMBTI = 'v2/5e07a13832000086801f9d01'
+const endPointGetDataStatistik = 'analytics/statistics'
+const endPointGetDataKomposisiPegawai = 'analytics/employeeComposition'
+const endPointGetDataPendidikan = 'analytics/educations'
+const endPointGetDataDKategoriProyek = 'analytics/projectCategory'
+const endPointGetDataBODGroup = 'analytics/bodGroup'
+const endPointGetDataMasaKerja = 'analytics/durationOnOffice'
+const endPointGetDataUnitKerja = 'analytics/divisi'
+const endPointGetDataMBTI = 'analytics/mbti'
+const endPointGetDataAssessment = 'analytics/assesment'
 
-export const getDataStatistikEndPoint = params => client(endPointGetDataStatistik, { method: "GET", params })
-export const getDataKomposisiPegawaiEndPoint = params => client(endPointGetDataKomposisiPegawai, { method: "GET" })
-export const getDataPendidikanEndPoint = params => client(endPointGetDataPendidikan, { method: "GET" })
-export const getDataDKategoriProyekEndPoint = params => client(endPointGetDataDKategoriProyek, { method: "GET" })
-export const getDataBODGroupEndPoint = params => client(endPointGetDataBODGroup, { method: "GET" })
-export const getDataAssessmentEndPoint = params => client(endPointGetDataAssessment, { method: "GET" })
-export const getDataAssessment2EndPoint = params => client(endPointGetDataAssessment2, { method: "GET" })
-export const getDataMasaKerjaEndPoint = params => client(endPointGetDataMasaKerja, { method: "GET" })
-export const getDataUnitKerjaEndPoint = params => client(endPointGetDataUnitKerja, { method: "GET" })
-export const getDataMBTIEndPoint = params => client(endPointGetDataMBTI, { method: "GET" })
+export const getDataStatistikEndPoint = () => clientGet(endPointGetDataStatistik, {})
+export const getDataKomposisiPegawaiEndPoint = () => clientGet(endPointGetDataKomposisiPegawai, {})
+export const getDataPendidikanEndPoint = () => clientGet(endPointGetDataPendidikan, {})
+export const getDataDKategoriProyekEndPoint = () => clientGet(endPointGetDataDKategoriProyek, {})
+export const getDataBODGroupEndPoint = () => clientGet(endPointGetDataBODGroup, {})
+export const getDataAssessmentEndPoint = () => clientGet(endPointGetDataAssessment, {})
+export const getDataMasaKerjaEndPoint = () => clientGet(endPointGetDataMasaKerja, {})
+export const getDataUnitKerjaEndPoint = () => clientGet(endPointGetDataUnitKerja, {})
+export const getDataMBTIEndPoint = () => clientGet(endPointGetDataMBTI, {})

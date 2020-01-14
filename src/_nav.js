@@ -16,7 +16,7 @@ const menuAdmin = {
     },
     {
       "name": "List Pegawai",
-      "url": "/dataMaster/userManagement",
+      "url": "/karyawan",
       "icon": "icon-user"
     },
     // {
@@ -39,7 +39,7 @@ const menuAdmin = {
     },
     {
       "name": "Summary Pegawai",
-      "url": "/productManagement/ManageProduct",
+      "url": "/summary-pegawai",
       "icon": "icon-layers"
     },
     {
@@ -49,81 +49,81 @@ const menuAdmin = {
       "children": [
         {
           "name": "Input Mutasi",
-          "url": "/productManagement/Entry",
+          "url": "/input-mutasi-rotasi-pegawai",
           "icon": "icon-action-redo"
         },
         {
           "name": "Report Mutasi / Rotasi",
-          "url": "/productManagement/Depreciation",
+          "url": "/report-mutasi-rotasi-pegawai",
           "icon": "icon-book-open"
         }
       ]
     },
     {
       "name": "PJS Orientasi",
-      "url": "/productManagement/ManageProduct",
+      "url": "/pjs-orientasi",
       "icon": "icon-layers"
     },
-    {
-      "title": true,
-      "name": "Training Management",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "Ceklis Kepesertaan",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
-    {
-      "name": "Evaluasi Quartal",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Training Management",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "Ceklis Kepesertaan",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
+    // {
+    //   "name": "Evaluasi Quartal",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "File Management",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "File Manager",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "File Management",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "File Manager",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "Kebutuhan Pegawai",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "List Important File",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Kebutuhan Pegawai",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "List Important File",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "Biaya",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "List Important File",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Biaya",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "List Important File",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
 
   ]
