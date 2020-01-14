@@ -38,7 +38,6 @@ class DefaultHeader extends Component {
                 <i className="fa fa-users"></i>
                 Karyawan
                 </DropdownItem>
-              <DropdownItem onClick={e => this.props.onMonitoring(e)}><i className="fa fa-tv"></i>Kontrak</DropdownItem>
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

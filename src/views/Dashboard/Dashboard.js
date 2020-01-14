@@ -119,7 +119,7 @@ const Dashboard = () => {
           </Row>
         </Col>
         <BarChart colSm={5} colMd={5} title="Masa Kerja" data={dataMasaKerja} isLoading={isLoadingdataMasaKerja} type="durationOnOffice" />
-        <BarChart colSm={7} colMd={7} title="Unit Kerja" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} type="divisi" />
+        <BarChart colSm={7} colMd={7} title="Divisi" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} type="divisi" />
         <BarChart colSm={12} colMd={12} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} type="mbti" />
 
         <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} type="employeeComposition" />

@@ -3,6 +3,10 @@ import { useState } from 'reinspect'
 import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
 import { DatePicker } from 'antd';
 import moment from 'moment';
+import WidgetCustom from '../Widgets/WidgetCustom'
+import { SideProfile } from '../DetailPegawai/SideProfile'
+
+
 const dateFormat = 'YYYY/MM/DD';
 
 const InputMutasiPromosiPegawai = props => {
@@ -42,7 +46,15 @@ const InputMutasiPromosiPegawai = props => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col xl={12}>
+                <Col xl={3}>
+                    <WidgetCustom
+                        dataBox={() => ({ variant: 'twitter' })}
+                        name={`Luthfi`}
+                        employeeStatus={`Organik`}
+                    />
+                    <SideProfile />>
+                </Col>
+                <Col xl={9}>
                     <Card>
                         <CardHeader>
                             <i className="fa fa-user"></i> Mutasi Jabatan
@@ -118,7 +130,7 @@ const InputMutasiPromosiPegawai = props => {
                     </Card>
                 </Col>
 
-                <Col xl={12}>
+                {/* <Col xl={12}>
                     <Card>
                         <CardHeader>
                             <i className="fa fa-user"></i> Promosi Jabatan
@@ -251,7 +263,7 @@ const InputMutasiPromosiPegawai = props => {
                             <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
                         </CardFooter>
                     </Card>
-                </Col>
+                </Col> */}
 
 
             </Row>

@@ -30,12 +30,9 @@ const ListPegawai = ({ match }) => {
   }
 
   useEffect(() => {
+    setFilter({ type: '', field: '' })
     getData()
-  }, [])
-
-  useEffect(() => {
-    getData()
-  }, [match.params])
+  }, [match.params.typech, match.params.field])
 
   return (
     <div className="animated fadeIn">
