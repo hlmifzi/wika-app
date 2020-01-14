@@ -37,11 +37,11 @@ const menuAdmin = {
       "url": "/filter-pegawai",
       "icon": "icon-list"
     },
-    {
-      "name": "Summary Pegawai",
-      "url": "/summary-pegawai",
-      "icon": "icon-layers"
-    },
+    // {
+    //   "name": "Summary Pegawai",
+    //   "url": "/summary-pegawai",
+    //   "icon": "icon-layers"
+    // },
     {
       "name": "Mutasi / Promosi",
       "url": "/Transaction",
@@ -52,11 +52,11 @@ const menuAdmin = {
           "url": "/input-mutasi-rotasi-pegawai",
           "icon": "icon-action-redo"
         },
-        {
-          "name": "Report Mutasi / Rotasi",
-          "url": "/report-mutasi-rotasi-pegawai",
-          "icon": "icon-book-open"
-        }
+        // {
+        //   "name": "Report Mutasi / Rotasi",
+        //   "url": "/report-mutasi-rotasi-pegawai",
+        //   "icon": "icon-book-open"
+        // }
       ]
     },
     {

@@ -9,6 +9,8 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   dataBox: PropTypes.func,
+  name: PropTypes.string,
+  employeeStatus: PropTypes.string
 };
 
 const defaultProps = {
@@ -46,9 +48,9 @@ class WidgetCustom extends Component {
           </div>
           <div className={classCardBody}>
             <div style={{ marginTop: '40px' }}>
-              <div className="text-value">Luthfi</div>
+              <div className="text-value">{this.props.name}</div>
               <div className="text-uppercase text-muted small">Manager - Proyek HSR</div>
-              <div className="text-uppercase text-muted small"><Badge pill color="success">Organik</Badge></div>
+              <div className="text-uppercase text-muted small"><Badge pill color="success">{this.props.employeeStatus}</Badge></div>
             </div>
           </div>
         </div >

@@ -58,7 +58,6 @@ class ListPegawaiTable extends React.Component {
         },
         render: (text, value) => {
 
-            { console.log("TCL: ListPegawaiTable -> value", value.nip) }
             return (
                 <a href="/#/karyawan/2">
                     <Highlighter

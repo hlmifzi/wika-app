@@ -86,7 +86,6 @@ const Dashboard = () => {
 
   const getDataAssessment = async () => {
     let { data } = await getDataAssessmentEndPoint()
-    console.log("TCL: getDataAssessment -> data", data)
     seDIsLoadingdataAssessment(false)
     setDataAssessment(data)
   }
@@ -119,17 +118,17 @@ const Dashboard = () => {
             </Col>
           </Row>
         </Col>
-        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={dataMasaKerja} isLoading={isLoadingdataMasaKerja} type="durationOnOffice"/>
-        <BarChart colSm={7} colMd={7} title="Unit Kerja" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} type="divisi" />
+        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={dataMasaKerja} isLoading={isLoadingdataMasaKerja} type="durationOnOffice" />
+        <BarChart colSm={7} colMd={7} title="Divisi" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} type="divisi" />
         <BarChart colSm={12} colMd={12} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} type="mbti" />
 
         <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} type="employeeComposition" />
-        <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} type="educations"/>
-        <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} type="projectCategory" />
+        <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} type="educations" />
+        <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} type="projectCategories" />
         <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} type="bodGroup" />
         {
-          dataAssessment.map((v, i) =>{
-            if(v.data.length > 0)return <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />
+          dataAssessment.map((v, i) => {
+            if (v.data.length > 0) return <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />
           })
         }
       </Row>
