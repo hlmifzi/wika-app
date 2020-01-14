@@ -1,10 +1,9 @@
 import React from 'react'
-// import { Badge, Card, CardHeader, CardBody } from 'reactstrap';
 import { CardWithCustom } from '../../MyComponent/CardCustom/CardComponent'
 import Widget02 from '../Widgets/Widget02';
 import { Col, Row, Badge, FormGroup, Label, Input, Button } from 'reactstrap';
 
-export const DetailInformation = ({ children, color, text }) => {
+export const Job = ({ children, color, text }) => {
   return (
     <CardWithCustom classHeader={"bg-primary text-white"} text="Detail Information">
       <Row className="card-custom">

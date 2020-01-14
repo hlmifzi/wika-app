@@ -3,21 +3,21 @@ import { useState } from 'reinspect'
 import { Col, Row, Badge, FormGroup, Label, Input, Button, TabContent, TabPane } from 'reactstrap';
 import Widget02 from '../Widgets/Widget02';
 import WidgetCustom from '../Widgets/WidgetCustom';
-// // import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
-// // import PropTypes from 'prop-types'
 import { CardWithCustom, CardWithCustomNoHeader } from '../../MyComponent/CardCustom/CardComponent'
 import 'font-awesome/css/font-awesome.min.css';
 import './style/style.css';
-import { BasicInformation } from './BasicInformation.js';
-import { DetailInformation } from './DetailInformation.js';
+import { Personal } from './Personal.js';
+import { Job } from './Job.js';
+import { Training } from './Training.js';
+import { Performance } from './Performance.js';
 import { SideProfile } from './SideProfile.js';
+import { getDataPegawai } from './endpoint/DetailPegawaiEndpoint.js';
 
-const DetailPegawai = props => {
-    const [navbar1, setNavbar1] = useState(true, "nav1");
+const DetailPegawai = ({match}) => {
+    const [navbar1, setNavbar1] = useState(false, "nav1");
     const [navbar2, setNavbar2] = useState(false, "nav2");
     const [navbar3, setNavbar3] = useState(false, "nav3");
-    const [navbar4, setNavbar4] = useState(false, "nav4");
-
+    const [navbar4, setNavbar4] = useState(true, "nav4");
     const _personal = () => {
         setNavbar1(true)
         setNavbar2(false)
@@ -45,9 +45,15 @@ const DetailPegawai = props => {
         setNavbar4(true)
     }
 
-    useEffect(() => {
+    const _getData =async  () => {
+        let {data} = await getDataPegawai(match.params.id)
+        console.log(data)
+    }
 
+    useEffect(() => {
+        _getData()
     }, [navbar1, navbar2, navbar3, navbar4])
+
     return (
         <div>
             <Row>
@@ -67,20 +73,24 @@ const DetailPegawai = props => {
                     </Row>
                     {
                         navbar1 &&
-                        <BasicInformation></BasicInformation>
+                        <Personal />
                     }
                     {
                         navbar2 &&
-
-                        <DetailInformation></DetailInformation>
+                        <Job />
                     }
                     {
-
+                        navbar3 &&
+                        <Training />
+                    }
+                    {
+                        navbar4 &&
+                        <Performance />
                     }
                 </Col>
             </Row>
         </div>
-    )
+    )   
 }
 
 DetailPegawai.propTypes = {
