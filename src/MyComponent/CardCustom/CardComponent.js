@@ -44,9 +44,19 @@ export const CardWithCustom = ({ children, color, text, classHeader }) => {
     return (
         <Card>
             <CardHeader className={classHeader}>
-                <b style={{ fontSize: '1.5em' }}>{text}</b>
+                <b style={{ fontSize: '1.2em' }}>{text}</b>
             </CardHeader>
             <CardBody>
+                {children}
+            </CardBody>
+        </Card>
+    )
+}
+
+export const CardWithCustomNoHeader = ({ children, color, text, classBody }) => {
+    return (
+        <Card>
+            <CardBody className={classBody}>
                 {children}
             </CardBody>
         </Card>
