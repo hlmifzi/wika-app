@@ -18,7 +18,6 @@ const ListPegawai = ({ match }) => {
     let datas;
     if (match.params.type) {
       let { data } = await getDataFilterDashboard(match.params)
-
       let type = getType(match.params.type)
       setFilter({ type: type, field: match.params.field })
       datas = data

@@ -32,7 +32,7 @@ class DefaultHeader extends Component {
               <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={e => this.props.onProfile(e)}><i className="fa fa-users"></i>Profile Saya</DropdownItem>
+              <DropdownItem onClick={e => this.props.history.push('#/karyawan/2')}><i className="fa fa-users"></i>Profile Saya</DropdownItem>
               <DropdownItem header tag="div" className="text-center"><strong>Management</strong></DropdownItem>
               <DropdownItem onClick={e => this.props.onKaryawan(e)}>
                 <i className="fa fa-users"></i>

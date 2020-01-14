@@ -71,7 +71,9 @@ const PieChart = props => {
                 point: {
                     events: {
                         click: function (event) {
-                            window.open(`#/karyawan-filtered/${props.type}/${this.name}`);
+                            let endPoint = ''
+                            let url = props.type === 'durationOnOffice' ? `#/karyawan-filtered/${props.type}/${this.from}/${this.to}` : `#/karyawan-filtered/${props.type}/${this.name}`
+                            window.open(url);
                         }
                     }
                 },
