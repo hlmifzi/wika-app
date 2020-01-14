@@ -10,7 +10,7 @@ services:
             - traefik.enable=true
             - traefik.backend=wika_app
             - traefik.http.routers.wika_app.rule=Host(`wika.dedekrnwan.site`)
-            - traefik.http.services.wika_app.loadbalancer.server.port=3016
+            - traefik.http.services.wika_app.loadbalancer.server.port=80
             - traefik.docker.network=proxy
             - traefik.http.routers.wika_app.entrypoints=http
         networks: 
