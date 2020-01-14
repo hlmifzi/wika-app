@@ -11,7 +11,6 @@ class ListPegawaiTable extends React.Component {
     };
 
     handleChange = (pagination, filters, sorter) => {
-        console.log('Various parameters', pagination, filters, sorter);
         this.setState({
             filteredInfo: filters,
             sortedInfo: sorter,
@@ -57,16 +56,20 @@ class ListPegawaiTable extends React.Component {
                 setTimeout(() => this.searchInput.select());
             }
         },
-        render: text => (
-            <a target="_blank" href="">
-                <Highlighter
-                    highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
-                    searchWords={[this.state.searchText]}
-                    autoEscape
-                    textToHighlight={"" + text}
-                />
-            </a>
-        ),
+        render: (text, value) => {
+
+            { console.log("TCL: ListPegawaiTable -> value", value.nip) }
+            return (
+                <a href="/#/karyawan/2">
+                    <Highlighter
+                        highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
+                        searchWords={[this.state.searchText]}
+                        autoEscape
+                        textToHighlight={"" + text}
+                    />
+                </a>
+            )
+        },
     });
 
     handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -87,7 +90,7 @@ class ListPegawaiTable extends React.Component {
         sortedInfo = sortedInfo || {};
         filteredInfo = filteredInfo || {};
         const columns = [
-            
+
             {
                 title: 'NIP',
                 dataIndex: 'nip',
@@ -111,12 +114,12 @@ class ListPegawaiTable extends React.Component {
                 width: 100,
                 sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
                 filters: [
-                            { text: 'KKWT', value: 'KKWT' },
-                            { text: 'MT-FG', value: 'MT-FG' },
-                            { text: 'Organik', value: 'Organik' }, 
-                            { text: 'Outsource', value: 'Outsource' },
-                            { text: 'Terampil', value: 'Terampil' },
-                        ],
+                    { text: 'KKWT', value: 'KKWT' },
+                    { text: 'MT-FG', value: 'MT-FG' },
+                    { text: 'Organik', value: 'Organik' },
+                    { text: 'Outsource', value: 'Outsource' },
+                    { text: 'Terampil', value: 'Terampil' },
+                ],
                 filteredValue: filteredInfo.employeeStatus || null,
                 onFilter: (value, record) => record.employeeStatus.includes(value),
             },
@@ -128,22 +131,22 @@ class ListPegawaiTable extends React.Component {
                 sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
                 sortDirections: ['descend'],
                 filters: [
-                        { text: 'SUPPLY CHAIN MANAGEMENT', value: 'SUPPLY CHAIN MANAGEMENT' }, 
-                        { text: 'SIPIL', value: 'SIPIL' },
-                        { text: 'SECRETARY', value: 'SECRETARY' },
-                        { text: 'QUALITY', value: 'QUALITY' },
-                        { text: 'QSHE', value: 'QSHE' },
-                        { text: 'PROJECT MANAGEMENT', value: 'PROJECT MANAGEMENT' },
-                        { text: 'PROJECT CONTROL', value: 'PROJECT CONTROL' },
-                        { text: 'PEMASARAN', value: 'PEMASARAN' },
-                        { text: 'MANAJEMEN KONTRAK', value: 'MANAJEMEN KONTRAK' },
-                        { text: 'KEUANGAN & AKUNTANSI', value: 'KEUANGAN & AKUNTANSI' },
-                        { text: 'KEUANGAN', value: 'KEUANGAN' },
-                        { text: 'HUMAN CAPITAL', value: 'HUMAN CAPITAL' },
-                        { text: 'ENGINEERING', value: 'ENGINEERING' },
-                        { text: 'CONSTRUCTION MANAGEMENT', value: 'CONSTRUCTION MANAGEMENT' },
-                        { text: 'AKUNTANSI', value: 'AKUNTANSI' }
-                    ],
+                    { text: 'SUPPLY CHAIN MANAGEMENT', value: 'SUPPLY CHAIN MANAGEMENT' },
+                    { text: 'SIPIL', value: 'SIPIL' },
+                    { text: 'SECRETARY', value: 'SECRETARY' },
+                    { text: 'QUALITY', value: 'QUALITY' },
+                    { text: 'QSHE', value: 'QSHE' },
+                    { text: 'PROJECT MANAGEMENT', value: 'PROJECT MANAGEMENT' },
+                    { text: 'PROJECT CONTROL', value: 'PROJECT CONTROL' },
+                    { text: 'PEMASARAN', value: 'PEMASARAN' },
+                    { text: 'MANAJEMEN KONTRAK', value: 'MANAJEMEN KONTRAK' },
+                    { text: 'KEUANGAN & AKUNTANSI', value: 'KEUANGAN & AKUNTANSI' },
+                    { text: 'KEUANGAN', value: 'KEUANGAN' },
+                    { text: 'HUMAN CAPITAL', value: 'HUMAN CAPITAL' },
+                    { text: 'ENGINEERING', value: 'ENGINEERING' },
+                    { text: 'CONSTRUCTION MANAGEMENT', value: 'CONSTRUCTION MANAGEMENT' },
+                    { text: 'AKUNTANSI', value: 'AKUNTANSI' }
+                ],
                 filteredValue: filteredInfo.fieldFunction || null,
                 onFilter: (value, record) => record.fieldFunction.includes(value),
             },
@@ -152,9 +155,9 @@ class ListPegawaiTable extends React.Component {
                 dataIndex: 'position',
                 key: 'position',
                 width: '10%',
-                sorter: (a, b) => a.position.localeCompare(b.position), 
+                sorter: (a, b) => a.position.localeCompare(b.position),
                 filters: [
-                    { text: 'Surveyor', value: 'Surveyor' }, 
+                    { text: 'Surveyor', value: 'Surveyor' },
                     { text: 'Supervisor SHE', value: 'Supervisor SHE' },
                     { text: 'Staf Umum', value: 'Staf Umum' },
                     { text: 'Staf SHE', value: 'Staf SHE' },
@@ -178,13 +181,13 @@ class ListPegawaiTable extends React.Component {
                 dataIndex: 'bodGroup',
                 key: 'bodGroup',
                 width: 80,
-                sorter: (a, b) => a.bodGroup.localeCompare(b.bodGroup), 
+                sorter: (a, b) => a.bodGroup.localeCompare(b.bodGroup),
                 filters: [
                     { text: 'BOD-1', value: 'BOD-1' },
                     { text: 'BOD-2', value: 'BOD-2' },
                     { text: 'BOD-3', value: 'BOD-3' },
                     { text: 'BOD-4', value: 'BOD-4' },
-                    { text: 'BOD-5', value: 'BOD-5' }, 
+                    { text: 'BOD-5', value: 'BOD-5' },
                 ],
                 filteredValue: filteredInfo.bodGroup || null,
                 onFilter: (value, record) => record.bodGroup.includes(value),
