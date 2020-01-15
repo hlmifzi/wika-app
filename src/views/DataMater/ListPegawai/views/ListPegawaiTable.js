@@ -59,7 +59,7 @@ class ListPegawaiTable extends React.Component {
         render: (text, value) => {
 
             return (
-                <a href="/#/karyawan/2">
+                <a href={`/#/karyawan/${value.key}`}>
                     <Highlighter
                         highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
                         searchWords={[this.state.searchText]}
