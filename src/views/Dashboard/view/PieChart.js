@@ -72,13 +72,13 @@ const PieChart = props => {
     }
 
     return (
-        <Col xs={12} sm={4} md={4}>
+        <Col xs={12} sm={6} md={6}>
             <CardWhiteComponent text={props.title}>
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         {props.isLoading ?
                             <Spinner animation="border" variant="primary" className='mr-auto' style={{ margin: 'auto', color: 'blue' }} /> :
-                             <ReactHighcharts config={config} />
+                            <ReactHighcharts config={config} />
                         }
                     </Col>
                 </Row>
