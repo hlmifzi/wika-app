@@ -12,7 +12,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="nip">Nomor Induk Pegawai :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.nip}
+                            <Input type="number" id="nip" placeholder={data.nip} required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -20,7 +20,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="namaPegawai">Nama Pegawai :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.name}
+                            <Input type="text" id="namaPegawai" placeholder="Alex Azamdi" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -28,7 +28,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="tempatLahir">Tempat Lahir :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.birthPlace}
+                            <Input type="text" id="tempatLahir" placeholder="Jakarta" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -36,7 +36,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="tglLahir">Tanggal Lahir :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.birthDate}
+                            <Input type="date" id="tglLahir" placeholder="" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -44,7 +44,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="agama">Agama :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.religion}
+                            <Input type="text" id="agama" placeholder="Islam" required />
                         </Col>
                     </FormGroup>
                 </Col>
@@ -54,7 +54,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="jenisKelamin">Jenis Kelamin :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.gender === 'L' ? 'Laki - laki' : 'Perempuan'}
+                            <Input type="text" id="jenisKelamin" placeholder="Laki Laki" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -62,7 +62,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="golonganDarah">Golongan Darah :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.bloodGroup || 'Tidak Ada Data'}
+                            <Input type="text" id="golonganDarah" placeholder="A" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -70,7 +70,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="statusPernikahan">Status Pernikahan :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.maritalStatus}
+                            <Input type="text" id="statusPernikahan" placeholder="K2" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -78,7 +78,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="namaIbuKandung">Nama Ibu Kandung :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.biologicalMother}
+                            <Input type="text" id="namaIbuKandung" placeholder="Endang Sukamti" required />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -86,7 +86,7 @@ export const Personal = ({ data }) => {
                             <Label htmlFor="emailPersonal">Email Personal :</Label>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.personalEmail}
+                            <Input type="text" id="emailPersonal" placeholder="alex.azamdi@yahoo.co.id" required />
                         </Col>
                     </FormGroup>
                 </Col>
@@ -103,7 +103,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="noKtp">No KTP :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {data.ktp || 'Tidak ada data'}
+                                <Input type="number" id="noKtp" placeholder="3175820475400323" required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -111,7 +111,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="noNpwp">No NPWP :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {data.npwp || 'Tidak Ada Data'}
+                                <Input type="text" id="noNpwp" placeholder="19.523.223.6-643.000" required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -119,7 +119,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="noJamsostek">No Jamsostek :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {data.jamsostek || 'Tidak Ada Data'}
+                                <Input type="text" id="noJamsostek" placeholder="04J80067814" required />
                             </Col>
                         </FormGroup>
                     </Col>
@@ -131,7 +131,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="noBpjsKesehatan">No BPJS Kesehatan :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {data.bpjsKesehatan || "Tidak Ada Data"}
+                                <Input type="number" id="noBpjsKesehatan" placeholder="0001622593596" required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -139,7 +139,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {/* {data ? data.userManulife.customerCode : ''} */}
+                                <Input type="text" id="manulifeAsuransi" placeholder="" required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -147,7 +147,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="manulifeNoPeserta">Manulife No Peserta :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {/* {data ? data.userManulife.participantNumber : ''} */}
+                                <Input type="text" id="manulifeNoPeserta" placeholder="04J80067814" required />
                             </Col>
                         </FormGroup>
                     </Col>

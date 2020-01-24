@@ -19,11 +19,11 @@ const menuAdmin = {
       "url": "/karyawan",
       "icon": "icon-user"
     },
-    // {
-    //   "name": "Tenants Management",
-    //   "url": "/dataMaster/tenantManagement",
-    //   "icon": "icon-screen-desktop"
-    // },
+    {
+      "name": "Tenants Management",
+      "url": "/dataMaster/tenantManagement",
+      "icon": "icon-screen-desktop"
+    },
     {
       "title": true,
       "name": "POSISI PEGAWAI",
@@ -37,11 +37,11 @@ const menuAdmin = {
       "url": "/filter-pegawai",
       "icon": "icon-list"
     },
-    // {
-    //   "name": "Summary Pegawai",
-    //   "url": "/summary-pegawai",
-    //   "icon": "icon-layers"
-    // },
+    {
+      "name": "Summary Pegawai",
+      "url": "/summary-pegawai",
+      "icon": "icon-layers"
+    },
     {
       "name": "Mutasi / Promosi",
       "url": "/Transaction",
@@ -52,11 +52,11 @@ const menuAdmin = {
           "url": "/input-mutasi-rotasi-pegawai",
           "icon": "icon-action-redo"
         },
-        // {
-        //   "name": "Report Mutasi / Rotasi",
-        //   "url": "/report-mutasi-rotasi-pegawai",
-        //   "icon": "icon-book-open"
-        // }
+        {
+          "name": "Report Mutasi / Rotasi",
+          "url": "/report-mutasi-rotasi-pegawai",
+          "icon": "icon-book-open"
+        }
       ]
     },
     {
@@ -64,68 +64,66 @@ const menuAdmin = {
       "url": "/pjs-orientasi",
       "icon": "icon-layers"
     },
-    // {
-    //   "title": true,
-    //   "name": "Training Management",
-    //   "wrapper": {
-    //     "element": "",
-    //     "attributes": {}
-    //   }
-    // },
-    // {
-    //   "name": "Ceklis Kepesertaan",
-    //   "url": "/productManagement/ListProduct",
-    //   "icon": "icon-list"
-    // },
-    // {
-    //   "name": "Evaluasi Quartal",
-    //   "url": "/productManagement/ListProduct",
-    //   "icon": "icon-list"
-    // },
+    {
+      "title": true,
+      "name": "Training Management",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
+    {
+      "name": "Ceklis Kepesertaan",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
+    {
+      "name": "Evaluasi Quartal",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
 
-    // {
-    //   "title": true,
-    //   "name": "File Management",
-    //   "wrapper": {
-    //     "element": "",
-    //     "attributes": {}
-    //   }
-    // },
-    // {
-    //   "name": "File Manager",
-    //   "url": "/productManagement/ListProduct",
-    //   "icon": "icon-list"
-    // },
+    {
+      "title": true,
+      "name": "File Management",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
+    {
+      "name": "File Manager",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
 
-    // {
-    //   "title": true,
-    //   "name": "Kebutuhan Pegawai",
-    //   "wrapper": {
-    //     "element": "",
-    //     "attributes": {}
-    //   }
-    // },
-    // {
-    //   "name": "List Important File",
-    //   "url": "/productManagement/ListProduct",
-    //   "icon": "icon-list"
-    // },
+    {
+      "title": true,
+      "name": "Kebutuhan Pegawai",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
+    {
+      "name": "List Important File",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
 
-    // {
-    //   "title": true,
-    //   "name": "Biaya",
-    //   "wrapper": {
-    //     "element": "",
-    //     "attributes": {}
-    //   }
-    // },
-    // {
-    //   "name": "List Important File",
-    //   "url": "/productManagement/ListProduct",
-    //   "icon": "icon-list"
-    // },
-
-
+    {
+      "title": true,
+      "name": "Biaya",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
+    {
+      "name": "List Important File",
+      "url": "/productManagement/ListProduct",
+      "icon": "icon-list"
+    },
   ]
 };
 

@@ -16,12 +16,18 @@ export const SideProfile = ({ data }) => {
                     {/* (+62) {data.telephone} */}
                 </Col>
                 <hr />
+                <Col md="12" xs="12">
+                    <b>Jenis Kelamin:</b>
+                </Col>
+                <Col xs="12" md="12">
+                    {/* {data.gender === 'L' ? 'Laki - laki' : 'Perempuan'} */}
+                </Col>
                 <hr />
                 <Col md="12" xs="12">
                     <b>Email Kantor : </b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data.officeEmail || 'Tidak Ada Email'} */}
+                    {/* {data.personalEmail} //tidak ada */}
                 </Col>
                 <hr />
                 <Col md="12" xs="12">
@@ -35,7 +41,7 @@ export const SideProfile = ({ data }) => {
                     <b>Unit Kerja :</b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data ? data.workUnit.name : ''} */}
+                    {/* {data.workUnit.name} */}
                 </Col>
                 <hr />
                 <Col md="12" xs="12" >
@@ -43,13 +49,6 @@ export const SideProfile = ({ data }) => {
                 </Col>
                 <Col xs="12" md="12">
                     {/* {data.fieldFunction} */}
-                </Col>
-                <hr />
-                <Col md="12" xs="12">
-                    <b>Lama Bekerja:</b>
-                </Col>
-                <Col xs="12" md="12">
-                    {/* {data.yearsOfService} */}
                 </Col>
             </Row>
         </CardWithCustomNoHeader>

@@ -13,11 +13,11 @@ import { getDataPegawai } from './endpoint/DetailPegawaiEndpoint.js';
 import { CardWhiteComponent } from '../../MyComponent/CardCustom/CardComponent'
 
 const DetailPegawai = ({ match }) => {
-    const [navbar1, setNavbar1] = useState(false, "nav1");
+    const [navbar1, setNavbar1] = useState(true, "nav1");
     const [navbar2, setNavbar2] = useState(false, "nav2");
     const [navbar3, setNavbar3] = useState(false, "nav3");
-    const [navbar4, setNavbar4] = useState(true, "nav4");
-    const [dataDetailpegawai, setDataDetailpegawai] = useState({}, "dataDetailpegawai");
+    const [navbar4, setNavbar4] = useState(false, "nav4");
+    const [dataDetailpegawai, setDataDetailpegawai] = useState({ workUnit: {} }, "dataDetailpegawai");
     const _personal = () => {
         setNavbar1(true)
         setNavbar2(false)
@@ -63,8 +63,10 @@ const DetailPegawai = ({ match }) => {
                     <WidgetCustom
                         dataBox={() => ({ variant: 'twitter' })}
                         name={dataDetailpegawai.name}
-                        employeeStatus={dataDetailpegawai.employeeStatus} />
-
+                        employeeStatus={dataDetailpegawai.employeeStatus}
+                        titleName={dataDetailpegawai.titleName}
+                        position={dataDetailpegawai.position}
+                    />
 
                     <SideProfile data={dataDetailpegawai} />
                 </Col>
@@ -85,7 +87,7 @@ const DetailPegawai = ({ match }) => {
                     </Row>
                     {
                         navbar1 &&
-                        <Personal />
+                        <Personal data={dataDetailpegawai} />
                     }
                     {
                         navbar2 &&
@@ -97,7 +99,7 @@ const DetailPegawai = ({ match }) => {
                     }
                     {
                         navbar4 &&
-                        <Performance />
+                        <Performance data={dataDetailpegawai} />
                     }
                 </Col>
             </Row>

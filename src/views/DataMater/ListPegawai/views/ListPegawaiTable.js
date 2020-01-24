@@ -89,7 +89,6 @@ class ListPegawaiTable extends React.Component {
         sortedInfo = sortedInfo || {};
         filteredInfo = filteredInfo || {};
         const columns = [
-
             {
                 title: 'NIP',
                 dataIndex: 'nip',
