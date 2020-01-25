@@ -139,7 +139,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].customerCode : ''}
+                                {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].customerCode : 'Tidak Ada Data'}
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -147,70 +147,70 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="manulifeNoPeserta">Manulife No Peserta :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].participantNumber : ''}
+                                {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].participantNumber : 'Tidak Ada Data'}
                             </Col>
                         </FormGroup>
                     </Col>
                 </Col>
             </Row>
             <hr />
-            { 
-            <Row className="card-custom">
-                <Col md="6" xs="12">
-                    <Col md="12" xs="12">
-                        <Label style={{ fontSize: '1.2em' }}>Education</Label>
+            {
+                <Row className="card-custom">
+                    <Col md="6" xs="12">
+                        <Col md="12" xs="12">
+                            <Label style={{ fontSize: '1.2em' }}>Education</Label>
+                        </Col>
+                        <Col xs="12" md="12">
+                            <FormGroup row>
+                                <Col md="12" xs="12">
+                                    <Label htmlFor="bidang">Bidang :</Label>
+                                </Col>
+                                <Col xs="12" md="12">
+                                    {data.field ? data.field : "Tidak Ada Data"}
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Col md="12" xs="12">
+                                    <Label htmlFor="strata">Strata :</Label>
+                                </Col>
+                                <Col xs="12" md="12">
+                                    {(data.userEducations && data.userEducations[0]) ? data.userEducations[0].strata : "Tidak Ada Data"}
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Col md="12" xs="12">
+                                    <Label htmlFor="jurusan">Jurusan :</Label>
+                                </Col>
+                                <Col xs="12" md="12">
+                                    {(data.userEducations && data.userEducations[0]) ? data.userEducations[0].majors : "Tidak Ada Data"}
+                                </Col>
+                            </FormGroup>
+                        </Col>
                     </Col>
-                    <Col xs="12" md="12">
-                        <FormGroup row>
-                            <Col md="12" xs="12">
-                                <Label htmlFor="bidang">Bidang :</Label>
-                            </Col>
-                            <Col xs="12" md="12">
-                                <Input defaultValue={data.field ? data.field : ""} type="text" id="bidang"  required />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Col md="12" xs="12">
-                                <Label htmlFor="strata">Strata :</Label>
-                            </Col>
-                            <Col xs="12" md="12">
-                                <Input defaultValue={(data.userEducations && data.userEducations[0]) ? data.userEducations[0].strata : ""} type="text" id="strata"  required />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Col md="12" xs="12">
-                                <Label htmlFor="jurusan">Jurusan :</Label>
-                            </Col>
-                            <Col xs="12" md="12">
-                                <Input defaultValue={(data.userEducations && data.userEducations[0]) ? data.userEducations[0].majors : ""} type="text" id="jurusan"  required />
-                            </Col>
-                        </FormGroup>
+                    <Col md="6" xs="12">
+                        <Col md="12" xs="12">
+                            <Label style={{ fontSize: '1.2em' }}>Talent</Label>
+                        </Col>
+                        <Col xs="12" md="12">
+                            <FormGroup row>
+                                <Col md="12" xs="12">
+                                    <Label htmlFor="mbti">MBTI :</Label>
+                                </Col>
+                                <Col xs="12" md="12">
+                                    {data.mbti ? data.mbti : "Tidak Ada Data"}
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Col md="12" xs="12">
+                                    <Label htmlFor="kategoriTalent">Kategori Talent :</Label>
+                                </Col>
+                                <Col xs="12" md="12">
+                                    {data.categoryTalent ? data.categoryTalent : "Tidak Ada Data"}
+                                </Col>
+                            </FormGroup>
+                        </Col>
                     </Col>
-                </Col>
-                <Col md="6" xs="12">
-                    <Col md="12" xs="12">
-                        <Label style={{ fontSize: '1.2em' }}>Talent</Label>
-                    </Col>
-                    <Col xs="12" md="12">
-                        <FormGroup row>
-                            <Col md="12" xs="12">
-                                <Label htmlFor="mbti">MBTI :</Label>
-                            </Col>
-                            <Col xs="12" md="12">
-                                <Input defaultValue={data.mbti ? data.mbti : ""} type="text" id="mbti"  required />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Col md="12" xs="12">
-                                <Label htmlFor="kategoriTalent">Kategori Talent :</Label>
-                            </Col>
-                            <Col xs="12" md="12">
-                                <Input defaultValue={data.categoryTalent ? data.categoryTalent : ""} type="text" id="kategoriTalent"  required />
-                            </Col>
-                        </FormGroup>
-                    </Col>
-                </Col>
-            </Row> }
+                </Row>}
         </CardWithCustom>
     )
 }

@@ -1,14 +1,25 @@
 import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { getDataGetAllFungsi } from '../endpoint/ListPegawaiEndpoint'
 
 class ListPegawaiTable extends React.Component {
     state = {
         filteredInfo: null,
         sortedInfo: null,
         searchText: '',
-        data: this.props.data
+        data: this.props.data,
+        filterFungsi: {}
     };
+
+    async componentWillMount() {
+        let { data } = await getDataGetAllFungsi()
+        const dataFungsiFilter = data.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterFungsi: dataFungsiFilter })
+    }
 
     handleChange = (pagination, filters, sorter) => {
         this.setState({
@@ -88,6 +99,7 @@ class ListPegawaiTable extends React.Component {
         let { sortedInfo, filteredInfo } = this.state;
         sortedInfo = sortedInfo || {};
         filteredInfo = filteredInfo || {};
+        console.log(filteredInfo)
         const columns = [
             {
                 title: 'NIP',
@@ -128,23 +140,7 @@ class ListPegawaiTable extends React.Component {
                 width: '10%',
                 sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
                 sortDirections: ['descend'],
-                filters: [
-                    { text: 'SUPPLY CHAIN MANAGEMENT', value: 'SUPPLY CHAIN MANAGEMENT' },
-                    { text: 'SIPIL', value: 'SIPIL' },
-                    { text: 'SECRETARY', value: 'SECRETARY' },
-                    { text: 'QUALITY', value: 'QUALITY' },
-                    { text: 'QSHE', value: 'QSHE' },
-                    { text: 'PROJECT MANAGEMENT', value: 'PROJECT MANAGEMENT' },
-                    { text: 'PROJECT CONTROL', value: 'PROJECT CONTROL' },
-                    { text: 'PEMASARAN', value: 'PEMASARAN' },
-                    { text: 'MANAJEMEN KONTRAK', value: 'MANAJEMEN KONTRAK' },
-                    { text: 'KEUANGAN & AKUNTANSI', value: 'KEUANGAN & AKUNTANSI' },
-                    { text: 'KEUANGAN', value: 'KEUANGAN' },
-                    { text: 'HUMAN CAPITAL', value: 'HUMAN CAPITAL' },
-                    { text: 'ENGINEERING', value: 'ENGINEERING' },
-                    { text: 'CONSTRUCTION MANAGEMENT', value: 'CONSTRUCTION MANAGEMENT' },
-                    { text: 'AKUNTANSI', value: 'AKUNTANSI' }
-                ],
+                filters: this.state.filterFungsi,
                 filteredValue: filteredInfo.fieldFunction || null,
                 onFilter: (value, record) => record.fieldFunction.includes(value),
             },
@@ -153,7 +149,7 @@ class ListPegawaiTable extends React.Component {
                 dataIndex: 'position.name',
                 key: 'position.name',
                 width: '10%',
-                sorter: (a, b) => a.position.localeCompare(b.position),
+                sorter: (a, b) => a.position.localeCompare(b.position.name),
                 filters: [
                     { text: 'Surveyor', value: 'Surveyor' },
                     { text: 'Supervisor SHE', value: 'Supervisor SHE' },

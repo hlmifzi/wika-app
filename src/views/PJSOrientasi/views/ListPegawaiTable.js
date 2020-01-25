@@ -57,16 +57,18 @@ class ListPegawaiTable extends React.Component {
                 setTimeout(() => this.searchInput.select());
             }
         },
-        render: text => (
-            <a target="_blank" href="">
-                <Highlighter
-                    highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
-                    searchWords={[this.state.searchText]}
-                    autoEscape
-                    textToHighlight={"" + text}
-                />
-            </a>
-        ),
+        render: (text, value) => {
+            return (
+                <a href={`/#/karyawan/${value.key}`}>
+                    <Highlighter
+                        highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
+                        searchWords={[this.state.searchText]}
+                        autoEscape
+                        textToHighlight={"" + text}
+                    />
+                </a>
+            )
+        }
     });
 
     handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -106,39 +108,73 @@ class ListPegawaiTable extends React.Component {
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunction',
-                key: 'fieldFunction',
+                dataIndex: 'fieldFunction.name',
+                key: 'fieldFunction.name',
                 width: 100,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
-                onFilter: (value, record) => record.nama.includes(value),
+                sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
+                sortDirections: ['descend'],
+                filters: this.state.filterFungsi,
+                filteredValue: filteredInfo.fieldFunction || null,
+                onFilter: (value, record) => record.fieldFunction.includes(value),
             },
             {
                 title: 'Jabatan',
-                dataIndex: 'titleName',
-                key: 'titleName',
+                dataIndex: 'position.name',
+                key: 'position.name',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.position.localeCompare(b.position.name),
+                filters: [
+                    { text: 'Surveyor', value: 'Surveyor' },
+                    { text: 'Supervisor SHE', value: 'Supervisor SHE' },
+                    { text: 'Staf Umum', value: 'Staf Umum' },
+                    { text: 'Staf SHE', value: 'Staf SHE' },
+                    { text: 'Staf Seksi SHE', value: 'Staf Seksi SHE' },
+                    { text: 'Staf Seksi Quantity Surveyor', value: 'Staf Seksi Quantity Surveyor' },
+                    { text: 'Staf Seksi Quantity Survey', value: 'Staf Seksi Quantity Survey' },
+                    { text: 'Staf Seksi Quality Control', value: 'Staf Seksi Quality Control' },
+                    { text: 'Staf Seksi Quality Assurance', value: 'Staf Seksi Quality Assurance' },
+                    { text: 'Staf Seksi QA/QC', value: 'Staf Seksi QA/QC' },
+                    { text: 'Staf Seksi Pengadaan dan Peralatan', value: 'Staf Seksi Pengadaan dan Peralatan' },
+                    { text: 'Staf Seksi Pengadaan dan Peralatan', value: 'Staf Seksi Pengadaan dan Peralatan' },
+                    { text: 'Staf Seksi Pengadaan', value: 'Staf Seksi Pengadaan' },
+                    { text: 'Staf Laboratorium', value: 'Staf Laboratorium' },
+                ],
+                filteredValue: filteredInfo.position || null,
+                onFilter: (value, record) => record.position.includes(value),
             },
             {
                 title: 'Tanggal Mulai PJS',
-                dataIndex: 'dateStartPJS',
-                key: 'dateStartPJS',
+                dataIndex: 'startDateOfPjs',
+                key: 'startDateOfPjs',
                 width: '15%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
+                sorter: (a, b) => a.nama.length.localeCompare - b.nama.length,
                 filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
                 filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'Perhitungan Waktu',
-                dataIndex: 'remainingPJS',
-                key: 'remainingPJS',
+                dataIndex: 'durationOfPjs',
+                key: 'durationOfPjs',
                 width: 150,
                 sorter: (a, b) => a.nama.length - b.nama.length,
                 filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
                 filteredValue: filteredInfo.nama || null,
+            },
+            {
+                title: 'Status',
+                dataIndex: 'employeeStatus',
+                key: 'employeeStatus',
+                width: 100,
+                sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
+                filters: [
+                    { text: 'KKWT', value: 'KKWT' },
+                    { text: 'MT-FG', value: 'MT-FG' },
+                    { text: 'Organik', value: 'Organik' },
+                    { text: 'Outsource', value: 'Outsource' },
+                    { text: 'Terampil', value: 'Terampil' },
+                ],
+                filteredValue: filteredInfo.employeeStatus || null,
+                onFilter: (value, record) => record.employeeStatus.includes(value),
             },
 
 

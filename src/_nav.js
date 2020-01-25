@@ -20,11 +20,6 @@ const menuAdmin = {
       "icon": "icon-user"
     },
     {
-      "name": "Tenants Management",
-      "url": "/dataMaster/tenantManagement",
-      "icon": "icon-screen-desktop"
-    },
-    {
       "title": true,
       "name": "POSISI PEGAWAI",
       "wrapper": {
@@ -64,24 +59,24 @@ const menuAdmin = {
       "url": "/pjs-orientasi",
       "icon": "icon-layers"
     },
-    {
-      "title": true,
-      "name": "Training Management",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "Ceklis Kepesertaan",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
-    {
-      "name": "Evaluasi Quartal",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Training Management",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "Ceklis Kepesertaan",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
+    // {
+    //   "name": "Evaluasi Quartal",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
     {
       "title": true,
@@ -91,39 +86,39 @@ const menuAdmin = {
         "attributes": {}
       }
     },
-    {
-      "name": "File Manager",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "name": "File Manager",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
 
-    {
-      "title": true,
-      "name": "Kebutuhan Pegawai",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
+    // {
+    //   "title": true,
+    //   "name": "Kebutuhan Pegawai",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
     {
       "name": "List Important File",
       "url": "/productManagement/ListProduct",
       "icon": "icon-list"
     },
 
-    {
-      "title": true,
-      "name": "Biaya",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "List Important File",
-      "url": "/productManagement/ListProduct",
-      "icon": "icon-list"
-    },
+    // {
+    //   "title": true,
+    //   "name": "Biaya",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "List Important File",
+    //   "url": "/productManagement/ListProduct",
+    //   "icon": "icon-list"
+    // },
   ]
 };
 

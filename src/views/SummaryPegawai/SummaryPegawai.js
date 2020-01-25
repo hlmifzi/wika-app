@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row, Badge, Label } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable';
 import DonutChart from './views/DonutChart';
+import Widget02 from '../Widgets/Widget02';
+
+
 
 
 
@@ -38,38 +41,43 @@ const SummaryPegawai = () => {
   return (
     <div className="animated fadeIn">
       <Row>
-        <Col xl={2}>
-          <Card style={{minHeight:"80px", maxWidth:"200px"}}>
-            <p style={{fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey"}}>
-              Total Pegawai
-            </p>
-            <p style={{fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey"}}>
-              Status Organik
-            </p>
-            <p style={{fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black"}}>
-              201
-            </p>
-          </Card>
+        <Col md="12" xs="12">
+          <Label>Kategori Proyek Yang Pernah Ditangani : <Badge color="danger">18 Proyek</Badge></Label>
+        </Col>
+        <Col xs="12" sm="6" lg="2">
+          <Widget02 header="3" mainText="Proyek Mega" icon="fa fa-angle-double-up" color="primary" variant="1" />
+        </Col>
+        <Col xs="12" sm="6" lg="3">
+          <Widget02 header="7" mainText="Proyek Besar" icon="fa fa-angle-up" color="info" variant="1" />
+        </Col>
+        <Col xs="12" sm="6" lg="3">
+          <Widget02 header="2" mainText="Proyek Menengah" icon="fa fa-arrows-h" color="warning" variant="1" />
+        </Col>
+        <Col xs="12" sm="6" lg="3">
+          <Widget02 header="6" mainText="Proyek Kecil" icon="fa fa-angle-down" color="primary" variant="1" />
+        </Col>
+        <Col xs="12" sm="6" lg="3">
+          <Widget02 header="6" mainText="Proyek Kecil" icon="fa fa-angle-down" color="primary" variant="1" />
         </Col>
       </Row>
       <Row>
-      <Col xl={4}>
-        <Card>
-          <CardHeader>STATUS PEGAWAI KANTOR DEPARTEMEN
+        <Col xl={4}>
+          <Card>
+            <CardHeader>STATUS PEGAWAI KANTOR DEPARTEMEN
           </CardHeader>
-          <DonutChart />
-        </Card>
-      </Col>
-      <Col xl={8}>
-        <Card style={{height: "446px"}}>
-          <CardHeader>POSISI PEGAWAI KANTOR DEPARTEMEN
+            <DonutChart />
+          </Card>
+        </Col>
+        <Col xl={8}>
+          <Card style={{ height: "446px" }}>
+            <CardHeader>POSISI PEGAWAI KANTOR DEPARTEMEN
         </CardHeader>
-          <CardBody style={{maxHeight:"400px"}}>
-            <StandardTable data={dataPegawai} />
-          </CardBody>
-        </Card>
-      </Col>
-    </Row>
+            <CardBody style={{ maxHeight: "400px" }}>
+              <StandardTable data={dataPegawai} />
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     </div>
   )
 }
