@@ -118,8 +118,8 @@ class FilterSearchSortTable extends React.Component {
             },
             {
                 title: 'Nama',
-                dataIndex: 'nama',
-                key: 'nama',
+                dataIndex: 'name',
+                key: 'name',
                 width: 200,
                 sorter: (a, b) => a.nama.length - b.nama.length,
                 ...this.getColumnSearchProps('nama'),
@@ -171,8 +171,8 @@ class FilterSearchSortTable extends React.Component {
             },
             {
                 title: 'KUK Teori',
-                dataIndex: 'kukTeori',
-                key: 'kukTeori',
+                dataIndex: 'kukTheory',
+                key: 'kukTheory',
                 width: '10%',
                 sorter: (a, b) => a.nama.length - b.nama.length,
 
@@ -181,8 +181,8 @@ class FilterSearchSortTable extends React.Component {
             },
             {
                 title: 'KUK Praktek',
-                dataIndex: 'kukPraktek',
-                key: 'kukPraktek',
+                dataIndex: 'kukPractice',
+                key: 'kukPractice',
                 width: '10%',
                 sorter: (a, b) => a.nama.length - b.nama.length,
 
@@ -191,8 +191,8 @@ class FilterSearchSortTable extends React.Component {
             },
             {
                 title: 'Assesmen Job Target',
-                dataIndex: 'assessmenJobTarget',
-                key: 'assessmenJobTarget',
+                dataIndex: 'assesment',
+                key: 'assesment',
                 width: '10%',
                 filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
                 filteredValue: filteredInfo.nama || null,
