@@ -107,6 +107,19 @@ class ListPegawaiTable extends React.Component {
                 ...this.getColumnSearchProps('nama'),
             },
             {
+                title: 'Status',
+                dataIndex: 'employeeStatus',
+                key: 'employeeStatus',
+                width: 100,
+                sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
+                filters: [
+                    { text: 'Organik', value: 'Organik' },
+                    { text: 'Terampil', value: 'Terampil' },
+                ],
+                filteredValue: filteredInfo.employeeStatus || null,
+                onFilter: (value, record) => record.employeeStatus.includes(value),
+            },
+            {
                 title: 'Fungsi',
                 dataIndex: 'fieldFunction.name',
                 key: 'fieldFunction.name',
@@ -160,24 +173,6 @@ class ListPegawaiTable extends React.Component {
                 filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
                 filteredValue: filteredInfo.nama || null,
             },
-            {
-                title: 'Status',
-                dataIndex: 'employeeStatus',
-                key: 'employeeStatus',
-                width: 100,
-                sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
-                filters: [
-                    { text: 'KKWT', value: 'KKWT' },
-                    { text: 'MT-FG', value: 'MT-FG' },
-                    { text: 'Organik', value: 'Organik' },
-                    { text: 'Outsource', value: 'Outsource' },
-                    { text: 'Terampil', value: 'Terampil' },
-                ],
-                filteredValue: filteredInfo.employeeStatus || null,
-                onFilter: (value, record) => record.employeeStatus.includes(value),
-            },
-
-
         ];
 
         return (

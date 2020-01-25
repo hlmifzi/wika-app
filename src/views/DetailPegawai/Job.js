@@ -10,15 +10,15 @@ export const Job = ({ children, color, text, data }) => {
           <Col xs="12" md="6">
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="bodGroup">BOD Group :</Label>
+                      <b><Label htmlFor="bodGroup">BOD Group :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
-                      <Input value={data.bodGroup ? data.bodGroup : ''} type="text" id="bodGroup" placeholder="Group ***" required />
+                    {data.bodGroup ? data.bodGroup : 'Tidak Ada'}
                   </Col>
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="nmJbtn">Nama Jabatan :</Label>
+                    <b><Label htmlFor="nmJbtn">Nama Jabatan :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input value={data.position ? data.position.name : ''} type="text" id="nmJbtn" placeholder="Staff" required />
@@ -26,7 +26,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="stsJbtn">Status Jabatan :</Label>
+                    <b><Label htmlFor="stsJbtn">Status Jabatan :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input value={data.jobStatus ? data.jobStatus : ''} type="text" id="stsJbtn" placeholder="Berjalan" required />
@@ -34,7 +34,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="tglMnjbtTtpkn">Tgl Menjabat Ditetapkan :</Label>
+                      <b><Label htmlFor="tglMnjbtTtpkn">Tgl Menjabat Ditetapkan :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input value={data.validDateOfOffice ? data.validDateOfOffice : ''} type="date" id="tglMnjbtTtpkn" required />
@@ -42,7 +42,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="tglMnjbtBrlku">Tgl Menjabat Berlaku :</Label>
+                    <b><Label htmlFor="tglMnjbtBrlku">Tgl Menjabat Berlaku :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input type="date" id="tglMnjbtBrlku" required />
@@ -52,7 +52,7 @@ export const Job = ({ children, color, text, data }) => {
           <Col xs="12" md="6">
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="lmMnjbt">Lama Menjabat :</Label>
+                    <b><Label htmlFor="lmMnjbt">Lama Menjabat :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input value={data.durationOfFieldFunction ? data.durationOfFieldFunction : ''} type="text" id="lmMnjbt" required />
@@ -60,7 +60,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="MsKrj">Masa Kerja :</Label>
+                    <b> <Label htmlFor="MsKrj">Masa Kerja :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input value={data.yearsOfService ? data.yearsOfService : ''} type="text" id="MsKrj" required />
@@ -68,7 +68,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="prjkType">Projek JO/NON JO :</Label>
+                      <b><Label htmlFor="prjkType">Projek JO/NON JO :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input type="text" id="prjkType" required />
@@ -76,7 +76,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="bsrnPrjk">Besaran Proyek :</Label>
+                      <b><Label htmlFor="bsrnPrjk">Besaran Proyek :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input type="text" id="bsrnPrjk" required />
@@ -84,7 +84,7 @@ export const Job = ({ children, color, text, data }) => {
               </FormGroup>
               <FormGroup row>
                   <Col md="12" xs="12">
-                      <Label htmlFor="jnsPrjkPrnhDtgni">Jenis Projek Pernah Ditangani :</Label>
+                      <b><Label htmlFor="jnsPrjkPrnhDtgni">Jenis Projek Pernah Ditangani :</Label></b>
                   </Col>
                   <Col xs="12" md="12">
                       <Input type="select" name="jnsPrjkPrnhDtgni" id="jnsPrjkPrnhDtgni" multiple>
@@ -100,7 +100,7 @@ export const Job = ({ children, color, text, data }) => {
       <hr />
       <Row className="card-custom">
           <Col md="12" xs="12">
-              <Label>Kategori Proyek Yang Pernah Ditangani : <Badge color="danger">{(data.userProjectCategories && data.userProjectCategories[0]) ? data.userProjectCategories[0].total : 0 } Proyek</Badge></Label> 
+             <b> <Label>Kategori Proyek Yang Pernah Ditangani : <Badge color="danger">{(data.userProjectCategories && data.userProjectCategories[0]) ? data.userProjectCategories[0].total : 0 } Proyek</Badge></Label> </b>
           </Col>
           <Col xs="12" sm="6" lg="3">
               <Widget02 header={(data.userProjectCategories && data.userProjectCategories[0]) ? data.userProjectCategories[0].mega : 0 } mainText="Proyek Mega" icon="fa fa-angle-double-up" color="primary" variant="1" />
@@ -118,7 +118,7 @@ export const Job = ({ children, color, text, data }) => {
       <hr />
       <Row>
           <Col md="12" xs="12">
-              <Label>Riwayat Fungsi :</Label>
+              <b><Label>Riwayat Fungsi :</Label></b>
           </Col>
           <Col>
               <p>

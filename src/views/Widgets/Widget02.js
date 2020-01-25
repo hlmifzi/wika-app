@@ -61,7 +61,7 @@ class Widget02 extends Component {
       <Card>
         <CardBody className={card.classes} {...attributes}>
           {blockIcon(card.icon)}
-          <div className={lead.classes}>{header}</div>
+          <div className={lead.classes}>{header} </div>
           <div className="text-muted text-uppercase font-weight-bold font-xs w02-card-body">{mainText}</div>
         </CardBody>
         {cardFooter()}

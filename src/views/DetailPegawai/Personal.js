@@ -9,7 +9,7 @@ export const Personal = ({ data }) => {
                 <Col xs="12" md="6">
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="nip">Nomor Induk Pegawai :</Label>
+                           <b> <Label htmlFor="nip">Nomor Induk Pegawai :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.nip}
@@ -17,7 +17,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="namaPegawai">Nama Pegawai :</Label>
+                            <b><Label htmlFor="namaPegawai">Nama Pegawai :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.name}
@@ -25,7 +25,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="tempatLahir">Tempat Lahir :</Label>
+                            <b><Label htmlFor="tempatLahir">Tempat Lahir :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.birthPlace}
@@ -33,7 +33,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="tglLahir">Tanggal Lahir :</Label>
+                           <b> <Label htmlFor="tglLahir">Tanggal Lahir :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.birthDate}
@@ -41,7 +41,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="agama">Agama :</Label>
+                            <b><Label htmlFor="agama">Agama :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.religion}
@@ -51,7 +51,7 @@ export const Personal = ({ data }) => {
                 <Col xs="12" md="6">
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="jenisKelamin">Jenis Kelamin :</Label>
+                            <b><Label htmlFor="jenisKelamin">Jenis Kelamin :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.gender === 'L' ? 'Laki - laki' : 'Perempuan'}
@@ -59,7 +59,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="golonganDarah">Golongan Darah :</Label>
+                         <b><Label htmlFor="golonganDarah">Golongan Darah :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.bloodGroup || 'Tidak Ada Data'}
@@ -67,7 +67,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="statusPernikahan">Status Pernikahan :</Label>
+                            <b><Label htmlFor="statusPernikahan">Status Pernikahan :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.maritalStatus}
@@ -75,7 +75,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="namaIbuKandung">Nama Ibu Kandung :</Label>
+                            <b><Label htmlFor="namaIbuKandung">Nama Ibu Kandung :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.biologicalMother}
@@ -83,7 +83,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <Label htmlFor="emailPersonal">Email Personal :</Label>
+                            <b><Label htmlFor="emailPersonal">Email Personal :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.personalEmail}
@@ -94,13 +94,13 @@ export const Personal = ({ data }) => {
             <hr />
             <Row className="card-custom">
                 <Col md="12" xs="12">
-                    <Label style={{ fontSize: '1.2em' }}>Social Number</Label>
+                    <b><Label style={{ fontSize: '1.2em' }}>Social Number</Label></b>
                 </Col>
                 <Col xs="12" md="6">
                     <Col xs="12" md="12">
                         <FormGroup row>
                             <Col md="12" xs="12">
-                                <Label htmlFor="noKtp">No KTP :</Label>
+                                <b><Label htmlFor="noKtp">No KTP :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {data.ktp || 'Tidak ada data'}
@@ -108,7 +108,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                                <Label htmlFor="noNpwp">No NPWP :</Label>
+                             <b> <Label htmlFor="noNpwp">No NPWP :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {data.npwp || 'Tidak Ada Data'}
@@ -116,7 +116,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                                <Label htmlFor="noJamsostek">No Jamsostek :</Label>
+                            <b> <Label htmlFor="noJamsostek">No Jamsostek :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {data.jamsostek || 'Tidak Ada Data'}
@@ -128,7 +128,7 @@ export const Personal = ({ data }) => {
                     <Col xs="12" md="12">
                         <FormGroup row>
                             <Col md="12" xs="12">
-                                <Label htmlFor="noBpjsKesehatan">No BPJS Kesehatan :</Label>
+                                <b><Label htmlFor="noBpjsKesehatan">No BPJS Kesehatan :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {data.bpjsKesehatan || "Tidak Ada Data"}
@@ -136,7 +136,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                                <Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label>
+                             <b><Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].customerCode : 'Tidak Ada Data'}
@@ -144,7 +144,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                                <Label htmlFor="manulifeNoPeserta">Manulife No Peserta :</Label>
+                                <b><Label htmlFor="manulifeNoPeserta">Manulife No Peserta :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].participantNumber : 'Tidak Ada Data'}
@@ -156,14 +156,14 @@ export const Personal = ({ data }) => {
             <hr />
             {
                 <Row className="card-custom">
+                    <Col md="12" xs="12">
+                        <b><Label style={{ fontSize: '1.2em' }}>Education</Label></b>
+                     </Col>
                     <Col md="6" xs="12">
-                        <Col md="12" xs="12">
-                            <Label style={{ fontSize: '1.2em' }}>Education</Label>
-                        </Col>
                         <Col xs="12" md="12">
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                    <Label htmlFor="bidang">Bidang :</Label>
+                                <b> <Label htmlFor="bidang">Bidang :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {data.field ? data.field : "Tidak Ada Data"}
@@ -171,7 +171,7 @@ export const Personal = ({ data }) => {
                             </FormGroup>
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                    <Label htmlFor="strata">Strata :</Label>
+                                <b><Label htmlFor="strata">Strata :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {(data.userEducations && data.userEducations[0]) ? data.userEducations[0].strata : "Tidak Ada Data"}
@@ -179,7 +179,7 @@ export const Personal = ({ data }) => {
                             </FormGroup>
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                    <Label htmlFor="jurusan">Jurusan :</Label>
+                                <b><Label htmlFor="jurusan">Jurusan :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {(data.userEducations && data.userEducations[0]) ? data.userEducations[0].majors : "Tidak Ada Data"}
@@ -194,7 +194,7 @@ export const Personal = ({ data }) => {
                         <Col xs="12" md="12">
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                    <Label htmlFor="mbti">MBTI :</Label>
+                                <b><Label htmlFor="mbti">MBTI :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {data.mbti ? data.mbti : "Tidak Ada Data"}
@@ -202,7 +202,7 @@ export const Personal = ({ data }) => {
                             </FormGroup>
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                    <Label htmlFor="kategoriTalent">Kategori Talent :</Label>
+                                    <b><Label htmlFor="kategoriTalent">Kategori Talent :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {data.categoryTalent ? data.categoryTalent : "Tidak Ada Data"}
