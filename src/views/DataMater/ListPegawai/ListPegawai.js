@@ -5,6 +5,7 @@ import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
 import { getDataFilterPegawai, getDataFilterDashboard } from './endpoint/ListPegawaiEndpoint'
+import produce from 'immer'
 
 
 const ListPegawai = ({ match }) => {

@@ -123,8 +123,8 @@ class ListPegawaiTable extends React.Component {
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunction',
-                key: 'fieldFunction',
+                dataIndex: 'fieldFunction.name',
+                key: 'fieldFunction.name',
                 width: '10%',
                 sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
                 sortDirections: ['descend'],
@@ -150,8 +150,8 @@ class ListPegawaiTable extends React.Component {
             },
             {
                 title: 'Jabatan',
-                dataIndex: 'position',
-                key: 'position',
+                dataIndex: 'position.name',
+                key: 'position.name',
                 width: '10%',
                 sorter: (a, b) => a.position.localeCompare(b.position),
                 filters: [
