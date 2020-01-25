@@ -139,7 +139,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {/* {data ? data.userManulife.customerCode : ''} */}
+                                {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].customerCode : ''}
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -147,13 +147,14 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="manulifeNoPeserta">Manulife No Peserta :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                {/* {data ? data.userManulife.participantNumber : ''} */}
+                                {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].participantNumber : ''}
                             </Col>
                         </FormGroup>
                     </Col>
                 </Col>
             </Row>
             <hr />
+            { 
             <Row className="card-custom">
                 <Col md="6" xs="12">
                     <Col md="12" xs="12">
@@ -165,7 +166,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="bidang">Bidang :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                <Input type="number" id="bidang" placeholder="Teknik" required />
+                                <Input defaultValue={data.field ? data.field : ""} type="text" id="bidang"  required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -173,7 +174,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="strata">Strata :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                <Input type="text" id="strata" placeholder="S2" required />
+                                <Input defaultValue={(data.userEducations && data.userEducations[0]) ? data.userEducations[0].strata : ""} type="text" id="strata"  required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -181,7 +182,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="jurusan">Jurusan :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                <Input type="text" id="jurusan" placeholder="Teknik Sipil" required />
+                                <Input defaultValue={(data.userEducations && data.userEducations[0]) ? data.userEducations[0].majors : ""} type="text" id="jurusan"  required />
                             </Col>
                         </FormGroup>
                     </Col>
@@ -196,7 +197,7 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="mbti">MBTI :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                <Input type="number" id="mbti" placeholder="ISFJ" required />
+                                <Input defaultValue={data.mbti ? data.mbti : ""} type="text" id="mbti"  required />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -204,12 +205,12 @@ export const Personal = ({ data }) => {
                                 <Label htmlFor="kategoriTalent">Kategori Talent :</Label>
                             </Col>
                             <Col xs="12" md="12">
-                                <Input type="text" id="kategoriTalent" placeholder="Workhouse" required />
+                                <Input defaultValue={data.categoryTalent ? data.categoryTalent : ""} type="text" id="kategoriTalent"  required />
                             </Col>
                         </FormGroup>
                     </Col>
                 </Col>
-            </Row>
+            </Row> }
         </CardWithCustom>
     )
 }

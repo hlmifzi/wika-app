@@ -10,10 +10,10 @@ export const SideProfile = ({ data }) => {
         <CardWithCustomNoHeader>
             <Row>
                 <Col md="12" xs="12">
-                    <b>No Telpon :</b>
+                    <b>No Telephone :</b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* (+62) {data.telephone} */}
+                    (+62) {data.telephone || '-'}
                 </Col>
                 <hr />
                 <hr />
@@ -21,35 +21,35 @@ export const SideProfile = ({ data }) => {
                     <b>Email Kantor : </b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data.officeEmail || 'Tidak Ada Email'} */}
+                    {data.officeEmail || 'Tidak Ada Email'}
                 </Col>
                 <hr />
                 <Col md="12" xs="12">
                     <b>Tanggal Masuk Wika :</b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data.entryDate} */}
+                    {data.entryDate || '-'}
                 </Col>
                 <hr />
                 <Col md="12" xs="12">
                     <b>Unit Kerja :</b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data ? data.workUnit.name : ''} */}
+                    {data.workUnit ? data.workUnit.name : '-'}
                 </Col>
                 <hr />
                 <Col md="12" xs="12" >
                     <b>Fungsi Bidang :</b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data.fieldFunction} */}
+                    {data.fieldFunction ? data.fieldFunction.name : "-"}
                 </Col>
                 <hr />
                 <Col md="12" xs="12">
                     <b>Lama Bekerja:</b>
                 </Col>
                 <Col xs="12" md="12">
-                    {/* {data.yearsOfService} */}
+                    {data.yearsOfService}
                 </Col>
             </Row>
         </CardWithCustomNoHeader>

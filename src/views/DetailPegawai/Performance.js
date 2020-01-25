@@ -35,16 +35,16 @@ export const Performance = ({ data }) => {
           <Label>KUK : </Label>
         </Col>
         <Col xs="12" sm="6" lg="3">
-          <Widget02 header={data.kukTheory} mainText="Teori" icon="fa fa-pencil-square-o" color="primary" variant="1" />
+          <Widget02 header={data ? data.kukTheory : ''} mainText="Teori" icon="fa fa-pencil-square-o" color="primary" variant="1" />
         </Col>
         <Col xs="12" sm="6" lg="3">
-          <Widget02 header={data.kukPractice} mainText="Praktek" icon="fa fa-cog" color="info" variant="1" />
+          <Widget02 header={data ? data.kukPractice : ''} mainText="Praktek" icon="fa fa-cog" color="info" variant="1" />
         </Col>
         <Col xs="12" sm="6" lg="3">
-          <Widget02 header={data.ek} mainText="EK" icon="fa fa-th-list" color="danger" variant="1" />
+          <Widget02 header={data ? data.ek : ''} mainText="EK" icon="fa fa-th-list" color="danger" variant="1" />
         </Col>
         <Col xs="12" sm="6" lg="3">
-          <Widget02 header={data.pk} mainText="PK" icon="fa fa-wrench" color="success" variant="1" />
+          <Widget02 header={data ? data.pk : ''} mainText="PK" icon="fa fa-wrench" color="success" variant="1" />
         </Col>
       </Row>
     </CardWithCustom>
