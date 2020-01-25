@@ -55,6 +55,8 @@ const DetailPegawai = ({ match }) => {
         _getData()
     }, [navbar1, navbar2, navbar3, navbar4])
 
+    console.log(dataDetailpegawai)
+
     return (
         <div>
             <Row>
@@ -68,7 +70,9 @@ const DetailPegawai = ({ match }) => {
                         position={dataDetailpegawai.position}
                     />
 
-                    <SideProfile data={dataDetailpegawai} />
+                    <SideProfile 
+                        data={dataDetailpegawai} 
+                    />
                 </Col>
                 <Col xs={12} sm={6} md={9}>
                     <Row className="mb-2">
@@ -87,7 +91,9 @@ const DetailPegawai = ({ match }) => {
                     </Row>
                     {
                         navbar1 &&
-                        <Personal data={dataDetailpegawai} />
+                        <Personal 
+                            data={dataDetailpegawai}
+                        />
                     }
                     {
                         navbar2 &&
@@ -99,7 +105,9 @@ const DetailPegawai = ({ match }) => {
                     }
                     {
                         navbar4 &&
-                        <Performance data={dataDetailpegawai} />
+                        <Performance 
+                        // data={dataDetailpegawai} 
+                        />
                     }
                 </Col>
             </Row>

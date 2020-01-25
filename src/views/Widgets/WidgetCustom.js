@@ -49,7 +49,7 @@ class WidgetCustom extends Component {
           <div className={classCardBody}>
             <div style={{ marginTop: '40px' }}>
               <div className="text-value">{this.props.name}</div>
-              <div className="text-uppercase text-muted small">{this.props.titleName} - {this.props.position}</div>
+              <div className="text-uppercase text-muted small">{this.props.titleName} - {this.props.position ? this.props.position.name : ""}</div>
               <div className="text-uppercase text-muted small"><Badge pill color="success">{this.props.employeeStatus}</Badge></div>
             </div>
           </div>
