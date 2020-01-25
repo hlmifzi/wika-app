@@ -97,7 +97,9 @@ const DetailPegawai = ({ match }) => {
                     }
                     {
                         navbar2 &&
-                        <Job />
+                        <Job 
+                            data={dataDetailpegawai}
+                        />
                     }
                     {
                         navbar3 &&
@@ -106,7 +108,7 @@ const DetailPegawai = ({ match }) => {
                     {
                         navbar4 &&
                         <Performance 
-                        // data={dataDetailpegawai} 
+                            data={dataDetailpegawai} 
                         />
                     }
                 </Col>
