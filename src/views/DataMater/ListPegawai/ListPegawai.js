@@ -6,10 +6,8 @@ import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
 import { getDataFilterPegawai, getDataFilterDashboard } from './endpoint/ListPegawaiEndpoint'
 
-
 const ListPegawai = ({ match }) => {
   const [dataPegawai, setDataPegawai] = useState([], 'dataPegawai')
-  const [dataFungsi, setDataFungsi] = useState([], 'fungsi')
   const [dataJabatan, setDataJabatan] = useState([], 'jabatan')
   const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
   const [filter, setFilter] = useState({ type: '', field: '' }, 'filter')
@@ -26,8 +24,10 @@ const ListPegawai = ({ match }) => {
       let { data } = await getDataFilterPegawai()
       datas = data
     }
+
     setDataPegawai(datas)
   }
+
 
   useEffect(() => {
     setFilter({ type: '', field: '' })

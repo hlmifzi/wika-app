@@ -38,39 +38,50 @@ const SummaryPegawai = () => {
   return (
     <div className="animated fadeIn">
       <Row>
-        <Col xl={2}>
-          <Card style={{minHeight:"80px", maxWidth:"200px"}}>
-            <p style={{fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey"}}>
-              Total Pegawai
-            </p>
-            <p style={{fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey"}}>
-              Status Organik
-            </p>
-            <p style={{fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black"}}>
-              201
-            </p>
+        <HeaderComponent statusPegawai="Organik"/>
+        <HeaderComponent statusPegawai="Terampil"/>
+        <HeaderComponent statusPegawai="Outsource"/>
+        <HeaderComponent statusPegawai="MT-FG"/>
+        <HeaderComponent statusPegawai="MT-JA"/>
+      </Row>
+      <Row>
+        <Col xl={4}>
+          <Card>
+            <CardHeader>STATUS PEGAWAI KANTOR DEPARTEMEN
+          </CardHeader>
+            <DonutChart />
+          </Card>
+        </Col>
+        <Col xl={8}>
+          <Card style={{ height: "446px" }}>
+            <CardHeader>POSISI PEGAWAI KANTOR DEPARTEMEN
+        </CardHeader>
+            <CardBody style={{ maxHeight: "400px" }}>
+              <StandardTable data={dataPegawai} />
+            </CardBody>
           </Card>
         </Col>
       </Row>
-      <Row>
-      <Col xl={4}>
-        <Card>
-          <CardHeader>STATUS PEGAWAI KANTOR DEPARTEMEN
-          </CardHeader>
-          <DonutChart />
-        </Card>
-      </Col>
-      <Col xl={8}>
-        <Card style={{height: "446px"}}>
-          <CardHeader>POSISI PEGAWAI KANTOR DEPARTEMEN
-        </CardHeader>
-          <CardBody style={{maxHeight:"400px"}}>
-            <StandardTable data={dataPegawai} />
-          </CardBody>
-        </Card>
-      </Col>
-    </Row>
     </div>
+  )
+}
+
+const HeaderComponent = ({statusPegawai}) => {
+  return (
+    <Col xl={2}>
+      <Card style={{ minHeight: "80px", maxWidth: "200px" }}>
+        <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+          Total Pegawai
+      </p>
+        <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+          {statusPegawai}
+      </p>
+        <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+          201
+      </p>
+      <i className="fa fa-users"></i>
+      </Card>
+    </Col>
   )
 }
 export default SummaryPegawai;

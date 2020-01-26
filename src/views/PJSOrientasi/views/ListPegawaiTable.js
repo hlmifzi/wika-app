@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { getDataGetAllFungsi, getDataFilterJabatan } from '../../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 
 class ListPegawaiTable extends React.Component {
     state = {
@@ -9,6 +10,24 @@ class ListPegawaiTable extends React.Component {
         searchText: '',
         data: this.props.data
     };
+
+    async componentWillMount() {
+        let { data } = await getDataGetAllFungsi()
+        const dataFungsiFilter = data.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterFungsi: dataFungsiFilter })
+
+        let { data: dataJabatan } = await getDataFilterJabatan()
+        const dataJabatanFilter = dataJabatan.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterJabatan: dataJabatanFilter })
+
+    }
+
 
     handleChange = (pagination, filters, sorter) => {
         console.log('Various parameters', pagination, filters, sorter);
@@ -57,16 +76,18 @@ class ListPegawaiTable extends React.Component {
                 setTimeout(() => this.searchInput.select());
             }
         },
-        render: text => (
-            <a target="_blank" href="">
-                <Highlighter
-                    highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
-                    searchWords={[this.state.searchText]}
-                    autoEscape
-                    textToHighlight={"" + text}
-                />
-            </a>
-        ),
+        render: (text, value) => {
+            return (
+                <a href={`/#/karyawan/${value.key}`}>
+                    <Highlighter
+                        highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
+                        searchWords={[this.state.searchText]}
+                        autoEscape
+                        textToHighlight={"" + text}
+                    />
+                </a>
+            )
+        }
     });
 
     handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -101,47 +122,55 @@ class ListPegawaiTable extends React.Component {
                 dataIndex: 'name',
                 key: 'name',
                 width: 200,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                ...this.getColumnSearchProps('nama'),
+                sorter: (a, b) => a.name.localeCompare(b.name),
+                ...this.getColumnSearchProps('name'),
+            },
+            {
+                title: 'Status',
+                dataIndex: 'employeeStatus',
+                key: 'employeeStatus',
+                width: 100,
+                sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
+                filters: [
+                    { text: 'Organik', value: 'Organik' },
+                    { text: 'Terampil', value: 'Terampil' },
+                ],
+                filteredValue: filteredInfo.employeeStatus || null,
+                onFilter: (value, record) => record.employeeStatus.includes(value),
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunction',
-                key: 'fieldFunction',
+                dataIndex: 'fieldFunctionName',
+                key: 'fieldFunctionName',
                 width: 100,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
-                onFilter: (value, record) => record.nama.includes(value),
+                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
+                filters: this.state.filterFungsi,
+                filteredValue: filteredInfo.fieldFunctionName || null,
+                onFilter: (value, record) => record.fieldFunctionName.includes(value),
             },
             {
                 title: 'Jabatan',
-                dataIndex: 'titleName',
-                key: 'titleName',
+                dataIndex: 'positionName',
+                key: 'positionName',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                filters: this.state.filterJabatan,
+                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
+                filteredValue: filteredInfo.positionName || null,
+                onFilter: (value, record) => record.positionName.includes(value),
             },
             {
                 title: 'Tanggal Mulai PJS',
-                dataIndex: 'dateStartPJS',
-                key: 'dateStartPJS',
+                dataIndex: 'startDateOfPjs',
+                key: 'startDateOfPjs',
                 width: '15%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.startDateOfPjs.localeCompare(b.startDateOfPjs)
             },
             {
                 title: 'Perhitungan Waktu',
-                dataIndex: 'remainingPJS',
-                key: 'remainingPJS',
+                dataIndex: 'durationOfPjs',
+                key: 'durationOfPjs',
                 width: 150,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
-
-
         ];
 
         return (

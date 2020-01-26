@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
+import { getDataPJSOrientasi } from './endpoint/PJSOrientasiEndpoint'
 
 
 const ListPegawai = () => {
-  const [dataPegawai, setDataPegawai] = useState([])
+  const [dataPegawai, setDataPegawai] = useState([], 'dataPJSOrientasi')
 
-  const getData = () => {
-    setDataPegawai([
-      {
-        key: '1',
-        nip: 2019012,
-        name: 'cohn Brown',
-        fieldFunction: 'ENGINEERING',
-        titleName: 'AHLI UTAMA 1',
-        dateStartPJS: '12 Januari 1998',
-        remainingPJS: '5 tahun 2 bulan',
-      },
-      {
-        key: '2',
-        nip: 2019012,
-        name: 'cohn Brown',
-        fieldFunction: 'ENGINEERING',
-        titleName: 'AHLI UTAMA 1',
-        dateStartPJS: '10 Januari 2010',
-        remainingPJS: '4 tahun 2 bulan',
-      },
-    ])
+  const getData = async () => {
+    let { data } = await getDataPJSOrientasi()
+    setDataPegawai(data)
   }
 
   useEffect(() => {
