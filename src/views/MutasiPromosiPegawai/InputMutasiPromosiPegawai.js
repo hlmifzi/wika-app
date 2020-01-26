@@ -7,17 +7,27 @@ import WidgetCustom from '../Widgets/WidgetCustom'
 import { SideProfile } from '../DetailPegawai/SideProfile'
 import  { 
   getTypeMutation, 
-  getKindMutation } 
+  getKindMutation,
+  storeMutation
+} 
 from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
+import { getDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
+import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 
 
 const dateFormat = 'YYYY/MM/DD';
 
-const InputMutasiPromosiPegawai = props => {
+const InputMutasiPromosiPegawai = ({ match }) => {
   const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
   const [dataJenisMutasi, setDataJenisMutasi] = useState([], 'dataJenisMutasi')
-  const [dataTipeMutasiTerpilih, setDataTipeMutasiTerpilih] = useState([], 'dataTipeMutasiTerpilih')
+  const [dataDetailpegawai, setDataDetailpegawai] = useState({ workUnit: {} }, "dataDetailpegawai");
+  const [allPegawai, setAllPegawai] = useState([], "dataPegawai");
+
+  const { register, handleSubmit, watch } = useForm();
+  const onSubmit = data => console.log(data);
+
+  const tipeMutasiTerpilih = watch("typeMutationId");
 
   const getDataTipeMutasi = async() => {
     let { data } = await getTypeMutation()
@@ -29,28 +39,26 @@ const InputMutasiPromosiPegawai = props => {
     setDataJenisMutasi(data)
   }
 
-  const selectDataTipeMutasiTerpilih = (id) => {
-    let element = document.getElementById(id);
-    
-    let arrayTerpilih = []
-    dataJenisMutasi.forEach((value) => 
-      {if(value.typeMutationId == id) {
-        arrayTerpilih.push(value);
-      }
-    })
-    setDataTipeMutasiTerpilih(arrayTerpilih)
+  const getDataDetailPegawai = async() => {
+    let { data } = await getDataPegawai(match.params.id)
+    setDataDetailpegawai(data)
+  }
+
+  const getAllPegawai = async() => {
+    let { data } = await getDataFilterPegawai()
+    setAllPegawai(data)
   }
 
   useEffect(() => {
     getDataTipeMutasi()
     getDataJenisMutasi()
+    getDataDetailPegawai()
+    getAllPegawai()
   }, [])
-
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
 
     return (
         <div className="animated fadeIn">
+            <form onSubmit={handleSubmit(async (data) => await storeMutation(data))}>
             <Row>
                 <Col xl={12}>
                     <Card>
@@ -60,11 +68,12 @@ const InputMutasiPromosiPegawai = props => {
                         <CardBody>
                             <Row>
                                 <Col xs="4">
-                                    <FormGroup onSubmit={handleSubmit(onSubmit)}>
+                                    <FormGroup>
                                         <Label htmlFor="ccmonth">Tipe</Label>
-                                        <Input type="select" name="ccmonth" id="product" required>
+                                        <Input type="select" name="typeMutationId" id="product" required innerRef={register({ required: true })}>
+                                        <option value=""> Pilih Tipe Mutasi</option>
                                           {dataTipeMutasi.map(value => (
-                                            <option value={`option-${value.id}`}>{value.name}</option>
+                                            <option value={`${value.id}`}>{value.name}</option>
                                           ))}
                                         </Input>
                                     </FormGroup>
@@ -72,9 +81,11 @@ const InputMutasiPromosiPegawai = props => {
                                 <Col xs="8">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Pilih Pegawai</Label>
-                                        <Input type="select" name="ccmonth" id="product" required>
-                                            <option value="1"> Pilih Pegawai</option>
-                                            <option value="1"> Luthfi</option>
+                                        <Input type="select" name="userId" id="product" required innerRef={register({ required: true })}>
+                                            <option value=""> Pilih Pegawai</option>
+                                            {allPegawai.map(value => (
+                                            <option value={`${value.id}`}>{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
@@ -88,25 +99,25 @@ const InputMutasiPromosiPegawai = props => {
                         name={`Luthfi`}
                         employeeStatus={`Organik`}
                     />
-                    <SideProfile />>
+                    <SideProfile data={dataDetailpegawai} />>
                 </Col>
                 <Col xl={9}>
                     <Card>
                         <CardHeader>
-                            <i className="fa fa-user"></i> Mutasi Jabatan
+                            <i className="fa fa-user"></i>                                           
+                                {dataTipeMutasi.map(value => (
+                                    (value.id == tipeMutasiTerpilih) && <p>{value.name}</p>
+                                ))}
                         </CardHeader>
                         <CardBody>
                             <Row>
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Jenis Mutasi</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            {/* <option value="0"> Pilih Jenis mutasi</option>
-                                            <option value="0"> Utama</option>
-                                            <option value="0"> Rangkapan</option>
-                                            <option value="0"> Utama (PJS)</option> */}
-                                          {dataTipeMutasiTerpilih.map(value => (
-                                            <option value="1">{value.name}</option>
+                                        <Input type="select" name="kindMutationId" id="tenantFrom" required innerRef={register({ required: true })}>
+                                        <option value=""> Pilih Jenis Mutasi</option>
+                                          {dataJenisMutasi.map(value => (
+                                            (value.typeMutationId == tipeMutasiTerpilih) && <option value={`${value.id}`}>{value.name}</option>
                                           ))}
                                         </Input>
                                     </FormGroup>
@@ -306,6 +317,7 @@ const InputMutasiPromosiPegawai = props => {
 
 
             </Row>
+            </form>
         </div>
     )
 }
