@@ -13,3 +13,4 @@ export const getDataFilterDashboard = (params) => {
 }
 
 export const getDataGetAllFungsi = () => clientGet(endPointGetAllFungsi, {})
+export const getDataGetAllUnitKerja = () => clientGet('workUnit', {})

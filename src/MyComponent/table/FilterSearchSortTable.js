@@ -1,14 +1,44 @@
 import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { getDataGetAllFungsi, getDataFilterJabatan, getDataGetAllUnitKerja } from '../../views/DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
+
 
 class FilterSearchSortTable extends React.Component {
     state = {
         filteredInfo: null,
         sortedInfo: null,
         searchText: '',
-        data: this.props.data
+        data: this.props.data,
+
+        filterFungsi: {},
+        filterJabatan: {},
+        filterUnitKerja: {}
     };
+
+
+    async componentWillMount() {
+        let { data } = await getDataGetAllFungsi()
+        const dataFungsiFilter = data.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterFungsi: dataFungsiFilter })
+
+        let { data: dataJabatan } = await getDataFilterJabatan()
+        const dataJabatanFilter = dataJabatan.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterJabatan: dataJabatanFilter })
+
+        let { data: dataUnitKerja } = await getDataGetAllUnitKerja()
+        const dataJabatanUnitKerja = dataUnitKerja.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterUnitKerja: dataJabatanUnitKerja })
+    }
 
     handleChange = (pagination, filters, sorter) => {
         console.log('Various parameters', pagination, filters, sorter);
@@ -121,81 +151,81 @@ class FilterSearchSortTable extends React.Component {
                 dataIndex: 'name',
                 key: 'name',
                 width: 200,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                ...this.getColumnSearchProps('nama'),
+                sorter: (a, b) => a.name.localeCompare(b.name),
+                ...this.getColumnSearchProps('name'),
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fungsi',
-                key: 'fungsi',
-                width: 100,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
-                onFilter: (value, record) => record.nama.includes(value),
+                dataIndex: 'fieldFunctionName',
+                key: 'fieldFunctionName',
+                width: '10%',
+                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
+                filters: this.state.filterFungsi,
+                filteredValue: filteredInfo.fieldFunctionName || null,
+                onFilter: (value, record) => record.fieldFunctionName.includes(value),
             },
             {
                 title: 'Masa Kerja',
-                dataIndex: 'masaKerja',
-                key: 'masaKerja',
+                dataIndex: 'yearsOfService',
+                key: 'yearsOfService',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+
             },
             {
                 title: 'Unit Kerja',
-                dataIndex: 'unitKerja',
-                key: 'unitKerja',
+                dataIndex: 'workUnitName',
+                key: 'workUnitName',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.workUnitName.localeCompare(b.workUnitName),
+                filters: this.state.filterUnitKerja,
+                filteredValue: filteredInfo.workUnitName || null,
+                onFilter: (value, record) => record.workUnitName.includes(value),
+
             },
             {
                 title: 'EK',
                 dataIndex: 'ek',
                 key: 'ek',
                 width: 80,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.ek.localeCompare(b.ek),
             },
             {
                 title: 'PK',
                 dataIndex: 'pk',
                 key: 'pk',
                 width: 80,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.pk.localeCompare(b.pk),
+
             },
             {
                 title: 'KUK Teori',
                 dataIndex: 'kukTheory',
                 key: 'kukTheory',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
+                sorter: (a, b) => a.kukTheory.localeCompare(b.kukTheory),
 
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'KUK Praktek',
                 dataIndex: 'kukPractice',
                 key: 'kukPractice',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
+                sorter: (a, b) => a.kukPractice.localeCompare(b.kukPractice),
 
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'Assesmen Job Target',
                 dataIndex: 'assesment',
                 key: 'assesment',
                 width: '10%',
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                filters: [
+                    { text: 'Dapat Disarankan', value: 'Dapat Disarankan' },
+                    { text: 'Disarankan dengan Pengembangan', value: 'Disarankan dengan Pengembangan' },
+                    { text: 'Tidak Disarankan', value: 'Tidak Disarankan' }
+                ],
+                filteredValue: filteredInfo.assesment || '',
+                onFilter: (value, record) => record.assesment.includes(value),
+
             },
 
         ];

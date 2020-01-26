@@ -21,7 +21,7 @@ class ListPegawaiTable extends React.Component {
         }))
         this.setState({ filterFungsi: dataFungsiFilter })
 
-        let { data: dataJabatam } = await getDataGetAllFungsi()
+        let { data: dataJabatam } = await getDataFilterJabatan()
         const dataJabatanFilter = dataJabatam.map((v, i) => ({
             text: v.name,
             value: v.name
@@ -143,24 +143,24 @@ class ListPegawaiTable extends React.Component {
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunction',
-                key: 'fieldFunction',
+                dataIndex: 'fieldFunctionName',
+                key: 'fieldFunctionName',
                 width: '10%',
-                sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
+                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
                 sortDirections: ['descend'],
                 filters: this.state.filterFungsi,
-                filteredValue: filteredInfo.fieldFunction || null,
-                onFilter: (value, record) => record.fieldFunction.includes(value),
+                filteredValue: filteredInfo.fieldFunctionName || null,
+                onFilter: (value, record) => record.fieldFunctionName.includes(value),
             },
             {
                 title: 'Jabatan',
-                dataIndex: 'position.name',
-                key: 'position.name',
+                dataIndex: 'positionName',
+                key: 'positionName',
                 width: '10%',
-                sorter: (a, b) => a.position.localeCompare(b.position.name),
+                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
                 filters: this.state.filterJabatan,
-                filteredValue: filteredInfo.position || null,
-                onFilter: (value, record) => record.position.includes(value),
+                filteredValue: filteredInfo.positionName || null,
+                onFilter: (value, record) => record.positionName.includes(value),
 
             },
             {

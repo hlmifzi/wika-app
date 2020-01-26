@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { getDataGetAllFungsi, getDataFilterJabatan } from '../../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 
 class ListPegawaiTable extends React.Component {
     state = {
@@ -9,6 +10,24 @@ class ListPegawaiTable extends React.Component {
         searchText: '',
         data: this.props.data
     };
+
+    async componentWillMount() {
+        let { data } = await getDataGetAllFungsi()
+        const dataFungsiFilter = data.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterFungsi: dataFungsiFilter })
+
+        let { data: dataJabatan } = await getDataFilterJabatan()
+        const dataJabatanFilter = dataJabatan.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterJabatan: dataJabatanFilter })
+
+    }
+
 
     handleChange = (pagination, filters, sorter) => {
         console.log('Various parameters', pagination, filters, sorter);
@@ -121,57 +140,37 @@ class ListPegawaiTable extends React.Component {
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunction.name',
-                key: 'fieldFunction.name',
+                dataIndex: 'fieldFunctionName',
+                key: 'fieldFunctionName',
                 width: 100,
-                sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
+                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
                 sortDirections: ['descend'],
                 filters: this.state.filterFungsi,
-                filteredValue: filteredInfo.fieldFunction || null,
-                onFilter: (value, record) => record.fieldFunction.includes(value),
+                filteredValue: filteredInfo.fieldFunctionName || null,
+                onFilter: (value, record) => record.fieldFunctionName.includes(value),
             },
             {
                 title: 'Jabatan',
-                dataIndex: 'position.name',
-                key: 'position.name',
+                dataIndex: 'positionName',
+                key: 'positionName',
                 width: '10%',
-                sorter: (a, b) => a.position.localeCompare(b.position.name),
-                filters: [
-                    { text: 'Surveyor', value: 'Surveyor' },
-                    { text: 'Supervisor SHE', value: 'Supervisor SHE' },
-                    { text: 'Staf Umum', value: 'Staf Umum' },
-                    { text: 'Staf SHE', value: 'Staf SHE' },
-                    { text: 'Staf Seksi SHE', value: 'Staf Seksi SHE' },
-                    { text: 'Staf Seksi Quantity Surveyor', value: 'Staf Seksi Quantity Surveyor' },
-                    { text: 'Staf Seksi Quantity Survey', value: 'Staf Seksi Quantity Survey' },
-                    { text: 'Staf Seksi Quality Control', value: 'Staf Seksi Quality Control' },
-                    { text: 'Staf Seksi Quality Assurance', value: 'Staf Seksi Quality Assurance' },
-                    { text: 'Staf Seksi QA/QC', value: 'Staf Seksi QA/QC' },
-                    { text: 'Staf Seksi Pengadaan dan Peralatan', value: 'Staf Seksi Pengadaan dan Peralatan' },
-                    { text: 'Staf Seksi Pengadaan dan Peralatan', value: 'Staf Seksi Pengadaan dan Peralatan' },
-                    { text: 'Staf Seksi Pengadaan', value: 'Staf Seksi Pengadaan' },
-                    { text: 'Staf Laboratorium', value: 'Staf Laboratorium' },
-                ],
-                filteredValue: filteredInfo.position || null,
-                onFilter: (value, record) => record.position.includes(value),
+                filters: this.state.filterJabatan,
+                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
+                filteredValue: filteredInfo.positionName || null,
+                onFilter: (value, record) => record.positionName.includes(value),
             },
             {
                 title: 'Tanggal Mulai PJS',
                 dataIndex: 'startDateOfPjs',
                 key: 'startDateOfPjs',
                 width: '15%',
-                sorter: (a, b) => a.nama.length.localeCompare - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.startDateOfPjs.localeCompare(b.startDateOfPjs)
             },
             {
                 title: 'Perhitungan Waktu',
                 dataIndex: 'durationOfPjs',
                 key: 'durationOfPjs',
                 width: 150,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
         ];
 
