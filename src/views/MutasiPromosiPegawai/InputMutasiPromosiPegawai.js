@@ -8,7 +8,11 @@ import { SideProfile } from '../DetailPegawai/SideProfile'
 import  { 
   getTypeMutation, 
   getKindMutation,
-  storeMutation
+  storeMutation,
+  getWorkUnit,
+  getPosition,
+  getFieldFunction,
+  getGrade
 } 
 from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
@@ -23,9 +27,18 @@ const InputMutasiPromosiPegawai = ({ match }) => {
   const [dataJenisMutasi, setDataJenisMutasi] = useState([], 'dataJenisMutasi')
   const [dataDetailpegawai, setDataDetailpegawai] = useState({ workUnit: {} }, "dataDetailpegawai");
   const [allPegawai, setAllPegawai] = useState([], "dataPegawai");
+  const [dataUnitKerja, setDataUnitKerja] = useState([], "dataUnitKerja");
+  const [dataPosisi, setDataPosisi] = useState([], "dataPosisi");
+  const [dataFungsiBidang, setDataFungsiBidang] = useState([], "dataFungsiBidang");
+  const [dataGrade, setDataGrade] = useState([], "dataGrade");
 
   const { register, handleSubmit, watch } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = async(data) => {
+      data.typeMutationId = parseInt(data.typeMutationId);
+      data.kindMutationId = parseInt(data.kindMutationId);
+      data.userId = parseInt(data.userId);
+      await storeMutation(data)
+  }
 
   const tipeMutasiTerpilih = watch("typeMutationId");
 
@@ -49,16 +62,41 @@ const InputMutasiPromosiPegawai = ({ match }) => {
     setAllPegawai(data)
   }
 
+  const getUnitKerja = async() => {
+    let { data } = await getWorkUnit()
+    setDataUnitKerja(data)
+  }
+
+  const getPosisi = async() => {
+    let { data } = await getPosition()
+    setDataPosisi(data)
+  }
+
+  const getFungsiBidang = async() => {
+    let { data } = await getFieldFunction()
+    setDataFungsiBidang(data)
+  }
+
+  const getGradeId = async() => {
+    let { data } = await getGrade()
+    setDataGrade(data)
+  }
+
   useEffect(() => {
     getDataTipeMutasi()
     getDataJenisMutasi()
     getDataDetailPegawai()
     getAllPegawai()
+    getUnitKerja()
+    getPosisi()
+    getFungsiBidang()
+    getGradeId()
   }, [])
 
     return (
         <div className="animated fadeIn">
-            <form onSubmit={handleSubmit(async (data) => await storeMutation(data))}>
+            {/* <form onSubmit={handleSubmit(async (data) => await storeMutation(data))}> */}
+            <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
                 <Col xl={12}>
                     <Card>
@@ -135,8 +173,11 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Unit Kerja</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Pilih  Gudang</option>
+                                        <Input type="select" name="workUnitId" id="tenantFrom" innerRef={register({ required: true })}>
+                                          <option value=""> Pilih Unit Kerja</option>
+                                          {dataUnitKerja.map(value => (
+                                            <option value={`${value.id}`}>{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
@@ -151,24 +192,33 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Posisi</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
+                                        <Input type="select" name="positionId" id="tenantFrom" innerRef={register({ required: true })}>
+                                          <option value=""> Pilih Posisi</option>
+                                          {dataPosisi.map(value => (
+                                            <option value={`${value.id}`}>{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Fungsi Bidang</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
+                                        <Input type="select" name="fieldFunctionId" id="tenantFrom" innerRef={register({ required: true })} >
+                                          <option value=""> Pilih Fungsi bidang</option>
+                                          {dataFungsiBidang.map(value => (
+                                            <option value={`${value.id}`}>{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Grade</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
+                                        <Input type="select" name="gradeId" id="tenantFrom" innerRef={register({ required: true })} >
+                                          <option value=""> Pilih Grade</option>
+                                          {dataGrade.map(value => (
+                                            <option value={`${value.id}`}>{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
