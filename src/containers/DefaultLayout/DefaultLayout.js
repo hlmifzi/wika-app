@@ -2,6 +2,8 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
+import cookie from 'react-cookies'
+import Swal from '../../MyComponent/notification/Swal'
 
 import {
   AppAside,
@@ -59,6 +61,9 @@ class DefaultLayout extends Component {
             <Container fluid>
               <Suspense fallback={this.loading()}>
                 <Switch>
+                  {
+                    cookie.load('JWT') || <Redirect from="/" to="/login" />
+                  }
                   {routes.map((route, idx) => {
                     return route.component ? (
                       <Route
@@ -71,7 +76,6 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/login" />
                 </Switch>
               </Suspense>
             </Container>
