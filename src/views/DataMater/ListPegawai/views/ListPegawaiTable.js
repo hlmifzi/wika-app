@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
-import { getDataGetAllFungsi } from '../endpoint/ListPegawaiEndpoint'
+import { getDataGetAllFungsi, getDataFilterJabatan } from '../endpoint/ListPegawaiEndpoint'
 
 class ListPegawaiTable extends React.Component {
     state = {
@@ -9,7 +9,8 @@ class ListPegawaiTable extends React.Component {
         sortedInfo: null,
         searchText: '',
         data: this.props.data,
-        filterFungsi: {}
+        filterFungsi: {},
+        filterJabatan: {}
     };
 
     async componentWillMount() {
@@ -19,6 +20,13 @@ class ListPegawaiTable extends React.Component {
             value: v.name
         }))
         this.setState({ filterFungsi: dataFungsiFilter })
+
+        let { data: dataJabatam } = await getDataGetAllFungsi()
+        const dataJabatanFilter = dataJabatam.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterJabatan: dataJabatanFilter })
     }
 
     handleChange = (pagination, filters, sorter) => {
@@ -135,8 +143,8 @@ class ListPegawaiTable extends React.Component {
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunction.name',
-                key: 'fieldFunction.name',
+                dataIndex: 'fieldFunction',
+                key: 'fieldFunction',
                 width: '10%',
                 sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
                 sortDirections: ['descend'],
@@ -150,22 +158,7 @@ class ListPegawaiTable extends React.Component {
                 key: 'position.name',
                 width: '10%',
                 sorter: (a, b) => a.position.localeCompare(b.position.name),
-                filters: [
-                    { text: 'Surveyor', value: 'Surveyor' },
-                    { text: 'Supervisor SHE', value: 'Supervisor SHE' },
-                    { text: 'Staf Umum', value: 'Staf Umum' },
-                    { text: 'Staf SHE', value: 'Staf SHE' },
-                    { text: 'Staf Seksi SHE', value: 'Staf Seksi SHE' },
-                    { text: 'Staf Seksi Quantity Surveyor', value: 'Staf Seksi Quantity Surveyor' },
-                    { text: 'Staf Seksi Quantity Survey', value: 'Staf Seksi Quantity Survey' },
-                    { text: 'Staf Seksi Quality Control', value: 'Staf Seksi Quality Control' },
-                    { text: 'Staf Seksi Quality Assurance', value: 'Staf Seksi Quality Assurance' },
-                    { text: 'Staf Seksi QA/QC', value: 'Staf Seksi QA/QC' },
-                    { text: 'Staf Seksi Pengadaan dan Peralatan', value: 'Staf Seksi Pengadaan dan Peralatan' },
-                    { text: 'Staf Seksi Pengadaan dan Peralatan', value: 'Staf Seksi Pengadaan dan Peralatan' },
-                    { text: 'Staf Seksi Pengadaan', value: 'Staf Seksi Pengadaan' },
-                    { text: 'Staf Laboratorium', value: 'Staf Laboratorium' },
-                ],
+                filters: this.state.filterJabatan,
                 filteredValue: filteredInfo.position || null,
                 onFilter: (value, record) => record.position.includes(value),
 
