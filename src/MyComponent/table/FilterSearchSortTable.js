@@ -155,6 +155,16 @@ class FilterSearchSortTable extends React.Component {
                 ...this.getColumnSearchProps('name'),
             },
             {
+                title: 'Jabatan',
+                dataIndex: 'positionName',
+                key: 'positionName',
+                width: '10%',
+                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
+                filters: this.state.filterJabatan,
+                filteredValue: filteredInfo.positionName || null,
+                onFilter: (value, record) => record.positionName.includes(value),
+            },
+            {
                 title: 'Fungsi',
                 dataIndex: 'fieldFunctionName',
                 key: 'fieldFunctionName',
@@ -169,7 +179,6 @@ class FilterSearchSortTable extends React.Component {
                 dataIndex: 'yearsOfService',
                 key: 'yearsOfService',
                 width: '10%',
-
             },
             {
                 title: 'Unit Kerja',
