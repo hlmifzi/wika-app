@@ -122,8 +122,8 @@ class ListPegawaiTable extends React.Component {
                 dataIndex: 'name',
                 key: 'name',
                 width: 200,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                ...this.getColumnSearchProps('nama'),
+                sorter: (a, b) => a.name.localeCompare(b.name),
+                ...this.getColumnSearchProps('name'),
             },
             {
                 title: 'Status',
@@ -144,7 +144,6 @@ class ListPegawaiTable extends React.Component {
                 key: 'fieldFunctionName',
                 width: 100,
                 sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
-                sortDirections: ['descend'],
                 filters: this.state.filterFungsi,
                 filteredValue: filteredInfo.fieldFunctionName || null,
                 onFilter: (value, record) => record.fieldFunctionName.includes(value),

@@ -233,9 +233,7 @@ class FilterSearchSortTable extends React.Component {
         return (
             <div>
                 <div className="table-operations" style={{ marginBottom: '50px' }}>
-                    <Button onClick={this.setAgeSort}>Sort age</Button>
                     <Button onClick={this.clearFilters}>Clear filters</Button>
-                    <Button onClick={this.clearAll}>Clear filters and sorters</Button>
                 </div>
                 <Table columns={columns} dataSource={this.props.data} onChange={this.handleChange} size="small" scroll={{ x: 1200, y: 500 }} />
             </div>
