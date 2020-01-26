@@ -4,7 +4,6 @@ import NotifSwal from '../../../MyComponent/notification/Swal'
 import Toast from '../../../MyComponent/notification/Toast'
 import BrandLogo from '../../../assets/img/brand/logo2-white.png'
 import { SignInAction } from './AuthAction'
-import cookie from 'react-cookies'
 
 
 const Background = {
@@ -33,8 +32,6 @@ class Login extends Component {
       Toast.info(`Welcome to HRMIS Management`)
       window.location.href = "#/dashboard"
     }
-
-
   }
 
   _handleKeyDown = (e) => {

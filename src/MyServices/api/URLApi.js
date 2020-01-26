@@ -1,5 +1,6 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
+import NotifSwal from '../../MyComponent/notification/Swal'
 
 const urlBackend = 'http://api.dedekrnwan.site/'
 
@@ -19,7 +20,7 @@ export const clientGet = async (endPoint, { params = "" }) => {
       let getData = await ROOT_API.get(endPoint, params)
       if (getData.status === 200) return getData.data
    } catch (e) {
-      alert(e.message)
+      NotifSwal.failed(e.message)
    }
 }
 
@@ -30,7 +31,7 @@ export const clientPost = async (endPoint, { body = "" }) => {
       let getData = await ROOT_API.post(endPoint, body)
       if (getData.status === 200) return getData.data
    } catch (e) {
-      alert(e.message)
+      NotifSwal.failed(e.message)
    }
 }
 
@@ -43,7 +44,7 @@ export const clientDelete = async (endPoint, { params = "" }) => {
 
       if (getData.status === 200) return getData.data
    } catch (e) {
-      alert(e.message)
+      NotifSwal.failed(e.message)
    }
 }
 
