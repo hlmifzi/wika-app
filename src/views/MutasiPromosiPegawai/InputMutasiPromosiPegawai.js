@@ -1,16 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'reinspect'
 import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import WidgetCustom from '../Widgets/WidgetCustom'
 import { SideProfile } from '../DetailPegawai/SideProfile'
+import  { 
+  getTypeMutation, 
+  getKindMutation } 
+from './endpoint/mutationUserEndpoint'
+import { useForm } from 'react-hook-form';
 
 
 const dateFormat = 'YYYY/MM/DD';
 
 const InputMutasiPromosiPegawai = props => {
-    const [state, setstate] = useState("")
+  const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
+  const [dataJenisMutasi, setDataJenisMutasi] = useState([], 'dataJenisMutasi')
+  const [dataTipeMutasiTerpilih, setDataTipeMutasiTerpilih] = useState([], 'dataTipeMutasiTerpilih')
+
+  const getDataTipeMutasi = async() => {
+    let { data } = await getTypeMutation()
+    setDataTipeMutasi(data)
+  }
+
+  const getDataJenisMutasi = async() => {
+    let { data } = await getKindMutation()
+    setDataJenisMutasi(data)
+  }
+
+  const selectDataTipeMutasiTerpilih = (id) => {
+    let element = document.getElementById(id);
+    
+    let arrayTerpilih = []
+    dataJenisMutasi.forEach((value) => 
+      {if(value.typeMutationId == id) {
+        arrayTerpilih.push(value);
+      }
+    })
+    setDataTipeMutasiTerpilih(arrayTerpilih)
+  }
+
+  useEffect(() => {
+    getDataTipeMutasi()
+    getDataJenisMutasi()
+  }, [])
+
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = data => console.log(data);
+
     return (
         <div className="animated fadeIn">
             <Row>
@@ -22,14 +60,12 @@ const InputMutasiPromosiPegawai = props => {
                         <CardBody>
                             <Row>
                                 <Col xs="4">
-                                    <FormGroup>
+                                    <FormGroup onSubmit={handleSubmit(onSubmit)}>
                                         <Label htmlFor="ccmonth">Tipe</Label>
                                         <Input type="select" name="ccmonth" id="product" required>
-                                            <option value="1"> Pilih Tipe</option>
-                                            <option value="1"> Promosi Jabatan</option>
-                                            <option value="1"> Promosi Status</option>
-                                            <option value="1"> Mutasi Jabatan</option>
-                                            <option value="1"> Mutasi Non Aktif</option>
+                                          {dataTipeMutasi.map(value => (
+                                            <option value={`option-${value.id}`}>{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
@@ -65,10 +101,13 @@ const InputMutasiPromosiPegawai = props => {
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Jenis Mutasi</Label>
                                         <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Pilih Jenis mutasi</option>
+                                            {/* <option value="0"> Pilih Jenis mutasi</option>
                                             <option value="0"> Utama</option>
                                             <option value="0"> Rangkapan</option>
-                                            <option value="0"> Utama (PJS)</option>
+                                            <option value="0"> Utama (PJS)</option> */}
+                                          {dataTipeMutasiTerpilih.map(value => (
+                                            <option value="1">{value.name}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
