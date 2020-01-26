@@ -2,84 +2,101 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable';
 import DonutChart from './views/DonutChart';
+import { getDataSummaryOverview, getDataSummary } from './endpoint/SummaryOverview';
 
 
 
 const SummaryPegawai = () => {
-  const [dataPegawai, setDataPegawai] = useState([])
+  const [dataTable, setdataTable] = useState([])
+  const [dataOverview, setDataOverview] = useState([])
+  const [dataSummary, setDataSummary] = useState([])
 
-  const getData = () => {
-    setDataPegawai([
-      {
-        key: '1',
-        nip: 2019012,
-        name: 'cohn Brown',
-        fieldFunction: 'ENGINEERING',
-        titleName: 'AHLI UTAMA 1',
-        dateStartPJS: 'LRT',
-        remainingPJS: '5 tahun 2 bulan',
-      },
-      {
-        key: '2',
-        nip: 2019012,
-        name: 'cohn Brown',
-        fieldFunction: 'ENGINEERING',
-        titleName: 'AHLI UTAMA 1',
-        dateStartPJS: 'LRT',
-        remainingPJS: '4 tahun 2 bulan',
-      },
-    ])
+  const getDataOverview = async () => {
+    let {data} = await getDataSummaryOverview()
+    setdataTable(data)
+  }
+
+  const getSummary = async () => {
+    let {data} = await getDataSummary()
+    setDataSummary(data)
   }
 
   useEffect(() => {
-    getData()
+    getDataOverview()
+    getSummary()
   }, [])
 
   return (
     <div className="animated fadeIn">
-      <Row>
-        <HeaderComponent statusPegawai="Organik"/>
-        <HeaderComponent statusPegawai="Terampil"/>
-        <HeaderComponent statusPegawai="Outsource"/>
-        <HeaderComponent statusPegawai="MT-FG"/>
-        <HeaderComponent statusPegawai="MT-JA"/>
-      </Row>
-      <Row>
-        <Col xl={4}>
-          <Card>
-            <CardHeader>STATUS PEGAWAI KANTOR DEPARTEMEN
-          </CardHeader>
-            <DonutChart />
-          </Card>
-        </Col>
-        <Col xl={8}>
-          <Card style={{ height: "446px" }}>
-            <CardHeader>POSISI PEGAWAI KANTOR DEPARTEMEN
-        </CardHeader>
-            <CardBody style={{ maxHeight: "400px" }}>
-              <StandardTable data={dataPegawai} />
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+      { dataTable.length > 0 && dataTable.map(data =>
+        (
+        <>  
+          { dataSummary.length > 0 &&
+            <Row>
+              {
+                dataSummary.map(value => {
+                  return value.divisi == data.divisi ? value.data.map(data => <HeaderComponent statusPegawai={data}/>) : null
+                })
+              }
+            </Row>
+          }
+          <Row>
+            {/* <Col xl={4}>
+              <Card style={{ maxHeight: "00px"}}>
+                <CardHeader>STATUS PEGAWAI KANTOR {data.divisi.toUpperCase()}
+              </CardHeader>
+                <DonutChart 
+                  data={data.data}
+                />
+              </Card>
+            </Col> */}
+            <Col xl={12}>
+              <Card style={{ height: "500px" }}>
+                <CardHeader>POSISI PEGAWAI KANTOR {data.divisi.toUpperCase()}
+            </CardHeader>
+                <CardBody style={{ maxHeight: "400px", overflow: "auto"}}>
+                  <StandardTable data={data.data} />
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </>
+        )
+      )}
     </div>
   )
 }
 
 const HeaderComponent = ({statusPegawai}) => {
+
+  let iconStyle = {
+    height: "36px",
+    width: "36px",
+    borderRadius: "50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: "12px",
+    top: "12px",
+    background: "rgb(24, 144, 255)"
+  }
+
   return (
     <Col xl={2}>
-      <Card style={{ minHeight: "80px", maxWidth: "200px" }}>
+      <Card style={{ minHeight: "80px", maxWidth: "200px", position:"relative" }}>
         <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
           Total Pegawai
       </p>
         <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
-          {statusPegawai}
+          {statusPegawai.employeeStatus}
       </p>
         <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
-          201
+          {statusPegawai.qty}
       </p>
-      <i className="fa fa-users"></i>
+      <span style={iconStyle}>
+        <i className="fa fa-users" style={{fontSize: "20px", color: "white"}}></i>
+      </span>
       </Card>
     </Col>
   )

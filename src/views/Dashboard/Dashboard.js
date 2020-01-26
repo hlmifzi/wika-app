@@ -111,7 +111,7 @@ const Dashboard = () => {
         <Col xs={12} sm={12} md={12}>
           <Row>
             <Col sm="12" md="6">
-              <Widget04 icon="icon-people" color="info" header={dataStatistik.pegawai.qty} invert>Jumlah Pegawai</Widget04>
+              <Widget04 icon="icon-people" color="info" header={dataStatistik.pegawai.qty} invert>Jumlah Pegawai {localStorage.getItem('JWT')}</Widget04>
             </Col>
             <Col sm="12" md="6">
               <Widget04 icon="icon-user-follow" color="success" header={dataStatistik.proyek.qty} invert>Jumlah Proyek</Widget04>

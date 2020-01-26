@@ -2,8 +2,6 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
-import cookie from 'react-cookies'
-import Swal from '../../MyComponent/notification/Swal'
 
 import {
   AppAside,
@@ -21,9 +19,6 @@ import {
 import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
-import { signOutAction } from '../../views/Pages/Login/AuthAction'
-
-
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
@@ -34,7 +29,7 @@ class DefaultLayout extends Component {
 
   signOut = async (e) => {
     e.preventDefault()
-    await signOutAction()
+    localStorage.removeItem('JWT');
     this.props.history.push('/login')
   }
 
@@ -61,9 +56,6 @@ class DefaultLayout extends Component {
             <Container fluid>
               <Suspense fallback={this.loading()}>
                 <Switch>
-                  {
-                    cookie.load('JWT') || <Redirect from="/" to="/login" />
-                  }
                   {routes.map((route, idx) => {
                     return route.component ? (
                       <Route
@@ -76,6 +68,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
+                  <Redirect to="/login" />
                 </Switch>
               </Suspense>
             </Container>
