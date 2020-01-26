@@ -19,6 +19,8 @@ import {
 import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
+import { signOutAction } from '../../views/Pages/Login/AuthAction'
+
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
@@ -28,8 +30,9 @@ class DefaultLayout extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
-  signOut(e) {
+  signOut = async (e) => {
     e.preventDefault()
+    await signOutAction()
     this.props.history.push('/login')
   }
 
@@ -68,7 +71,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/dashboard" />
+                  <Redirect from="/" to="/login" />
                 </Switch>
               </Suspense>
             </Container>

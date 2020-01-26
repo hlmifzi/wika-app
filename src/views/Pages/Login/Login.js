@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import { SignInAction } from './AuthAction'
 import NotifSwal from '../../../MyComponent/notification/Swal'
 import Toast from '../../../MyComponent/notification/Toast'
 import BrandLogo from '../../../assets/img/brand/logo2-white.png'
-
-
+import { SignInAction } from './AuthAction'
 
 const Background = {
   backgroundImage:
@@ -25,6 +23,7 @@ class Login extends Component {
   }
 
   SignInHandler = async e => {
+    await SignInAction()
     Toast.info(`Welcome to HRMIS Management`)
     window.location.href = "#/dashboard"
   }
