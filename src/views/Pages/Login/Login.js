@@ -26,12 +26,11 @@ class Login extends Component {
   SignInHandler = async () => {
     if (!this.state.officeEmail || !this.state.password) return NotifSwal.failed("Silahkan Masukkan Username dan Password")
     let action = await SignInAction(this.state)
+    if (!action.data) return action
+    localStorage.setItem('JWT', action.data.token);
+    Toast.info(`Welcome to HRMIS Management`)
+    window.location.href = "#/dashboard"
 
-    if (action.data) {
-      localStorage.setItem('JWT', action.data.token);
-      Toast.info(`Welcome to HRMIS Management`)
-      window.location.href = "#/dashboard"
-    }
   }
 
   _handleKeyDown = (e) => {
