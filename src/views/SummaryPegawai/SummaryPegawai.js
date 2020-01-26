@@ -32,7 +32,7 @@ const SummaryPegawai = () => {
         (
         <Row>
           <Col xl={4}>
-            <Card>
+            <Card style={{ maxHeight: "500px"}}>
               <CardHeader>STATUS PEGAWAI KANTOR {data.divisi.toUpperCase()}
             </CardHeader>
               <DonutChart 
@@ -41,10 +41,10 @@ const SummaryPegawai = () => {
             </Card>
           </Col>
           <Col xl={8}>
-            <Card style={{ height: "446px" }}>
+            <Card style={{ height: "500px" }}>
               <CardHeader>POSISI PEGAWAI KANTOR {data.divisi.toUpperCase()}
           </CardHeader>
-              <CardBody style={{ maxHeight: "400px" }}>
+              <CardBody style={{ maxHeight: "400px", overflow: "auto"}}>
                 <StandardTable data={data.data} />
               </CardBody>
             </Card>
