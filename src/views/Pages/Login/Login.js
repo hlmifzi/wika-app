@@ -24,15 +24,15 @@ class Login extends Component {
     }
   }
 
-  SignInHandler = async (payload) => {
-    if (!payload.officeEmail || !payload.password) return NotifSwal.failed("Silahkan Masukkan Username dan Password")
-    let action = await SignInAction(payload)
+  SignInHandler = async () => {
+    if (!this.state.officeEmail || !this.state.password) return NotifSwal.failed("Silahkan Masukkan Username dan Password")
+    let action = await SignInAction(this.state)
 
-    if (action.error) return NotifSwal.failed(action.error.message)
-
-    localStorage.setItem('JWT', action.data.token);
-    Toast.info(`Welcome to HRMIS Management`)
-    window.location.href = "#/dashboard"
+    if (action.data) {
+      localStorage.setItem('JWT', action.data.token);
+      Toast.info(`Welcome to HRMIS Management`)
+      window.location.href = "#/dashboard"
+    }
 
 
   }
