@@ -18,7 +18,7 @@ const SummaryPegawai = () => {
 
   const getSummary = async () => {
     let {data} = await getDataSummary()
-    setDataSummary(data.data)
+    setDataSummary(data)
   }
 
   useEffect(() => {
@@ -31,13 +31,15 @@ const SummaryPegawai = () => {
       { dataTable.length > 0 && dataTable.map(data =>
         (
         <>  
-          <Row>
-            {
-              dataSummary.map(value => 
-                <HeaderComponent statusPegawai={value}/>
-              )
-            }
-          </Row>
+          { dataSummary.length > 0 &&
+            <Row>
+              {
+                dataSummary.map(value => {
+                  return value.divisi == data.divisi ? value.data.map(data => <HeaderComponent statusPegawai={data}/>) : null
+                })
+              }
+            </Row>
+          }
           <Row>
             {/* <Col xl={4}>
               <Card style={{ maxHeight: "00px"}}>
@@ -66,9 +68,23 @@ const SummaryPegawai = () => {
 }
 
 const HeaderComponent = ({statusPegawai}) => {
+
+  let iconStyle = {
+    height: "36px",
+    width: "36px",
+    borderRadius: "50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: "12px",
+    top: "12px",
+    background: "rgb(24, 144, 255)"
+  }
+
   return (
     <Col xl={2}>
-      <Card style={{ minHeight: "80px", maxWidth: "200px" }}>
+      <Card style={{ minHeight: "80px", maxWidth: "200px", position:"relative" }}>
         <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
           Total Pegawai
       </p>
@@ -78,7 +94,9 @@ const HeaderComponent = ({statusPegawai}) => {
         <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
           {statusPegawai.qty}
       </p>
-      <i className="fa fa-users"></i>
+      <span style={iconStyle}>
+        <i className="fa fa-users" style={{fontSize: "20px", color: "white"}}></i>
+      </span>
       </Card>
     </Col>
   )
