@@ -20,7 +20,7 @@ export const clientGet = async (endPoint, { params = "" }) => {
       let getData = await ROOT_API.get(endPoint, params)
       if (getData.status === 200) return getData.data
    } catch (e) {
-      NotifSwal.failed(e.message)
+      return NotifSwal.failed(e.message)
    }
 }
 
@@ -31,7 +31,7 @@ export const clientPost = async (endPoint, { body = "" }) => {
       let getData = await ROOT_API.post(endPoint, body)
       if (getData.status === 200) return getData.data
    } catch (e) {
-      return NotifSwal.failed(e.message)
+      return NotifSwal.failed(e.message || e.error.message)
    }
 }
 

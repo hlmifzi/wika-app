@@ -1,10 +1,10 @@
 const menuAdmin = {
   "items": [
-    {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-    },
+    // {
+    //   name: 'Dashboard',
+    //   url: '/dashboard',
+    //   icon: 'icon-speedometer',
+    // },
     {
       "title": true,
       "name": "Data Master",
@@ -19,46 +19,46 @@ const menuAdmin = {
       "url": "/karyawan",
       "icon": "icon-user"
     },
-    {
-      "title": true,
-      "name": "POSISI PEGAWAI",
-      "wrapper": {
-        "element": "",
-        "attributes": {}
-      }
-    },
-    {
-      "name": "Filter Promosi Pegawai",
-      "url": "/filter-pegawai",
-      "icon": "icon-list"
-    },
-    {
-      "name": "Summary Pegawai",
-      "url": "/summary-pegawai",
-      "icon": "icon-layers"
-    },
-    {
-      "name": "Mutasi / Promosi",
-      "url": "/Transaction",
-      "icon": "icon-cursor",
-      "children": [
-        {
-          "name": "Input Mutasi",
-          "url": "/input-mutasi-rotasi-pegawai",
-          "icon": "icon-action-redo"
-        },
-        {
-          "name": "Report Mutasi / Rotasi",
-          "url": "/report-mutasi-rotasi-pegawai",
-          "icon": "icon-book-open"
-        }
-      ]
-    },
-    {
-      "name": "PJS Orientasi",
-      "url": "/pjs-orientasi",
-      "icon": "icon-layers"
-    },
+    // {
+    //   "title": true,
+    //   "name": "POSISI PEGAWAI",
+    //   "wrapper": {
+    //     "element": "",
+    //     "attributes": {}
+    //   }
+    // },
+    // {
+    //   "name": "Filter Promosi Pegawai",
+    //   "url": "/filter-pegawai",
+    //   "icon": "icon-list"
+    // },
+    // {
+    //   "name": "Summary Pegawai",
+    //   "url": "/summary-pegawai",
+    //   "icon": "icon-layers"
+    // },
+    // {
+    //   "name": "Mutasi / Promosi",
+    //   "url": "/Transaction",
+    //   "icon": "icon-cursor",
+    //   "children": [
+    //     {
+    //       "name": "Input Mutasi",
+    //       "url": "/input-mutasi-rotasi-pegawai",
+    //       "icon": "icon-action-redo"
+    //     },
+    //     {
+    //       "name": "Report Mutasi / Rotasi",
+    //       "url": "/report-mutasi-rotasi-pegawai",
+    //       "icon": "icon-book-open"
+    //     }
+    //   ]
+    // },
+    // {
+    //   "name": "PJS Orientasi",
+    //   "url": "/pjs-orientasi",
+    //   "icon": "icon-layers"
+    // },
     // {
     //   "title": true,
     //   "name": "Training Management",
