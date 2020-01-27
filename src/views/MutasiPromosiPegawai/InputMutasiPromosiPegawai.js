@@ -12,7 +12,9 @@ import  {
   getWorkUnit,
   getPosition,
   getFieldFunction,
-  getGrade
+  getGrade,
+  getTitleName,
+  getEmployeeStatus
 } 
 from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
@@ -31,6 +33,8 @@ const InputMutasiPromosiPegawai = ({ match }) => {
   const [dataPosisi, setDataPosisi] = useState([], "dataPosisi");
   const [dataFungsiBidang, setDataFungsiBidang] = useState([], "dataFungsiBidang");
   const [dataGrade, setDataGrade] = useState([], "dataGrade");
+  const [dataJabatan, setDataJabatan] = useState([], "dataJabatan");
+  const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
 
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = async(data) => {
@@ -82,6 +86,16 @@ const InputMutasiPromosiPegawai = ({ match }) => {
     setDataGrade(data)
   }
 
+  const getJabatan = async() => {
+    let { data } = await getTitleName()
+    setDataJabatan(data)
+  }
+
+  const getStatusKaryawan = async() => {
+    let { data } = await getEmployeeStatus()
+    setStatusKaryawan(data)
+  }
+
   useEffect(() => {
     getDataTipeMutasi()
     getDataJenisMutasi()
@@ -91,6 +105,8 @@ const InputMutasiPromosiPegawai = ({ match }) => {
     getPosisi()
     getFungsiBidang()
     getGradeId()
+    getJabatan()
+    getStatusKaryawan()
   }, [])
 
     return (
@@ -184,8 +200,11 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Jabatan</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Choose Gudang</option>
+                                        <Input type="select" name="titleName" id="tenantFrom" innerRef={register({ required: true })}>
+                                         <option value=""> Pilih Jabatan</option>
+                                          {dataJabatan.map(value => (
+                                            <option value={`${value.titleName}`}>{value.titleName}</option>
+                                          ))}
                                         </Input>
                                     </FormGroup>
                                 </Col>
@@ -204,7 +223,7 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Fungsi Bidang</Label>
                                         <Input type="select" name="fieldFunctionId" id="tenantFrom" innerRef={register({ required: true })} >
-                                          <option value=""> Pilih Fungsi bidang</option>
+                                          <option value=""> Pilih Fungsi Bidang</option>
                                           {dataFungsiBidang.map(value => (
                                             <option value={`${value.id}`}>{value.name}</option>
                                           ))}
@@ -217,10 +236,27 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                                         <Input type="select" name="gradeId" id="tenantFrom" innerRef={register({ required: true })} >
                                           <option value=""> Pilih Grade</option>
                                           {dataGrade.map(value => (
-                                            <option value={`${value.id}`}>{value.name}</option>
+                                            <option value={`${value.id}`}>{value.class}</option>
                                           ))}
                                         </Input>
                                     </FormGroup>
+                                </Col>
+                                <Col xs="4">
+                                    <FormGroup>
+                                        <Label htmlFor="ccmonth">Status Karyawan</Label>
+                                        <Input type="select" name="employeeStatus" id="tenantFrom" innerRef={register({ required: true })} >
+                                          <option value=""> Pilih Status Karyawan</option>
+                                          {dataStatusKaryawan.map(value => (
+                                            <option value={`${value.employeeStatus}`}>{value.employeeStatus}</option>
+                                          ))}
+                                        </Input>
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs="12">
+                                  <Label htmlFor="ccmonth">Deskripsi</Label>
+                                  <Input type="textarea" name="notes" id="exampleText" innerRef={register({ required: true })}/>
                                 </Col>
                             </Row>
                         </CardBody>
