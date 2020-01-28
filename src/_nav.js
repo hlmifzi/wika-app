@@ -102,7 +102,7 @@ const menuAdmin = {
     // },
     {
       "name": "List Important File",
-      "url": "/productManagement/ListProduct",
+      "url": "/file-manager",
       "icon": "icon-list"
     },
 

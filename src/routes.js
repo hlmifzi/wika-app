@@ -9,6 +9,7 @@ const InputMutasiRotasiPegawai = React.lazy(() => import('./views/MutasiPromosiP
 const ReportMutasiPromosiPegawai = React.lazy(() => import('./views/MutasiPromosiPegawai/ReportMutasiPromosiPegawai'));
 const DataKaryawan = React.lazy(() => import('./views/Dashboard/DataKaryawan'));
 const DetailPegawai = React.lazy(() => import('./views/DetailPegawai/DetailPegawai'));
+const FileManager = React.lazy(() => import('./views/FileManager/FileManager'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -22,6 +23,7 @@ const routes = [
   { path: '/input-mutasi-rotasi-pegawai', exact: true, name: 'List Karyawan', component: InputMutasiRotasiPegawai },
   { path: '/report-mutasi-rotasi-pegawai', exact: true, name: 'List Karyawan', component: ReportMutasiPromosiPegawai },
   { path: '/pjs-orientasi', exact: true, name: 'List Karyawan', component: ListPegawaiPJSOrientasi },
+  { path: '/file-manager', exact: true, name: 'File Manager', component: FileManager },
 ];
 
 export default routes;
