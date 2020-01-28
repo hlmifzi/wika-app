@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import { SignInAction } from './AuthAction'
 import NotifSwal from '../../../MyComponent/notification/Swal'
 import Toast from '../../../MyComponent/notification/Toast'
 import BrandLogo from '../../../assets/img/brand/logo2-white.png'
-
+import { SignInAction } from './AuthAction'
 
 
 const Background = {
@@ -19,14 +18,20 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      username: null,
+      officeEmail: null,
       password: null
     }
   }
 
-  SignInHandler = async e => {
+  SignInHandler = async () => {
+    if (!this.state.officeEmail || !this.state.password) return NotifSwal.failed("Silahkan Masukkan Username dan Password")
+    let action = await SignInAction(this.state)
+    console.log("TCL: Login -> SignInHandler -> action", action)
+    if (!action.data) return action
+    localStorage.setItem('JWT', action.data.token);
     Toast.info(`Welcome to HRMIS Management`)
     window.location.href = "#/dashboard"
+
   }
 
   _handleKeyDown = (e) => {
@@ -54,7 +59,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" onChange={(e) => this.setState({ username: e.target.value })} placeholder="Username" autoComplete="username" onKeyDown={this._handleKeyDown} />
+                        <Input type="text" onChange={(e) => this.setState({ officeEmail: e.target.value })} placeholder="Username" autoComplete="username" onKeyDown={this._handleKeyDown} />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -66,7 +71,7 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4" onClick={this.SignInHandler}>Login</Button>
+                          <Button color="primary" className="px-4" onClick={() => this.SignInHandler(this.state)}>Login</Button>
                         </Col>
                       </Row>
                     </Form>
