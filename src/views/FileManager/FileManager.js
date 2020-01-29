@@ -4,9 +4,20 @@ import { Link } from 'react-router-dom'
 import { Col, Row, Badge, Label, Input, Button, Pagination, PaginationItem, PaginationLink, Table, FormGroup, InputGroup, InputGroupAddon } from 'reactstrap';
 import WidgetCustom from '../Widgets/WidgetCustom';
 import { CardWhiteComponent, CardWithCustom } from '../../MyComponent/CardCustom/CardComponent'
+import { getFileManager } from './endpoint/FileManagerEndpoint'
 
 
 const FileManager = () => {
+
+    const [dataDocument, setDataDocument] = useState([], dataDocument)
+
+    const getData = async () => {
+        let { data } = await getFileManager()
+        setDataDocument(data)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
     return (
         <div>
             <CardWithCustom classHeader={"text-blue"} text="File Manager">
@@ -74,7 +85,7 @@ const FileManager = () => {
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>SK</td>
+                                    <td>Pengumuman</td>
                                     <td>20/03/2020</td>
                                     <td>Arya Stark</td>
                                     <td>
@@ -89,6 +100,21 @@ const FileManager = () => {
                                 </tr>
                                 <tr>
                                     <td>4</td>
+                                    <td>SK</td>
+                                    <td>20/03/2020</td>
+                                    <td>Arya Stark</td>
+                                    <td>
+
+                                        <Button color="danger">
+                                            <i className="fa fa-print"></i>
+                                        </Button>&nbsp;
+                                        <Button color="warning">
+                                            <i className="fa fa-edit"></i>
+                                        </Button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
                                     <td>Pengembangan</td>
                                     <td>20/03/2020</td>
                                     <td>Arya Stark</td>

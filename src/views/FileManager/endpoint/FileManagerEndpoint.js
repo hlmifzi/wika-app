@@ -1,5 +1,5 @@
 import { clientGet } from '../../../MyServices/api/URLApi'
 
-const endPointFileManager = 'user/'
+const endPointFileManager = 'fileManagement'
 
-export const getFileManager = (id) => clientGet(`${endPointFileManager}${id}`, {})
+export const getFileManager = () => clientGet(endPointFileManager, {})

@@ -3,6 +3,7 @@ import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable';
 import DonutChart from './views/DonutChart';
+import { CardWhiteComponent } from '../../MyComponent/CardCustom/CardComponent'
 import { getDataSummaryOverview, getDataSummary } from './endpoint/SummaryOverview';
 
 
@@ -19,7 +20,6 @@ const SummaryPegawai = () => {
 
   const getSummary = async () => {
     let { data } = await getDataSummary()
-    console.log("TCL: getSummary -> data", data)
     setDataSummary(data)
   }
 
@@ -30,6 +30,7 @@ const SummaryPegawai = () => {
 
   return (
     <div className="animated fadeIn">
+
       {dataTable.length > 0 && dataTable.map(data =>
         (
           <>
@@ -57,6 +58,7 @@ const SummaryPegawai = () => {
         )
       )}
     </div>
+
   )
 }
 
