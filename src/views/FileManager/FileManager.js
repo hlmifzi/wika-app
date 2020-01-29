@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'reinspect'
+import { Link } from 'react-router-dom'
 import { Col, Row, Badge, Label, Input, Button, Pagination, PaginationItem, PaginationLink, Table, FormGroup, InputGroup, InputGroupAddon } from 'reactstrap';
 import WidgetCustom from '../Widgets/WidgetCustom';
 import { CardWhiteComponent, CardWithCustom } from '../../MyComponent/CardCustom/CardComponent'
@@ -11,9 +12,11 @@ const FileManager = () => {
             <CardWithCustom classHeader={"text-blue"} text="File Manager">
                 <Row className="card-custom">
                     <Col md="8" xs="12">
-                        <Button outline color="primary">
-                            <i className="fa fa-plus"></i>&nbsp; Upload Files
+                        <Link to={'/file-manager/form'} >
+                            <Button outline color="primary">
+                                <i className="fa fa-plus"></i>&nbsp; Upload Files
                         </Button>
+                        </Link>
                     </Col>
                     <Col md="4" xs="12">
                         <FormGroup row className="text-right">
@@ -42,7 +45,7 @@ const FileManager = () => {
                                 <tr>
                                     <td>1</td>
                                     <td>Asuransi</td>
-                                    <td>20/03/2020</td>
+                                    <td>Mater Asuta</td>
                                     <td>Arya Stark</td>
                                     <td>
 

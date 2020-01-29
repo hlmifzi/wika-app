@@ -28,15 +28,30 @@ const menuAdmin = {
       }
     },
     {
-      "name": "Filter Promosi Pegawai",
-      "url": "/filter-pegawai",
-      "icon": "icon-list"
+      "name": "Analytic",
+      "url": "/Transaction",
+      "icon": "icon-cursor",
+      "children": [
+        {
+          "name": "Summary Pegawai",
+          "url": "/summary-pegawai",
+          "icon": "icon-layers"
+        },
+        {
+          "name": "Filter Promosi Pegawai",
+          "url": "/filter-pegawai",
+          "icon": "icon-list"
+        },
+        {
+          "name": "PJS Orientasi",
+          "url": "/pjs-orientasi",
+          "icon": "icon-layers"
+        },
+
+
+      ]
     },
-    {
-      "name": "Summary Pegawai",
-      "url": "/summary-pegawai",
-      "icon": "icon-layers"
-    },
+
     {
       "name": "Mutasi / Promosi",
       "url": "/Transaction",
@@ -53,11 +68,6 @@ const menuAdmin = {
           "icon": "icon-book-open"
         }
       ]
-    },
-    {
-      "name": "PJS Orientasi",
-      "url": "/pjs-orientasi",
-      "icon": "icon-layers"
     },
     // {
     //   "title": true,
