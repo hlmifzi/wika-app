@@ -24,7 +24,7 @@ export const clientGet = async (endPoint, { params = "" }) => {
    }
 }
 
-export const clientPost = async (endPoint, { body = "" }) => {
+export const clientPost = async (endPoint, body) => {
    axiosRetry(ROOT_API, { retries: 3 });
 
    try {

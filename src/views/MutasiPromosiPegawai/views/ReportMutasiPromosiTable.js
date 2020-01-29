@@ -90,7 +90,7 @@ class ReportMutasiPromosiTable extends React.Component {
         const columns = [
             {
                 title: 'NIP',
-                dataIndex: 'nip',
+                dataIndex: 'userNip',
                 key: 'nip',
                 width: 100,
                 ...this.getColumnSearchProps('nip'),
@@ -98,7 +98,7 @@ class ReportMutasiPromosiTable extends React.Component {
             },
             {
                 title: 'Nama',
-                dataIndex: 'name',
+                dataIndex: 'userName',
                 key: 'name',
                 width: 200,
                 sorter: (a, b) => a.nama.length - b.nama.length,
