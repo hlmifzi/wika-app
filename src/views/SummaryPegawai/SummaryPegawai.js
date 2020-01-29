@@ -15,11 +15,13 @@ const SummaryPegawai = () => {
 
   const getDataOverview = async () => {
     let { data } = await getDataSummaryOverview()
+    if (!data) return
     setdataTable(data)
   }
 
   const getSummary = async () => {
     let { data } = await getDataSummary()
+    if (!data) return
     setDataSummary(data)
   }
 
