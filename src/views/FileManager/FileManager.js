@@ -58,8 +58,8 @@ const FileManager = () => {
                                 {dataDocument &&
                                     dataDocument.map((v, i) => {
                                         return (
-                                            <tr key={v.i}>
-                                                <td>{v.i}</td>
+                                            <tr key={i}>
+                                                <td>{i}</td>
                                                 <td>{v.category}</td>
                                                 <td><a href={`http://api.dedekrnwan.site/${v.url}`}>{v.title}</a></td>
                                                 <td>{v.description}</td>

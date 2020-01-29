@@ -185,7 +185,10 @@ class FilterSearchSortTable extends React.Component {
                 dataIndex: 'entryDate',
                 key: 'entryDate',
                 width: 150,
-                sorter: (a, b) => a.entryDate.localeCompare(b.entryDate),
+                sorter: (a, b) => {
+                    a.entryDate !== null && a.entryDate.localeCompare(b.entryDate)
+                }
+
 
             },
             {
