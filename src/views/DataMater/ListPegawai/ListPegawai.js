@@ -16,12 +16,14 @@ const ListPegawai = ({ match }) => {
     let datas;
     if (match.params.type) {
       let { data } = await getDataFilterDashboard(match.params)
+      if (!data) return
       let type = getType(match.params.type)
       setFilter({ type: type, field: match.params.field })
       if (match.params.type === 'durationOnOffice') setFilter({ type: type, field: `${match.params.field} - ${match.params.field2} tahun` })
       datas = data
     } else {
       let { data } = await getDataFilterPegawai()
+      if (!data) return
       datas = data
     }
 

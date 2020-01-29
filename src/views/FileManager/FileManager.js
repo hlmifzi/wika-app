@@ -9,10 +9,11 @@ import { getFileManager } from './endpoint/FileManagerEndpoint'
 
 const FileManager = () => {
 
-    const [dataDocument, setDataDocument] = useState([], dataDocument)
+    const [dataDocument, setDataDocument] = useState([], "dataDocument")
 
     const getData = async () => {
         let { data } = await getFileManager()
+        if (!data) return
         setDataDocument(data)
     }
     useEffect(() => {
@@ -49,84 +50,33 @@ const FileManager = () => {
                                     <th>Type</th>
                                     <th>title</th>
                                     <th>deskripsi</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Asuransi</td>
-                                    <td>Mater Asuta</td>
-                                    <td>Arya Stark</td>
-                                    <td>
+                                {dataDocument &&
+                                    dataDocument.map((v, i) => {
+                                        return (
+                                            <tr key={v.i}>
+                                                <td>{v.i}</td>
+                                                <td>{v.category}</td>
+                                                <td><a href={`http://api.dedekrnwan.site/${v.url}`}>{v.title}</a></td>
+                                                <td>{v.description}</td>
+                                                <td>{v.status}</td>
+                                                <td>
 
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pengumuman</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Pengumuman</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>SK</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Pengembangan</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-                                        <Button color="primary">
-                                            <i className="fa fa-download"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
+                                                    <Button color="danger">
+                                                        <i className="fa fa-print"></i>
+                                                    </Button>&nbsp;
+                                                <Button color="warning">
+                                                        <i className="fa fa-edit"></i>
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
                             </tbody>
                         </Table>
                     </Col>
