@@ -58,14 +58,12 @@ class ListPegawaiTable extends React.Component {
             }
         },
         render: text => (
-            <a target="_blank" href="">
-                <Highlighter
-                    highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
-                    searchWords={[this.state.searchText]}
-                    autoEscape
-                    textToHighlight={"" + text}
-                />
-            </a>
+            <Highlighter
+                highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
+                searchWords={[this.state.searchText]}
+                autoEscape
+                textToHighlight={"" + text}
+            />
         ),
     });
 
@@ -111,8 +109,6 @@ class ListPegawaiTable extends React.Component {
                 key: 'Terampil',
                 width: 100,
                 sorter: (a, b) => a.Terampil.length - b.Terampil.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'Outsource',
@@ -120,8 +116,6 @@ class ListPegawaiTable extends React.Component {
                 key: 'Outsource',
                 width: 120,
                 sorter: (a, b) => a.Outsource.length - b.Outsource.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'MT-FG',
@@ -129,8 +123,6 @@ class ListPegawaiTable extends React.Component {
                 key: 'MT-FG',
                 width: 100,
                 sorter: (a, b) => a['MT-FG'].length - b['MT-FG'].length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'MT-JA',
@@ -138,8 +130,6 @@ class ListPegawaiTable extends React.Component {
                 key: 'MT-JA',
                 width: 100,
                 sorter: (a, b) => a['MT-JA'].length - b['MT-JA'].length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
             {
                 title: 'Jumlah',
@@ -147,12 +137,10 @@ class ListPegawaiTable extends React.Component {
                 key: 'Total',
                 width: 100,
                 sorter: (a, b) => a.Total.length - b.Total.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
             },
 
         ];
-        
+
         return (
             <div>
                 <Table columns={columns} dataSource={this.props.data} onChange={this.handleChange} size="small" scroll={{ x: 1200, y: 500 }} />

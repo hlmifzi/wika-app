@@ -45,13 +45,11 @@ const FileManager = () => {
                                     <td>20/03/2020</td>
                                     <td>Arya Stark</td>
                                     <td>
-                                        <Button color="primary">
-                                            <i className="fa fa-download"></i>
-                                        </Button>&nbsp;
-                                    <Button color="danger">
+
+                                        <Button color="danger">
                                             <i className="fa fa-print"></i>
                                         </Button>&nbsp;
-                                    <Button color="warning">
+                                        <Button color="warning">
                                             <i className="fa fa-edit"></i>
                                         </Button>
                                     </td>
@@ -62,13 +60,11 @@ const FileManager = () => {
                                     <td>20/03/2020</td>
                                     <td>Arya Stark</td>
                                     <td>
-                                        <Button color="primary">
-                                            <i className="fa fa-download"></i>
-                                        </Button>&nbsp;
-                                    <Button color="danger">
+
+                                        <Button color="danger">
                                             <i className="fa fa-print"></i>
                                         </Button>&nbsp;
-                                    <Button color="warning">
+                                        <Button color="warning">
                                             <i className="fa fa-edit"></i>
                                         </Button>
                                     </td>
@@ -79,13 +75,11 @@ const FileManager = () => {
                                     <td>20/03/2020</td>
                                     <td>Arya Stark</td>
                                     <td>
-                                        <Button color="primary">
-                                            <i className="fa fa-download"></i>
-                                        </Button>&nbsp;
-                                    <Button color="danger">
+
+                                        <Button color="danger">
                                             <i className="fa fa-print"></i>
                                         </Button>&nbsp;
-                                    <Button color="warning">
+                                        <Button color="warning">
                                             <i className="fa fa-edit"></i>
                                         </Button>
                                     </td>
@@ -99,10 +93,7 @@ const FileManager = () => {
                                         <Button color="primary">
                                             <i className="fa fa-download"></i>
                                         </Button>&nbsp;
-                                    <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                    <Button color="warning">
+                                        <Button color="warning">
                                             <i className="fa fa-edit"></i>
                                         </Button>
                                     </td>
