@@ -46,7 +46,7 @@ const InputMutasiPromosiPegawai = (props) => {
         data.userId = parseInt(data.userId);
         await storeMutation(data)
         NotifSwal.successSubmit("Input has been submitted")
-        props.history.push('/dashboard')
+        window.location.reload()
     }
 
     const tipeMutasiTerpilih = watch("typeMutationId");
