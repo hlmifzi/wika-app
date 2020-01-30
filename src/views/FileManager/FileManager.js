@@ -48,8 +48,8 @@ const FileManager = () => {
                                 <tr>
                                     <th>No</th>
                                     <th>Type</th>
-                                    <th>title</th>
-                                    <th>deskripsi</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -62,7 +62,11 @@ const FileManager = () => {
                                             <tr key={i}>
                                                 <td>{i + 1}</td>
                                                 <td>{v.category}</td>
-                                                <td>{v.title}</td>
+                                                <td>
+                                                    <a href={`http://api.dedekrnwan.site/${v.url}`} target="_blank">
+                                                        {v.title}
+                                                    </a>
+                                                </td>
                                                 <td>{v.description}</td>
                                                 <td>{v.status}</td>
                                                 <td>
@@ -71,9 +75,11 @@ const FileManager = () => {
                                                             <i className="fa fa-print"></i>
                                                         </Button>
                                                     </a>&nbsp;
-                                                <Button color="warning">
-                                                        <i className="fa fa-edit"></i>
-                                                    </Button>
+                                                    <Link to={`/file-manager/form/${v.id}`} >
+                                                        <Button color="warning">
+                                                            <i className="fa fa-edit"></i>
+                                                        </Button>
+                                                    </Link>
                                                 </td>
                                             </tr>
                                         )

@@ -27,6 +27,7 @@ const routes = [
   { path: '/pjs-orientasi', exact: true, name: 'List Karyawan', component: ListPegawaiPJSOrientasi },
   { path: '/file-manager', exact: true, name: 'File Manager', component: FileManager },
   { path: '/file-manager/form', exact: true, name: 'File Manager Form', component: InputAndUpdateFileManager },
+  { path: '/file-manager/form/:id', exact: true, name: 'File Manager Form', component: InputAndUpdateFileManager },
 ];
 
 export default routes;

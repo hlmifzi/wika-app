@@ -155,6 +155,22 @@ class FilterSearchSortTable extends React.Component {
                 ...this.getColumnSearchProps('name'),
             },
             {
+                title: 'Status',
+                dataIndex: 'employeeStatus',
+                key: 'employeeStatus',
+                width: 100,
+                sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
+                filters: [
+                    { text: 'KKWT', value: 'KKWT' },
+                    { text: 'MT-FG', value: 'MT-FG' },
+                    { text: 'Organik', value: 'Organik' },
+                    { text: 'Outsource', value: 'Outsource' },
+                    { text: 'Terampil', value: 'Terampil' },
+                ],
+                filteredValue: filteredInfo.employeeStatus || null,
+                onFilter: (value, record) => record.employeeStatus.includes(value),
+            },
+            {
                 title: 'Jabatan',
                 dataIndex: 'positionName',
                 key: 'positionName',
@@ -226,14 +242,6 @@ class FilterSearchSortTable extends React.Component {
                 key: 'kukTheory',
                 width: 120,
                 sorter: (a, b) => a.kukTheory.localeCompare(b.kukTheory),
-
-            },
-            {
-                title: 'KUK Praktek',
-                dataIndex: 'kukPractice',
-                key: 'kukPractice',
-                width: 120,
-                sorter: (a, b) => a.kukPractice.localeCompare(b.kukPractice),
 
             },
             {
