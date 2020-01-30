@@ -2,12 +2,12 @@ import React from 'react'
 import { useState } from 'reinspect'
 import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
 import { uploadFile } from '../endpoint/FileManagerEndpoint'
-
+import Dropzone from 'react-dropzone'
+import '../style/style.css'
 
 const dateFormat = 'YYYY/MM/DD';
 
 const InputMutasiPromosiPegawai = props => {
-    const [state, setstate] = useState("")
     const [file, setFile] = useState("", 'file')
     let body = new FormData()
 
@@ -16,9 +16,6 @@ const InputMutasiPromosiPegawai = props => {
     const [title, setTitle] = useState("", 'title')
     const [description, setDescription] = useState("", 'description')
 
-    const changeFile = (e) => {
-        setFile(e.target.files[0])
-    }
 
     const onChangeStatus = (e) => {
         setStatus(e.target.value)
@@ -34,6 +31,10 @@ const InputMutasiPromosiPegawai = props => {
 
     const onChangeDescription = (e) => {
         setDescription(e.target.value)
+    }
+
+    const onDrop = (acceptedFiles) => {
+        setFile(acceptedFiles[0])
     }
 
     const onSubmit = async() => {
@@ -97,7 +98,16 @@ const InputMutasiPromosiPegawai = props => {
                             <Row>
                                 <Col xs="12">
                                     <Label htmlFor="ccmonth">File</Label>
-                                    <Input type="file" name="attachment" id="exampleText" onChange={(e) => changeFile(e)} required />
+                                    <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
+                                    {({getRootProps, getInputProps}) => (
+                                        <section className="dropzone">
+                                        <div {...getRootProps()}>
+                                            <input {...getInputProps()} />
+                                            {file != "" ? <p>File submitted: {file.name} </p> : <p>Drag 'n' drop some files here, or click to select files</p>}
+                                        </div>
+                                        </section>
+                                    )}
+                                    </Dropzone>
                                 </Col>
                             </Row>
                         </CardBody>
