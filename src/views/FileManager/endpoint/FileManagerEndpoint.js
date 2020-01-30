@@ -1,7 +1,7 @@
 import { clientGet, clientPost } from '../../../MyServices/api/URLApi'
 
 const endPointFileManager = 'fileManagement'
-const endPointUpload = 'fileManagementDirectory'
+const endPointUpload = 'fileManagement?parentId=1'
 
 export const getFileManager = () => clientGet(endPointFileManager, {})
-export const uploadFile = (body) => clientPost(endPointUpload, body)
+export const uploadFile = (body) => clientPost(endPointFileManager, body)
