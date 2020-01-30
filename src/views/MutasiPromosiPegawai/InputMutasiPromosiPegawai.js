@@ -60,41 +60,50 @@ const InputMutasiPromosiPegawai = ({ match }) => {
 
     const getDataTipeMutasi = async () => {
         let { data } = await getTypeMutation()
+        if (!data) return
         setDataTipeMutasi(data)
     }
 
     const getDataJenisMutasi = async () => {
         let { data } = await getKindMutation()
+        if (!data) return
         setDataJenisMutasi(data)
     }
 
-    const getDataDetailPegawai = async (id) => {
+    const getDataDetailPegawai = async (id = "") => {
         let { data } = await getDataPegawai(id)
+        if (!data) return
         setDataDetailpegawai(data)
     }
 
     const getAllPegawai = async () => {
         let { data } = await getDataFilterPegawai()
+        if (!data) return
+
         setAllPegawai(data)
     }
 
     const getUnitKerja = async () => {
         let { data } = await getWorkUnit()
+        if (!data) return
         setDataUnitKerja(data)
     }
 
     const getPosisi = async () => {
         let { data } = await getPosition()
+        if (!data) return
         setDataPosisi(data)
     }
 
     const getFungsiBidang = async () => {
         let { data } = await getFieldFunction()
+        if (!data) return
         setDataFungsiBidang(data)
     }
 
     const getGradeId = async () => {
         let { data } = await getGrade()
+        if (!data) return
         setDataGrade(data)
     }
 
@@ -105,6 +114,7 @@ const InputMutasiPromosiPegawai = ({ match }) => {
 
     const getStatusKaryawan = async () => {
         let { data } = await getEmployeeStatus()
+        if (!data) return
         setStatusKaryawan(data)
     }
 
@@ -159,14 +169,14 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                         </Card>
                     </Col>
                     {type != "" && employee != "" && (
-                    <Col xl={3}>
-                        <WidgetCustom
-                            dataBox={() => ({ variant: 'twitter' })}
-                            name={dataDetailpegawai.name}
-                            employeeStatus={dataDetailpegawai.employeeStatus}
-                        />
-                        <SideProfile data={dataDetailpegawai} />
-                    </Col>)}
+                        <Col xl={3}>
+                            <WidgetCustom
+                                dataBox={() => ({ variant: 'twitter' })}
+                                name={dataDetailpegawai.name}
+                                employeeStatus={dataDetailpegawai.employeeStatus}
+                            />
+                            <SideProfile data={dataDetailpegawai} />
+                        </Col>)}
                     {type == 1 && employee != "" && (<Col xl={9}>
                         <Card>
                             <CardHeader>
@@ -265,102 +275,102 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                     </Col>)}
 
                     {type == 2 && employee != "" && (
-                    <Col xl={9}>
-                        <Card>
-                            <CardHeader>
-                                <i className="fa fa-user"></i> Promosi Jabatan
+                        <Col xl={9}>
+                            <Card>
+                                <CardHeader>
+                                    <i className="fa fa-user"></i> Promosi Jabatan
                         </CardHeader>
-                            <CardBody>
-                                <Row>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Jenis Mutasi</Label>
-                                            <Input type="select" name="kindMutationId" id="tenantFrom" required innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Jenis Mutasi</option>
-                                                {dataJenisMutasi.map(value => (
-                                                    (value.typeMutationId == tipeMutasiTerpilih) && <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="3">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Tanggal</Label><br />
-                                            <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Unit Kerja</Label>
-                                            <Input type="select" name="workUnitId" id="tenantFrom" innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Unit Kerja</option>
-                                                {dataUnitKerja.map(value => (
-                                                    <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Jabatan</Label>
-                                            <Input type="select" name="titleName" id="tenantFrom" innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Jabatan</option>
-                                                {dataJabatan.map(value => (
-                                                    <option value={`${value.titleName}`}>{value.titleName}</option>
-                                                ))}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Posisi</Label>
-                                            <Input type="select" name="positionId" id="tenantFrom" innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Posisi</option>
-                                                {dataPosisi.map(value => (
-                                                    <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Fungsi Bidang</Label>
-                                            <Input type="select" name="fieldFunctionId" id="tenantFrom" innerRef={register({ required: true })} >
-                                                <option value=""> Pilih Fungsi Bidang</option>
-                                                {dataFungsiBidang.map(value => (
-                                                    <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Grade</Label>
-                                            <Input type="select" name="gradeId" id="tenantFrom" innerRef={register({ required: true })} >
-                                                <option value=""> Pilih Grade</option>
-                                                {dataGrade.map(value => (
-                                                    <option value={`${value.id}`}>{value.class}</option>
-                                                ))}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="12">
-                                        <Label htmlFor="ccmonth">Deskripsi</Label>
-                                        <Input type="textarea" name="notes" id="exampleText" innerRef={register({ required: true })} />
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                            <CardFooter>
-                                <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
+                                <CardBody>
+                                    <Row>
+                                        <Col xs="4">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Jenis Mutasi</Label>
+                                                <Input type="select" name="kindMutationId" id="tenantFrom" required innerRef={register({ required: true })}>
+                                                    <option value=""> Pilih Jenis Mutasi</option>
+                                                    {dataJenisMutasi.map(value => (
+                                                        (value.typeMutationId == tipeMutasiTerpilih) && <option value={`${value.id}`}>{value.name}</option>
+                                                    ))}
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs="3">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Tanggal</Label><br />
+                                                <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs="4">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Unit Kerja</Label>
+                                                <Input type="select" name="workUnitId" id="tenantFrom" innerRef={register({ required: true })}>
+                                                    <option value=""> Pilih Unit Kerja</option>
+                                                    {dataUnitKerja.map(value => (
+                                                        <option value={`${value.id}`}>{value.name}</option>
+                                                    ))}
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col xs="4">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Jabatan</Label>
+                                                <Input type="select" name="titleName" id="tenantFrom" innerRef={register({ required: true })}>
+                                                    <option value=""> Pilih Jabatan</option>
+                                                    {dataJabatan.map(value => (
+                                                        <option value={`${value.titleName}`}>{value.titleName}</option>
+                                                    ))}
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col xs="4">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Posisi</Label>
+                                                <Input type="select" name="positionId" id="tenantFrom" innerRef={register({ required: true })}>
+                                                    <option value=""> Pilih Posisi</option>
+                                                    {dataPosisi.map(value => (
+                                                        <option value={`${value.id}`}>{value.name}</option>
+                                                    ))}
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col xs="4">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Fungsi Bidang</Label>
+                                                <Input type="select" name="fieldFunctionId" id="tenantFrom" innerRef={register({ required: true })} >
+                                                    <option value=""> Pilih Fungsi Bidang</option>
+                                                    {dataFungsiBidang.map(value => (
+                                                        <option value={`${value.id}`}>{value.name}</option>
+                                                    ))}
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col xs="4">
+                                            <FormGroup>
+                                                <Label htmlFor="ccmonth">Grade</Label>
+                                                <Input type="select" name="gradeId" id="tenantFrom" innerRef={register({ required: true })} >
+                                                    <option value=""> Pilih Grade</option>
+                                                    {dataGrade.map(value => (
+                                                        <option value={`${value.id}`}>{value.class}</option>
+                                                    ))}
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs="12">
+                                            <Label htmlFor="ccmonth">Deskripsi</Label>
+                                            <Input type="textarea" name="notes" id="exampleText" innerRef={register({ required: true })} />
+                                        </Col>
+                                    </Row>
+                                </CardBody>
+                                <CardFooter>
+                                    <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
                         </CardFooter>
-                        </Card>
-                    </Col>
+                            </Card>
+                        </Col>
                     )}
 
                     {(type == 3 && employee != "" && <Col xl={9}>
@@ -369,7 +379,7 @@ const InputMutasiPromosiPegawai = ({ match }) => {
                                 <i className="fa fa-user"></i> Promosi Status
                         </CardHeader>
                             <CardBody>
-                            <   Row>
+                                <   Row>
                                     <Col xs="4">
                                         <FormGroup>
                                             <Label htmlFor="ccmonth">Jenis Mutasi</Label>
