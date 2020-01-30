@@ -20,11 +20,12 @@ import {
 import { useForm } from 'react-hook-form';
 import { getDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
 import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
+import NotifSwal from '../../MyComponent/notification/Swal'
 
 
 const dateFormat = 'YYYY/MM/DD';
 
-const InputMutasiPromosiPegawai = ({ match }) => {
+const InputMutasiPromosiPegawai = (props) => {
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
     const [dataJenisMutasi, setDataJenisMutasi] = useState([], 'dataJenisMutasi')
     const [dataDetailpegawai, setDataDetailpegawai] = useState({ workUnit: {} }, "dataDetailpegawai");
@@ -44,6 +45,8 @@ const InputMutasiPromosiPegawai = ({ match }) => {
         data.kindMutationId = parseInt(data.kindMutationId);
         data.userId = parseInt(data.userId);
         await storeMutation(data)
+        NotifSwal.successSubmit("Input has been submitted")
+        props.history.push('/dashboard')
     }
 
     const tipeMutasiTerpilih = watch("typeMutationId");

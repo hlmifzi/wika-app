@@ -10,6 +10,15 @@ const Swal = {
             timer: 1800
         })
     ),
+    successSubmit: message => (
+        swal.fire({
+            type: 'success',
+            title: 'Success!',
+            text: message,
+            showConfirmButton: false,
+            timer: 1800
+        })
+    ),
     failed: message => (
         swal.fire({
             type: 'error',
