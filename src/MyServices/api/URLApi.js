@@ -14,7 +14,7 @@ const ROOT_API = axios.create({
 })
 
 export const clientGet = async (endPoint, { params = "" }) => {
-   axiosRetry(ROOT_API, { retries: 3 });
+   // axiosRetry(ROOT_API, { retries: 3 });
 
    try {
       let getData = await ROOT_API.get(endPoint, params)
@@ -25,7 +25,7 @@ export const clientGet = async (endPoint, { params = "" }) => {
 }
 
 export const clientPost = async (endPoint, body) => {
-   axiosRetry(ROOT_API, { retries: 3 });
+   // axiosRetry(ROOT_API, { retries: 3 });
 
    try {
       let getData = await ROOT_API.post(endPoint, body)
@@ -37,7 +37,7 @@ export const clientPost = async (endPoint, body) => {
 
 
 export const clientDelete = async (endPoint, { params = "" }) => {
-   axiosRetry(ROOT_API, { retries: 3 });
+   // axiosRetry(ROOT_API, { retries: 3 });
 
    try {
       let getData = await ROOT_API.delete(endPoint, params)
@@ -50,7 +50,7 @@ export const clientDelete = async (endPoint, { params = "" }) => {
 
 
 export const clientPatch = async (endPoint, { body = "" }) => {
-   axiosRetry(ROOT_API, { retries: 3 });
+   // axiosRetry(ROOT_API, { retries: 3 });
 
    try {
       let getData = await ROOT_API.patch(endPoint, body)

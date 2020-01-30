@@ -46,46 +46,55 @@ const Dashboard = () => {
 
   const getDataStatistik = async () => {
     let { data } = await getDataStatistikEndPoint()
+    if (!data) return
     setDataStatistik(data)
   }
   const getDataKomposisiPegawai = async () => {
     let { data } = await getDataKomposisiPegawaiEndPoint()
+    if (!data) return
     setDataKomposisiPegawai(data)
     setIsLoadingDataKomposisiPegawai(false)
   }
   const getDataPendidikan = async () => {
     let { data } = await getDataPendidikanEndPoint()
+    if (!data) return
     setIsLoadingDataPendidikan(false)
     setDataPendidikan(data)
   }
   const getDataKategoriProyek = async () => {
     let { data } = await getDataDKategoriProyekEndPoint()
+    if (!data) return
     setIsLoadingdatDKategoriProyek(false)
     setDataKategoriProyek(data)
   }
   const getDataBODGroup = async () => {
     let { data } = await getDataBODGroupEndPoint()
+    if (!data) return
     DetIsLoadingdataBODGroup(false)
     setDataBODGroup(data)
   }
   const getDataMasaKerja = async () => {
     let { data } = await getDataMasaKerjaEndPoint()
+    if (!data) return
     setDataMasaKerja(data)
     setIsLoadingDataMasaKerja(false)
   }
   const getDataDivisi = async () => {
     let { data } = await getDataUnitKerjaEndPoint()
+    if (!data) return
     setDataUnitKerja(data)
     setIsLoadingDataUnitKerja(false)
   }
   const getDataMBTI = async () => {
     let { data } = await getDataMBTIEndPoint()
+    if (!data) return
     setDataMBTI(data)
     setIsLoadingMBTI(false)
   }
 
   const getDataAssessment = async () => {
     let { data } = await getDataAssessmentEndPoint()
+    if (!data) return
     seDIsLoadingdataAssessment(false)
     setDataAssessment(data)
   }

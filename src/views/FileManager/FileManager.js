@@ -1,19 +1,34 @@
 import React, { useEffect } from 'react'
 import { useState } from 'reinspect'
-import { Col, Row, Badge, Label, Input, Button, Pagination, PaginationItem, PaginationLink, Table, FormGroup, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Link } from 'react-router-dom'
+import { Col, Row, Badge, Label, Input, Button, Table, FormGroup, InputGroup, InputGroupAddon } from 'reactstrap';
 import WidgetCustom from '../Widgets/WidgetCustom';
 import { CardWhiteComponent, CardWithCustom } from '../../MyComponent/CardCustom/CardComponent'
+import { getFileManager } from './endpoint/FileManagerEndpoint'
 
 
 const FileManager = () => {
+
+    const [dataDocument, setDataDocument] = useState([], "dataDocument")
+
+    const getData = async () => {
+        let { data } = await getFileManager()
+        if (!data) return
+        setDataDocument(data)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
     return (
         <div>
             <CardWithCustom classHeader={"text-blue"} text="File Manager">
                 <Row className="card-custom">
                     <Col md="8" xs="12">
-                        <Button outline color="primary">
-                            <i className="fa fa-plus"></i>&nbsp; Upload Files
+                        <Link to={'/file-manager/form'} >
+                            <Button outline color="primary">
+                                <i className="fa fa-plus"></i>&nbsp; Upload Files
                         </Button>
+                        </Link>
                     </Col>
                     <Col md="4" xs="12">
                         <FormGroup row className="text-right">
@@ -33,71 +48,43 @@ const FileManager = () => {
                                 <tr>
                                     <th>No</th>
                                     <th>Type</th>
-                                    <th>title</th>
-                                    <th>deskripsi</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Asuransi</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
+                                {dataDocument &&
 
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pengumuman</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>SK</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-
-                                        <Button color="danger">
-                                            <i className="fa fa-print"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Pengembangan</td>
-                                    <td>20/03/2020</td>
-                                    <td>Arya Stark</td>
-                                    <td>
-                                        <Button color="primary">
-                                            <i className="fa fa-download"></i>
-                                        </Button>&nbsp;
-                                        <Button color="warning">
-                                            <i className="fa fa-edit"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
+                                    dataDocument.map((v, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td>{i + 1}</td>
+                                                <td>{v.category}</td>
+                                                <td>
+                                                    <a href={`http://api.dedekrnwan.site/${v.url}`} target="_blank">
+                                                        {v.title}
+                                                    </a>
+                                                </td>
+                                                <td>{v.description}</td>
+                                                <td>{v.status}</td>
+                                                <td>
+                                                    <a href={`http://api.dedekrnwan.site/${v.url}`} target="_blank">
+                                                        <Button color="danger">
+                                                            <i className="fa fa-print"></i>
+                                                        </Button>
+                                                    </a>&nbsp;
+                                                    <Link to={`/file-manager/form/${v.id}`} >
+                                                        <Button color="warning">
+                                                            <i className="fa fa-edit"></i>
+                                                        </Button>
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
                             </tbody>
                         </Table>
                     </Col>
