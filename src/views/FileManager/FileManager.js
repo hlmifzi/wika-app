@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'reinspect'
 import { Link } from 'react-router-dom'
-import { Col, Row, Badge, Label, Input, Button, Pagination, PaginationItem, PaginationLink, Table, FormGroup, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Col, Row, Badge, Label, Input, Button, Table, FormGroup, InputGroup, InputGroupAddon } from 'reactstrap';
 import WidgetCustom from '../Widgets/WidgetCustom';
 import { CardWhiteComponent, CardWithCustom } from '../../MyComponent/CardCustom/CardComponent'
 import { getFileManager } from './endpoint/FileManagerEndpoint'
@@ -56,19 +56,21 @@ const FileManager = () => {
                             </thead>
                             <tbody>
                                 {dataDocument &&
+
                                     dataDocument.map((v, i) => {
                                         return (
                                             <tr key={i}>
-                                                <td>{i}</td>
+                                                <td>{i + 1}</td>
                                                 <td>{v.category}</td>
-                                                <td><a href={`http://api.dedekrnwan.site/${v.url}`}>{v.title}</a></td>
+                                                <td>{v.title}</td>
                                                 <td>{v.description}</td>
                                                 <td>{v.status}</td>
                                                 <td>
-
-                                                    <Button color="danger">
-                                                        <i className="fa fa-print"></i>
-                                                    </Button>&nbsp;
+                                                    <a href={`http://api.dedekrnwan.site/${v.url}`} target="_blank">
+                                                        <Button color="danger">
+                                                            <i className="fa fa-print"></i>
+                                                        </Button>
+                                                    </a>&nbsp;
                                                 <Button color="warning">
                                                         <i className="fa fa-edit"></i>
                                                     </Button>

@@ -26,10 +26,11 @@ const InputMutasiPromosiPegawai = props => {
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Jenis Kategori File</Label>
                                         <Input type="select" name="ccmonth" id="tenantFrom" >
-                                            <option value="0"> Asuransi</option>
-                                            <option value="0"> Pengumuman</option>
-                                            <option value="0"> SK</option>
-                                            <option value="0"> Pengembangan</option>
+                                            <option value="0"> Pilih Kategori File</option>
+                                            <option value="Pengumuman"> Asuransi</option>
+                                            <option value="Pengumuman"> Pengumuman</option>
+                                            <option value="SK"> SK</option>
+                                            <option value="Pengembangan"> Pengembangan</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
