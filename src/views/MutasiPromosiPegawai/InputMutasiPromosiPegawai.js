@@ -21,9 +21,12 @@ import { useForm } from 'react-hook-form';
 import { getDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
 import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 import NotifSwal from '../../MyComponent/notification/Swal'
+import { Select } from 'antd'
 
+const  { Option } = Select;
 
 const dateFormat = 'YYYY/MM/DD';
+
 
 const InputMutasiPromosiPegawai = (props) => {
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
@@ -38,6 +41,13 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const [employee, setEmployee] = useState("")
+    const [employeeList, setEmployeeList] = useState([])
+
+    let pegawaiList = [];
+    Array.from(allPegawai).forEach((value) =>
+        {pegawaiList.push(<Option key={value.name}>{value.name}</Option>)}
+    );
+
 
     const { register, handleSubmit, watch } = useForm();
     const onSubmit = async (data) => {
@@ -59,6 +69,10 @@ const InputMutasiPromosiPegawai = (props) => {
     const chooseEmployeeValue = (e) => {
         setEmployee(e.target.value)
         getDataDetailPegawai(e.target.value)
+    }
+
+    const chooseEmployeeValueArray = (value) => {
+        setEmployeeList(value)
     }
 
     const getDataTipeMutasi = async () => {
@@ -159,19 +173,22 @@ const InputMutasiPromosiPegawai = (props) => {
                                     <Col xs="8">
                                         <FormGroup>
                                             <Label htmlFor="ccmonth">Pilih Pegawai</Label>
-                                            <Input type="select" name="userId" id="product" required innerRef={register({ required: true })} onChange={(e) => chooseEmployeeValue(e)}>
+                                            {/* <Input type="select" name="userId" id="product" required innerRef={register({ required: true })} onChange={(e) => chooseEmployeeValue(e)}>
                                                 <option value=""> Pilih Pegawai</option>
                                                 {allPegawai.map(value => (
                                                     <option value={`${value.id}`}>{value.name}</option>
                                                 ))}
-                                            </Input>
+                                            </Input> */}
+                                            <Select mode="tags" style={{ width: '100%', height: '100%' }} placeholder="Pilih Pegawai" onChange={chooseEmployeeValueArray}>
+                                                {pegawaiList}
+                                            </Select>
                                         </FormGroup>
                                     </Col>
                                 </Row>
                             </CardBody>
                         </Card>
                     </Col>
-                    {type != "" && employee != "" && (
+                    {/* {type != "" && employee != "" && (
                         <Col xl={3}>
                             <WidgetCustom
                                 dataBox={() => ({ variant: 'twitter' })}
@@ -179,7 +196,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                 employeeStatus={dataDetailpegawai.employeeStatus}
                             />
                             <SideProfile data={dataDetailpegawai} />
-                        </Col>)}
+                        </Col>)} */}
                     {type == 1 && employee != "" && (<Col xl={9}>
                         <Card>
                             <CardHeader>
