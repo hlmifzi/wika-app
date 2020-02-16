@@ -41,11 +41,12 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const [employee, setEmployee] = useState("")
-    const [employeeList, setEmployeeList] = useState([])
+    const [employeeList, setEmployeeList] = useState([], "employeeList")
+    const [dataDetailpegawaiList, setDataDetailpegawaiList] = useState([], "dataDetailpegawaiList");
 
     let pegawaiList = [];
     Array.from(allPegawai).forEach((value) =>
-        {pegawaiList.push(<Option key={value.name}>{value.name}</Option>)}
+        {pegawaiList.push(<Option key={value.id} value={value.id.toString()}>{value.name}</Option>)}
     );
 
 
@@ -73,6 +74,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const chooseEmployeeValueArray = (value) => {
         setEmployeeList(value)
+        getDataDetailPegawaiList(value[value.length-1])
     }
 
     const getDataTipeMutasi = async () => {
@@ -91,6 +93,12 @@ const InputMutasiPromosiPegawai = (props) => {
         let { data } = await getDataPegawai(id)
         if (!data) return
         setDataDetailpegawai(data)
+    }
+
+    const getDataDetailPegawaiList = async (id = "") => {
+        let { data } = await getDataPegawai(id)
+        if (!data) return
+        setDataDetailpegawaiList(dataDetailpegawaiList => [...dataDetailpegawaiList, data])
     }
 
     const getAllPegawai = async () => {
@@ -188,6 +196,16 @@ const InputMutasiPromosiPegawai = (props) => {
                             </CardBody>
                         </Card>
                     </Col>
+                    {dataDetailpegawaiList.map(value => (
+                        (<Col xl={3}>
+                        <WidgetCustom
+                            dataBox={() => ({ variant: 'twitter' })}
+                            name={value.name}
+                            employeeStatus={value.employeeStatus}
+                        />
+                        <SideProfile data={value} />
+                    </Col>)
+                    ))}
                     {/* {type != "" && employee != "" && (
                         <Col xl={3}>
                             <WidgetCustom
