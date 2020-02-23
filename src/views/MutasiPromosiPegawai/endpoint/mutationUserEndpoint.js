@@ -5,6 +5,7 @@ import { clientGet, clientPost } from "../../../MyServices/api/URLApi";
 export const getTypeMutation = () => clientGet('typeMutation', {});
 export const getKindMutation = () => clientGet('kindMutation', {});
 export const storeMutation = payload => clientPost('mutation', payload)
+export const storeMutationMultiple = payload => clientPost('mutation/store_multiple', payload)
 
 export const getFilterMutation = (params) => {
     let url = `mutation?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`
