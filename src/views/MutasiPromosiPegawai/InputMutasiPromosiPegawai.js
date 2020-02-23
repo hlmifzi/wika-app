@@ -32,7 +32,6 @@ const dateFormat = 'YYYY/MM/DD';
 
 const InputMutasiPromosiPegawai = (props) => {
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
-    const [dataJenisMutasi, setDataJenisMutasi] = useState([], 'dataJenisMutasi')
     const [dataDetailpegawai, setDataDetailpegawai] = useState({ workUnit: {} }, "dataDetailpegawai");
     const [allPegawai, setAllPegawai] = useState([], "dataPegawai");
     const [dataUnitKerja, setDataUnitKerja] = useState([], "dataUnitKerja");
@@ -53,6 +52,9 @@ const InputMutasiPromosiPegawai = (props) => {
     const [fieldFunction, setFieldFunction] = useState("", "fieldFunction")
     const [grade, setGrade] = useState("", "grade")
     const [employeeStatus, setEmployeeStatus] = useState("", "employeeStatus")
+    const [dataJenisMutasi, setDataJenisMutasi] = useState([
+        { id: 5, typeMutationId: 2, name: 'UTAMA' }
+    ])
 
     const initialValuesInput = []
     const [payload, setPayload] = useState(initialValuesInput)
@@ -65,12 +67,13 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const { register, handleSubmit, watch } = useForm();
     const onSubmit = async (data) => {
-        data.typeMutationId = parseInt(data.typeMutationId);
-        data.kindMutationId = parseInt(data.kindMutationId);
-        data.userId = parseInt(data.userId);
-        await storeMutation(data)
-        NotifSwal.successSubmit("Input has been submitted")
-        window.location.reload()
+        console.log("TCL: onSubmit -> data", data)
+        // data.typeMutationId = parseInt(data.typeMutationId);
+        // data.kindMutationId = parseInt(data.kindMutationId);
+        // data.userId = parseInt(data.userId);
+        // await storeMutation(data)
+        // NotifSwal.successSubmit("Input has been submitted")
+        // window.location.reload()
     }
 
     const tipeMutasiTerpilih = watch("typeMutationId");
@@ -80,22 +83,27 @@ const InputMutasiPromosiPegawai = (props) => {
         setType(e.target.value)
     }
 
-    const chooseEmployeeValue = (e) => {
-        setEmployee(e.target.value)
-        getDataDetailPegawai(e.target.value)
-    }
 
-    const chooseEmployeeValueArray = (value) => {
-
+    const chooseEmployeeValueArray = (value, name) => {
         const payload = immerSetState(draft => {
             draft.push({})
-            draft[value.length - 1]['userId'] = value[value.length - 1]
+            draft[value.length - 1][name] = value[value.length - 1]
         })
-        console.log("TCL: chooseEmployeeValueArray -> payload", payload)
         // setEmployeeList(value)
-        // getDataDetailPegawaiList(value[value.length - 1])
+        getDataDetailPegawaiList(value[value.length - 1])
     }
 
+    const _handleSelectInputHelper = (value, name, i) => {
+        immerSetState(draft => {
+            draft[i][name] = value
+        })
+    }
+    const _handleOnChangeDatePicker = (date, dateString, name, i) => {
+        let converDate = moment(dateString).format('DD/MM/YYYY')
+        immerSetState(draft => {
+            draft[i][name] = converDate
+        })
+    }
     const chooseKindMutation = (value) => {
         setKindMutation(value)
     }
@@ -116,13 +124,7 @@ const InputMutasiPromosiPegawai = (props) => {
         setFieldFunction(value)
     }
 
-    const chooseGrade = (value) => {
-        setGrade(value)
-    }
 
-    const chooseEmployeeStatus = (value) => {
-        setEmployeeStatus(value)
-    }
 
     const getDataTipeMutasi = async () => {
         let { data } = await getTypeMutation()
@@ -130,11 +132,6 @@ const InputMutasiPromosiPegawai = (props) => {
         setDataTipeMutasi(data)
     }
 
-    const getDataJenisMutasi = async () => {
-        let { data } = await getKindMutation()
-        if (!data) return
-        setDataJenisMutasi(data)
-    }
 
     const getDataDetailPegawai = async (id = "") => {
         let { data } = await getDataPegawai(id)
@@ -181,6 +178,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const getJabatan = async () => {
         let { data } = await getTitleName()
+        console.log("TCL: getJabatan -> data", data)
         setDataJabatan(data)
     }
 
@@ -190,11 +188,8 @@ const InputMutasiPromosiPegawai = (props) => {
         setStatusKaryawan(data)
     }
 
-    console.log("hmm", fieldFunction)
-
     useEffect(() => {
         getDataTipeMutasi()
-        getDataJenisMutasi()
         getDataDetailPegawai()
         getAllPegawai()
         getUnitKerja()
@@ -205,11 +200,10 @@ const InputMutasiPromosiPegawai = (props) => {
         getStatusKaryawan()
     }, [])
 
-    console.log(payload)
 
     return (
         <div className="animated fadeIn">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit(payload))}>
                 <Row>
                     <Col xl={12}>
                         <Card>
@@ -236,7 +230,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                 mode="tags"
                                                 style={{ width: '100%', height: '100%' }}
                                                 placeholder="Pilih Pegawai"
-                                                onChange={chooseEmployeeValueArray}
+                                                onChange={value => chooseEmployeeValueArray(value, 'userId')}
                                                 optionFilterProp="children"
                                                 filterOption={(input, option) =>
                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -249,203 +243,165 @@ const InputMutasiPromosiPegawai = (props) => {
                             </CardBody>
                         </Card>
                     </Col>
-                    {/* sidebar pegawai */}
-                    {/* {dataDetailpegawaiList.map(value => (
-                        (<Col xl={3}>
-                        <WidgetCustom
-                            dataBox={() => ({ variant: 'twitter' })}
-                            name={value.name}
-                            employeeStatus={value.employeeStatus}
-                        />
-                        <SideProfile data={value} />
-                    </Col>)
-                    ))} */}
-                    {/* {type != "" && employee != "" && (
-                        <Col xl={3}>
-                            <WidgetCustom
-                                dataBox={() => ({ variant: 'twitter' })}
-                                name={dataDetailpegawai.name}
-                                employeeStatus={dataDetailpegawai.employeeStatus}
-                            />
-                            <SideProfile data={dataDetailpegawai} />
-                        </Col>)} */}
-                    {type == 1 && employeeList.length != 0 && (<Col xl={9}>
-                        <Card>
-                            <CardHeader>
-                                <i className="fa fa-user"></i>Mutasi Jabatan
-                            </CardHeader>
-                            <CardBody>
-                                <Row>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Jenis Mutasi</Label>
-                                            {/* <Input type="select" name="kindMutationId" id="tenantFrom" required innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Jenis Mutasi</option>
-                                                {dataJenisMutasi.map(value => (
-                                                    (value.typeMutationId == tipeMutasiTerpilih) && <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input> */}
-                                            <Select
-                                                showSearch
-                                                style={{ width: "100%" }}
-                                                placeholder="Pilih Jenis Mutasi"
-                                                optionFilterProp="children"
-                                                onChange={chooseKindMutation}
-                                                filterOption={(input, option) =>
-                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                }
-                                            >
-                                                {dataJenisMutasi.map(value => (
-                                                    (value.typeMutationId == tipeMutasiTerpilih) && <Option value={`${value.id}`}>{value.name}</Option>
-                                                ))}
-                                            </Select>
-                                        </FormGroup>
+
+                    {type == 1 && payload.length !== 0 && (
+                        payload.map((v, i) => {
+                            return (
+                                <>
+                                    <Col xl={3}>
+                                        <WidgetCustom
+                                            dataBox={() => ({ variant: 'twitter' })}
+                                            name={dataDetailpegawai.name}
+                                            employeeStatus={dataDetailpegawai.employeeStatus}
+                                        />
+                                        <SideProfile data={dataDetailpegawai} />
                                     </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="3">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Tanggal</Label><br />
-                                            <DatePicker className="col-md-12" defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
-                                        </FormGroup>
+                                    <Col xl={9}>
+                                        <Card>
+                                            <CardHeader>
+                                                <i className="fa fa-user"></i>Mutasi Jabatan
+                                        </CardHeader>
+                                            <CardBody>
+                                                <Row>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Jenis Mutasi</Label>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Jenis Mutasi"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'kindMutation', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
+                                                            >
+                                                                <Option value="UTAMA">UTAMA</Option>
+                                                                <Option value="UTAMA (PJS)">UTAMA (PJS)</Option>
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Tanggal</Label><br />
+                                                            <DatePicker className="col-md-12" onChange={(date, dateString) => _handleOnChangeDatePicker(date, dateString, 'validDate', i)} defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                                                        </FormGroup>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Unit Kerja</Label>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Unit Kerja"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'workUnitId', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
+                                                            >
+                                                                {dataUnitKerja.map(value => (
+                                                                    <Option value={`${value.id}`}>{value.name}</Option>
+                                                                ))}
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Jabatan</Label>
+
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Jabatan"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'positionId', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
+                                                            >
+                                                                {dataJabatan.map(value => (
+                                                                    <Option value={`${value.titleName}`}>{value.titleName}</Option>
+                                                                ))}
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Posisi</Label>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Posisi"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'positionId', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
+                                                            >
+                                                                {dataPosisi.map(value => (
+                                                                    <Option value={`${value.id}`}>{value.name}</Option>
+                                                                ))}
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Fungsi Bidang</Label>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Fungsi Bidang"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'fieldFunctionId', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
+                                                            >
+                                                                {dataFungsiBidang.map(value => (
+                                                                    <Option value={`${value.id}`}>{value.name}</Option>
+                                                                ))}
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">Grade</Label>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Grade"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'gradeId', i)}
+                                                            >
+                                                                {dataGrade.map(value => (
+                                                                    <Option value={`${value.id}`}>{value.class}</Option>
+                                                                ))}
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="12">
+                                                        <Label htmlFor="ccmonth">Deskripsi</Label>
+                                                        <Input type="textarea" name="notes" id="exampleText" innerRef={register({ required: true })} />
+                                                    </Col>
+                                                </Row>
+                                            </CardBody>
+                                            <CardFooter>
+                                                <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
+                                    </CardFooter>
+                                        </Card>
                                     </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Unit Kerja</Label>
-                                            {/* <Input type="select" name="workUnitId" id="tenantFrom" innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Unit Kerja</option>
-                                                {dataUnitKerja.map(value => (
-                                                    <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input> */}
-                                            <Select
-                                                showSearch
-                                                style={{ width: "100%" }}
-                                                placeholder="Pilih Unit Kerja"
-                                                optionFilterProp="children"
-                                                onChange={chooseWorkUnit}
-                                                filterOption={(input, option) =>
-                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                }
-                                            >
-                                                {dataUnitKerja.map(value => (
-                                                    <Option value={`${value.id}`}>{value.name}</Option>
-                                                ))}
-                                            </Select>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Jabatan</Label>
-                                            {/* <Input type="select" name="titleName" id="tenantFrom" innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Jabatan</option>
-                                                {dataJabatan.map(value => (
-                                                    <option value={`${value.titleName}`}>{value.titleName}</option>
-                                                ))}
-                                            </Input> */}
-                                            <Select
-                                                showSearch
-                                                style={{ width: "100%" }}
-                                                placeholder="Pilih Jabatan"
-                                                optionFilterProp="children"
-                                                onChange={chooseTitleName}
-                                                filterOption={(input, option) =>
-                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                }
-                                            >
-                                                {dataJabatan.map(value => (
-                                                    <Option value={`${value.titleName}`}>{value.titleName}</Option>
-                                                ))}
-                                            </Select>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Posisi</Label>
-                                            {/* <Input type="select" name="positionId" id="tenantFrom" innerRef={register({ required: true })}>
-                                                <option value=""> Pilih Posisi</option>
-                                                {dataPosisi.map(value => (
-                                                    <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input> */}
-                                            <Select
-                                                showSearch
-                                                style={{ width: "100%" }}
-                                                placeholder="Pilih Posisi"
-                                                optionFilterProp="children"
-                                                onChange={choosePosition}
-                                                filterOption={(input, option) =>
-                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                }
-                                            >
-                                                {dataPosisi.map(value => (
-                                                    <Option value={`${value.id}`}>{value.name}</Option>
-                                                ))}
-                                            </Select>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Fungsi Bidang</Label>
-                                            {/* <Input type="select" name="fieldFunctionId" id="tenantFrom" innerRef={register({ required: true })} >
-                                                <option value=""> Pilih Fungsi Bidang</option>
-                                                {dataFungsiBidang.map(value => (
-                                                    <option value={`${value.id}`}>{value.name}</option>
-                                                ))}
-                                            </Input> */}
-                                            <Select
-                                                showSearch
-                                                style={{ width: "100%" }}
-                                                placeholder="Pilih Fungsi Bidang"
-                                                optionFilterProp="children"
-                                                onChange={chooseFieldFunction}
-                                                filterOption={(input, option) =>
-                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                }
-                                            >
-                                                {dataFungsiBidang.map(value => (
-                                                    <Option value={`${value.id}`}>{value.name}</Option>
-                                                ))}
-                                            </Select>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs="4">
-                                        <FormGroup>
-                                            <Label htmlFor="ccmonth">Grade</Label>
-                                            {/* <Input type="select" name="gradeId" id="tenantFrom" innerRef={register({ required: true })} >
-                                                <option value=""> Pilih Grade</option>
-                                                {dataGrade.map(value => (
-                                                    <option value={`${value.id}`}>{value.class}</option>
-                                                ))}
-                                            </Input> */}
-                                            <Select
-                                                showSearch
-                                                style={{ width: "100%" }}
-                                                placeholder="Pilih Grade"
-                                                optionFilterProp="children"
-                                                onChange={chooseGrade}
-                                            >
-                                                {dataGrade.map(value => (
-                                                    <Option value={`${value.id}`}>{value.class}</Option>
-                                                ))}
-                                            </Select>
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="12">
-                                        <Label htmlFor="ccmonth">Deskripsi</Label>
-                                        <Input type="textarea" name="notes" id="exampleText" innerRef={register({ required: true })} />
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                            <CardFooter>
-                                <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
-                        </CardFooter>
-                        </Card>
-                    </Col>)}
+                                </>
+                            )
+                        })
+
+                    )}
 
                     {type == 2 && employeeList.length != 0 && (
                         <Col xl={9}>
@@ -735,7 +691,8 @@ const InputMutasiPromosiPegawai = (props) => {
                                 <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
                         </CardFooter>
                         </Card>
-                    </Col>)}
+                    </Col>)
+                    }
                 </Row>
             </form>
         </div>
