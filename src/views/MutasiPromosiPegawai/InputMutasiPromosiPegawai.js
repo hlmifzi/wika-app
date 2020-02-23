@@ -23,12 +23,9 @@ import { Select } from 'antd'
 import produce from "immer";
 import Swal from 'sweetalert2'
 
-
-
 const { Option } = Select;
 
 const dateFormat = 'YYYY/MM/DD';
-
 
 const InputMutasiPromosiPegawai = (props) => {
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
@@ -97,8 +94,8 @@ const InputMutasiPromosiPegawai = (props) => {
 
 
     const chooseEmployeeValueArray = async (value, name) => {
-        const arrIndex = value.length - 1
-        const userId = value[value.length - 1]
+        const valueLength = value.length - 1
+        const userId = value.pop
 
         let { data } = await getDataPegawai(userId)
 
@@ -118,9 +115,9 @@ const InputMutasiPromosiPegawai = (props) => {
 
         immerSetState(draft => {
             draft.push({})
-            draft[arrIndex]['typeMutation'] = typeMutation
-            draft[arrIndex][name] = parseInt(userId)
-            draft[arrIndex].dataDetailPegawai = data
+            draft[valueLength]['typeMutation'] = typeMutation
+            draft[valueLength][name] = parseInt(userId)
+            draft[valueLength].dataDetailPegawai = data
         })
     }
 
