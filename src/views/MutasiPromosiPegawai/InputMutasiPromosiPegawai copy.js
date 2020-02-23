@@ -22,8 +22,6 @@ import { getDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
 import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 import NotifSwal from '../../MyComponent/notification/Swal'
 import { Select } from 'antd'
-import produce from "immer";
-
 
 const { Option } = Select;
 
@@ -54,10 +52,6 @@ const InputMutasiPromosiPegawai = (props) => {
     const [grade, setGrade] = useState("", "grade")
     const [employeeStatus, setEmployeeStatus] = useState("", "employeeStatus")
 
-    const initialValuesInput = []
-    const [payload, setPayload] = useState(initialValuesInput)
-    const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
-
     let pegawaiList = [];
     Array.from(allPegawai).forEach((value) => { pegawaiList.push(<Option key={value.id} value={value.id.toString()}>{value.name}</Option>) }
     );
@@ -86,14 +80,8 @@ const InputMutasiPromosiPegawai = (props) => {
     }
 
     const chooseEmployeeValueArray = (value) => {
-
-        const payload = immerSetState(draft => {
-            draft.push({})
-            draft[value.length - 1]['userId'] = value[value.length - 1]
-        })
-        console.log("TCL: chooseEmployeeValueArray -> payload", payload)
-        // setEmployeeList(value)
-        // getDataDetailPegawaiList(value[value.length - 1])
+        setEmployeeList(value)
+        getDataDetailPegawaiList(value[value.length - 1])
     }
 
     const chooseKindMutation = (value) => {
@@ -204,8 +192,6 @@ const InputMutasiPromosiPegawai = (props) => {
         getJabatan()
         getStatusKaryawan()
     }, [])
-
-    console.log(payload)
 
     return (
         <div className="animated fadeIn">
