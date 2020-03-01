@@ -55,8 +55,6 @@ const DetailPegawai = ({ match }) => {
         _getData()
     }, [navbar1, navbar2, navbar3, navbar4])
 
-    console.log(dataDetailpegawai)
-
     return (
         <div>
             <Row>
@@ -66,8 +64,10 @@ const DetailPegawai = ({ match }) => {
                         dataBox={() => ({ variant: 'twitter' })}
                         name={dataDetailpegawai.name}
                         employeeStatus={dataDetailpegawai.employeeStatus}
+                        profilePicture={dataDetailpegawai.profilePicture}
                         titleName={dataDetailpegawai.titleName}
                         position={dataDetailpegawai.position}
+                        id={match.params.id}
                     />
 
                     <SideProfile 
