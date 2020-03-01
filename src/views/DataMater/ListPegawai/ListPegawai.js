@@ -34,20 +34,9 @@ const ListPegawai = ({ match }) => {
   }
 
   const importFile = async (file) => {
-    readXlsxFile(file[0]).then( async (rows) => {
-      let body = []
-      let objectName = []
-      let test = {}
-      rows[1].map(val => objectName.push(val.toString()))
-      rows.slice(2).map((val) => {
-        val.map((objectValue, index) => {
-          test[objectName[index]] = objectValue
-        })
-        body.push(test)
-        test = {}
-      })
-      let { data } = await uploadExcel(body)
-    })
+    let excel = new FormData();
+    excel.append('attachment', file[0])
+    uploadExcel(excel)
   }
 
 
