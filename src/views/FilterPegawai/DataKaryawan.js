@@ -10,7 +10,6 @@ const DataKaryawan = () => {
 
   const getData = async () => {
     let { data } = await getDataFilterPegawai()
-    console.log("getData -> data", data)
     setDataPegawai(data)
   }
 

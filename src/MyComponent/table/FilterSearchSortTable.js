@@ -147,6 +147,13 @@ class FilterSearchSortTable extends React.Component {
 
             },
             {
+                title: 'Profil',
+                dataIndex: 'profilePicture',
+                key: 'profilePicture',
+                width: 80,
+                render: (text, value) => <img className="width-50" src={`${value.profilePicture || 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'}`} />
+            },
+            {
                 title: 'Nama',
                 dataIndex: 'name',
                 key: 'name',
@@ -172,23 +179,23 @@ class FilterSearchSortTable extends React.Component {
             },
             {
                 title: 'Jabatan',
-                dataIndex: 'positionName',
-                key: 'positionName',
+                dataIndex: 'position',
+                key: 'position',
                 width: 150,
-                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
+                sorter: (a, b) => a.position.localeCompare(b.position),
                 filters: this.state.filterJabatan,
-                filteredValue: filteredInfo.positionName || null,
-                onFilter: (value, record) => record.positionName.includes(value),
+                filteredValue: filteredInfo.position || null,
+                onFilter: (value, record) => record.position.includes(value),
             },
             {
                 title: 'Fungsi',
-                dataIndex: 'fieldFunctionName',
-                key: 'fieldFunctionName',
+                dataIndex: 'fieldFunction',
+                key: 'fieldFunction',
                 width: 130,
-                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
+                sorter: (a, b) => a.fieldFunction.localeCompare(b.fieldFunction),
                 filters: this.state.filterFungsi,
-                filteredValue: filteredInfo.fieldFunctionName || null,
-                onFilter: (value, record) => record.fieldFunctionName.includes(value),
+                filteredValue: filteredInfo.fieldFunction || null,
+                onFilter: (value, record) => record.fieldFunction.includes(value),
             },
             {
                 title: 'Masa Jabatan',
@@ -212,13 +219,13 @@ class FilterSearchSortTable extends React.Component {
 
             {
                 title: 'Unit Kerja',
-                dataIndex: 'workUnitName',
-                key: 'workUnitName',
+                dataIndex: 'workUnit',
+                key: 'workUnit',
                 width: 150,
-                sorter: (a, b) => a.workUnitName.localeCompare(b.workUnitName),
+                sorter: (a, b) => a.workUnit.localeCompare(b.workUnit),
                 filters: this.state.filterUnitKerja,
-                filteredValue: filteredInfo.workUnitName || null,
-                onFilter: (value, record) => record.workUnitName.includes(value),
+                filteredValue: filteredInfo.workUnit || null,
+                onFilter: (value, record) => record.workUnit.includes(value),
 
             },
             {

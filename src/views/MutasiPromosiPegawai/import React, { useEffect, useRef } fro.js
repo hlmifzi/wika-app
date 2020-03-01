@@ -327,7 +327,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 }
                                                             >
                                                                 <Option value="UTAMA">UTAMA</Option>
-                                                                <Option value="UTAMA (PJS)">UTAMA (PJS)</Option>
+                                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
