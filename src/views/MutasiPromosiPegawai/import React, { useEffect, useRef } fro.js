@@ -327,7 +327,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 }
                                                             >
                                                                 <Option value="UTAMA">UTAMA</Option>
-                                                                <Option value="UTAMA (PJS)">UTAMA (PJS)</Option>
+                                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
@@ -473,9 +473,8 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                             }
                                                         >
-                                                            {dataJenisMutasi.map(value => (
-                                                                (value.typeMutationId == tipeMutasiTerpilih) && <Option value={`${value.id}`}>{value.name}</Option>
-                                                            ))}
+                                                            <Option value="UTAMA">UTAMA</Option>
+                                                            <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                         </Select>
                                                     </FormGroup>
                                                 </Col>
@@ -687,9 +686,8 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                 }
                                             >
-                                                {dataJenisMutasi.map(value => (
-                                                    (value.typeMutationId == tipeMutasiTerpilih) && <Option value={`${value.id}`}>{value.name}</Option>
-                                                ))}
+                                                <Option value="UTAMA">UTAMA</Option>
+                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                             </Select>
                                         </FormGroup>
                                     </Col>

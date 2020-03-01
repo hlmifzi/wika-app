@@ -95,12 +95,11 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const chooseEmployeeValueArray = async (value, name) => {
         const valueLength = value.length - 1
-        const userId = value.pop
+        const userId = value[value.length - 1]
 
         let { data } = await getDataPegawai(userId)
 
         let typeMutation
-        console.log("TCL: chooseEmployeeValueArray -> type", type)
         if (type == 1) {
             typeMutation = 'MUTASI JABATAN'
         } else if (type == 2) {
@@ -134,7 +133,7 @@ const InputMutasiPromosiPegawai = (props) => {
         })
     }
     const _handleOnChangeDatePicker = (date, dateString, name, i) => {
-        let converDate = moment(dateString).format('DD/MM/YYYY')
+        let converDate = moment(dateString).format('MM/DD/YYYY')
         immerSetState(draft => {
             draft[i][name] = converDate
         })

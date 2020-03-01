@@ -1,5 +1,5 @@
 import axios from 'axios';
-import axiosRetry from 'axios-retry';
+// import axiosRetry from 'axios-retry';
 import NotifSwal from '../../MyComponent/notification/Swal'
 
 const urlBackend = 'http://api.dedekrnwan.site/'
@@ -49,7 +49,7 @@ export const clientDelete = async (endPoint, { params = "" }) => {
 }
 
 
-export const clientPatch = async (endPoint, { body = "" }) => {
+export const clientPatch = async (endPoint, body) => {
    // axiosRetry(ROOT_API, { retries: 3 });
 
    try {
