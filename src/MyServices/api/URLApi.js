@@ -49,7 +49,7 @@ export const clientDelete = async (endPoint, { params = "" }) => {
 }
 
 
-export const clientPatch = async (endPoint, { body = "" }) => {
+export const clientPatch = async (endPoint, body) => {
    // axiosRetry(ROOT_API, { retries: 3 });
 
    try {
