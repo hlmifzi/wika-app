@@ -4,13 +4,16 @@ import React, { useEffect } from 'react';
 import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
-import { getDataFilterPegawai, getDataFilterDashboard } from './endpoint/ListPegawaiEndpoint'
+import { getDataFilterPegawai, getDataFilterDashboard, uploadExcel } from './endpoint/ListPegawaiEndpoint'
+import readXlsxFile from 'read-excel-file'
+
 
 const ListPegawai = ({ match }) => {
   const [dataPegawai, setDataPegawai] = useState([], 'dataPegawai')
   const [dataJabatan, setDataJabatan] = useState([], 'jabatan')
   const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
   const [filter, setFilter] = useState({ type: '', field: '' }, 'filter')
+  const [objectScheme, setObjectScheme] = useState({})
 
   const getData = async () => {
     let datas;
@@ -30,6 +33,23 @@ const ListPegawai = ({ match }) => {
     setDataPegawai(datas)
   }
 
+  const importFile = async (file) => {
+    readXlsxFile(file[0]).then( async (rows) => {
+      let body = []
+      let objectName = []
+      let test = {}
+      rows[1].map(val => objectName.push(val.toString()))
+      rows.slice(2).map((val) => {
+        val.map((objectValue, index) => {
+          test[objectName[index]] = objectValue
+        })
+        body.push(test)
+        test = {}
+      })
+      let { data } = await uploadExcel(body)
+    })
+  }
+
 
   useEffect(() => {
     setFilter({ type: '', field: '' })
@@ -43,6 +63,7 @@ const ListPegawai = ({ match }) => {
           <Card>
             <CardHeader>
               <i className="fa fa-users"></i> Daftar Seluruh Karyawan {`${filter.type} ${filter.field}`}
+              <input type="file" id="input" onChange={(e) => importFile(e.target.files)} style={{float:"right"}}/>
             </CardHeader>
             <CardBody>
               <StandardTable data={dataPegawai} isPagination={true} />
