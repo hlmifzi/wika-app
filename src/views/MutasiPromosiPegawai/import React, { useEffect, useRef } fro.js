@@ -468,7 +468,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             style={{ width: "100%" }}
                                                             placeholder="Pilih Jenis Mutasi"
                                                             optionFilterProp="children"
-                                                            onChange={chooseKindMutation}
+                                                            onChange={value => _handleSelectInputTextHelper(value, 'kindMutation', i)}
                                                             filterOption={(input, option) =>
                                                                 option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                             }
@@ -681,7 +681,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                 style={{ width: "100%" }}
                                                 placeholder="Pilih Jenis Mutasi"
                                                 optionFilterProp="children"
-                                                onChange={chooseKindMutation}
+                                                onChange={value => _handleSelectInputTextHelper(value, 'kindMutation', i)}
                                                 filterOption={(input, option) =>
                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                 }

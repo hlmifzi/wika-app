@@ -40,7 +40,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [type, setType] = useState("")
     const [dataJenisMutasi, setDataJenisMutasi] = useState([
         { id: 5, typeMutationId: 2, name: 'UTAMA' },
-        { id: 5, typeMutationId: 2, name: 'UTAMA (PJS)' }
+        { id: 5, typeMutationId: 2, name: 'UTAMA PJS' }
     ])
 
     const initialValuesInput = []
@@ -294,7 +294,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 }
                                                             >
                                                                 <Option value="UTAMA">UTAMA</Option>
-                                                                <Option value="UTAMA (PJS)">UTAMA (PJS)</Option>
+                                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
@@ -451,7 +451,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 }
                                                             >
                                                                 <Option value="UTAMA">UTAMA</Option>
-                                                                <Option value="UTAMA (PJS)">UTAMA (PJS)</Option>
+                                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
