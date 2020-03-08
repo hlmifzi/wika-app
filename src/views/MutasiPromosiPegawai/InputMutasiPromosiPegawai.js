@@ -98,7 +98,7 @@ const InputMutasiPromosiPegawai = (props) => {
         const userId = value[value.length - 1]
 
         let { data } = await getDataPegawai(userId)
-
+        if (!data) return
         let typeMutation
         if (type == 1) {
             typeMutation = 'MUTASI JABATAN'
