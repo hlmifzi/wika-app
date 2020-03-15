@@ -47,7 +47,7 @@ const DetailPegawai = ({ match }) => {
 
     const _getData = async () => {
         let { data } = await getDataPegawai(match.params.id)
-
+        if (!data) return
         setDataDetailpegawai(data)
     }
 
@@ -70,8 +70,8 @@ const DetailPegawai = ({ match }) => {
                         id={match.params.id}
                     />
 
-                    <SideProfile 
-                        data={dataDetailpegawai} 
+                    <SideProfile
+                        data={dataDetailpegawai}
                     />
                 </Col>
                 <Col xs={12} sm={6} md={9}>
@@ -91,13 +91,13 @@ const DetailPegawai = ({ match }) => {
                     </Row>
                     {
                         navbar1 &&
-                        <Personal 
+                        <Personal
                             data={dataDetailpegawai}
                         />
                     }
                     {
                         navbar2 &&
-                        <Job 
+                        <Job
                             data={dataDetailpegawai}
                         />
                     }
@@ -107,8 +107,8 @@ const DetailPegawai = ({ match }) => {
                     }
                     {
                         navbar4 &&
-                        <Performance 
-                            data={dataDetailpegawai} 
+                        <Performance
+                            data={dataDetailpegawai}
                         />
                     }
                 </Col>

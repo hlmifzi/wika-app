@@ -1,7 +1,8 @@
 
 .width-100 {
-    width: 100%;
+    width: 100% !important;
   }
+  
   .float-r {
     float: right;
   }
@@ -575,6 +576,10 @@
   
   .flex-direction-row {
     flex-direction: row !important;
+  }
+
+  .avoid-clicks {
+    pointer-events: none;
   }
   
   

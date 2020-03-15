@@ -1,5 +1,5 @@
 import axios from 'axios';
-import axiosRetry from 'axios-retry';
+// import axiosRetry from 'axios-retry';
 import NotifSwal from '../../MyComponent/notification/Swal'
 
 const urlBackend = 'http://api.dedekrnwan.site/'

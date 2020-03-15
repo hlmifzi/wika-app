@@ -49,6 +49,7 @@
     "react-test-renderer": "^16.11.0",
     "react-toastify": "^5.4.1",
     "reactstrap": "^7.1.0",
+    "read-excel-file": "^4.0.5",
     "reinspect": "^1.0.2",
     "simple-line-icons": "^2.4.1",
     "sweetalert2": "^8.19.0"

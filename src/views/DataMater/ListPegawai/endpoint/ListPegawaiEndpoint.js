@@ -1,7 +1,9 @@
-import { clientGet } from '../../../../MyServices/api/URLApi'
+import { clientGet, clientPost } from '../../../../MyServices/api/URLApi'
 
 const endPointGetFilterPegawai = 'user'
 const endPointGetFilterDashboard = 'user/analytics'
+const endPointUploadExcel = 'user/upload/excel'
+const endPointDownloadExcel = 'user/report/position'
 const endPointGetAllFungsi = 'fieldFunction'
 
 export const getDataFilterPegawai = () => clientGet(endPointGetFilterPegawai, {})
@@ -14,3 +16,5 @@ export const getDataFilterDashboard = (params) => {
 
 export const getDataGetAllFungsi = () => clientGet(endPointGetAllFungsi, {})
 export const getDataGetAllUnitKerja = () => clientGet('workUnit', {})
+export const uploadExcel = (body) => clientPost(endPointUploadExcel, body)
+export const downloadExcel = () => clientPost(endPointDownloadExcel, {})

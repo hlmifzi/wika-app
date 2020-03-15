@@ -327,7 +327,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 }
                                                             >
                                                                 <Option value="UTAMA">UTAMA</Option>
-                                                                <Option value="UTAMA (PJS)">UTAMA (PJS)</Option>
+                                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
@@ -468,14 +468,13 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             style={{ width: "100%" }}
                                                             placeholder="Pilih Jenis Mutasi"
                                                             optionFilterProp="children"
-                                                            onChange={chooseKindMutation}
+                                                            onChange={value => _handleSelectInputTextHelper(value, 'kindMutation', i)}
                                                             filterOption={(input, option) =>
                                                                 option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                             }
                                                         >
-                                                            {dataJenisMutasi.map(value => (
-                                                                (value.typeMutationId == tipeMutasiTerpilih) && <Option value={`${value.id}`}>{value.name}</Option>
-                                                            ))}
+                                                            <Option value="UTAMA">UTAMA</Option>
+                                                            <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                         </Select>
                                                     </FormGroup>
                                                 </Col>
@@ -682,14 +681,13 @@ const InputMutasiPromosiPegawai = (props) => {
                                                 style={{ width: "100%" }}
                                                 placeholder="Pilih Jenis Mutasi"
                                                 optionFilterProp="children"
-                                                onChange={chooseKindMutation}
+                                                onChange={value => _handleSelectInputTextHelper(value, 'kindMutation', i)}
                                                 filterOption={(input, option) =>
                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                 }
                                             >
-                                                {dataJenisMutasi.map(value => (
-                                                    (value.typeMutationId == tipeMutasiTerpilih) && <Option value={`${value.id}`}>{value.name}</Option>
-                                                ))}
+                                                <Option value="UTAMA">UTAMA</Option>
+                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                             </Select>
                                         </FormGroup>
                                     </Col>
