@@ -56,10 +56,10 @@ class WidgetCustom extends Component {
           </div>
           <div className={classCardBody}>
             <div style={{ marginTop: '60px' }}>
-            <label for="file-upload" className="custom-file-upload">
-              Edit Profile Picture
+              <label htmlFor="file-upload" className="custom-file-upload">
+                Edit Profile Picture
             </label>
-            <Input id="file-upload" type="file" onChange={(e) => changeProfilePicture(e)}/>
+              <Input id="file-upload" type="file" onChange={(e) => changeProfilePicture(e)} />
               <div className="text-value">{this.props.name}</div>
               <div className="text-uppercase text-muted small">{this.props.titleName} - {this.props.position ? this.props.position.name : ""}</div>
               <div className="text-uppercase text-muted small"><Badge pill color="success">{this.props.employeeStatus}</Badge></div>
