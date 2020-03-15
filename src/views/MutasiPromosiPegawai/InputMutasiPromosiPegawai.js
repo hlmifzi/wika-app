@@ -29,7 +29,6 @@ const dateFormat = 'YYYY/MM/DD';
 
 const InputMutasiPromosiPegawai = (props) => {
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
-    const [dataDetailpegawai, setDataDetailpegawai] = useState({ workUnit: {} }, "dataDetailpegawai");
     const [allPegawai, setAllPegawai] = useState([], "dataPegawai");
     const [dataUnitKerja, setDataUnitKerja] = useState([], "dataUnitKerja");
     const [dataPosisi, setDataPosisi] = useState([], "dataPosisi");
@@ -38,14 +37,10 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataJabatan, setDataJabatan] = useState([], "dataJabatan");
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
-    const [dataJenisMutasi, setDataJenisMutasi] = useState([
-        { id: 5, typeMutationId: 2, name: 'UTAMA' },
-        { id: 5, typeMutationId: 2, name: 'UTAMA PJS' }
-    ])
-
-    const initialValuesInput = []
+    const initialValuesInput = [{ isCancelEmployee: false }]
     const [payload, setPayload] = useState(initialValuesInput)
     const [multipleFieldInRangkap, setMultipleFieldInRangkap] = useState(1)
+
     const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
 
     let pegawaiList = [];
@@ -86,8 +81,6 @@ const InputMutasiPromosiPegawai = (props) => {
         // window.location.reload()
     }
 
-    const tipeMutasiTerpilih = watch("typeMutationId");
-
 
     const chooseTypeValue = (e) => {
         setType(e.target.value)
@@ -100,6 +93,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
         let { data } = await getDataPegawai(userId)
         if (!data) return
+
         let typeMutation
         if (type == 1) {
             typeMutation = 'MUTASI JABATAN'
@@ -113,11 +107,22 @@ const InputMutasiPromosiPegawai = (props) => {
             typeMutation = 'RANGKAPAN'
         }
 
+        if (!payload[0].isCancelEmployee) {
+            immerSetState(draft => {
+                if (payload.length <= valueLength) draft.push({})
+                draft[valueLength]['typeMutation'] = typeMutation
+                draft[valueLength][name] = parseInt(userId)
+                draft[valueLength].dataDetailPegawai = data
+                draft[0]['isCancelEmployee'] = false
+            })
+        }
+    }
+
+    const handleDeselectEmployee = (value) => {
+        const sisaPayloadAfterRemove = payload.filter(v => v.userId !== parseInt(value))
+        setPayload(sisaPayloadAfterRemove)
         immerSetState(draft => {
-            draft.push({})
-            draft[valueLength]['typeMutation'] = typeMutation
-            draft[valueLength][name] = parseInt(userId)
-            draft[valueLength].dataDetailPegawai = data
+            draft[0]['isCancelEmployee'] = true
         })
     }
 
@@ -206,6 +211,7 @@ const InputMutasiPromosiPegawai = (props) => {
         getJabatan()
         getStatusKaryawan()
     }, [])
+
 
     let jsxMultipleFieldInRangkap = []
     for (let i = 0; i < multipleFieldInRangkap; i++) {
@@ -351,6 +357,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                 style={{ width: '100%', height: '100%' }}
                                                 placeholder="Pilih Pegawai"
                                                 onChange={value => chooseEmployeeValueArray(value, 'userId')}
+                                                onDeselect={handleDeselectEmployee}
                                                 optionFilterProp="children"
                                                 filterOption={(input, option) =>
                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -364,7 +371,7 @@ const InputMutasiPromosiPegawai = (props) => {
                         </Card>
                     </Col>
 
-                    {type && payload.length !== 0 &&
+                    {type && payload[0].userId &&
                         <>
                             <Col xl={9}>
                             </Col>
@@ -375,7 +382,7 @@ const InputMutasiPromosiPegawai = (props) => {
                         </>
                     }
 
-                    {type == 1 && payload.length !== 0 && (
+                    {type == 1 && payload[0].userId && (
                         payload.map((v, i) => {
                             return (
                                 <>
@@ -532,7 +539,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
                     )}
 
-                    {type == 2 && payload.length !== 0 && (
+                    {type == 2 && payload[0].userId && (
                         payload.map((v, i) => {
                             return (
                                 <>
@@ -689,7 +696,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
                     )}
 
-                    {(type == 3 && payload.length != 0 &&
+                    {(type == 3 && payload[0].userId &&
                         payload.map((v, i) => {
                             return (
                                 <>
@@ -752,7 +759,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
                     )}
 
-                    {type == 4 && payload.length != 0 &&
+                    {type == 4 && payload[0].userId &&
                         payload.map((v, i) => {
                             return (
                                 <>
@@ -815,7 +822,7 @@ const InputMutasiPromosiPegawai = (props) => {
                     }
 
 
-                    {type == 5 && payload.length != 0 &&
+                    {type == 5 && payload[0].userId &&
 
                         payload.map((v, i) => {
                             return (
@@ -865,7 +872,6 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     </Col>
                                                 </Row>
                                                 {jsxMultipleFieldInRangkap}
-                                                {console.log(v)}
                                                 {
                                                     v.kindMutation == 'PJS RANGKAP' &&
                                                     <Row>
