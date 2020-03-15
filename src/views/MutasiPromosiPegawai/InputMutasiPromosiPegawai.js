@@ -876,7 +876,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     v.kindMutation == 'PJS RANGKAP' &&
                                                     <Row>
                                                         <Col xs={12}>
-                                                            <Button className={`float-right mb-15 width-100 ${multipleFieldInRangkap == 2 ? 'avoid-clicks' : ''}`} onClick={() => setMultipleFieldInRangkap(multipleFieldInRangkap + 1)} type="submit" size="xl" color="primary">
+                                                            <Button className={`float-right mb-15 width-100 ${multipleFieldInRangkap == 2 ? 'avoid-clicks' : ''}`} onClick={() => setMultipleFieldInRangkap(multipleFieldInRangkap + 1)} type="submit" size="xl" color="primary" disabled={multipleFieldInRangkap == 2 ? true : false}>
                                                                 <i className="fa fa-plus" ></i>
                                                                 Tambah
                                                             </Button>
