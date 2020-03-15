@@ -5,6 +5,7 @@ import { mapToCssModules } from 'reactstrap/lib/utils';
 import { Badge, ListGroup, ListGroupItem, Button, Input } from 'reactstrap';
 import "./widget.css";
 import { updateDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint';
+import NotifSwal from "../../MyComponent/notification/Swal"
 
 const propTypes = {
   children: PropTypes.node,
@@ -40,10 +41,12 @@ class WidgetCustom extends Component {
     const classCardBody = classNames(`${classCard}-body`);
     const classes = mapToCssModules(classNames(classCard, className), cssModule);
 
-    const changeProfilePicture = (e) => {
+    const changeProfilePicture = async(e) => {
       let profilePicture = new FormData();
       profilePicture.append('profilePicture', e.target.files[0])
-      updateDataPegawai(id, profilePicture)
+      await updateDataPegawai(id, profilePicture)
+      NotifSwal.successSubmit("Profile picture has been updated")
+      window.location.reload()
     }
 
     return (
