@@ -51,7 +51,7 @@ class WidgetCustom extends Component {
         <div className={classes}>
           <div className={classCardHeader}>
             <div className="avatar" style={{ width: '100px', position: 'relative' }}>
-              <img src={'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'} className="img-avatar" alt="admin@bootstrapmaster.com" width="900em" />
+              <img src={this.props.profilePicture != null ? this.props.profilePicture : 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'} className="img-avatar" alt="admin@bootstrapmaster.com" width="900em" />
             </div>
           </div>
           <div className={classCardBody}>
