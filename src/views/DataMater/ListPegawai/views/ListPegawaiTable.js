@@ -156,7 +156,7 @@ class ListPegawaiTable extends React.Component {
                 sorter: (a, b) => a.fieldFunction ? a.fieldFunction.localeCompare(b.fieldFunction || '') : false,
                 filters: this.state.filterFungsi,
                 filteredValue: filteredInfo.fieldFunction || '',
-                onFilter: (value, record) => record.fieldFunction.includes(value),
+                onFilter: (value, record) => record.fieldFunction ? record.fieldFunction.includes(value) : false,
             },
             {
                 title: 'Jabatan',
@@ -166,8 +166,7 @@ class ListPegawaiTable extends React.Component {
                 sorter: (a, b) => a.position ? a.position.localeCompare(b.position || '') : false,
                 filters: this.state.filterJabatan,
                 filteredValue: filteredInfo.position || null,
-                onFilter: (value, record) => record.position.includes(value),
-
+                onFilter: (value, record) => record.position ? record.position.includes(value) : false,
             },
             {
                 title: 'BOD Group',
@@ -183,7 +182,7 @@ class ListPegawaiTable extends React.Component {
                     { text: 'BOD-5', value: 'BOD-5' },
                 ],
                 filteredValue: filteredInfo.bodGroup || null,
-                onFilter: (value, record) => record.bodGroup.includes(value),
+                onFilter: (value, record) => record.bodGroup ? record.bodGroup.includes(value) : false,
 
             },
 
