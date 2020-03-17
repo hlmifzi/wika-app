@@ -90,9 +90,12 @@ const InputMutasiPromosiPegawai = (props) => {
     const chooseEmployeeValueArray = async (value, name) => {
         const valueLength = value.length - 1
         const userId = value[value.length - 1]
-
-        let { data } = await getDataPegawai(userId)
-        if (!data) return
+        let data
+        if (userId != undefined) {
+            let { data: detailPegawai } = await getDataPegawai(userId)
+            data = detailPegawai
+            if (!detailPegawai) return
+        }
 
         let typeMutation
         if (type == 1) {
@@ -123,7 +126,8 @@ const InputMutasiPromosiPegawai = (props) => {
     const handleDeselectEmployee = (value) => {
         const sisaPayloadAfterRemove = payload.filter(v => v.userId !== parseInt(value))
         setPayload(sisaPayloadAfterRemove)
-        if (payload.length > 0) {
+        console.log("handleDeselectEmployee -> payload.length", payload.length)
+        if (payload.length > 1) {
             immerSetState(draft => {
                 draft[0]['isCancelEmployee'] = true
             })
@@ -862,7 +866,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             <Select
                                                                 showSearch
                                                                 style={{ width: "100%" }}
-                                                                placeholder="Pilih Jenis Mutasi"
+                                                                placeholder="Pilih Jenis Rangkapan"
                                                                 optionFilterProp="children"
                                                                 onChange={value => _handleSelectInputTextHelper(value, 'kindMutation', i)}
                                                                 filterOption={(input, option) =>
