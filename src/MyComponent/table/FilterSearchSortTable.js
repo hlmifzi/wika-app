@@ -147,6 +147,13 @@ class FilterSearchSortTable extends React.Component {
 
             },
             {
+                title: 'Profil',
+                dataIndex: 'profilePicture',
+                key: 'profilePicture',
+                width: 80,
+                render: (text, value) => <img className="width-50" src={`${value.profilePicture || 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'}`} />
+            },
+            {
                 title: 'Nama',
                 dataIndex: 'name',
                 key: 'name',
@@ -171,24 +178,25 @@ class FilterSearchSortTable extends React.Component {
                 onFilter: (value, record) => record.employeeStatus.includes(value),
             },
             {
-                title: 'Jabatan',
-                dataIndex: 'positionName',
-                key: 'positionName',
+                title: 'Fungsi',
+                dataIndex: 'fieldFunction',
+                key: 'fieldFunction',
                 width: 150,
-                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
-                filters: this.state.filterJabatan,
-                filteredValue: filteredInfo.positionName || null,
-                onFilter: (value, record) => record.positionName.includes(value),
+                sorter: (a, b) => a.fieldFunction ? a.fieldFunction.localeCompare(b.fieldFunction || '') : false,
+                filters: this.state.filterFungsi,
+                filteredValue: filteredInfo.fieldFunction || '',
+                onFilter: (value, record) => record.fieldFunction.includes(value),
             },
             {
-                title: 'Fungsi',
-                dataIndex: 'fieldFunctionName',
-                key: 'fieldFunctionName',
+                title: 'Jabatan',
+                dataIndex: 'position',
+                key: 'position',
                 width: 130,
-                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
-                filters: this.state.filterFungsi,
-                filteredValue: filteredInfo.fieldFunctionName || null,
-                onFilter: (value, record) => record.fieldFunctionName.includes(value),
+                sorter: (a, b) => a.position ? a.position.localeCompare(b.position || '') : false,
+                filters: this.state.filterJabatan,
+                filteredValue: filteredInfo.position || null,
+                onFilter: (value, record) => record.position.includes(value),
+
             },
             {
                 title: 'Masa Jabatan',
@@ -201,7 +209,7 @@ class FilterSearchSortTable extends React.Component {
                 dataIndex: 'entryDate',
                 key: 'entryDate',
                 width: 150,
-                sorter: (a, b) => a.entryDate.localeCompare(b.entryDate)
+                sorter: (a, b) => a.entryDate ? a.entryDate.localeCompare(b.entryDate || '') : false,
             },
             {
                 title: 'Masa Kerja',
@@ -212,13 +220,13 @@ class FilterSearchSortTable extends React.Component {
 
             {
                 title: 'Unit Kerja',
-                dataIndex: 'workUnitName',
-                key: 'workUnitName',
+                dataIndex: 'workUnit',
+                key: 'workUnit',
                 width: 150,
-                sorter: (a, b) => a.workUnitName.localeCompare(b.workUnitName),
+                sorter: (a, b) => a.workUnit.localeCompare(b.workUnit),
                 filters: this.state.filterUnitKerja,
-                filteredValue: filteredInfo.workUnitName || null,
-                onFilter: (value, record) => record.workUnitName.includes(value),
+                filteredValue: filteredInfo.workUnit || null,
+                onFilter: (value, record) => record.workUnit.includes(value),
 
             },
             {
