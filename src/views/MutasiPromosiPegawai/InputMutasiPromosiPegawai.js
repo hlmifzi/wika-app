@@ -39,7 +39,6 @@ const InputMutasiPromosiPegawai = (props) => {
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
     const [payload, setPayload] = useState(initialValuesInput)
-    const [multipleFieldInRangkap, setMultipleFieldInRangkap] = useState({})
 
     const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
 
@@ -111,7 +110,7 @@ const InputMutasiPromosiPegawai = (props) => {
         }
 
 
-        if (!payload[0].isCancelEmployee) {
+        if (!payload[0].isCancelEmployee && userId != undefined) {
             immerSetState(draft => {
                 if (payload.length <= valueLength) draft.push({})
                 draft[valueLength]['typeMutation'] = typeMutation
