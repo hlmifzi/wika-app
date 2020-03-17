@@ -5,7 +5,7 @@ import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
 import { getDataFilterPegawai, getDataFilterDashboard, uploadExcel, downloadExcel } from './endpoint/ListPegawaiEndpoint'
-import readXlsxFile from 'read-excel-file'
+// import readXlsxFile from 'read-excel-file'
 
 
 const ListPegawai = ({ match }) => {
