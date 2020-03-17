@@ -51,7 +51,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const { register, handleSubmit, watch } = useForm();
     const onSubmit = async (data) => {
 
-        const payloadSend = data.map(({ dataDetailPegawai, ...rest }) => rest)
+        const payloadSend = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
 
         Swal.fire({
             title: 'Apakah Kamu Yakin?',
