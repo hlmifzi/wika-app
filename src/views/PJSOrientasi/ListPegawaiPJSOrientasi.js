@@ -10,6 +10,7 @@ const ListPegawai = () => {
 
   const getData = async () => {
     let { data } = await getDataPJSOrientasi()
+    if (!data) return
     setDataPegawai(data)
   }
 

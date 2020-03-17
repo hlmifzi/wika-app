@@ -1,30 +1,20 @@
 import { clientGet, clientPost } from "../../../MyServices/api/URLApi";
 
-const endpointGetTypeMutation = "typeMutation";
-const endpointGetKindMutation = "kindMutation";
-const endpointMutation = "mutation";
-const endpointGetWorkUnit = "workUnit";
-const endpointGetPosition = "position";
-const endpointGetFieldFunction = "fieldFunction";
-const endpointGetGrade = "grade";
-const endpointGetEmployeeStatus = "common/master/employeeStatus"
-const endpointGetTitleName = "common/master/titleName"
 
 
-export const getTypeMutation = () => clientGet(endpointGetTypeMutation, {});
-export const getKindMutation = () => clientGet(endpointGetKindMutation, {});
-export const storeMutation = (body) => {
-    clientPost(endpointMutation, body);
-}
+export const getTypeMutation = () => clientGet('typeMutation', {});
+export const getKindMutation = () => clientGet('kindMutation', {});
+export const storeMutation = payload => clientPost('mutation', payload)
+export const storeMutationMultiple = payload => clientPost('mutation/store_multiple', payload)
 
 export const getFilterMutation = (params) => {
-    let url = `${endpointMutation}?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`
+    let url = `mutation?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`
     return clientGet(url, {})
 }
 
-export const getWorkUnit = () => clientGet(endpointGetWorkUnit, {});
-export const getPosition = () => clientGet(endpointGetPosition, {});
-export const getFieldFunction = () => clientGet(endpointGetFieldFunction, {});
-export const getGrade = () => clientGet(endpointGetGrade, {});
-export const getEmployeeStatus = () => clientGet(endpointGetEmployeeStatus, {});
-export const getTitleName = () => clientGet(endpointGetTitleName, {});
+export const getWorkUnit = () => clientGet('workUnit', {});
+export const getPosition = () => clientGet('position', {});
+export const getFieldFunction = () => clientGet('fieldFunction', {});
+export const getGrade = () => clientGet('grade', {});
+export const getEmployeeStatus = () => clientGet('common/master/employeeStatus', {});
+export const getTitleName = () => clientGet('common/master/titleName', {});

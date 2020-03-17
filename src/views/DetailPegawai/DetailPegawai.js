@@ -47,15 +47,13 @@ const DetailPegawai = ({ match }) => {
 
     const _getData = async () => {
         let { data } = await getDataPegawai(match.params.id)
-
+        if (!data) return
         setDataDetailpegawai(data)
     }
 
     useEffect(() => {
         _getData()
     }, [navbar1, navbar2, navbar3, navbar4])
-
-    console.log(dataDetailpegawai)
 
     return (
         <div>
@@ -66,12 +64,14 @@ const DetailPegawai = ({ match }) => {
                         dataBox={() => ({ variant: 'twitter' })}
                         name={dataDetailpegawai.name}
                         employeeStatus={dataDetailpegawai.employeeStatus}
+                        profilePicture={dataDetailpegawai.profilePicture}
                         titleName={dataDetailpegawai.titleName}
                         position={dataDetailpegawai.position}
+                        id={match.params.id}
                     />
 
-                    <SideProfile 
-                        data={dataDetailpegawai} 
+                    <SideProfile
+                        data={dataDetailpegawai}
                     />
                 </Col>
                 <Col xs={12} sm={6} md={9}>
@@ -91,13 +91,13 @@ const DetailPegawai = ({ match }) => {
                     </Row>
                     {
                         navbar1 &&
-                        <Personal 
+                        <Personal
                             data={dataDetailpegawai}
                         />
                     }
                     {
                         navbar2 &&
-                        <Job 
+                        <Job
                             data={dataDetailpegawai}
                         />
                     }
@@ -107,8 +107,8 @@ const DetailPegawai = ({ match }) => {
                     }
                     {
                         navbar4 &&
-                        <Performance 
-                            data={dataDetailpegawai} 
+                        <Performance
+                            data={dataDetailpegawai}
                         />
                     }
                 </Col>

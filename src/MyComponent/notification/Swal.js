@@ -16,7 +16,7 @@ const Swal = {
             title: 'Success!',
             text: message,
             showConfirmButton: false,
-            timer: 1800
+            timer: 2500
         })
     ),
     failed: message => (
