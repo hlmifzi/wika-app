@@ -9,7 +9,7 @@ export const Personal = ({ data }) => {
                 <Col xs="12" md="6">
                     <FormGroup row>
                         <Col md="12" xs="12">
-                           <b> <Label htmlFor="nip">Nomor Induk Pegawai :</Label></b>
+                            <b> <Label htmlFor="nip">Nomor Induk Pegawai :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.nip}
@@ -33,7 +33,7 @@ export const Personal = ({ data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                           <b> <Label htmlFor="tglLahir">Tanggal Lahir :</Label></b>
+                            <b> <Label htmlFor="tglLahir">Tanggal Lahir :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.birthDate}
@@ -54,12 +54,16 @@ export const Personal = ({ data }) => {
                             <b><Label htmlFor="jenisKelamin">Jenis Kelamin :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
-                            {data.gender === 'L' ? 'Laki - laki' : 'Perempuan'}
+                            {data.gender === 'L'
+                                ? 'Laki - laki'
+                                : data.gender === 'P'
+                                    ? 'Perempuan' :
+                                    'Tidak Ada Data'}
                         </Col>
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                         <b><Label htmlFor="golonganDarah">Golongan Darah :</Label></b>
+                            <b><Label htmlFor="golonganDarah">Golongan Darah :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.bloodGroup || 'Tidak Ada Data'}
@@ -108,7 +112,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                             <b> <Label htmlFor="noNpwp">No NPWP :</Label></b>
+                                <b> <Label htmlFor="noNpwp">No NPWP :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {data.npwp || 'Tidak Ada Data'}
@@ -116,7 +120,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                            <b> <Label htmlFor="noJamsostek">No Jamsostek :</Label></b>
+                                <b> <Label htmlFor="noJamsostek">No Jamsostek :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {data.jamsostek || 'Tidak Ada Data'}
@@ -136,7 +140,7 @@ export const Personal = ({ data }) => {
                         </FormGroup>
                         <FormGroup row>
                             <Col md="12" xs="12">
-                             <b><Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label></b>
+                                <b><Label htmlFor="manulifeAsuransi">Manulife Asuransi :</Label></b>
                             </Col>
                             <Col xs="12" md="12">
                                 {(data.userManulifes && data.userManulifes[0]) ? data.userManulifes[0].customerCode : 'Tidak Ada Data'}
@@ -158,12 +162,12 @@ export const Personal = ({ data }) => {
                 <Row className="card-custom">
                     <Col md="12" xs="12">
                         <b><Label style={{ fontSize: '1.2em' }}>Education</Label></b>
-                     </Col>
+                    </Col>
                     <Col md="6" xs="12">
                         <Col xs="12" md="12">
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                <b> <Label htmlFor="bidang">Bidang :</Label></b>
+                                    <b> <Label htmlFor="bidang">Bidang :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {data.field ? data.field : "Tidak Ada Data"}
@@ -171,7 +175,7 @@ export const Personal = ({ data }) => {
                             </FormGroup>
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                <b><Label htmlFor="strata">Strata :</Label></b>
+                                    <b><Label htmlFor="strata">Strata :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {(data.userEducations && data.userEducations[0]) ? data.userEducations[0].strata : "Tidak Ada Data"}
@@ -179,7 +183,7 @@ export const Personal = ({ data }) => {
                             </FormGroup>
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                <b><Label htmlFor="jurusan">Jurusan :</Label></b>
+                                    <b><Label htmlFor="jurusan">Jurusan :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {(data.userEducations && data.userEducations[0]) ? data.userEducations[0].majors : "Tidak Ada Data"}
@@ -194,7 +198,7 @@ export const Personal = ({ data }) => {
                         <Col xs="12" md="12">
                             <FormGroup row>
                                 <Col md="12" xs="12">
-                                <b><Label htmlFor="mbti">MBTI :</Label></b>
+                                    <b><Label htmlFor="mbti">MBTI :</Label></b>
                                 </Col>
                                 <Col xs="12" md="12">
                                     {data.mbti ? data.mbti : "Tidak Ada Data"}

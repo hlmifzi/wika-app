@@ -48,6 +48,21 @@ const InputMutasiPromosiPegawai = (props) => {
 
 
     const { register, handleSubmit, watch } = useForm();
+
+    const getPayload = () => ({
+        typeMutation: payload.typeMutation,
+        kindMutation: payload.kindMutation,
+        workUnitId: parseInt(payload.workUnitId),
+        positionId: parseInt(payload.positionId),
+        fieldFunctionId: parseInt(payload.fieldFunctionId),
+        gradeId: parseInt(payload.gradeId),
+        userId: parseInt(payload.userId),
+        validDate: payload.validDate,
+        employeeStatus: payload.employeeStatus,
+        titleName: payload.titleName,
+        notes: payload.notes,
+        userPositionId: parseInt(payload.userPositionId)
+    })
     const onSubmit = async (data) => {
 
         const payloadSend = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
@@ -61,7 +76,7 @@ const InputMutasiPromosiPegawai = (props) => {
             cancelButtonText: 'Tidak, Batalkan '
         }).then((result) => {
             if (result.value) {
-                storeMutationMultiple(payloadSend)
+                storeMutationMultiple(getPayload())
 
                 Swal.fire(
                     'Simpan!',
@@ -287,7 +302,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Posisi"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'positionId', i)}
+                                    onChange={value => _handleSelectInputHelper(value, 'userPositionId', i)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
