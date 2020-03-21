@@ -95,8 +95,10 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
                                         ))}
                                     </Input>
                                 </div>
+                                <div className="mt-29 ml-30">
+                                    <Button color="primary" onClick={() => saveFilter()}>Filter</Button>
+                                </div>
                             </div>
-                            <Button onClick={() => saveFilter()}>Filter</Button>
                         </CardBody>
                     </Card>
                 </Col>
@@ -104,7 +106,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
             <Card>
                 <CardHeader>
                     <i className="fa fa-users"></i> Daftar Seluruh Karyawan
-                    <button style={btnDownloadFile} onClick={() => downloadFile()}> <i class="fa fa-file"></i>&nbsp;Download User</button>
+                    <button style={btnDownloadFile} onClick={() => downloadFile()}> <i class="fa fa-file"></i>&nbsp;Download Report Mutasi</button>
                 </CardHeader>
                 <CardBody>
                     <ReportMutasiPromosiTable data={dataPegawai} />

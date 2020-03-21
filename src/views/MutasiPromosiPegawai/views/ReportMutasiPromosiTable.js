@@ -1,14 +1,25 @@
 import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { getDataFilterJabatan } from '../../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 
 class ReportMutasiPromosiTable extends React.Component {
     state = {
         filteredInfo: null,
         sortedInfo: null,
         searchText: '',
-        data: this.props.data
+        data: this.props.data,
+        filterPosisi: {},
     };
+
+    async componentWillMount() {
+        let { data: dataJabatan } = await getDataFilterJabatan()
+        const dataJabatanFilter = dataJabatan.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterJabatan: dataJabatanFilter })
+    }
 
     handleChange = (pagination, filters, sorter) => {
         console.log('Various parameters', pagination, filters, sorter);
@@ -105,42 +116,15 @@ class ReportMutasiPromosiTable extends React.Component {
                 ...this.getColumnSearchProps('nama'),
             },
             {
-                title: 'Status',
-                dataIndex: 'statusPegawai',
-                key: 'statusPegawai',
-                width: 100,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
-                onFilter: (value, record) => record.nama.includes(value),
-            },
-            {
-                title: 'Fungsi',
-                dataIndex: 'fieldFunction',
-                key: 'fieldFunction',
-                width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
-            },
-            {
                 title: 'Jabatan',
-                dataIndex: 'titleName',
-                key: 'titleName',
+                dataIndex: 'userPositionName',
+                key: 'position',
                 width: '10%',
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
+                sorter: (a, b) => a.userPositionName ? a.userPositionName.localeCompare(b.userPositionName || '') : false,
+                filters: this.state.filterJabatan,
+                filteredValue: filteredInfo.userPositionName || null,
+                onFilter: (value, record) => record.userPositionName ? record.userPositionName.includes(value) : false,
             },
-            {
-                title: 'BOD Group',
-                dataIndex: 'bodGroup',
-                key: 'bodGroup',
-                width: 80,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-                filteredValue: filteredInfo.nama || null,
-            },
-
 
         ];
 

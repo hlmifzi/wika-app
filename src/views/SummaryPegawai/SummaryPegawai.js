@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable';
-import DonutChart from './views/DonutChart';
-import { CardWhiteComponent } from '../../MyComponent/CardCustom/CardComponent'
-import { getDataSummaryOverview, getDataSummary } from './endpoint/SummaryOverview';
+import { getDataSummaryOverview, getDataSummary, downloadExcel } from './endpoint/SummaryOverview';
 
 
 
@@ -19,11 +17,28 @@ const SummaryPegawai = () => {
     setdataTable(data)
   }
 
+  const btnDownloadFile = {
+    float: "right",
+    height: "40px",
+    backgroundColor: "#20a8d8",
+    color: "white",
+    textAlign: "center",
+    padding: "8px",
+    borderRadius: "4px",
+    cursor: "pointer",
+    marginRight: "8px"
+  }
+
   const getSummary = async () => {
     let { data } = await getDataSummary()
     if (!data) return
     setDataSummary(data)
   }
+
+  const downloadFile = async () => {
+    downloadExcel()
+  }
+
 
   useEffect(() => {
     getDataOverview()
@@ -32,6 +47,9 @@ const SummaryPegawai = () => {
 
   return (
     <div className="animated fadeIn">
+      <Row>
+        <button className="float-r" style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Export Summary Pegawai</button>
+      </Row>
 
       {dataTable.length > 0 && dataTable.map(data =>
         (
