@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'reinspect'
 import { Button, Label, Input, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
 import { Form, DatePicker } from 'antd'
 import ReportMutasiPromosiTable from './views/ReportMutasiPromosiTable'
-import { getTypeMutation, getFilterMutation } from './endpoint/mutationUserEndpoint'
+import { getTypeMutation, getFilterMutation, downloadExcel } from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
 
 const { RangePicker } = DatePicker;
@@ -13,45 +14,35 @@ const dateFormat = 'MM-DD-YYYY';
 const ReportMutasiPromosiPegawai = ({ match }) => {
     const [dataPegawai, setDataPegawai] = useState([])
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
+    const [type, setType] = useState("")
     const [filter, setFilter] = useState({ dateFrom: '', dateTo: '', typeMutationId: '' }, 'filter')
-    const { register, handleSubmit, watch } = useForm();    
-
-    // const getData = () => {
-    //     setDataPegawai([
-    //         {
-    //             key: '1',
-    //             nip: 2019012,
-    //             name: 'cohn Brown',
-    //             statusPegawai: 'Organik',
-    //             fieldFunction: 'ENGINEERING',
-    //             titleName: 'AHLI UTAMA 1',
-    //             bodGroup: 'LRT',
-    //         },
-    //         {
-    //             key: '2',
-    //             nip: 2019012,
-    //             name: 'cohn Brown',
-    //             statusPegawai: 'Organik',
-    //             fieldFunction: 'ENGINEERING',
-    //             titleName: 'AHLI UTAMA 1',
-    //             bodGroup: 'LRT',
-    //         },
-    //     ])
-    // }
+    const { register, handleSubmit, watch } = useForm();
 
     const getData = async () => {
         let datas;
         let { data } = await getFilterMutation(filter)
         setDataPegawai(data)
-      }
+    }
 
-    const getDataTipeMutasi = async() => {
-      let { data } = await getTypeMutation()
-      setDataTipeMutasi(data)
+    const getDataTipeMutasi = async () => {
+        let { data } = await getTypeMutation()
+        setDataTipeMutasi(data)
     }
 
     const saveFilterToBeSent = () => {
-        setFilter({dateFrom: filter.dateFrom, dateTo: filter.dateTo})
+        let typeMutation
+        if (type == 1) {
+            typeMutation = 'MUTASI JABATAN'
+        } else if (type == 2) {
+            typeMutation = 'PROMOSI JABATAN'
+        } else if (type == 3) {
+            typeMutation = 'PROMOSI STATUS'
+        } else if (type == 4) {
+            typeMutation = 'MUTASI NON AKTIF'
+        } else if (type == 5) {
+            typeMutation = 'RANGKAPAN'
+        }
+        setFilter({ dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutation })
     }
 
     const saveFilter = () => {
@@ -64,7 +55,15 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
     }, [])
 
     function onChange(value, dateString) {
-        setFilter({dateFrom: dateString[0], dateTo: dateString[1], typeMutationId: ''})
+        setFilter({ dateFrom: dateString[0], dateTo: dateString[1], typeMutationId: '' })
+    }
+
+    const chooseTypeValue = (e) => {
+        setType(e.target.value)
+    }
+
+    const downloadFile = async () => {
+        downloadExcel()
     }
 
     const tipeMutasiTerpilih = watch("typeMutationId");
@@ -80,7 +79,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
                         <CardBody>
                             <div className="row">
                                 <div className="col-sm-4 mb-form">
-                                <Label>Pilih Tanggal</Label>
+                                    <Label>Pilih Tanggal</Label>
                                     <RangePicker
                                         format={dateFormat}
                                         onChange={onChange}
@@ -88,11 +87,12 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
                                 </div>
                                 <div>
                                     <Label htmlFor="ccmonth">Pilih Tipe Mutasi</Label>
-                                    <Input type="select" name="typeMutationId" innerRef={register({ required: true })}>
+                                    <Input type="select" name="typeMutationId" innerRef={register({ required: true })} onChange={(e) => chooseTypeValue(e)}>
                                         <option value="">Pilih Tipe Mutasi</option>
+                                        <option value="">Semua Jenis Mutasi</option>
                                         {dataTipeMutasi.map(value => (
                                             <option value={`${value.id}`}>{value.name}</option>
-                                          ))}
+                                        ))}
                                     </Input>
                                 </div>
                             </div>
@@ -104,6 +104,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
             <Card>
                 <CardHeader>
                     <i className="fa fa-users"></i> Daftar Seluruh Karyawan
+                    <button style={btnDownloadFile} onClick={() => downloadFile()}> <i class="fa fa-file"></i>&nbsp;Download User</button>
                 </CardHeader>
                 <CardBody>
                     <ReportMutasiPromosiTable data={dataPegawai} />
@@ -112,6 +113,20 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
         </div>
     )
 }
+
+
+const btnDownloadFile = {
+    float: "right",
+    height: "40px",
+    backgroundColor: "#20a8d8",
+    color: "white",
+    textAlign: "center",
+    padding: "8px",
+    borderRadius: "4px",
+    cursor: "pointer",
+    marginRight: "8px"
+}
+
 
 
 export default ReportMutasiPromosiPegawai

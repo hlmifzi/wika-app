@@ -65,7 +65,31 @@ const InputMutasiPromosiPegawai = (props) => {
     })
     const onSubmit = async (data) => {
 
-        const payloadSend = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
+        const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
+        const payloadSend = payloadRemoveField.map((v, i) => {
+            let res = {
+                typeMutation: v.typeMutation,
+                kindMutation: v.kindMutation,
+                workUnitId: parseInt(v.workUnitId),
+                positionId: parseInt(v.positionId),
+                fieldFunctionId: parseInt(v.fieldFunctionId),
+                gradeId: parseInt(v.gradeId),
+                userId: parseInt(v.userId),
+                validDate: v.validDate,
+                employeeStatus: v.employeeStatus,
+                titleName: v.titleName,
+                notes: v.notes,
+                employeeStatus: v.employeeStatus,
+                titleName: v.titleName
+            }
+
+            const addResRangkapan = {
+                userPositionId: parseInt(v.userPositionId),
+            }
+            if (v.typeMutation === 'RANGKAPAN') return { ...res, addResRangkapan }
+
+            return res
+        })
 
         Swal.fire({
             title: 'Apakah Kamu Yakin?',
@@ -76,7 +100,7 @@ const InputMutasiPromosiPegawai = (props) => {
             cancelButtonText: 'Tidak, Batalkan '
         }).then((result) => {
             if (result.value) {
-                storeMutationMultiple(getPayload())
+                storeMutationMultiple(payloadSend)
 
                 Swal.fire(
                     'Simpan!',

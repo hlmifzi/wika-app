@@ -78,9 +78,9 @@ const ListPegawai = ({ match }) => {
           <Card>
             <CardHeader>
               <i className="fa fa-users"></i> Daftar Seluruh Karyawan {`${filter.type} ${filter.field}`}
-              <input type="file" id="input" onChange={(e) => importFile(e.target.files)} style={{float:"right", display: "none"}}/>
+              <input type="file" id="input" onChange={(e) => importFile(e.target.files)} style={{ float: "right", display: "none" }} />
               <label htmlFor="input" style={btnUploadFile}>Import User</label>
-              <button style={btnDownloadFile} onClick={() => downloadFile()}>Download User</button>
+              <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Download User</button>
             </CardHeader>
             <CardBody>
               <StandardTable data={dataPegawai} isPagination={true} />
