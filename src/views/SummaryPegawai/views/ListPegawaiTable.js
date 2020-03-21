@@ -132,6 +132,13 @@ class ListPegawaiTable extends React.Component {
                 sorter: (a, b) => a['MT-JA'].length - b['MT-JA'].length,
             },
             {
+                title: 'KKWT',
+                dataIndex: 'KKWT',
+                key: 'KKWT',
+                width: 100,
+                sorter: (a, b) => a['KKWT'].length - b['KKWT'].length,
+            },
+            {
                 title: 'Jumlah',
                 dataIndex: 'Total',
                 key: 'Total',
