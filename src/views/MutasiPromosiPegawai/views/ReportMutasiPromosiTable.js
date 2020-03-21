@@ -125,6 +125,27 @@ class ReportMutasiPromosiTable extends React.Component {
                 filteredValue: filteredInfo.userPositionName || null,
                 onFilter: (value, record) => record.userPositionName ? record.userPositionName.includes(value) : false,
             },
+            {
+                title: 'Tanggal Resign',
+                dataIndex: 'userOutDate',
+                key: 'userOutDate',
+                width: '15%',
+                sorter: (a, b) => a.userOutDate.localeCompare(b.userOutDate)
+            },
+            {
+                title: 'Tanggal Join',
+                dataIndex: 'userEntryDate',
+                key: 'userEntryDate',
+                width: '15%',
+                sorter: (a, b) => a.userEntryDate.localeCompare(b.userEntryDate)
+            },
+            {
+                title: 'Catatan',
+                dataIndex: 'notes',
+                key: 'notes',
+                width: 200,
+                ...this.getColumnSearchProps('notes'),
+            },
 
         ];
 
