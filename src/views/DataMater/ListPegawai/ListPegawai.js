@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useState } from 'reinspect'
-import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row, Modal, ModalBody } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
 import { getDataFilterPegawai, getDataFilterDashboard, uploadExcel, downloadExcel } from './endpoint/ListPegawaiEndpoint'
 // import readXlsxFile from 'read-excel-file'
@@ -14,6 +14,8 @@ const ListPegawai = ({ match }) => {
   const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
   const [filter, setFilter] = useState({ type: '', field: '' }, 'filter')
   const [objectScheme, setObjectScheme] = useState({})
+  const [showModal, setShowModal] = useState(true)
+  const [selectedFile, setSelectedFile] = useState(null)
 
   const getData = async () => {
     let datas;
@@ -43,6 +45,19 @@ const ListPegawai = ({ match }) => {
     cursor: "pointer"
   }
 
+  const btnSubmit = {
+    height: "40px",
+    backgroundColor: selectedFile ? "green" : "grey",
+    color: "white",
+    textAlign: "center",
+    padding: "8px",
+    borderRadius: "4px",
+    position: "absolute",
+    right: "14px",
+    bottom: "14px",
+    cursor: selectedFile ? "pointer" : "not-allowed"
+  }
+
   const btnDownloadFile = {
     float: "right",
     height: "40px",
@@ -55,14 +70,36 @@ const ListPegawai = ({ match }) => {
     marginRight: "8px"
   }
 
-  const importFile = async (file) => {
+  const importFile = async () => {
     let excel = new FormData();
-    excel.append('attachment', file[0])
+    excel.append('attachment', selectedFile)
     uploadExcel(excel)
+  }
+
+  const selectFile = (file) => {
+    setSelectedFile(file[0])
+    console.log(file[0])
   }
 
   const downloadFile = async () => {
     downloadExcel()
+  }
+
+  const modalStyle = {
+    height: "200px",
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+    padding: "14px"
+  }
+
+  const selectedFileStyle = {
+    width: "300px",
+    marginLeft: "16px",
+    color: "grey",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden"
   }
 
 
@@ -71,15 +108,30 @@ const ListPegawai = ({ match }) => {
     getData()
   }, [match.params.typech, match.params.field])
 
+  useEffect(() => {
+    setSelectedFile(null)
+  }, [showModal])
+
   return (
     <div className="animated fadeIn">
       <Row>
         <Col xl={12}>
           <Card>
+            <Modal isOpen={showModal} toggle={() => setShowModal(!showModal)}>
+              <ModalBody style={modalStyle}>
+                <h2>Import User</h2>
+                <h6>Select file to import user</h6>
+                <div style={{display: "flex", alignItems: "center"}}>
+                  <input type="file" id="input" onChange={(e) => selectFile(e.target.files)} style={{ float: "right", display: "none" }} />
+                  <label htmlFor="input" style={btnUploadFile}>Choose File</label>
+                  { selectedFile && <p style={selectedFileStyle}>{selectedFile.name}</p>}
+                </div>
+                <button style={btnSubmit} onClick={() => importFile()} disabled={!selectedFile}>Submit</button>
+              </ModalBody>
+            </Modal>
             <CardHeader>
               <i className="fa fa-users"></i> Daftar Seluruh Karyawan {`${filter.type} ${filter.field}`}
-              <input type="file" id="input" onChange={(e) => importFile(e.target.files)} style={{ float: "right", display: "none" }} />
-              <label htmlFor="input" style={btnUploadFile}>Import User</label>
+              <button style={btnUploadFile} onClick={() => setShowModal(true)}>Import User</button>
               <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Export User</button>
               <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Export To Template</button>
             </CardHeader>
