@@ -34,7 +34,7 @@ export const Job = ({ children, color, text, data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <b><Label htmlFor="tglMnjbtTtpkn">Tgl Menjabat Ditetapkan :</Label></b>
+                            <b><Label htmlFor="tglMnjbtTtpkn">Tanggal Menjabat Ditetapkan :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.validDateOfOffice ? data.validDateOfOffice : 'Tidak Ada Data'}
@@ -42,7 +42,7 @@ export const Job = ({ children, color, text, data }) => {
                     </FormGroup>
                     <FormGroup row>
                         <Col md="12" xs="12">
-                            <b><Label htmlFor="tglMnjbtBrlku">Tgl Menjabat Berlaku :</Label></b>
+                            <b><Label htmlFor="tglMnjbtBrlku">Tanggal Menjabat Berlaku :</Label></b>
                         </Col>
                         <Col xs="12" md="12">
                             {data.validDateOfOffice ? data.validDateOfOffice : 'Tidak Ada Data'}
