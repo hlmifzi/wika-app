@@ -14,7 +14,7 @@ const ListPegawai = ({ match }) => {
   const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
   const [filter, setFilter] = useState({ type: '', field: '' }, 'filter')
   const [objectScheme, setObjectScheme] = useState({})
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
 
   const getData = async () => {
@@ -78,7 +78,6 @@ const ListPegawai = ({ match }) => {
 
   const selectFile = (file) => {
     setSelectedFile(file[0])
-    console.log(file[0])
   }
 
   const downloadFile = async () => {
