@@ -64,7 +64,7 @@ class Login extends Component {
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="icon-lock"></i>
+                            <i className="fa fa-key"></i>
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input type="password" onChange={(e) => this.setState({ password: e.target.value })} placeholder="Password" autoComplete="current-password" onKeyDown={this._handleKeyDown} />

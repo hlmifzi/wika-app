@@ -18,4 +18,4 @@ export const getFieldFunction = () => clientGet('fieldFunction', {});
 export const getGrade = () => clientGet('grade', {});
 export const getEmployeeStatus = () => clientGet('common/master/employeeStatus', {});
 export const getTitleName = () => clientGet('common/master/titleName', {});
-export const downloadExcel = () => clientPost("user/report/profile", {})
+export const downloadExcel = (params) => clientPost(`mutation/report?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`, {})
