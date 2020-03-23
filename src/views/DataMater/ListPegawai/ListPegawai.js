@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row, Modal, ModalBody } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
-import { getDataFilterPegawai, getDataFilterDashboard, uploadExcel, downloadExcel } from './endpoint/ListPegawaiEndpoint'
+import { getDataFilterPegawai, getDataFilterDashboard, uploadExcel, downloadExcel, downloadExcelTemplate } from './endpoint/ListPegawaiEndpoint'
 // import readXlsxFile from 'read-excel-file'
 
 
@@ -80,6 +80,9 @@ const ListPegawai = ({ match }) => {
     setSelectedFile(file[0])
   }
 
+  const downloadFileTemplate = async () => {
+    downloadExcelTemplate()
+  }
   const downloadFile = async () => {
     downloadExcel()
   }
@@ -120,10 +123,10 @@ const ListPegawai = ({ match }) => {
               <ModalBody style={modalStyle}>
                 <h2>Import User</h2>
                 <h6>Select file to import user</h6>
-                <div style={{display: "flex", alignItems: "center"}}>
+                <div style={{ display: "flex", alignItems: "center" }}>
                   <input type="file" id="input" onChange={(e) => selectFile(e.target.files)} style={{ float: "right", display: "none" }} />
                   <label htmlFor="input" style={btnUploadFile}>Choose File</label>
-                  { selectedFile && <p style={selectedFileStyle}>{selectedFile.name}</p>}
+                  {selectedFile && <p style={selectedFileStyle}>{selectedFile.name}</p>}
                 </div>
                 <button style={btnSubmit} onClick={() => importFile()} disabled={!selectedFile}>Submit</button>
               </ModalBody>
