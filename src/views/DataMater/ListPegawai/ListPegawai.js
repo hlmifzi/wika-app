@@ -134,8 +134,8 @@ const ListPegawai = ({ match }) => {
             <CardHeader>
               <i className="fa fa-users"></i> Daftar Seluruh Karyawan {`${filter.type} ${filter.field}`}
               <button style={btnUploadFile} onClick={() => setShowModal(true)}>Import User</button>
-              <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Export User</button>
-              <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Export To Template</button>
+              <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Download Profile Pegawai</button>
+              <button style={btnDownloadFile} onClick={() => downloadFileTemplate()}><i class="fa fa-file"></i>&nbsp; Download Posisi Pegawai</button>
             </CardHeader>
             <CardBody>
               <StandardTable data={dataPegawai} isPagination={true} />
