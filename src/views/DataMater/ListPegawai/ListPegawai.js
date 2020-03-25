@@ -5,7 +5,7 @@ import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row, Modal, ModalBody } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable'
 import { getDataFilterPegawai, getDataFilterDashboard, uploadExcel, downloadExcel, downloadExcelTemplate } from './endpoint/ListPegawaiEndpoint'
-// import readXlsxFile from 'read-excel-file'
+import NotifSwal from '../../../MyComponent/notification/Swal'
 
 
 const ListPegawai = ({ match }) => {
@@ -73,7 +73,15 @@ const ListPegawai = ({ match }) => {
   const importFile = async () => {
     let excel = new FormData();
     excel.append('attachment', selectedFile)
-    uploadExcel(excel)
+    const { code } = await uploadExcel(excel)
+    if (code === 200) {
+      NotifSwal.successSubmit("Input has been submitted")
+      setShowModal(!showModal)
+    } else {
+      NotifSwal.failed("Gagal impor data user")
+    }
+
+
   }
 
   const selectFile = (file) => {
