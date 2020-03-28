@@ -47,7 +47,9 @@ const SummaryPegawai = () => {
 
   return (
     <div className="animated fadeIn">
-      <button className="float-r" style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Export Summary Pegawai</button>
+      <a href="http://api.dedekrnwan.site/user/report/summary">
+        <button className="float-r" style={btnDownloadFile} ><i class="fa fa-file"></i>&nbsp;Export Summary Pegawai</button>
+      </a>
       {dataTable.length > 0 && dataTable.map(data =>
         (
           <>

@@ -142,8 +142,12 @@ const ListPegawai = ({ match }) => {
             <CardHeader>
               <i className="fa fa-users"></i> Daftar Seluruh Karyawan {`${filter.type} ${filter.field}`}
               <button style={btnUploadFile} onClick={() => setShowModal(true)}>Import User</button>
-              <button style={btnDownloadFile} onClick={() => downloadFile()}><i class="fa fa-file"></i>&nbsp;Download Profile Pegawai</button>
-              <button style={btnDownloadFile} onClick={() => downloadFileTemplate()}><i class="fa fa-file"></i>&nbsp; Download Posisi Pegawai</button>
+              <a href="http://api.dedekrnwan.site/user/report/profile">
+                <button style={btnDownloadFile} ><i class="fa fa-file"></i>&nbsp;Download Profile Pegawai</button>
+              </a>
+              <a href="http://api.dedekrnwan.site/user/template/excel">
+                <button style={btnDownloadFile}><i class="fa fa-file"></i>&nbsp; Download Posisi Pegawai</button><br />
+              </a>
             </CardHeader>
             <CardBody>
               <StandardTable data={dataPegawai} isPagination={true} />
