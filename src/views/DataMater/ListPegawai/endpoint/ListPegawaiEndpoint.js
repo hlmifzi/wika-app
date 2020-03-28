@@ -16,5 +16,5 @@ export const getDataFilterDashboard = (params) => {
 export const getDataGetAllFungsi = () => clientGet(endPointGetAllFungsi, {})
 export const getDataGetAllUnitKerja = () => clientGet('workUnit', {})
 export const uploadExcel = (body) => clientPost(endPointUploadExcel, body)
-export const downloadExcel = () => clientPost('user/report/profile', {})
-export const downloadExcelTemplate = () => clientPost('user/template/excel', {})
+export const downloadExcel = () => clientGet('user/report/profile', {})
+export const downloadExcelTemplate = () => clientGet('user/template/excel', {})
