@@ -145,7 +145,7 @@ const ListPegawai = ({ match }) => {
               <a href="http://api.dedekrnwan.site/user/report/profile">
                 <button style={btnDownloadFile} ><i class="fa fa-file"></i>&nbsp;Download Profile Pegawai</button>
               </a>
-              <a href="http://api.dedekrnwan.site/user/template/excel">
+              <a href="http://api.dedekrnwan.site/user/report/position">
                 <button style={btnDownloadFile}><i class="fa fa-file"></i>&nbsp; Download Posisi Pegawai</button><br />
               </a>
             </CardHeader>
