@@ -64,24 +64,41 @@ const InputMutasiPromosiPegawai = (props) => {
         userPositionId: parseInt(payload.userPositionId)
     })
     const onSubmit = async (data) => {
-
         const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
         const payloadSend = payloadRemoveField.map((v, i) => {
-            let res = {
-                typeMutation: v.typeMutation,
-                kindMutation: v.kindMutation,
-                workUnitId: parseInt(v.workUnitId),
-                positionId: parseInt(v.positionId),
-                fieldFunctionId: parseInt(v.fieldFunctionId),
-                gradeId: parseInt(v.gradeId),
-                userId: parseInt(v.userId),
-                validDate: v.validDate,
-                employeeStatus: v.employeeStatus,
-                titleName: v.titleName,
-                notes: v.notes,
-                employeeStatus: v.employeeStatus,
-                titleName: v.titleName
-            }
+            let res
+            if (v.typeMutation === 'MUTASI JABATAN' || v.typeMutation === 'PROMOSI JABATAN')
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    workUnitId: parseInt(v.workUnitId),
+                    positionId: parseInt(v.positionId),
+                    fieldFunctionId: parseInt(v.fieldFunctionId),
+                    gradeId: parseInt(v.gradeId),
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    titleName: v.titleName,
+                    notes: v.notes,
+                }
+
+            if (v.typeMutation === 'PROMOSI STATUS')
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    employeeStatus: v.employeeStatus,
+                    nip: v.nip,
+                    notes: v.notes,
+                }
+            if (v.typeMutation === 'MUTASI NON AKTIF')
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    notes: v.notes,
+                }
 
             const addResRangkapan = {
                 userPositionId: parseInt(v.userPositionId),
@@ -307,7 +324,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Jabatan"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'positionId', i)}
+                                    onChange={value => _handleSelectInputHelper(value, 'titleName', i)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
@@ -512,7 +529,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 style={{ width: "100%" }}
                                                                 placeholder="Pilih Jabatan"
                                                                 optionFilterProp="children"
-                                                                onChange={value => _handleSelectInputHelper(value, 'positionId', i)}
+                                                                onChange={value => _handleSelectInputHelper(value, 'titleName', i)}
                                                                 filterOption={(input, option) =>
                                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                                 }
@@ -669,7 +686,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 style={{ width: "100%" }}
                                                                 placeholder="Pilih Jabatan"
                                                                 optionFilterProp="children"
-                                                                onChange={value => _handleSelectInputHelper(value, 'positionId', i)}
+                                                                onChange={value => _handleSelectInputHelper(value, 'titleName', i)}
                                                                 filterOption={(input, option) =>
                                                                     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                                                 }
@@ -797,7 +814,12 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
+                                                    <Col xs="4">
+                                                        <Label htmlFor="ccmonth">NIP</Label>
+                                                        <Input type="text" name="nip" onChange={(e) => _handleSelectInputNotesHelper(e, i)} id="exampleText" innerRef={register({ required: true })} />
+                                                    </Col>
                                                 </Row>
+
                                                 <Row>
                                                     <Col xs="12">
                                                         <Label htmlFor="ccmonth">Deskripsi</Label>
