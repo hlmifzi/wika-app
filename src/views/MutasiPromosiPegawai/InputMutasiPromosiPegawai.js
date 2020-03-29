@@ -197,14 +197,11 @@ const InputMutasiPromosiPegawai = (props) => {
     const _handleSelectInputHelper = (value, name, i) => {
         immerSetState(draft => {
             if (name !== "employeeStatus" && name !== "titleName") {
-                console.log("_handleSelectInputHelper -> name", name)
-                console.log("_handleSelectInputHelper -> value", value)
                 draft[i][name] = parseInt(value)
             } else {
                 draft[i][name] = value
             }
         })
-        console.log("_handleSelectInputHelper -> payload", payload)
     }
 
     const _handleSelectInputTextHelper = (value, name, i) => {
