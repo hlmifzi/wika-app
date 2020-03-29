@@ -38,7 +38,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
-    const [payload, setPayload] = useState(initialValuesInput)
+    const [payload, setPayload] = useState(initialValuesInput, "payload")
 
     const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
 
@@ -66,6 +66,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const onSubmit = async (data) => {
         const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
         const payloadSend = payloadRemoveField.map((v, i) => {
+            console.log("onSubmit -> v", v)
             let res
             if (v.typeMutation === 'MUTASI JABATAN' || v.typeMutation === 'PROMOSI JABATAN')
                 res = {
@@ -82,15 +83,16 @@ const InputMutasiPromosiPegawai = (props) => {
                 }
 
             if (v.typeMutation === 'PROMOSI STATUS')
-                res = {
-                    typeMutation: v.typeMutation,
-                    kindMutation: v.kindMutation,
-                    userId: parseInt(v.userId),
-                    validDate: v.validDate,
-                    employeeStatus: v.employeeStatus,
-                    nip: v.nip,
-                    notes: v.notes,
-                }
+                console.log("onSubmit -> v.employeeStatus", v.employeeStatus)
+            res = {
+                typeMutation: v.typeMutation,
+                kindMutation: v.kindMutation,
+                userId: parseInt(v.userId),
+                validDate: v.validDate,
+                employeeStatus: v.employeeStatus,
+                nip: v.nip,
+                notes: v.notes,
+            }
             if (v.typeMutation === 'MUTASI NON AKTIF')
                 res = {
                     typeMutation: v.typeMutation,
@@ -194,8 +196,15 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const _handleSelectInputHelper = (value, name, i) => {
         immerSetState(draft => {
-            draft[i][name] = parseInt(value)
+            if (name !== "employeeStatus" && name !== "titleName") {
+                console.log("_handleSelectInputHelper -> name", name)
+                console.log("_handleSelectInputHelper -> value", value)
+                draft[i][name] = parseInt(value)
+            } else {
+                draft[i][name] = value
+            }
         })
+        console.log("_handleSelectInputHelper -> payload", payload)
     }
 
     const _handleSelectInputTextHelper = (value, name, i) => {
