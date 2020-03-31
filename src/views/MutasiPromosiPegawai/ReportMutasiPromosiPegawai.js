@@ -19,7 +19,6 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
     const { register, handleSubmit, watch } = useForm();
 
     const getData = async () => {
-        let datas;
         let { data } = await getFilterMutation(filter)
         setDataPegawai(data)
     }
@@ -29,24 +28,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
         setDataTipeMutasi(data)
     }
 
-    const saveFilterToBeSent = () => {
-        let typeMutation
-        if (type == 1) {
-            typeMutation = 'MUTASI JABATAN'
-        } else if (type == 2) {
-            typeMutation = 'PROMOSI JABATAN'
-        } else if (type == 3) {
-            typeMutation = 'PROMOSI STATUS'
-        } else if (type == 4) {
-            typeMutation = 'MUTASI NON AKTIF'
-        } else if (type == 5) {
-            typeMutation = 'RANGKAPAN'
-        }
-        setFilter({ dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutation })
-    }
-
     const saveFilter = () => {
-        saveFilterToBeSent()
         getData()
     }
 
@@ -59,14 +41,25 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
     }
 
     const chooseTypeValue = (e) => {
-        setType(e.target.value)
+        let typeMutation
+        const type = e.target.value
+        if (type == 1) {
+            typeMutation = 'MUTASI JABATAN'
+        } else if (type == 2) {
+            typeMutation = 'PROMOSI JABATAN'
+        } else if (type == 3) {
+            typeMutation = 'PROMOSI STATUS'
+        } else if (type == 4) {
+            typeMutation = 'MUTASI NON AKTIF'
+        } else if (type == 5) {
+            typeMutation = 'RANGKAPAN'
+        }
+        setFilter({ dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutationId: typeMutation })
     }
 
     const downloadFile = async () => {
         downloadExcel()
     }
-
-    const tipeMutasiTerpilih = watch("typeMutationId");
 
     return (
         <div className="animated fadeIn">
