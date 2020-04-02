@@ -140,6 +140,14 @@ class ReportMutasiPromosiTable extends React.Component {
                 sorter: (a, b) => a.validDate.localeCompare(b.validDate)
             },
             {
+                title: 'Tanggal Resign',
+                dataIndex: 'userOutDate',
+                key: 'userOutDate',
+                width: '15%',
+                sorter: (a, b) => a.userOutDate.localeCompare(b.userOutDate)
+            },
+
+            {
                 title: 'Tanggal Join',
                 dataIndex: 'userEntryDate',
                 key: 'userEntryDate',
