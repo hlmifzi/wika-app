@@ -55,8 +55,8 @@ const SummaryPegawai = () => {
             <button className="float-r" style={btnDownloadFile} ><i className="fa fa-file"></i>&nbsp;Export Summary Pegawai</button>
           </a>
         </Col>
-        <Col xl={2}>
-          <Card style={{ minHeight: "80px", maxWidth: "200px", position: "relative" }}>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
 </p>
@@ -71,8 +71,8 @@ const SummaryPegawai = () => {
             </span>
           </Card>
         </Col>
-        <Col xl={2}>
-          <Card style={{ minHeight: "80px", maxWidth: "200px", position: "relative" }}>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
 </p>
@@ -87,8 +87,8 @@ const SummaryPegawai = () => {
             </span>
           </Card>
         </Col>
-        <Col xl={2}>
-          <Card style={{ minHeight: "80px", maxWidth: "200px", position: "relative" }}>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
 </p>
@@ -103,8 +103,8 @@ const SummaryPegawai = () => {
             </span>
           </Card>
         </Col>
-        <Col xl={2}>
-          <Card style={{ minHeight: "80px", maxWidth: "200px", position: "relative" }}>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
 </p>
@@ -119,8 +119,8 @@ const SummaryPegawai = () => {
             </span>
           </Card>
         </Col>
-        <Col xl={2}>
-          <Card style={{ minHeight: "80px", maxWidth: "200px", position: "relative" }}>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
             </p>
@@ -131,12 +131,12 @@ const SummaryPegawai = () => {
               {dataTablePerdepartemen[`MT-JA`]}
             </p>
             <span style={iconStyle}>
-              <i className="fa fa-users" style={{ fontSize: "20px", color: "white" }}></i>
+              <i className="fa fa-users" style={{ fontSize: "2100%px", color: "white" }}></i>
             </span>
           </Card>
         </Col>
-        <Col xl={2}>
-          <Card style={{ minHeight: "80px", maxWidth: "200px", position: "relative" }}>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
 </p>
@@ -152,6 +152,8 @@ const SummaryPegawai = () => {
           </Card>
         </Col>
       </Row>
+
+      <hr></hr>
 
       {dataTable.length > 0 && dataTable.map(data =>
         (
