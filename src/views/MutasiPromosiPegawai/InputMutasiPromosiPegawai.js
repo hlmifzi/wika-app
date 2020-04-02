@@ -65,6 +65,7 @@ const InputMutasiPromosiPegawai = (props) => {
     })
     const onSubmit = async (data) => {
         const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
+        console.log("onSubmit -> payloadRemoveField", payloadRemoveField)
         const payloadSend = payloadRemoveField.map((v, i) => {
             console.log("onSubmit -> v", v)
             let res
@@ -83,16 +84,15 @@ const InputMutasiPromosiPegawai = (props) => {
                 }
 
             if (v.typeMutation === 'PROMOSI STATUS')
-                console.log("onSubmit -> v.employeeStatus", v.employeeStatus)
-            res = {
-                typeMutation: v.typeMutation,
-                kindMutation: v.kindMutation,
-                userId: parseInt(v.userId),
-                validDate: v.validDate,
-                employeeStatus: v.employeeStatus,
-                nip: v.nip,
-                notes: v.notes,
-            }
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    employeeStatus: v.employeeStatus,
+                    nip: v.nip,
+                    notes: v.notes,
+                }
             if (v.typeMutation === 'MUTASI NON AKTIF')
                 res = {
                     typeMutation: v.typeMutation,
@@ -106,6 +106,8 @@ const InputMutasiPromosiPegawai = (props) => {
                 userPositionId: parseInt(v.userPositionId),
             }
             if (v.typeMutation === 'RANGKAPAN') return { ...res, addResRangkapan }
+            console.log("if -> v.typeMutation", v.typeMutation)
+            console.log("onSubmit -> res", res)
 
             return res
         })
@@ -119,13 +121,24 @@ const InputMutasiPromosiPegawai = (props) => {
             cancelButtonText: 'Tidak, Batalkan '
         }).then((result) => {
             if (result.value) {
-                storeMutationMultiple(payloadSend)
+                const { code } = storeMutationMultiple(payloadSend)
+                if (code > 201) {
+                    Swal.fire(
+                        'Batalkan',
+                        'Batalkan Input Mutasi Promosi',
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        'Simpan!',
+                        'Sukses Simpan Mutasi Promosi.',
+                        'success'
+                    )
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 2000)
+                }
 
-                Swal.fire(
-                    'Simpan!',
-                    'Sukses Simpan Mutasi Promosi.',
-                    'success'
-                )
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Batalkan',
@@ -134,8 +147,6 @@ const InputMutasiPromosiPegawai = (props) => {
                 )
             }
         })
-        // NotifSwal.successSubmit("Input has been submitted")
-        // window.location.reload()
     }
 
 
@@ -256,6 +267,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const getGradeId = async () => {
         let { data } = await getGrade()
+        console.log("getGradeId -> data", data)
         if (!data) return
         setDataGrade(data)
     }
