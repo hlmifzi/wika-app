@@ -8,7 +8,7 @@ export const storeMutation = payload => clientPost('mutation', payload)
 export const storeMutationMultiple = payload => clientPost('mutation/store_multiple', payload)
 
 export const getFilterMutation = (params) => {
-    let url = `mutation?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`
+    let url = `mutation?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}&typeMutation=${params.typeMutation}`
     return clientGet(url, {})
 }
 

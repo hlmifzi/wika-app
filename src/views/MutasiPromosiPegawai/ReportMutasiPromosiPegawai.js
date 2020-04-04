@@ -15,10 +15,11 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
     const [dataPegawai, setDataPegawai] = useState([])
     const [dataTipeMutasi, setDataTipeMutasi] = useState([], 'dataTipeMutasi')
     const [type, setType] = useState("")
-    const [filter, setFilter] = useState({ dateFrom: '', dateTo: '', typeMutationId: '' }, 'filter')
+    const [filter, setFilter] = useState({ dateFrom: '', dateTo: '', typeMutation: '' }, 'filter')
     const { register, handleSubmit, watch } = useForm();
 
     const getData = async () => {
+        console.log("getData -> filter", filter)
         let { data } = await getFilterMutation(filter)
         setDataPegawai(data)
     }
@@ -37,7 +38,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
     }, [])
 
     function onChange(value, dateString) {
-        setFilter({ dateFrom: dateString[0], dateTo: dateString[1], typeMutationId: '' })
+        setFilter({ ...filter, dateFrom: dateString[0], dateTo: dateString[1] })
     }
 
     const chooseTypeValue = (e) => {
@@ -54,7 +55,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
         } else if (type == 5) {
             typeMutation = 'RANGKAPAN'
         }
-        setFilter({ dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutationId: typeMutation })
+        setFilter({ ...filter, dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutation: typeMutation })
     }
 
     const downloadFile = async () => {
@@ -80,7 +81,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
                                 </div>
                                 <div>
                                     <Label htmlFor="ccmonth">Pilih Tipe Mutasi</Label>
-                                    <Input type="select" name="typeMutationId" innerRef={register({ required: true })} onChange={(e) => chooseTypeValue(e)}>
+                                    <Input type="select" name="typeMutation" innerRef={register({ required: true })} onChange={(e) => chooseTypeValue(e)}>
                                         <option value="">Pilih Tipe Mutasi</option>
                                         <option value="">Semua Jenis Mutasi</option>
                                         {dataTipeMutasi.map(value => (
