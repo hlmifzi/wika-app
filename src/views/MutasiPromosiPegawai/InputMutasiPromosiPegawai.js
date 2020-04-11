@@ -309,7 +309,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                 }
                             </div>
                         </Col>
-                        <Col xs="4">
+                        <Col xs="12">
                             <FormGroup>
                                 <Label htmlFor="ccmonth">Unit Kerja</Label>
                                 <Select
@@ -513,7 +513,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col xs="4">
+                                                    <Col xs="12">
                                                         <FormGroup>
                                                             <Label htmlFor="ccmonth">Unit Kerja</Label>
                                                             <Select
@@ -670,7 +670,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                    <Col xs="4">
+                                                    <Col xs="12">
                                                         <FormGroup>
                                                             <Label htmlFor="ccmonth">Unit Kerja</Label>
                                                             <Select
