@@ -30,7 +30,7 @@ const FileManager = () => {
                         </Button>
                         </Link>
                     </Col>
-                    <Col xs="12" lg="12">
+                    <Col xs="12" lg="12" className="mt-10">
                         <StandardTable data={dataDocument} />
                     </Col>
                 </Row>
