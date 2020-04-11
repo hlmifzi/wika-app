@@ -5,7 +5,7 @@ import { Col, Row, Badge, Label, Input, Button, Table, FormGroup, InputGroup, In
 import WidgetCustom from '../Widgets/WidgetCustom';
 import { CardWhiteComponent, CardWithCustom } from '../../MyComponent/CardCustom/CardComponent'
 import { getFileManager } from './endpoint/FileManagerEndpoint'
-
+import StandardTable from './views/ListFileTable'
 
 const FileManager = () => {
 
@@ -43,7 +43,8 @@ const FileManager = () => {
                         </FormGroup>
                     </Col>
                     <Col xs="12" lg="12">
-                        <Table responsive style={{ fontSize: '.9em' }}>
+                        <StandardTable data={dataDocument} />
+                        {/* <Table responsive style={{ fontSize: '.9em' }}>
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -75,18 +76,13 @@ const FileManager = () => {
                                                             <i className="fa fa-print"></i>
                                                         </Button>
                                                     </a>&nbsp;
-                                                    <Link to={`/file-manager/form/${v.id}`} >
-                                                        <Button color="warning">
-                                                            <i className="fa fa-edit"></i>
-                                                        </Button>
-                                                    </Link>
                                                 </td>
                                             </tr>
                                         )
                                     })
                                 }
                             </tbody>
-                        </Table>
+                        </Table> */}
                     </Col>
                 </Row>
             </CardWithCustom>
