@@ -5,7 +5,8 @@ import { Form, DatePicker } from 'antd'
 import ReportMutasiPromosiTable from './views/ReportMutasiPromosiTable'
 import { getTypeMutation, getFilterMutation, downloadExcel } from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
-
+import { urlBackend } from '../../MyServices/api/URLApi'
+import { string } from 'prop-types'
 const { RangePicker } = DatePicker;
 
 const dateFormat = 'MM-DD-YYYY';
@@ -19,9 +20,14 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
     const { register, handleSubmit, watch } = useForm();
 
     const getData = async () => {
-        console.log("getData -> filter", filter)
-        let { data } = await getFilterMutation(filter)
+        let { data } = await getFilterMutation(query())
         setDataPegawai(data)
+    }
+
+    const query = () => {
+        let paramsTypeMutation = filter.typeMutation !== "" ? `&typeMutation=${filter.typeMutation.replace('%20', " ")}` : ``
+        if (filter.typeMutation === "semua") paramsTypeMutation = `&typeMutation=""`
+        return `?dateFrom=${filter.dateFrom}&dateTo=${filter.dateTo}${paramsTypeMutation}`
     }
 
     const getDataTipeMutasi = async () => {
@@ -54,8 +60,10 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
             typeMutation = 'MUTASI NON AKTIF'
         } else if (type == 5) {
             typeMutation = 'RANGKAPAN'
+        } else if (type == "semua") {
+            typeMutation = 'semua'
         }
-        setFilter({ ...filter, dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutation: typeMutation })
+        setFilter({ ...filter, dateFrom: filter.dateFrom, dateTo: filter.dateTo, typeMutation: `${typeMutation}` })
     }
 
     const downloadFile = async () => {
@@ -73,7 +81,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
                         <CardBody>
                             <div className="row">
                                 <div className="col-sm-4 mb-form">
-                                    <Label>Pilih Tanggal</Label>
+                                    <Label>Pilih Tanggal</Label><br />
                                     <RangePicker
                                         format={dateFormat}
                                         onChange={onChange}
@@ -83,7 +91,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
                                     <Label htmlFor="ccmonth">Pilih Tipe Mutasi</Label>
                                     <Input type="select" name="typeMutation" innerRef={register({ required: true })} onChange={(e) => chooseTypeValue(e)}>
                                         <option value="">Pilih Tipe Mutasi</option>
-                                        <option value="">Semua Jenis Mutasi</option>
+                                        <option value="semua">Semua Jenis Mutasi</option>
                                         {dataTipeMutasi.map(value => (
                                             <option value={`${value.id}`}>{value.name}</option>
                                         ))}
@@ -100,7 +108,9 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
             <Card>
                 <CardHeader>
                     <i className="fa fa-users"></i> Daftar Seluruh Karyawan
-                    <button style={btnDownloadFile} onClick={() => downloadFile()}> <i class="fa fa-file"></i>&nbsp;Download Report Mutasi</button>
+                    <a target="_blank" href={`${urlBackend}mutation/report/${query()}`}>
+                        <button style={btnDownloadFile}> <i class="fa fa-file"></i>&nbsp;Download Report Mutasi</button>
+                    </a>
                 </CardHeader>
                 <CardBody>
                     <ReportMutasiPromosiTable data={dataPegawai} />

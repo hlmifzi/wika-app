@@ -69,7 +69,6 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const { register, handleSubmit, watch } = useForm();
     const onSubmit = async (data) => {
-        console.log("TCL: onSubmit -> data", data)
 
         Swal.fire({
             title: 'Are you sure?',
@@ -239,7 +238,6 @@ const InputMutasiPromosiPegawai = (props) => {
     }, [])
 
 
-    console.log("TCL: InputMutasiPromosiPegawai -> payload", payload)
     return (
         <div className="animated fadeIn">
             <form onSubmit={handleSubmit(() => onSubmit(payload))}>

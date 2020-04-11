@@ -159,7 +159,7 @@ class ReportMutasiPromosiTable extends React.Component {
                 dataIndex: 'notes',
                 key: 'notes',
                 width: 200,
-                ...this.getColumnSearchProps('notes'),
+                // ...this.getColumnSearchProps('notes'),
             },
 
         ];

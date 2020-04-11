@@ -21,11 +21,6 @@ function useFormHelper() {
     })
   }
   const _handleOnChangeSelectArray = (value) => {
-    // console.log("TCL: _handleOnChangeSelectArray -> name", name)
-    console.log("TCL: _handleOnChangeSelectArray -> value", value)
-    // immerSetState(draft => {
-    //   draft[i][name] = value
-    // })
   }
 
   return {

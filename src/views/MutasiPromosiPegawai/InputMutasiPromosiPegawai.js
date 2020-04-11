@@ -65,9 +65,7 @@ const InputMutasiPromosiPegawai = (props) => {
     })
     const onSubmit = async (data) => {
         const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
-        console.log("onSubmit -> payloadRemoveField", payloadRemoveField)
         const payloadSend = payloadRemoveField.map((v, i) => {
-            console.log("onSubmit -> v", v)
             let res
             if (v.typeMutation === 'MUTASI JABATAN' || v.typeMutation === 'PROMOSI JABATAN')
                 res = {
@@ -106,8 +104,6 @@ const InputMutasiPromosiPegawai = (props) => {
                 userPositionId: parseInt(v.userPositionId),
             }
             if (v.typeMutation === 'RANGKAPAN') return { ...res, addResRangkapan }
-            console.log("if -> v.typeMutation", v.typeMutation)
-            console.log("onSubmit -> res", res)
 
             return res
         })
@@ -194,7 +190,6 @@ const InputMutasiPromosiPegawai = (props) => {
     const handleDeselectEmployee = (value) => {
         const sisaPayloadAfterRemove = payload.filter(v => v.userId !== parseInt(value))
         setPayload(sisaPayloadAfterRemove)
-        console.log("handleDeselectEmployee -> payload.length", payload.length)
         if (payload.length > 1) {
             immerSetState(draft => {
                 draft[0]['isCancelEmployee'] = true
@@ -267,7 +262,6 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const getGradeId = async () => {
         let { data } = await getGrade()
-        console.log("getGradeId -> data", data)
         if (!data) return
         setDataGrade(data)
     }
