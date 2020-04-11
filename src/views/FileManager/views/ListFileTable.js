@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { getDataGetAllFungsi, getDataFilterJabatan } from '../../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
+import { urlBackend } from '../../../MyServices/api/URLApi'
 
 class ListFileTable extends React.Component {
     state = {
@@ -78,7 +79,7 @@ class ListFileTable extends React.Component {
         },
         render: (text, value) => {
             return (
-                <a href={`/#/karyawan/${value.key}`}>
+                <a href={`${urlBackend}${value.url}`}>
                     <Highlighter
                         highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
                         searchWords={[this.state.searchText]}
@@ -111,29 +112,30 @@ class ListFileTable extends React.Component {
         const columns = [
             {
                 title: 'Type',
-                dataIndex: 'type',
-                key: 'type',
+                dataIndex: 'category',
+                key: 'category',
                 filters: [
                     { text: 'Asuransi', value: 'asuransi' },
                     { text: 'Pengumuman', value: 'pengumuman' },
                     { text: 'SK', value: 'sk' },
                     { text: 'Pengembangan', value: 'pengembangan' },
                 ],
-                filteredValue: filteredInfo.status || null,
-                onFilter: (value, record) => record.status.includes(value),
+                filteredValue: filteredInfo.category || null,
+                onFilter: (value, record) => record.category.includes(value),
                 width: 200,
 
             },
             {
                 title: 'Judul',
-                dataIndex: 'judul',
-                key: 'judul',
-                width: 300
+                dataIndex: 'title',
+                key: 'title',
+                width: 300,
+                ...this.getColumnSearchProps('title'),
             },
             {
                 title: 'Deskripsi',
-                dataIndex: 'deskripsi',
-                key: 'deskripsi',
+                dataIndex: 'description',
+                key: 'description',
                 width: 300
             },
             {
@@ -145,7 +147,7 @@ class ListFileTable extends React.Component {
             {
                 title: 'Action',
                 width: 150,
-                render: (text, value) => 
+                render: (text, value) =>
                     <Link to={`/file-manager/form/${value.id}`} >
                         <Button color="warning">
                             <i className="fa fa-edit"></i>

@@ -2,7 +2,7 @@ import axios from 'axios';
 // import axiosRetry from 'axios-retry';
 import NotifSwal from '../../MyComponent/notification/Swal'
 
-const urlBackend = 'http://api.dedekrnwan.site/'
+export const urlBackend = 'http://api.dedekrnwan.site/'
 
 const ROOT_API = axios.create({
    baseURL: urlBackend,
