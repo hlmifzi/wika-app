@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'reinspect'
 import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
 import { uploadFile } from '../endpoint/FileManagerEndpoint'
 import Dropzone from 'react-dropzone'
 import '../style/style.css'
+import { getFileManagementById } from '../endpoint/FileManagerEndpoint'
 
 const dateFormat = 'YYYY/MM/DD';
 
@@ -46,6 +47,22 @@ const InputMutasiPromosiPegawai = props => {
         await uploadFile(body)
     }
 
+    const getFileManagement = async (id) => {
+        let { data } = await getFileManagementById(id)
+        if(data){
+            setCategory(data.category)
+            setDescription(data.description)
+            setStatus(data.status)
+            setTitle(data.title)
+        }
+    }
+
+    useEffect(() => {
+        if(props.match.params.id){
+            getFileManagement(props.match.params.id)
+        }
+    },[])
+
     return (
         <div className="animated fadeIn">
             <Row>
@@ -59,7 +76,7 @@ const InputMutasiPromosiPegawai = props => {
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Jenis Kategori File</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" name="category"  onChange={(e) => onChangeCategory(e)} required>
+                                        <Input type="select" name="ccmonth" id="tenantFrom" name="category" value={category} onChange={(e) => onChangeCategory(e)} required>
                                             <option value="0"> Pilih Kategori File</option>
                                             <option value="Asuransi"> Asuransi</option>
                                             <option value="Pengumuman"> Pengumuman</option>
@@ -73,7 +90,7 @@ const InputMutasiPromosiPegawai = props => {
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Status</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" name="status" onChange={(e) => onChangeStatus(e)} required>
+                                        <Input type="select" name="ccmonth" id="tenantFrom" name="status" value={status} onChange={(e) => onChangeStatus(e)} required>
                                             <option value="0"> Pilih Status</option>
                                             <option value="active"> Active</option>
                                             <option value="inactive"> Inactive</option>
@@ -85,14 +102,14 @@ const InputMutasiPromosiPegawai = props => {
                                 <Col xs="4">
                                     <FormGroup>
                                         <Label htmlFor="ccmonth">Title</Label>
-                                        <Input type="text" name="title" id="tenantFrom" onChange={(e) => onChangeTitle(e)} required />
+                                        <Input type="text" name="title" id="tenantFrom" value={title} onChange={(e) => onChangeTitle(e)} required />
                                     </FormGroup>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs="12">
                                     <Label htmlFor="ccmonth">Deskripsi</Label>
-                                    <Input type="textarea" name="description" id="exampleText" onChange={(e) => onChangeDescription(e)} />
+                                    <Input type="textarea" name="description" id="exampleText" value={description} onChange={(e) => onChangeDescription(e)} />
                                 </Col>
                             </Row><br />
                             <Row>
