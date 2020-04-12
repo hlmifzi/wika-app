@@ -49,7 +49,6 @@ const InputMutasiPromosiPegawai = props => {
 
     const getFileManagement = async (id) => {
         let { data } = await getFileManagementById(id)
-        console.log(data)
         if(data){
             setCategory(data.category)
             setDescription(data.description)
