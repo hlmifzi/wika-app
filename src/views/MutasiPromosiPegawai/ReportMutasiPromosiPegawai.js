@@ -26,7 +26,7 @@ const ReportMutasiPromosiPegawai = ({ match }) => {
 
     const query = () => {
         let paramsTypeMutation = filter.typeMutation !== "" ? `&typeMutation=${filter.typeMutation.replace('%20', " ")}` : ``
-        if (filter.typeMutation === "semua") paramsTypeMutation = `&typeMutation=""`
+        if (filter.typeMutation === "semua") paramsTypeMutation = ``
         return `?dateFrom=${filter.dateFrom}&dateTo=${filter.dateTo}${paramsTypeMutation}`
     }
 
