@@ -13,7 +13,8 @@ import {
     getFieldFunction,
     getGrade,
     getTitleName,
-    getEmployeeStatus
+    getEmployeeStatus,
+    getBodGroup
 } from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
 import { getDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
@@ -35,6 +36,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataFungsiBidang, setDataFungsiBidang] = useState([], "dataFungsiBidang");
     const [dataGrade, setDataGrade] = useState([], "dataGrade");
     const [dataJabatan, setDataJabatan] = useState([], "dataJabatan");
+    const [dataBodGroup, setDataBodGroup] = useState([], "dataBodGroup");
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
@@ -253,6 +255,11 @@ const InputMutasiPromosiPegawai = (props) => {
         if (!data) return
         setDataPosisi(data)
     }
+    const _handeGetBodGroup = async () => {
+        let { data } = await getBodGroup()
+        if (!data) return
+        setDataBodGroup(data)
+    }
 
     const getFungsiBidang = async () => {
         let { data } = await getFieldFunction()
@@ -287,6 +294,7 @@ const InputMutasiPromosiPegawai = (props) => {
         getGradeId()
         getJabatan()
         getStatusKaryawan()
+        _handeGetBodGroup()
     }, [])
 
     let jsxMultipleFieldInRangkap = (i) => {
@@ -616,8 +624,8 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 optionFilterProp="children"
                                                                 onChange={value => _handleSelectInputHelper(value, 'bodGroup', i)}
                                                             >
-                                                                {dataGrade.map(value => (
-                                                                    <Option value={`${value.id}`}>{value.class}</Option>
+                                                                {dataBodGroup.map(value => (
+                                                                    <Option value={`${value.bodGroup}`}>{value.bodGroup}</Option>
                                                                 ))}
                                                             </Select>
                                                         </FormGroup>
@@ -789,8 +797,8 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 optionFilterProp="children"
                                                                 onChange={value => _handleSelectInputHelper(value, 'bodGroup', i)}
                                                             >
-                                                                {dataGrade.map(value => (
-                                                                    <Option value={`${value.id}`}>{value.class}</Option>
+                                                                {dataBodGroup.map(value => (
+                                                                    <Option value={`${value.bodGroup}`}>{value.bodGroup}</Option>
                                                                 ))}
                                                             </Select>
                                                         </FormGroup>
