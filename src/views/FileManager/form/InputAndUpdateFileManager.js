@@ -51,7 +51,7 @@ const InputMutasiPromosiPegawai = props => {
         if (code == 200)
             Swal.fire(
                 'Simpan!',
-                'Sukses Simpan Mutasi Promosi.',
+                'Sukses Menyimpan File.',
                 'success'
             )
         setTimeout(() => {
