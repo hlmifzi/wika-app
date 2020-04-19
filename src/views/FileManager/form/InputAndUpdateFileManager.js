@@ -5,6 +5,7 @@ import { uploadFile } from '../endpoint/FileManagerEndpoint'
 import Dropzone from 'react-dropzone'
 import '../style/style.css'
 import { getFileManagementById } from '../endpoint/FileManagerEndpoint'
+import Swal from 'sweetalert2'
 
 const dateFormat = 'YYYY/MM/DD';
 
@@ -16,6 +17,7 @@ const InputMutasiPromosiPegawai = props => {
     const [category, setCategory] = useState("", 'category')
     const [title, setTitle] = useState("", 'title')
     const [description, setDescription] = useState("", 'description')
+    const [isUpdate, setIsUpdate] = useState(false, 'isUpdate')
 
 
     const onChangeStatus = (e) => {
@@ -38,18 +40,28 @@ const InputMutasiPromosiPegawai = props => {
         setFile(acceptedFiles[0])
     }
 
-    const onSubmit = async() => {
+    const onSubmit = async () => {
         body.append('attachment', file)
         body.append('title', title)
         body.append('category', category)
-        body.append('status', status)
+        body.append('status', !isUpdate ? 'active' : status)
         body.append('description', description)
-        await uploadFile(body)
+
+        const { code } = await uploadFile(body)
+        if (code == 200)
+            Swal.fire(
+                'Simpan!',
+                'Sukses Simpan Mutasi Promosi.',
+                'success'
+            )
+        setTimeout(() => {
+            props.history.push('/file-manager')
+        }, 2000)
     }
 
     const getFileManagement = async (id) => {
         let { data } = await getFileManagementById(id)
-        if(data){
+        if (data) {
             setCategory(data.category)
             setDescription(data.description)
             setStatus(data.status)
@@ -58,10 +70,11 @@ const InputMutasiPromosiPegawai = props => {
     }
 
     useEffect(() => {
-        if(props.match.params.id){
+        if (props.match.params.id) {
             getFileManagement(props.match.params.id)
+            setIsUpdate(true)
         }
-    },[])
+    }, [])
 
     return (
         <div className="animated fadeIn">
@@ -89,18 +102,6 @@ const InputMutasiPromosiPegawai = props => {
                             <Row>
                                 <Col xs="4">
                                     <FormGroup>
-                                        <Label htmlFor="ccmonth">Status</Label>
-                                        <Input type="select" name="ccmonth" id="tenantFrom" name="status" value={status} onChange={(e) => onChangeStatus(e)} required>
-                                            <option value="0"> Pilih Status</option>
-                                            <option value="active"> Active</option>
-                                            <option value="inactive"> Inactive</option>
-                                        </Input>
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs="4">
-                                    <FormGroup>
                                         <Label htmlFor="ccmonth">Title</Label>
                                         <Input type="text" name="title" id="tenantFrom" value={title} onChange={(e) => onChangeTitle(e)} required />
                                     </FormGroup>
@@ -116,17 +117,33 @@ const InputMutasiPromosiPegawai = props => {
                                 <Col xs="12">
                                     <Label htmlFor="ccmonth">File</Label>
                                     <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
-                                    {({getRootProps, getInputProps}) => (
-                                        <section className="dropzone">
-                                        <div {...getRootProps()}>
-                                            <input {...getInputProps()} />
-                                            {file != "" ? <p>File submitted: {file.name} </p> : <p>Drag 'n' drop some files here, or click to select files</p>}
-                                        </div>
-                                        </section>
-                                    )}
+                                        {({ getRootProps, getInputProps }) => (
+                                            <section className="dropzone">
+                                                <div {...getRootProps()}>
+                                                    <input {...getInputProps()} />
+                                                    {file != "" ? <p>File submitted: {file.name} </p> : <p>Drag 'n' drop some files here, or click to select files</p>}
+                                                </div>
+                                            </section>
+                                        )}
                                     </Dropzone>
                                 </Col>
                             </Row>
+                            {console.log(isUpdate)}
+                            {
+                                isUpdate &&
+                                <Row>
+                                    <Col xs="4">
+                                        <FormGroup>
+                                            <Label htmlFor="ccmonth">Status</Label>
+                                            <Input type="select" name="ccmonth" id="tenantFrom" name="status" value={status} onChange={(e) => onChangeStatus(e)} required>
+                                                <option value="0"> Pilih Status</option>
+                                                <option value="active"> Active</option>
+                                                <option value="inactive"> Inactive</option>
+                                            </Input>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                            }
                         </CardBody>
                         <CardFooter>
                             <Button type="submit" size="sm" color="success" onClick={() => onSubmit()}><i className="fa fa-dot-circle-o" ></i> Submit</Button> &nbsp;
