@@ -95,6 +95,7 @@ const InputMutasiPromosiPegawai = props => {
                                             <option value="Pengumuman"> Pengumuman</option>
                                             <option value="SK"> SK</option>
                                             <option value="Pengembangan"> Pengembangan</option>
+                                            <option value="dll"> dll</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>

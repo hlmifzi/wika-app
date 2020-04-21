@@ -69,7 +69,7 @@ const InputMutasiPromosiPegawai = (props) => {
         const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
         const payloadSend = payloadRemoveField.map((v, i) => {
             let res
-            if (v.typeMutation === 'MUTASI JABATAN' || v.typeMutation === 'PROMOSI JABATAN')
+            if (v.typeMutation === 'MUTASI JABATAN')
                 res = {
                     typeMutation: v.typeMutation,
                     kindMutation: v.kindMutation,
@@ -81,6 +81,21 @@ const InputMutasiPromosiPegawai = (props) => {
                     validDate: v.validDate,
                     titleName: v.titleName,
                     notes: v.notes,
+                }
+
+            if (v.typeMutation === 'PROMOSI JABATAN')
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    workUnitId: parseInt(v.workUnitId),
+                    positionId: parseInt(v.positionId),
+                    fieldFunctionId: parseInt(v.fieldFunctionId),
+                    gradeId: parseInt(v.gradeId),
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    titleName: v.titleName,
+                    notes: v.notes,
+                    bodGroup: v.bodGroup
                 }
 
             if (v.typeMutation === 'PROMOSI STATUS')
