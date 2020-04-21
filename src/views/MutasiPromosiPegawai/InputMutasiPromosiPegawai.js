@@ -613,22 +613,6 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
-                                                    <Col xs="4">
-                                                        <FormGroup>
-                                                            <Label htmlFor="ccmonth">BOD Group</Label>
-                                                            <Select
-                                                                showSearch
-                                                                style={{ width: "100%" }}
-                                                                placeholder="Pilih Grup BOD"
-                                                                optionFilterProp="children"
-                                                                onChange={value => _handleSelectInputHelper(value, 'bodGroup', i)}
-                                                            >
-                                                                {dataBodGroup.map(value => (
-                                                                    <Option value={`${value.bodGroup}`}>{value.bodGroup}</Option>
-                                                                ))}
-                                                            </Select>
-                                                        </FormGroup>
-                                                    </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col xs="12">
