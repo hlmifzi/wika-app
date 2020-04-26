@@ -9,7 +9,6 @@ import { getDataSummaryOverview, getDataSummary, downloadExcel } from './endpoin
 const SummaryPegawai = () => {
   const [dataTable, setdataTable] = useState([], "dataTable")
   const [dataTablePerdepartemen, setdataTablePerdepartemen] = useState([], "dataTablePerdepartemen")
-  const [dataOverview, setDataOverview] = useState([], "dataOverview")
   const [dataSummary, setDataSummary] = useState([], "dataSummary")
 
   const getDataOverview = async () => {
@@ -36,11 +35,6 @@ const SummaryPegawai = () => {
     if (!data) return
     setDataSummary(data)
   }
-
-  const downloadFile = async () => {
-    downloadExcel()
-  }
-
 
   useEffect(() => {
     getDataOverview()
@@ -139,10 +133,10 @@ const SummaryPegawai = () => {
           <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               Total Pegawai
-</p>
+           </p>
             <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
               KKWT
-</p>
+            </p>
             <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
               {dataTablePerdepartemen.KKWT}
             </p>
