@@ -103,13 +103,21 @@ const InputMutasiPromosiPegawai = (props) => {
                     notes: v.notes,
                 }
 
-            const addResRangkapan = {
-                userPositionId: parseInt(v.userPositionId),
-            }
-            if (v.typeMutation === 'RANGKAPAN') return { ...res, addResRangkapan }
+
+            if (v.typeMutation === 'RANGKAPAN')
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    payload: v.payload,
+                    notes: v.notes,
+                }
 
             return res
         })
+
+        console.log(' -> ', payloadSend)
 
         Swal.fire({
             title: 'Apakah Kamu Yakin?',
@@ -215,11 +223,13 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const _handleSelectRangkapanInputHelper = (value, name, i, j) => {
         immerSetState(draft => {
-            if (!draft[i][name]) draft[i][name] = []
+            if (!draft[i]['payload']) draft[i]['payload'] = [{}]
+            if (j === 1 && draft[i]['payload'].length === 1) draft[i]['payload'][j] = {}
+
             if (name !== "employeeStatus" && name !== "titleName") {
-                draft[i][name][j] = parseInt(value)
+                draft[i]['payload'][j][name] = parseInt(value)
             } else {
-                draft[i][name][j] = value
+                draft[i]['payload'][j][name] = value
             }
         })
     }
@@ -995,7 +1005,6 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     </Col>
                                                 </Row>
                                                 {jsxMultipleFieldInRangkap(i)}
-                                                {console.log(payload, ' -> ini payload')}
                                                 {
                                                     v.kindMutation == 'PJS RANGKAP' &&
                                                     <Row>
