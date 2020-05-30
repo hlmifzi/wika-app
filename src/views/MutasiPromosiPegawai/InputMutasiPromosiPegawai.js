@@ -51,20 +51,6 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const { register, handleSubmit, watch } = useForm();
 
-    const getPayload = () => ({
-        typeMutation: payload.typeMutation,
-        kindMutation: payload.kindMutation,
-        workUnitId: parseInt(payload.workUnitId),
-        positionId: parseInt(payload.positionId),
-        fieldFunctionId: parseInt(payload.fieldFunctionId),
-        gradeId: parseInt(payload.gradeId),
-        userId: parseInt(payload.userId),
-        validDate: payload.validDate,
-        employeeStatus: payload.employeeStatus,
-        titleName: payload.titleName,
-        notes: payload.notes,
-        userPositionId: parseInt(payload.userPositionId)
-    })
     const onSubmit = async (data) => {
         const payloadRemoveField = data.map(({ dataDetailPegawai, isCancelEmployee, multipleFieldInRangkap, ...rest }) => rest)
         const payloadSend = payloadRemoveField.map((v, i) => {
@@ -227,6 +213,17 @@ const InputMutasiPromosiPegawai = (props) => {
         })
     }
 
+    const _handleSelectRangkapanInputHelper = (value, name, i, j) => {
+        immerSetState(draft => {
+            if (!draft[i][name]) draft[i][name] = []
+            if (name !== "employeeStatus" && name !== "titleName") {
+                draft[i][name][j] = parseInt(value)
+            } else {
+                draft[i][name][j] = value
+            }
+        })
+    }
+
     const _handleSelectInputTextHelper = (value, name, i) => {
         immerSetState(draft => {
             draft[i][name] = value
@@ -340,7 +337,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Unit Kerja"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'workUnitId', i)}
+                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'workUnitId', i, j)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
@@ -359,7 +356,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Jabatan"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'titleName', i)}
+                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'titleName', i, j)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
@@ -378,7 +375,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Posisi"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'userPositionId', i)}
+                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'userPositionId', i, j)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
@@ -397,7 +394,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Fungsi Bidang"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'fieldFunctionId', i)}
+                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'fieldFunctionId', i, j)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
@@ -416,7 +413,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Grade"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectInputHelper(value, 'gradeId', i)}
+                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'gradeId', i, j)}
                                 >
                                     {dataGrade.map((value, idx) => (
                                         <Option key={idx} value={`${value.id}`}>{value.class}</Option>
@@ -998,6 +995,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                     </Col>
                                                 </Row>
                                                 {jsxMultipleFieldInRangkap(i)}
+                                                {console.log(payload, ' -> ini payload')}
                                                 {
                                                     v.kindMutation == 'PJS RANGKAP' &&
                                                     <Row>
