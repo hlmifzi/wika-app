@@ -117,7 +117,6 @@ const InputMutasiPromosiPegawai = (props) => {
             return res
         })
 
-        console.log(' -> ', payloadSend)
 
         Swal.fire({
             title: 'Apakah Kamu Yakin?',
@@ -140,10 +139,10 @@ const InputMutasiPromosiPegawai = (props) => {
                         'Simpan!',
                         'Sukses Simpan Mutasi Promosi.',
                         'success'
-                    )
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 2000)
+                    ).then((result) => {
+                        if (result.value)  window.location.reload()
+                    })
+                 
                 }
 
             } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -385,7 +384,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                     style={{ width: "100%" }}
                                     placeholder="Pilih Posisi"
                                     optionFilterProp="children"
-                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'userPositionId', i, j)}
+                                    onChange={value => _handleSelectRangkapanInputHelper(value, 'positionId', i, j)}
                                     filterOption={(input, option) =>
                                         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
