@@ -20,7 +20,7 @@ import { useForm } from 'react-hook-form';
 import { getDataPegawai, getRangkapan } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
 import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 import NotifSwal from '../../MyComponent/notification/Swal'
-import { Select } from 'antd'
+import { Select, Radio } from 'antd'
 import produce from "immer";
 import Swal from 'sweetalert2'
 
@@ -33,6 +33,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [allPegawai, setAllPegawai] = useState([], "dataPegawai");
     const [dataUnitKerja, setDataUnitKerja] = useState([], "dataUnitKerja");
     const [dataPosisi, setDataPosisi] = useState([], "dataPosisi");
+    const [dataPosisiRangkapan, setDataPosisiRangkapan] = useState([], "dataPosisiRangkapan");
     const [dataFungsiBidang, setDataFungsiBidang] = useState([], "dataFungsiBidang");
     const [dataGrade, setDataGrade] = useState([], "dataGrade");
     const [dataJabatan, setDataJabatan] = useState([], "dataJabatan");
@@ -41,6 +42,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
     const [payload, setPayload] = useState(initialValuesInput, "payload")
+    const [positionIdSelesaiPJS, setPositionIdSelesaiPJS] = useState(1, "positionIdSelesaiPJS")
 
     const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
 
@@ -286,10 +288,10 @@ const InputMutasiPromosiPegawai = (props) => {
         setDataPosisi(data)
     }
 
-    const getPosisiRangkapan = async () => {
-        let { data } = await getRangkapan()
+    const getPosisiRangkapan = async (id) => {
+        let { data } = await getRangkapan(id)
         if (!data) return
-        setDataPosisi(data)
+        setDataPosisiRangkapan(data)
     }
 
     const _handeGetBodGroup = async () => {
@@ -322,6 +324,11 @@ const InputMutasiPromosiPegawai = (props) => {
         setStatusKaryawan(data)
     }
 
+    const onChange = e => {
+        console.log('radio checked', e.target.value);
+        setPositionIdSelesaiPJS(e.target.value)
+    };
+
     useEffect(() => {
         getDataTipeMutasi()
         getAllPegawai()
@@ -336,7 +343,6 @@ const InputMutasiPromosiPegawai = (props) => {
 
     useEffect(() => {
         if(payload[0].kindMutation === 'SELESAI PJS' )  getPosisiRangkapan(payload[0].userId)
-        console.log("InputMutasiPromosiPegawai -> payload[0].userId", payload[0].userId)
     }, [payload[0].kindMutation])
 
     let jsxMultipleFieldInRangkap = (i) => {
@@ -1024,7 +1030,19 @@ const InputMutasiPromosiPegawai = (props) => {
                                                         </FormGroup>
                                                     </Col>
                                                 </Row>
-                                                {jsxMultipleFieldInRangkap(i)}
+                                                {v.kindMutation == 'PJS RANGKAP' ? 
+                                                    jsxMultipleFieldInRangkap(i) :
+                                                    <Radio.Group onChange={onChange} value={positionIdSelesaiPJS}>
+                                                        {dataPosisiRangkapan.map((v,i)=>{
+                                                            console.log(v,"<<<<<<<<< setDataPosisiRangkapan")
+                                                            return(
+                                                                <Radio style={radioStyle} value={v.positionId}>
+                                                                    {`${v.jobStatus}`}
+                                                                </Radio>
+                                                            )
+                                                        })}
+                                                    </Radio.Group>
+                                                }
                                                 {
                                                     v.kindMutation == 'PJS RANGKAP' &&
                                                     <Row>
@@ -1059,6 +1077,12 @@ const InputMutasiPromosiPegawai = (props) => {
         </div>
     )
 }
+
+const radioStyle = {
+    display: 'block',
+    height: '30px',
+    lineHeight: '30px',
+};
 
 
 export default InputMutasiPromosiPegawai
