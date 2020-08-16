@@ -17,7 +17,7 @@ import {
     getBodGroup
 } from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
-import { getDataPegawai } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
+import { getDataPegawai, getRangkapan } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
 import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 import NotifSwal from '../../MyComponent/notification/Swal'
 import { Select } from 'antd'
@@ -104,13 +104,23 @@ const InputMutasiPromosiPegawai = (props) => {
                 }
 
 
-            if (v.typeMutation === 'RANGKAPAN')
+            if (v.typeMutation === 'RANGKAPAN' && v.kindMutation === 'PJS RANGKAP')
                 res = {
                     typeMutation: v.typeMutation,
                     kindMutation: v.kindMutation,
                     userId: parseInt(v.userId),
                     validDate: v.validDate,
                     payload: v.payload,
+                    notes: v.notes,
+                }
+
+            if (v.typeMutation === 'RANGKAPAN' && v.kindMutation === 'SELESAI PJS')
+                res = {
+                    typeMutation: v.typeMutation,
+                    kindMutation: v.kindMutation,
+                    userId: parseInt(v.userId),
+                    validDate: v.validDate,
+                    userPositionId: v.payload.positionId,
                     notes: v.notes,
                 }
 
@@ -159,7 +169,6 @@ const InputMutasiPromosiPegawai = (props) => {
     const chooseTypeValue = (e) => {
         setType(e.target.value)
     }
-
 
     const chooseEmployeeValueArray = async (value, name) => {
         const valueLength = value.length - 1
@@ -276,6 +285,13 @@ const InputMutasiPromosiPegawai = (props) => {
         if (!data) return
         setDataPosisi(data)
     }
+
+    const getPosisiRangkapan = async () => {
+        let { data } = await getRangkapan()
+        if (!data) return
+        setDataPosisi(data)
+    }
+
     const _handeGetBodGroup = async () => {
         let { data } = await getBodGroup()
         if (!data) return
@@ -317,6 +333,11 @@ const InputMutasiPromosiPegawai = (props) => {
         getStatusKaryawan()
         _handeGetBodGroup()
     }, [])
+
+    useEffect(() => {
+        if(payload[0].kindMutation === 'SELESAI PJS' )  getPosisiRangkapan(payload[0].userId)
+        console.log("InputMutasiPromosiPegawai -> payload[0].userId", payload[0].userId)
+    }, [payload[0].kindMutation])
 
     let jsxMultipleFieldInRangkap = (i) => {
         let res = []
