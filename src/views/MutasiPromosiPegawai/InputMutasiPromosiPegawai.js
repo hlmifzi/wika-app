@@ -122,10 +122,11 @@ const InputMutasiPromosiPegawai = (props) => {
                     kindMutation: v.kindMutation,
                     userId: parseInt(v.userId),
                     validDate: v.validDate,
-                    userPositionId: v.payload.positionId,
+                    userPositionId: v.userPositionId,
                     notes: v.notes,
                 }
 
+            console.log("onSubmit -> res rangkapan", res)
             return res
         })
 
@@ -223,7 +224,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const _handleSelectInputHelper = (value, name, i) => {
         immerSetState(draft => {
-            if (name !== "employeeStatus" && name !== "titleName") {
+            if (name !== "employeeStatus" && name !== "titleName" && name !== "userPositionId") {
                 draft[i][name] = parseInt(value)
             } else {
                 draft[i][name] = value
@@ -324,8 +325,10 @@ const InputMutasiPromosiPegawai = (props) => {
         setStatusKaryawan(data)
     }
 
-    const onChange = e => {
-        console.log('radio checked', e.target.value);
+    const onChange = (e,i) => {
+        immerSetState(draft => {
+                draft[i]['userPositionId'] = e.target.value
+        })
         setPositionIdSelesaiPJS(e.target.value)
     };
 
@@ -1032,12 +1035,11 @@ const InputMutasiPromosiPegawai = (props) => {
                                                 </Row>
                                                 {v.kindMutation == 'PJS RANGKAP' ? 
                                                     jsxMultipleFieldInRangkap(i) :
-                                                    <Radio.Group onChange={onChange} value={positionIdSelesaiPJS}>
+                                                    <Radio.Group onChange={(e)=>_handleSelectInputHelper(e.target.value,'userPositionId',i)} value={payload[i].userPositionId}>
                                                         {dataPosisiRangkapan.map((v,i)=>{
-                                                            console.log(v,"<<<<<<<<< setDataPosisiRangkapan")
                                                             return(
                                                                 <Radio style={radioStyle} value={v.positionId}>
-                                                                    {`${v.jobStatus}`}
+                                                                    {`${v.jobStatus} ${v.titleName}`}
                                                                 </Radio>
                                                             )
                                                         })}
