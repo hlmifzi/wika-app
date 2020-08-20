@@ -153,9 +153,9 @@ const InputMutasiPromosiPegawai = (props) => {
                         'Sukses Simpan Mutasi Promosi.',
                         'success'
                     ).then((result) => {
-                        if (result.value)  window.location.reload()
+                        if (result.value) window.location.reload()
                     })
-                 
+
                 }
 
             } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -224,7 +224,7 @@ const InputMutasiPromosiPegawai = (props) => {
 
     const _handleSelectInputHelper = (value, name, i) => {
         immerSetState(draft => {
-            if (name !== "employeeStatus" && name !== "titleName" && name !== "userPositionId") {
+            if (name !== "employeeStatus" && name !== "titleName" && name !== "userPositionId" && name !== "bodGroup") {
                 draft[i][name] = parseInt(value)
             } else {
                 draft[i][name] = value
@@ -325,9 +325,9 @@ const InputMutasiPromosiPegawai = (props) => {
         setStatusKaryawan(data)
     }
 
-    const onChange = (e,i) => {
+    const onChange = (e, i) => {
         immerSetState(draft => {
-                draft[i]['userPositionId'] = e.target.value
+            draft[i]['userPositionId'] = e.target.value
         })
         setPositionIdSelesaiPJS(e.target.value)
     };
@@ -345,7 +345,7 @@ const InputMutasiPromosiPegawai = (props) => {
     }, [])
 
     useEffect(() => {
-        if(payload[0].kindMutation === 'SELESAI PJS' )  getPosisiRangkapan(payload[0].userId)
+        if (payload[0].kindMutation === 'SELESAI PJS') getPosisiRangkapan(payload[0].userId)
     }, [payload[0].kindMutation])
 
     let jsxMultipleFieldInRangkap = (i) => {
@@ -830,6 +830,9 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 placeholder="Pilih Grup BOD"
                                                                 optionFilterProp="children"
                                                                 onChange={value => _handleSelectInputHelper(value, 'bodGroup', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
                                                             >
                                                                 {dataBodGroup.map(value => (
                                                                     <Option value={`${value.bodGroup}`}>{value.bodGroup}</Option>
@@ -1033,15 +1036,15 @@ const InputMutasiPromosiPegawai = (props) => {
                                                         </FormGroup>
                                                     </Col>
                                                 </Row>
-                                                {v.kindMutation == 'PJS RANGKAP' ? 
+                                                {v.kindMutation == 'PJS RANGKAP' ?
                                                     jsxMultipleFieldInRangkap(i) :
-                                                    <div style={{textAlign:'justify'}}>
-                                                        <Radio.Group onChange={(e)=>_handleSelectInputHelper(e.target.value,'userPositionId',i)} value={payload[i].userPositionId}>
-                                                            {dataPosisiRangkapan.map((v,i)=>{
-                                                                return(
+                                                    <div style={{ textAlign: 'justify' }}>
+                                                        <Radio.Group onChange={(e) => _handleSelectInputHelper(e.target.value, 'userPositionId', i)} value={payload[i].userPositionId}>
+                                                            {dataPosisiRangkapan.map((v, i) => {
+                                                                return (
                                                                     <Radio style={radioStyle} value={v.positionId}>
-                                                                            {`${v.jobStatus}: Jabatan: ${v.titleName}`} 
-                                                                            {/* {`${v.jobStatus}: Jabatan: ${v.titleName}, Posisi: ${v.positionName}, Fungsi Bidang: ${v.fieldFunctionName}, Unit Kerja: ${v.workUnitName}, grade: ${v.gradeId}`}  */}
+                                                                        {`${v.jobStatus}: Jabatan: ${v.titleName}`}
+                                                                        {/* {`${v.jobStatus}: Jabatan: ${v.titleName}, Posisi: ${v.positionName}, Fungsi Bidang: ${v.fieldFunctionName}, Unit Kerja: ${v.workUnitName}, grade: ${v.gradeId}`}  */}
                                                                     </Radio>
                                                                 )
                                                             })}
