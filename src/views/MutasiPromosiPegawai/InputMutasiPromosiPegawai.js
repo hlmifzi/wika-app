@@ -959,7 +959,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             >
                                                                 <Option value={`RESIGN`}>Resign </Option>
                                                                 <Option value={`PENSIUN`}>Pensiun </Option>
-                                                                <Option value={`PINDAH DEPARTEMEN`}>Pindah Departemen</Option>
+                                                                <Option value={`PINDAH DEPARTEMENT`}>Pindah Departement</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
