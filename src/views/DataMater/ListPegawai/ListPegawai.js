@@ -145,7 +145,7 @@ const ListPegawai = ({ match }) => {
               <a href={`${urlBackend}user/report/profile`}>
                 <button style={btnDownloadFile} ><i class="fa fa-file"></i>&nbsp;Download Profile Pegawai</button>
               </a>
-              <a href={`${urlBackend}user/report/position`}>
+              <a href={`${urlBackend}user/report/position&status=active`}>
                 <button style={btnDownloadFile}><i class="fa fa-file"></i>&nbsp; Download Posisi Pegawai</button><br />
               </a>
             </CardHeader>
