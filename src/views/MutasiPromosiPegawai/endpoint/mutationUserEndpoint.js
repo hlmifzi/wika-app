@@ -20,3 +20,7 @@ export const getBodGroup = () => clientGet('/common/master/bodGroup', {});
 export const getEmployeeStatus = () => clientGet('common/master/employeeStatus', {});
 export const getTitleName = () => clientGet('common/master/titleName', {});
 export const downloadExcel = (params) => clientPost(`mutation/report?dateFrom=${params.dateFrom}&dateTo=${params.dateTo}`, {})
+
+export const addNewPosition = (body) => clientPost(`position`, body)
+export const addNewFieldFunction = (body) => clientPost(`fieldFunction`, body)
+export const addNewJabatan = (body) => clientPost(`workUnit`, body)

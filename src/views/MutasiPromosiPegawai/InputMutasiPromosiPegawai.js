@@ -14,7 +14,10 @@ import {
     getGrade,
     getTitleName,
     getEmployeeStatus,
-    getBodGroup
+    getBodGroup,
+    addNewPosition,
+    addNewFieldFunction,
+    addNewJabatan
 } from './endpoint/mutationUserEndpoint'
 import { useForm } from 'react-hook-form';
 import { getDataPegawai, getRangkapan } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
@@ -348,17 +351,63 @@ const InputMutasiPromosiPegawai = (props) => {
 			}
 			document.getElementById(id).blur()
 		}
-	}
+  }
 
-	const onSubmitNewInput = () => {
-		const id = isModalCreateNewOpen.id
+  const onSubmitSuccess = (id) => {
 		document.getElementById(id).value = ""
 		setAddNewInput({
 			...addNewInput,
 			[id]: ""
-		})
-		setIsModalCreateNewOpen({open: false});
-	}
+    })
+    setIsModalCreateNewOpen({open: false});
+  }
+
+	const onSubmitNewInput = () => {
+    const id = isModalCreateNewOpen.id
+    if (id == "addNewJabatan"){
+
+    } else if (id == "addNewFungsiBidang"){
+      _addNewFungsiBidang(id)
+
+    } else if (id == "addNewPosisi"){
+      _addNewPosition(id)
+    }
+  }
+
+  const _addNewPosition = async(id) => {
+    let body = { name: addNewInput.addNewPosisi }
+    const { data } = await addNewPosition(body)
+    if (data){
+      onSubmitSuccess(id)
+      getPosisi()
+    }
+
+    if (!data) return
+  }
+
+  const _addNewFungsiBidang = async(id) => {
+    let body = { name: addNewInput.addNewFungsiBidang }
+    const { data } = await addNewFieldFunction(body)
+
+    if (data){
+      onSubmitSuccess(id)
+      getFungsiBidang()
+    }
+
+    if (!data) return
+  }
+
+  const _addNewJabatan = async(id) => {
+    let body = { name: addNewInput.addNewFungsiBidang }
+    const { data } = await addNewFieldFunction(body)
+
+    if (data){
+      onSubmitSuccess(id)
+      getFungsiBidang()
+    }
+
+    if (!data) return
+  }
 
     useEffect(() => {
         getDataTipeMutasi()
@@ -544,7 +593,6 @@ const InputMutasiPromosiPegawai = (props) => {
 								<Row>
 									<Col>
 										<Input
-											onKeyDown={(e) => console.log(e.key)}
 											type="text"
 											id="addNewJabatan"
 											placeholder="Tambah jabatan baru"
