@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useState } from 'reinspect'
-import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import WidgetCustom from '../Widgets/WidgetCustom'
@@ -41,8 +41,10 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
-    const [payload, setPayload] = useState(initialValuesInput, "payload")
-    const [positionIdSelesaiPJS, setPositionIdSelesaiPJS] = useState(1, "positionIdSelesaiPJS")
+	const [payload, setPayload] = useState(initialValuesInput, "payload")
+	const [positionIdSelesaiPJS, setPositionIdSelesaiPJS] = useState(1, "positionIdSelesaiPJS")
+	const [addNewInput, setAddNewInput] = useState({})
+	const [isModalCreateNewOpen, setIsModalCreateNewOpen] = useState({ open: false});
 
     const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
 
@@ -330,7 +332,33 @@ const InputMutasiPromosiPegawai = (props) => {
             draft[i]['userPositionId'] = e.target.value
         })
         setPositionIdSelesaiPJS(e.target.value)
-    };
+	};
+
+	const onChangeAddNewInput = (e, id) => {
+		setAddNewInput({
+			...addNewInput,
+			[id]: e.target.value
+		})
+	}
+
+	const onKeyDownAddNewInput = (e, id) => {
+		if (e.key == "Enter"){
+			if (addNewInput[id]){
+				setIsModalCreateNewOpen({ id, open: true });
+			}
+			document.getElementById(id).blur()
+		}
+	}
+
+	const onSubmitNewInput = () => {
+		const id = isModalCreateNewOpen.id
+		document.getElementById(id).value = ""
+		setAddNewInput({
+			...addNewInput,
+			[id]: ""
+		})
+		setIsModalCreateNewOpen({open: false});
+	}
 
     useEffect(() => {
         getDataTipeMutasi()
@@ -511,6 +539,47 @@ const InputMutasiPromosiPegawai = (props) => {
                                 </Row>
                             </CardBody>
                         </Card>
+                        <Card>
+							<CardBody>
+								<Row>
+									<Col>
+										<Input
+											onKeyDown={(e) => console.log(e.key)}
+											type="text"
+											id="addNewJabatan"
+											placeholder="Tambah jabatan baru"
+											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}
+											onChange={value => onChangeAddNewInput(value, 'addNewJabatan')}
+										/>
+									</Col>
+									<Col>
+										<Input
+											type="text"
+											id="addNewPosisi"
+											placeholder="Tambah posisi baru"
+											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}
+											onChange={value => onChangeAddNewInput(value, 'addNewPosisi')}
+										/>
+									</Col>
+									<Col>
+										<Input
+											type="text"
+											id="addNewFungsiBidang"
+											placeholder="Tambah fungsi bidang baru"
+											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}
+											onChange={value => onChangeAddNewInput(value, 'addNewFungsiBidang')}
+										/>
+									</Col>
+								</Row>
+							</CardBody>
+                        </Card>
+						<Modal isOpen={isModalCreateNewOpen.open} toggle={() => setIsModalCreateNewOpen(!isModalCreateNewOpen.open)}>
+							<ModalBody>Apakah yakin untuk menambahkan ini?</ModalBody>
+							<ModalFooter>
+								<Button color="primary" onClick={() => onSubmitNewInput()}>Submit</Button>{' '}
+								<Button color="secondary" onClick={() => setIsModalCreateNewOpen(false)}>Cancel</Button>
+							</ModalFooter>
+						</Modal>
                     </Col>
 
                     {type && payload[0].userId &&
