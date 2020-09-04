@@ -1042,7 +1042,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                         <Radio.Group onChange={(e) => _handleSelectInputHelper(e.target.value, 'userPositionId', i)} value={payload[i].userPositionId}>
                                                             {dataPosisiRangkapan.map((v, i) => {
                                                                 return (
-                                                                    <Radio style={radioStyle} value={v.positionId}>
+                                                                    <Radio style={radioStyle} value={v.userPositionId}>
                                                                         {`${v.jobStatus}: Jabatan: ${v.titleName}`}
                                                                         {/* {`${v.jobStatus}: Jabatan: ${v.titleName}, Posisi: ${v.positionName}, Fungsi Bidang: ${v.fieldFunctionName}, Unit Kerja: ${v.workUnitName}, grade: ${v.gradeId}`}  */}
                                                                     </Radio>
