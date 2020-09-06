@@ -365,7 +365,7 @@ const InputMutasiPromosiPegawai = (props) => {
 	const onSubmitNewInput = () => {
     const id = isModalCreateNewOpen.id
     if (id == "addNewJabatan"){
-
+      _addNewJabatan(id)
     } else if (id == "addNewFungsiBidang"){
       _addNewFungsiBidang(id)
 
@@ -398,15 +398,10 @@ const InputMutasiPromosiPegawai = (props) => {
   }
 
   const _addNewJabatan = async(id) => {
-    let body = { name: addNewInput.addNewFungsiBidang }
-    const { data } = await addNewFieldFunction(body)
-
-    if (data){
-      onSubmitSuccess(id)
-      getFungsiBidang()
-    }
-
-    if (!data) return
+    let newData = [...dataJabatan]
+    newData.unshift({ titleName: addNewInput.addNewJabatan })
+    setDataJabatan(newData)
+    onSubmitSuccess(id)
   }
 
     useEffect(() => {
