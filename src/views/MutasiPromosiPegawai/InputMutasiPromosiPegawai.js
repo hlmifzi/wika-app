@@ -23,7 +23,7 @@ import { useForm } from 'react-hook-form';
 import { getDataPegawai, getRangkapan } from '../DetailPegawai/endpoint/DetailPegawaiEndpoint'
 import { getDataFilterPegawai } from '../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 import NotifSwal from '../../MyComponent/notification/Swal'
-import { Select, Radio } from 'antd'
+import { Select, Checkbox } from 'antd'
 import produce from "immer";
 import Swal from 'sweetalert2'
 
@@ -44,7 +44,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
-	const [payload, setPayload] = useState(initialValuesInput, "payload")
+  const [payload, setPayload] = useState(initialValuesInput, "payload")
 	const [positionIdSelesaiPJS, setPositionIdSelesaiPJS] = useState(1, "positionIdSelesaiPJS")
 	const [addNewInput, setAddNewInput] = useState({})
 	const [isModalCreateNewOpen, setIsModalCreateNewOpen] = useState({ open: false});
@@ -227,9 +227,13 @@ const InputMutasiPromosiPegawai = (props) => {
     }
 
 
-    const _handleSelectInputHelper = (value, name, i) => {
+    const _handleSelectInputHelper = (value, name, i, checked = false) => {
+      console.log("value", value)
+      console.log("name", name)
+      console.log("i", i)
+      console.log("checked", checked)
         immerSetState(draft => {
-            if (name !== "employeeStatus" && name !== "titleName" && name !== "userPositionId" && name !== "bodGroup") {
+            if (name !== "employeeStatus" && name !== "titleName" && name !== "bodGroup") {
                 draft[i][name] = parseInt(value)
             } else {
                 draft[i][name] = value
@@ -1151,16 +1155,18 @@ const InputMutasiPromosiPegawai = (props) => {
                                                 {v.kindMutation == 'PJS RANGKAP' ?
                                                     jsxMultipleFieldInRangkap(i) :
                                                     <div style={{ textAlign: 'justify' }}>
-                                                        <Radio.Group onChange={(e) => _handleSelectInputHelper(e.target.value, 'userPositionId', i)} value={payload[i].userPositionId}>
-                                                            {dataPosisiRangkapan.map((v, i) => {
-                                                                return (
-                                                                    <Radio style={radioStyle} value={v.userPositionId}>
-                                                                        {`${v.jobStatus}: Jabatan: ${v.titleName}`}
-                                                                        {/* {`${v.jobStatus}: Jabatan: ${v.titleName}, Posisi: ${v.positionName}, Fungsi Bidang: ${v.fieldFunctionName}, Unit Kerja: ${v.workUnitName}, grade: ${v.gradeId}`}  */}
-                                                                    </Radio>
-                                                                )
-                                                            })}
-                                                        </Radio.Group>
+                                                        {dataPosisiRangkapan.map((v, i) => {
+                                                            return (
+                                                                <Row key={i}>
+                                                                    <Col xs="12">
+                                                                        <Checkbox onChange={(e) => _handleSelectInputHelper(v.positionId, 'userPositionId', i, e.target.checked)}>
+                                                                            {`${v.jobStatus}: Jabatan: ${v.titleName}`}
+                                                                            {/* {`${v.jobStatus}: Jabatan: ${v.titleName}, Posisi: ${v.positionName}, Fungsi Bidang: ${v.fieldFunctionName}, Unit Kerja: ${v.workUnitName}, grade: ${v.gradeId}`}  */}
+                                                                        </Checkbox>
+                                                                    </Col>
+                                                                </Row>
+                                                            )
+                                                        })}
                                                     </div>
 
                                                 }
