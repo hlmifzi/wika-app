@@ -1159,7 +1159,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             return (
                                                                 <Row key={i}>
                                                                     <Col xs="12">
-                                                                        <Checkbox onChange={(e) => _handleSelectInputHelper(v.positionId, 'userPositionId', i, e.target.checked)}>
+                                                                        <Checkbox onChange={(e) => _handleSelectInputHelper(v.id, 'userPositionId', i, e.target.checked)}>
                                                                             {`${v.jobStatus}: Jabatan: ${v.titleName}`}
                                                                             {/* {`${v.jobStatus}: Jabatan: ${v.titleName}, Posisi: ${v.positionName}, Fungsi Bidang: ${v.fieldFunctionName}, Unit Kerja: ${v.workUnitName}, grade: ${v.gradeId}`}  */}
                                                                         </Checkbox>
