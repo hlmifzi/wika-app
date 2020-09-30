@@ -74,6 +74,7 @@ const InputMutasiPromosiPegawai = (props) => {
                     validDate: v.validDate,
                     titleName: v.titleName,
                     notes: v.notes,
+                    bodGroup: v.bodGroup
                 }
 
             if (v.typeMutation === 'PROMOSI JABATAN')
@@ -674,6 +675,7 @@ const InputMutasiPromosiPegawai = (props) => {
                                                                 }
                                                             >
                                                                 <Option value="UTAMA">UTAMA</Option>
+                                                                <Option value="UTAMA PJS">UTAMA (PJS)</Option>
                                                             </Select>
                                                         </FormGroup>
                                                     </Col>
@@ -776,6 +778,25 @@ const InputMutasiPromosiPegawai = (props) => {
                                                             >
                                                                 {dataGrade.map(value => (
                                                                     <Option value={`${value.id}`}>{value.class}</Option>
+                                                                ))}
+                                                            </Select>
+                                                        </FormGroup>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <FormGroup>
+                                                            <Label htmlFor="ccmonth">BOD Group</Label>
+                                                            <Select
+                                                                showSearch
+                                                                style={{ width: "100%" }}
+                                                                placeholder="Pilih Grup BOD"
+                                                                optionFilterProp="children"
+                                                                onChange={value => _handleSelectInputHelper(value, 'bodGroup', i)}
+                                                                filterOption={(input, option) =>
+                                                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                                }
+                                                            >
+                                                                {dataBodGroup.map(value => (
+                                                                    <Option value={`${value.bodGroup}`}>{value.bodGroup}</Option>
                                                                 ))}
                                                             </Select>
                                                         </FormGroup>

@@ -3,7 +3,7 @@ import { useState } from 'reinspect'
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import StandardTable from './views/ListPegawaiTable';
 import { getDataSummaryOverview, getDataSummary, downloadExcel } from './endpoint/SummaryOverview';
-
+import { urlBackend } from '../../MyServices/api/URLApi'
 
 
 const SummaryPegawai = () => {
@@ -45,7 +45,7 @@ const SummaryPegawai = () => {
     <div className="animated fadeIn">
       <Row>
         <Col xl={12} className="mb-20">
-          <a href="http://api.dedekrnwan.site/user/report/summary">
+          <a href={`${urlBackend}user/report/summary`}>
             <button className="float-r" style={btnDownloadFile} ><i className="fa fa-file"></i>&nbsp;Export Summary Pegawai</button>
           </a>
         </Col>
