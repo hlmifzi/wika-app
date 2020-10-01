@@ -44,7 +44,7 @@ const InputMutasiPromosiPegawai = (props) => {
     const [dataStatusKaryawan, setStatusKaryawan] = useState([], "dataStatusKaryawan");
     const [type, setType] = useState("")
     const initialValuesInput = [{ isCancelEmployee: false, multipleFieldInRangkap: 1 }]
-  const [payload, setPayload] = useState(initialValuesInput, "payload")
+    const [payload, setPayload] = useState(initialValuesInput, "payload")
 	const [positionIdSelesaiPJS, setPositionIdSelesaiPJS] = useState(1, "positionIdSelesaiPJS")
 	const [addNewInput, setAddNewInput] = useState({})
 	const [isModalCreateNewOpen, setIsModalCreateNewOpen] = useState({ open: false});
