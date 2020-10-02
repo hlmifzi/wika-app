@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { getDataGetAllFungsi, getDataFilterJabatan } from '../endpoint/ListPegawaiEndpoint'
+import { Link } from 'react-router-dom';
 
 class ListPegawaiTable extends React.Component {
     state = {
@@ -78,14 +79,14 @@ class ListPegawaiTable extends React.Component {
         render: (text, value) => {
 
             return (
-                <a href={`/#/karyawan/${value.key}`}>
+                <Link to={`/karyawan/${value.key}`} className="nav-link">
                     <Highlighter
                         highlightStyle={{ backgroundColor: '#20a8e4', padding: 0 }}
                         searchWords={[this.state.searchText]}
                         autoEscape
                         textToHighlight={"" + text}
                     />
-                </a>
+                </Link>
             )
         },
     });
