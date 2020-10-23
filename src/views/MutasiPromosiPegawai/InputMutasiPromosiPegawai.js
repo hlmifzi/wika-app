@@ -52,7 +52,7 @@ const InputMutasiPromosiPegawai = (props) => {
 	const immerSetState = newState => setPayload(currentState => produce(currentState, newState));
 
 	let pegawaiList = [];
-	Array.from(allPegawai).forEach((value) => { pegawaiList.push(<Option key={value.id} value={value.id.toString()}>{`${value.nip}-${value.name}`}</Option>) }
+	Array.from(allPegawai).forEach((value) => { pegawaiList.push(<Option key={value.id} value={value.id.toString()}>{`${value.nip} - ${value.name}`}</Option>) }
 	);
 
 
