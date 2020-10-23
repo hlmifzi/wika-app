@@ -7,92 +7,97 @@ export const Personal = ({ data }) => {
         <CardWithCustom classHeader={"bg-primary text-white"} text="Basic Information">
             <Row className="card-custom">
                 <Col xs="12" md="6">
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b> <Label htmlFor="nip">Nomor Induk Pegawai :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.nip || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="namaPegawai">Nama Pegawai :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.name || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="tempatLahir">Tempat Lahir :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.birthPlace || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b> <Label htmlFor="tglLahir">Tanggal Lahir :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.birthDate || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="agama">Agama :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.religion || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
+                    <Col xs="12" md="6">
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b> <Label htmlFor="nip">Nomor Induk Pegawai :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.nip || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="namaPegawai">Nama Pegawai :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.name || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="tempatLahir">Tempat Lahir :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.birthPlace || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b> <Label htmlFor="tglLahir">Tanggal Lahir :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.birthDate || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="agama">Agama :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.religion || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                    </Col>
                 </Col>
                 <Col xs="12" md="6">
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="jenisKelamin">Jenis Kelamin :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.gender === 'L'
-                                ? 'Laki - laki'
-                                : data.gender === 'P'
-                                    ? 'Perempuan' :
-                                    'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="golonganDarah">Golongan Darah :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.bloodGroup || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="statusPernikahan">Status Pernikahan :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.maritalStatus || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="namaIbuKandung">Nama Ibu Kandung :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.biologicalMother || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col md="12" xs="12">
-                            <b><Label htmlFor="emailPersonal">Email Personal :</Label></b>
-                        </Col>
-                        <Col xs="12" md="12">
-                            {data.personalEmail || 'Tidak Ada Data'}
-                        </Col>
-                    </FormGroup>
+
+                    <Col xs="12" md="6">
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="jenisKelamin">Jenis Kelamin :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.gender === 'L'
+                                    ? 'Laki - laki'
+                                    : data.gender === 'P'
+                                        ? 'Perempuan' :
+                                        'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="golonganDarah">Golongan Darah :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.bloodGroup || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="statusPernikahan">Status Pernikahan :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.maritalStatus || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="namaIbuKandung">Nama Ibu Kandung :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.biologicalMother || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md="12" xs="12">
+                                <b><Label htmlFor="emailPersonal">Email Personal :</Label></b>
+                            </Col>
+                            <Col xs="12" md="12">
+                                {data.personalEmail || 'Tidak Ada Data'}
+                            </Col>
+                        </FormGroup>
+                    </Col>
                 </Col>
             </Row>
             <hr />
