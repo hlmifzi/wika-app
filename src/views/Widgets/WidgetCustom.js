@@ -13,6 +13,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   dataBox: PropTypes.func,
   name: PropTypes.string,
+  nip: PropTypes.string,
   employeeStatus: PropTypes.string
 };
 
@@ -24,7 +25,7 @@ class WidgetCustom extends Component {
   render() {
 
     // eslint-disable-next-line
-    const { children, className, cssModule, dataBox, id, ...attributes } = this.props;
+    const { children, className, cssModule, dataBox, id, nip, ...attributes } = this.props;
 
     // demo purposes only
     const data = dataBox();
@@ -69,6 +70,7 @@ class WidgetCustom extends Component {
                 </>
               }
               <div className="text-value">{this.props.name}</div>
+              <div className="text-uppercase text-muted small">{this.props.nip}</div>
               <div className="text-uppercase text-muted small">{this.props.titleName} - {this.props.position ? this.props.position.name : ""}</div>
               <div className="text-uppercase text-muted small"><Badge pill color="success">{this.props.employeeStatus}</Badge></div>
             </div>

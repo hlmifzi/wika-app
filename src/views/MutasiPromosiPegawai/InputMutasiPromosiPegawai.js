@@ -649,6 +649,7 @@ const InputMutasiPromosiPegawai = (props) => {
 										<WidgetCustom
 											dataBox={() => ({ variant: 'twitter' })}
 											name={v.dataDetailPegawai.name}
+											nip={v.dataDetailPegawai.nip}
 											employeeStatus={v.dataDetailPegawai.employeeStatus}
 										// titleName={v.dataDetailpegawai.titleName}
 										//     position={v.dataDetailpegawai.employeeStatus}
@@ -825,6 +826,7 @@ const InputMutasiPromosiPegawai = (props) => {
 										<WidgetCustom
 											dataBox={() => ({ variant: 'twitter' })}
 											name={v.dataDetailPegawai.name}
+											nip={v.dataDetailPegawai.nip}
 											employeeStatus={v.dataDetailPegawai.employeeStatus}
 										// titleName={v.dataDetailpegawai.titleName}
 										//     position={v.dataDetailpegawai.employeeStatus}
@@ -1001,6 +1003,7 @@ const InputMutasiPromosiPegawai = (props) => {
 										<WidgetCustom
 											dataBox={() => ({ variant: 'twitter' })}
 											name={v.dataDetailPegawai.name}
+											nip={v.dataDetailPegawai.nip}
 											employeeStatus={v.dataDetailPegawai.employeeStatus}
 										// titleName={v.dataDetailpegawai.titleName}
 										//     position={v.dataDetailpegawai.employeeStatus}
@@ -1069,6 +1072,7 @@ const InputMutasiPromosiPegawai = (props) => {
 										<WidgetCustom
 											dataBox={() => ({ variant: 'twitter' })}
 											name={v.dataDetailPegawai.name}
+											nip={v.dataDetailPegawai.nip}
 											employeeStatus={v.dataDetailPegawai.employeeStatus}
 										// titleName={v.dataDetailpegawai.titleName}
 										//     position={v.dataDetailpegawai.employeeStatus}
@@ -1134,6 +1138,7 @@ const InputMutasiPromosiPegawai = (props) => {
 										<WidgetCustom
 											dataBox={() => ({ variant: 'twitter' })}
 											name={v.dataDetailPegawai.name}
+											nip={v.dataDetailPegawai.nip}
 											employeeStatus={v.dataDetailPegawai.employeeStatus}
 										// titleName={v.dataDetailpegawai.titleName}
 										// position={v.dataDetailpegawai.employeeStatus}
