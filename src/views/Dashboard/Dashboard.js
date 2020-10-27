@@ -237,7 +237,7 @@ const Dashboard = () => {
 
         <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} type="employeeComposition" />
         <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} type="educations" />
-        <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} type="projectCategories" />
+        {/* <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} type="projectCategories" /> */}
         <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} type="bodGroup" />
         {/* {
           dataAssessment.map((v, i) => {

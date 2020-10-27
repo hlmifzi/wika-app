@@ -351,9 +351,8 @@ const InputMutasiPromosiPegawai = (props) => {
 
 	const onKeyDownAddNewInput = (e, id) => {
 		if (e.key == "Enter") {
-			if (addNewInput[id]) {
-				setIsModalCreateNewOpen({ id, open: true });
-			}
+			if (addNewInput[id]) setIsModalCreateNewOpen({ id, open: true })
+
 			document.getElementById(id).blur()
 		}
 	}
@@ -599,6 +598,7 @@ const InputMutasiPromosiPegawai = (props) => {
 											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}
 											onChange={value => onChangeAddNewInput(value, 'addNewJabatan')}
 										/>
+										<Button color="primary" size="sm" onClick={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}><i className="fa fa-plus" ></i></Button>
 									</Col>
 									<Col>
 										<Input
@@ -608,6 +608,7 @@ const InputMutasiPromosiPegawai = (props) => {
 											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}
 											onChange={value => onChangeAddNewInput(value, 'addNewPosisi')}
 										/>
+										<Button color="primary" size="sm" onClick={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}><i className="fa fa-plus" ></i></Button>
 									</Col>
 									<Col>
 										<Input
@@ -617,6 +618,7 @@ const InputMutasiPromosiPegawai = (props) => {
 											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}
 											onChange={value => onChangeAddNewInput(value, 'addNewFungsiBidang')}
 										/>
+										<Button color="primary" size="sm" onClick={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}><i className="fa fa-plus" ></i></Button>
 									</Col>
 								</Row>
 							</CardBody>
