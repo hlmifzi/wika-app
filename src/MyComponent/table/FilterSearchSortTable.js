@@ -151,7 +151,7 @@ class FilterSearchSortTable extends React.Component {
                 dataIndex: 'profilePicture',
                 key: 'profilePicture',
                 width: 80,
-                render: (text, value) => <img className="width-50" src={`${value.profilePicture || 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'}`} />
+                render: (text, value) => <img className="width-50" src={`${value.profilePicture ? value.profilePicture.replace("public/uploads/profiles//public/uploads/profiles/", "public/uploads/profiles/") : 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'}`} />
             },
             {
                 title: 'Nama',

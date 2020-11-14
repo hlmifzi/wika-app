@@ -30,7 +30,7 @@
     "font-awesome": "^4.7.0",
     "highcharts-more": "^0.1.7",
     "immer": "^5.3.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-app-polyfill": "^1.0.4",
