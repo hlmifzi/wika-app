@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react'
 import { useState } from 'reinspect'
 import { Button, Card, CardBody, CardHeader, Col, Row, FormGroup, Label, CardFooter, Input } from 'reactstrap';
-import { uploadFile } from '../endpoint/FileManagerEndpoint'
+import { uploadFile, getFileManagementById, update } from '../endpoint/FileManagerEndpoint'
 import Dropzone from 'react-dropzone'
 import '../style/style.css'
-import { getFileManagementById } from '../endpoint/FileManagerEndpoint'
 import Swal from 'sweetalert2'
+import { urlBackend } from '../../../MyServices/api/URLApi'
+
 
 const dateFormat = 'YYYY/MM/DD';
 
 const InputMutasiPromosiPegawai = props => {
     const [file, setFile] = useState("", 'file')
     let body = new FormData()
+    const id = props.match.params.id
 
     const [status, setStatus] = useState("", 'status')
     const [category, setCategory] = useState("", 'category')
     const [title, setTitle] = useState("", 'title')
     const [description, setDescription] = useState("", 'description')
     const [isUpdate, setIsUpdate] = useState(false, 'isUpdate')
+    const [fileBefore, setFileBefore] = useState({}, 'file_before')
 
 
     const onChangeStatus = (e) => {
@@ -37,41 +40,45 @@ const InputMutasiPromosiPegawai = props => {
     }
 
     const onDrop = (acceptedFiles) => {
+        console.log("onDrop -> acceptedFiles", acceptedFiles[0])
         setFile(acceptedFiles[0])
     }
 
     const onSubmit = async () => {
-        body.append('attachment', file)
+        console.log("file", file)
+        if (file) body.append('attachment', file)
         body.append('title', title)
         body.append('category', category)
         body.append('status', !isUpdate ? 'active' : status)
         body.append('description', description)
-
-        const { code } = await uploadFile(body)
-        if (code == 200)
+        const postEndPoint = id ? update : uploadFile
+        const { code } = await postEndPoint(body, id || "")
+        if (code == 200) {
             Swal.fire(
                 'Simpan!',
                 'Sukses Menyimpan File.',
                 'success'
             )
-        setTimeout(() => {
-            props.history.push('/file-manager')
-        }, 2000)
+            setTimeout(() => {
+                props.history.push('/file-manager')
+            }, 2000)
+        }
     }
 
-    const getFileManagement = async (id) => {
+    const getFileManagement = async () => {
         let { data } = await getFileManagementById(id)
         if (data) {
             setCategory(data.category)
             setDescription(data.description)
             setStatus(data.status)
             setTitle(data.title)
+            setFileBefore({ name: data.name, url: data.url })
         }
     }
 
     useEffect(() => {
-        if (props.match.params.id) {
-            getFileManagement(props.match.params.id)
+        if (id) {
+            getFileManagement()
             setIsUpdate(true)
         }
     }, [])
@@ -116,13 +123,19 @@ const InputMutasiPromosiPegawai = props => {
                             </Row><br />
                             <Row>
                                 <Col xs="12">
-                                    <Label htmlFor="ccmonth">File</Label>
+                                    <Label htmlFor="ccmonth" style={{ display: 'block' }}>File</Label>
+                                    {isUpdate &&
+                                        <a href={`${urlBackend}${fileBefore.url}`}>
+                                            {fileBefore.name}
+                                        </a>
+                                    }
                                     <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
                                         {({ getRootProps, getInputProps }) => (
                                             <section className="dropzone">
                                                 <div {...getRootProps()}>
                                                     <input {...getInputProps()} />
-                                                    {file != "" ? <p>File submitted: {file.name} </p> : <p>Drag 'n' drop some files here, or click to select files</p>}
+                                                    {file != "" ?
+                                                        <p>File submitted: {file.name} </p> : <p>Drag 'n' drop some files here, or click to select files</p>}
                                                 </div>
                                             </section>
                                         )}
