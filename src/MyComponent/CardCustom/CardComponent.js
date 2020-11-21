@@ -1,6 +1,5 @@
 import React from 'react'
-import { Badge, Card, CardHeader } from 'reactstrap';
-
+import { Badge, Card, CardHeader, CardBody } from 'reactstrap';
 
 export const CardWhiteComponent = ({ children, color, text }) => {
     return (
@@ -36,6 +35,30 @@ export const CardAssessmen = ({ children, color, text }) => {
                     {text}
                 </b>
             </CardHeader>
+        </Card>
+    )
+}
+
+// Author From Arifinriski
+export const CardWithCustom = ({ children, color, text, classHeader }) => {
+    return (
+        <Card>
+            <CardHeader className={classHeader}>
+                <b style={{ fontSize: '1.2em' }}>{text}</b>
+            </CardHeader>
+            <CardBody>
+                {children}
+            </CardBody>
+        </Card>
+    )
+}
+
+export const CardWithCustomNoHeader = ({ children, color, text, classBody }) => {
+    return (
+        <Card>
+            <CardBody className={classBody}>
+                {children}
+            </CardBody>
         </Card>
     )
 }

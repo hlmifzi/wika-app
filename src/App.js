@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import './App.scss';
+import './scss/style.scss';
 import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { Provider } from 'react-redux'
+import { hot } from "react-hot-loader";
+import { StateInspector } from "reinspect"
+
 
 const loading = () => <div className="spinner-grow text-primary animated fadeIn pt-1 d-flex justify-content-center"></div>;
 
@@ -16,7 +18,16 @@ const Register = React.lazy(() => import('./views/Pages/Register'));
 const Page404 = React.lazy(() => import('./views/Pages/Page404'));
 const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 
-class App extends Component {
+function App() {
+  return (
+    <StateInspector name="Example">
+      <Apps />
+    </StateInspector>
+  )
+}
+
+
+class Apps extends Component {
 
   render() {
     return (
@@ -35,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default hot(module)(App);
