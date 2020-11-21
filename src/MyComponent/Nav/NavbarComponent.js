@@ -27,9 +27,6 @@ const NavbarComponent = props => {
         }
     }
 
-    console.log(pathname)
-    console.log(Assesment)
-    console.log(KUK)
     return (
         <Card>
             <CardBody>
@@ -42,6 +39,15 @@ const NavbarComponent = props => {
                     </Link>
                     <Link to="/kuk" style={KUK}>
                         <NavLink>KUK</NavLink>
+                    </Link>
+                    <Link to="/kuk" style={KUK}>
+                        <NavLink>Posisi Pegawai</NavLink>
+                    </Link>
+                    <Link to="/kuk" style={KUK}>
+                        <NavLink>MBTI</NavLink>
+                    </Link>
+                    <Link to="/kuk" style={KUK}>
+                        <NavLink>Dashboard</NavLink>
                     </Link>
                 </Nav>
             </CardBody>

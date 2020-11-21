@@ -1,0 +1,14 @@
+.w02-card-body{
+  font-size:  .5rem !important
+}
+.card-custom .card{
+  margin-bottom: 0px;
+}
+
+.dropzone {
+  background-color: #fafafa;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+}

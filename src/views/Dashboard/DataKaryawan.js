@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, FormGroup, Label, Input } from 'reactstrap';
+import StandardTable from '../../MyComponent/table/FilterSearchSortTable'
 
 import usersData from './sourceDataKaryawan'
 
 function UserRow(props) {
   const user = props.user
-  const userLink = `/users/${user.id}`
+  const userLink = `/dashboard/${user.id}`
+  const userLinkb = `/assessmen-detail/${user.id}`
 
   const getBadge = (status) => {
     return status === 'Disarankan' ? 'success' :
@@ -27,12 +29,75 @@ function UserRow(props) {
       <td>{user.PK}</td>
       <td>{user.KUK}</td>
       <td>{user.KUK}</td>
-      <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status} </Badge></Link></td>
+      <td><Link to={userLinkb}>
+        <Badge color={getBadge(user.status2)}>Assessmen Job Target 1<br />{user.status2} </Badge><br />
+      </Link></td>
     </tr >
   )
 }
 
 class DataKaryawan extends Component {
+  state = {
+    nama: "",
+    data: [
+      {
+        key: '1',
+        nip: 2019012,
+        nama: 'cohn Brown',
+        statusPegawai: 'Organik',
+        fungsi: 'Manajer proyek (5 tahun)',
+        masaKerja: '10 tahun 2 bulan',
+        unitKerja: 'LRT',
+        ek: 50,
+        pk: 80,
+        kukTeori: 90,
+        kukPraktek: 90,
+        assessmenJobTarget: 'Tidak Disarankan',
+      },
+      {
+        key: '2',
+        nip: '12O12',
+        nama: 'aim Green',
+        statusPegawai: 'Terampil',
+        fungsi: 'Manajer proyek',
+        masaKerja: '10 tahun 2 bulan',
+        unitKerja: 'MRT',
+        ek: 30,
+        pk: 80,
+        kukTeori: 80,
+        kukPraktek: 90,
+        assessmenJobTarget: 'Disarankan',
+
+      },
+      {
+        key: '3',
+        nip: '12O10',
+        nama: 'toe Black',
+        statusPegawai: 'Outsource',
+        fungsi: 32,
+        masaKerja: 80,
+        unitKerja: 90,
+        ek: 70,
+        pk: 80,
+        kukTeori: 80,
+        kukPraktek: 70,
+        assessmenJobTarget: 'Disarankan dengan Syarat',
+      },
+      {
+        key: '4',
+        nip: '12O12',
+        nama: 'gim Red',
+        fungsi: 32,
+        masaKerja: 'New York No. 1 Lake Park',
+        unitKerja: 'New York No. 1 Lake Park',
+        ek: 70,
+        pk: 80,
+        kukTeori: 90,
+        kukPraktek: 80,
+      },
+
+    ]
+  }
 
   render() {
 
@@ -47,66 +112,13 @@ class DataKaryawan extends Component {
                 <i className="fa fa-users"></i> Daftar Seluruh Karyawan
               </CardHeader>
               <CardBody>
-                <Row>
-                  <Col xs="12" md="3">
-                    <FormGroup row>
-                      <Col md="12">
-                        <Label htmlFor="selectSm">Masa jabatan</Label>
-                      </Col>
-                      <Col xs="12" md="12">
-                        <Input type="select" name="select" id="select">
-                          <option value="0">Pilih</option>
-                          <option value="1">Lebih Dari</option>
-                          <option value="2">Kurang Dari</option>
-                          <option value="3">Sama Dengan</option>
-                        </Input>
-                      </Col>
-                    </FormGroup>
-                  </Col>
-                  <Col xs="12" md="3">
-                    <FormGroup row>
-                      <Col md="12">
-                        <Label htmlFor="selectSm">Pilih Tahun</Label>
-                      </Col>
-                      <Col xs="12" md="12">
-                        <Input type="select" name="select" id="select">
-                          <option value="0">Pilih</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="3">4</option>
-                          <option value="3">5</option>
-                          <option value="3">6</option>
-                          <option value="3">7</option>
-                          <option value="3">8</option>
-                        </Input>
-                      </Col>
-                    </FormGroup>
-                  </Col>
-                  <Col xs="12" md="3">
-                    <FormGroup row>
-                      <Col md="12">
-                        <Label htmlFor="selectSm">Target Jabatan</Label>
-                      </Col>
-                      <Col xs="12" md="12">
-                        <Input type="select" name="select" id="select">
-                          <option value="0">Pilih</option>
-                          <option value="1">General Manager</option>
-                          <option value="2">Manager Divisi</option>
-                          <option value="2">Manager Biro</option>
-                          <option value="3">Manager Proyek</option>
-                        </Input>
-                      </Col>
-                    </FormGroup>
-                  </Col>
-                </Row>
                 <Table responsive hover>
                   <thead>
                     <tr>
                       <th scope="col">No</th>
                       <th scope="col">NIP</th>
                       <th scope="col">Nama</th>
-                      <th scope="col">Jabatan</th>
+                      <th scope="col">Fungsi</th>
                       <th scope="col">Masa Kerja</th>
                       <th scope="col">Unit Kerja</th>
                       <th scope="col">EK</th>
@@ -122,6 +134,16 @@ class DataKaryawan extends Component {
                     )}
                   </tbody>
                 </Table>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl={12}>
+            <Card>
+              <CardHeader>
+                <i className="fa fa-users"></i> Daftar Seluruh Karyawan
+              </CardHeader>
+              <CardBody>
+                <StandardTable data={this.state.data} co />
               </CardBody>
             </Card>
           </Col>

@@ -1,263 +1,279 @@
-import React, { Component } from 'react';
-import ReactHighcharts from 'react-highcharts'
-import HighchartsMore from 'highcharts-more'
-
-import { Col, Row, Progress, ListGroup, ListGroupItem, Badge } from 'reactstrap';
-import Widget03 from '../Widgets/Widget03';
-import NavbarComponent from '../../MyComponent/Nav/NavbarComponent'
-import { CardWhiteComponent, CardDefaulSideProfiletComponent } from '../../MyComponent/CardCustom/CardComponent'
-
-HighchartsMore(ReactHighcharts.Highcharts)
-
-
-class Dashboard extends Component {
-
-  render() {
-    let config = {
-
-      chart: {
-        polar: true,
-        type: 'line'
-      },
+import React, { useEffect } from 'react';
+import { useState } from "reinspect"
+import PieChart from './view/PieChart'
+import BarChart from './view/BarChart'
+import { Col, Row, Card } from 'reactstrap';
+import {
+  getDataStatistikEndPoint,
+  getDataKomposisiPegawaiEndPoint,
+  getDataPendidikanEndPoint,
+  getDataDKategoriProyekEndPoint,
+  getDataBODGroupEndPoint,
+  getDataAssessmentEndPoint,
+  getDataMasaKerjaEndPoint,
+  getDataUnitKerjaEndPoint,
+  getDataMBTIEndPoint
+} from './endpoint/DasboardEndpoint'
+import { getDataSummaryOverview } from '../SummaryPegawai/endpoint/SummaryOverview';
 
 
-      title: {
-        text: 'Passing Grade vs Assessment',
-      },
+import Widget04 from '../Widgets/Widget04';
 
-      pane: {
-        size: '100%'
-      },
+const Dashboard = () => {
+  const [isLoadingDataKomposisiPegawai, setIsLoadingDataKomposisiPegawai] = useState(true, 'isLoadingDataKomposisiPegawai')
+  const [isLoadingdataPendidikan, setIsLoadingDataPendidikan] = useState(true, 'isLoadingdataPendidikan')
+  const [isLoadingdataKategoriProyek, setIsLoadingdatDKategoriProyek] = useState(true, 'isLoadingdataKategoriProyek')
+  const [isLoadingdataBODGroup, DetIsLoadingdataBODGroup] = useState(true, 'isLoadingdataBODGroup')
+  const [isLoadingdataAssessment, seDIsLoadingdataAssessment] = useState(true, 'isLoadingdataAssessment')
+  const [isLoadingdataMasaKerja, setIsLoadingDataMasaKerja] = useState(true, 'isLoadingdataMasaKerja')
+  const [isLoadingdataUnitKerja, setIsLoadingDataUnitKerja] = useState(true, 'isLoadingdataUnitKerja')
+  const [isLoadingdataMBTI, setIsLoadingMBTI] = useState(true, 'isLoadingdataMBTI')
+  const [dataTablePerdepartemen, setdataTablePerdepartemen] = useState([], "dataTablePerdepartemen")
 
-      xAxis: {
-        categories: [
-          'IF',
-          'LA',
-          'IT',
-          'IN',
-          'CO',
-          'EM',
-          'CL',
-          'IP',
-          'PS',
-          'DE',
-          'DR',
-          'BA',
-          'SO',
-          'CF',
-          'BP',
-        ],
-        tickmarkPlacement: 'on',
-        lineWidth: 0
-      },
-
-      yAxis: {
-        gridLineInterpolation: 'polygon',
-        lineWidth: 0,
-        min: 0
-      },
-
-      tooltip: {
-        shared: true,
-        pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
-      },
-
-      legend: {
-        align: 'right',
-        verticalAlign: 'middle'
-      },
-
-      series: [{
-        name: 'Passing Grade',
-        data: [2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3],
-        pointPlacement: 'on'
-      }, {
-        name: 'Assessmen',
-        data: [3, 2, 1, 2, 4, 4, 2, 3, 4, 4, 3, 2, 4, 3, 3],
-        pointPlacement: 'on'
-      }],
-
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500
-          },
-          chartOptions: {
-            legend: {
-              align: 'center',
-              verticalAlign: 'bottom'
-            },
-            pane: {
-              size: '70%'
-            }
-          }
-        }]
-      }
-
+  const [dataStatistik, setDataStatistik] = useState({
+    "pegawai": {
+      "qty": 0
+    },
+    "proyek": {
+      "qty": 0
     }
+  })
+  const [dataKomposisiPegawai, setDataKomposisiPegawai] = useState([], 'dataKomposisiPegawai')
+  const [dataPendidikan, setDataPendidikan] = useState([], 'dataPendidikan')
+  const [dataKategoriProyek, setDataKategoriProyek] = useState([], 'dataKategoriProyek')
+  const [dataBODGroup, setDataBODGroup] = useState([], 'dataBODGroup')
+  const [dataMasaKerja, setDataMasaKerja] = useState([], 'dataMasaKerja')
+  const [dataUnitKerja, setDataUnitKerja] = useState([], 'dataUnitKerja')
+  const [dataMBTI, setDataMBTI] = useState([], 'dataMBTI')
+  const [dataAssessment, setDataAssessment] = useState([], 'dataAssessment')
 
-    return (
-      <div className="animated fadeIn">
-        <Row>
-          <Col xs={12} sm={6} md={3}>
-            <Widget03 dataBox={() => ({ variant: 'twitter', followers: '973k', tweets: '1.792' })} >
-            </Widget03>
-          </Col>
-          <Col xs={12} sm={12} md={9}>
-            <NavbarComponent />
-            <CardWhiteComponent text="Penilaian">
-              <Col xs={12} sm={12} md={12}>
-                <Row>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="Assessmen">
-                        <span className="h1" style={{ padding: '20px' }}><Badge color="success">Disarankan</Badge></span>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
-                  </Col>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="KUK">
-                        <Row style={{ padding: '20px' }}>
-                          <Col xs={12} sm={12} md={6} style={{ borderRight: '1px solid black' }}>
-                            <div className="text-value">80</div>
-                            <div className="text-uppercase text-muted small">Teori</div>
-                          </Col>
-                          <Col xs={12} sm={12} md={6}>
-                            <div className="text-value">90</div>
-                            <div className="text-uppercase text-muted small">Praktek</div>
-                          </Col>
-                        </Row>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
-                  </Col>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="EK">
-                        <span className="h1" style={{ padding: '20px' }}>94.09</span>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
-                  </Col>
-                  <Col xs={12} sm={12} md={6}>
-                    <div className="brand-card text-center">
-                      <CardDefaulSideProfiletComponent text="PK">
-                        <span className="h1" style={{ padding: '20px' }}>96.19</span>
-                      </CardDefaulSideProfiletComponent>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </CardWhiteComponent>
-
-            <CardWhiteComponent text="Grafik Assessmen">
-              <Row>
-                <Col xs={12} sm={6} md={6}>
-                  <ReactHighcharts config={config} />
-                </Col>
-                <Col xs={12} sm={6} md={6} style={{ marginBottom: '20px' }}>
-                  <Col xs={12} sm={12} md={12}>
-                    <CardDefaulSideProfiletComponent text="Assessmen">
-                      <Row>
-                        <Col xs={12} sm={6} md={6}>
-                          <div className="text-left" style={{ padding: '5px' }}>IF (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>LA (min 3)</div>
-                          <Progress value="50" >2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>IT (min 3)</div>
-                          <Progress value="100" >4/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>IN (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>CO (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>EM (min 3)</div>
-                          <Progress value="50" color="danger">2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>CL (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>IP (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                        </Col>
-                        <Col xs={12} sm={6} md={6}>
-                          <div className="text-left" style={{ padding: '5px' }}>PS (min 3)</div>
-                          <Progress value="50" color="danger">2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>DE (min 3)</div>
-                          <Progress value="100" >4/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>DR (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>BA (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>SO (min 3)</div>
-                          <Progress value="50" color="danger">2/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>CF (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                          <div className="text-left" style={{ padding: '5px' }}>BP (min 3)</div>
-                          <Progress value="75" >3/4</Progress>
-                        </Col>
-                      </Row>
-                    </CardDefaulSideProfiletComponent >
-                  </Col>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} sm={12} md={6}>
-                  <div className="card-header">
-                    <CardDefaulSideProfiletComponent text="Target Pengembangan" fontSize="1.1 rem">
-                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
-                      </ListGroup>
-                    </CardDefaulSideProfiletComponent>
-                  </div>
-                </Col>
-                <Col xs={12} sm={12} md={6}>
-                  <div className="card-header">
-                    <CardDefaulSideProfiletComponent text="Program Pengembangan" fontSize="1.1 rem">
-                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
-                      </ListGroup>
-                    </CardDefaulSideProfiletComponent>
-                  </div>
-                </Col>
-              </Row>
-              {/* <Row>
-                <Col xs={12} sm={12} md={12}>
-                  <div className="card-header">
-                    <CardDefaulSideProfiletComponent text="Target Pelatihan" fontSize="1.1 rem">
-                      <ListGroup style={{ height: '280px', overflowY: 'auto' }}>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>Production </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Engineering </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Dan</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Qom</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }}>QSHE </ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Muda</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Madya</ListGroupItem>
-                        <ListGroupItem className="justify-content-between" style={{ marginTop: '5px', borderRight: '0px', borderLeft: '0px' }} >Other</ListGroupItem>
-
-                      </ListGroup>
-                    </CardDefaulSideProfiletComponent>
-                  </div>
-                </Col>
-              </Row> */}
-            </CardWhiteComponent>
-
-
-          </Col>
-        </Row>
-      </div >
-    );
+  const getDataStatistik = async () => {
+    let { data } = await getDataStatistikEndPoint()
+    if (!data) return
+    setDataStatistik(data)
   }
+  const getDataKomposisiPegawai = async () => {
+    let { data } = await getDataKomposisiPegawaiEndPoint()
+    if (!data) return
+    setDataKomposisiPegawai(data)
+    setIsLoadingDataKomposisiPegawai(false)
+  }
+  const getDataPendidikan = async () => {
+    let { data } = await getDataPendidikanEndPoint()
+    if (!data) return
+    setIsLoadingDataPendidikan(false)
+    setDataPendidikan(data)
+  }
+  const getDataKategoriProyek = async () => {
+    let { data } = await getDataDKategoriProyekEndPoint()
+    if (!data) return
+    setIsLoadingdatDKategoriProyek(false)
+    setDataKategoriProyek(data)
+  }
+  const getDataBODGroup = async () => {
+    let { data } = await getDataBODGroupEndPoint()
+    if (!data) return
+    DetIsLoadingdataBODGroup(false)
+    setDataBODGroup(data)
+  }
+  const getDataMasaKerja = async () => {
+    let { data } = await getDataMasaKerjaEndPoint()
+    if (!data) return
+    setDataMasaKerja(data)
+    setIsLoadingDataMasaKerja(false)
+  }
+  const getDataDivisi = async () => {
+    let { data } = await getDataUnitKerjaEndPoint()
+    if (!data) return
+    setDataUnitKerja(data)
+    setIsLoadingDataUnitKerja(false)
+  }
+  const getDataMBTI = async () => {
+    let { data } = await getDataMBTIEndPoint()
+    if (!data) return
+    setDataMBTI(data)
+    setIsLoadingMBTI(false)
+  }
+
+  const getDataAssessment = async () => {
+    let { data } = await getDataAssessmentEndPoint()
+    if (!data) return
+    seDIsLoadingdataAssessment(false)
+    setDataAssessment(data)
+  }
+  const getDataOverview = async () => {
+    let { data } = await getDataSummaryOverview()
+    if (!data) return
+    setdataTablePerdepartemen(data.perDepartement[0])
+  }
+  const getAll = () => {
+    getDataStatistik()
+    getDataMasaKerja()
+    getDataMBTI()
+    getDataDivisi()
+    getDataKomposisiPegawai()
+    getDataPendidikan()
+    getDataKategoriProyek()
+    getDataBODGroup()
+    getDataAssessment()
+    getDataOverview()
+  }
+
+  useEffect(() => {
+    getAll()
+  }, [])
+
+  return (
+    <div className="animated fadeIn">
+      <Row>
+        <Col sm="12" md="12">
+          <Widget04 icon="icon-people" color="info" header={dataStatistik.pegawai.qty} invert>Jumlah Pegawai</Widget04>
+        </Col>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Total Pegawai
+</p>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Organik
+</p>
+            <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+              {dataTablePerdepartemen.Organik}
+            </p>
+            <span style={iconStyle}>
+              <i className="fa fa-users" style={{ fontSize: "20px", color: "white" }}></i>
+            </span>
+          </Card>
+        </Col>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Total Pegawai
+</p>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Terampil
+</p>
+            <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+              {dataTablePerdepartemen.Terampil}
+            </p>
+            <span style={iconStyle}>
+              <i className="fa fa-users" style={{ fontSize: "20px", color: "white" }}></i>
+            </span>
+          </Card>
+        </Col>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Total Pegawai
+</p>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Outsource
+</p>
+            <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+              {dataTablePerdepartemen.Outsource}
+            </p>
+            <span style={iconStyle}>
+              <i className="fa fa-users" style={{ fontSize: "20px", color: "white" }}></i>
+            </span>
+          </Card>
+        </Col>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Total Pegawai
+</p>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              MT-FG
+</p>
+            <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+              {dataTablePerdepartemen[`MT-FG`]}
+            </p>
+            <span style={iconStyle}>
+              <i className="fa fa-users" style={{ fontSize: "20px", color: "white" }}></i>
+            </span>
+          </Card>
+        </Col>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Total Pegawai
+            </p>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              MT-JA
+            </p>
+            <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+              {dataTablePerdepartemen[`MT-JA`]}
+            </p>
+            <span style={iconStyle}>
+              <i className="fa fa-users" style={{ fontSize: "2100%px", color: "white" }}></i>
+            </span>
+          </Card>
+        </Col>
+        <Col xl={4}>
+          <Card style={{ minHeight: "80px", maxWidth: "100%", position: "relative" }}>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              Total Pegawai
+           </p>
+            <p style={{ fontSize: "12px", padding: "0 12px", marginBottom: "0", fontWeight: 600, color: "darkgrey" }}>
+              KKWT
+            </p>
+            <p style={{ fontSize: "16px", padding: "0 12px", marginBottom: "6px", fontWeight: 600, color: "black" }}>
+              {dataTablePerdepartemen.KKWT}
+            </p>
+            <span style={iconStyle}>
+              <i className="fa fa-users" style={{ fontSize: "20px", color: "white" }}></i>
+            </span>
+          </Card>
+        </Col>
+      </Row>
+
+      <hr></hr>
+
+
+      <Row>
+        <BarChart colSm={5} colMd={5} title="Masa Kerja" data={dataMasaKerja} isLoading={isLoadingdataMasaKerja} type="durationOnOffice" />
+        <BarChart colSm={7} colMd={7} title="Divisi" data={dataUnitKerja} isLoading={isLoadingdataUnitKerja} type="divisi" />
+        <BarChart colSm={12} colMd={12} title="Myers-Briggs Type Indicator (MBTI) " data={dataMBTI} isLoading={isLoadingdataMBTI} type="mbti" />
+
+        <PieChart title="Komposisi Pegawai" data={dataKomposisiPegawai} isLoading={isLoadingDataKomposisiPegawai} type="employeeComposition" />
+        <PieChart title="Pendidikan" data={dataPendidikan} isLoading={isLoadingdataPendidikan} type="educations" />
+        {/* <PieChart title="Kategori Proyek" data={dataKategoriProyek} isLoading={isLoadingdataKategoriProyek} type="projectCategories" /> */}
+        <PieChart title="BOD Group" data={dataBODGroup} isLoading={isLoadingdataBODGroup} type="bodGroup" />
+        {/* {
+          dataAssessment.map((v, i) => {
+            if (v.data.length > 0) return <PieChart key={i} title={`Assessment ${v.type}`} data={v.data} isLoading={isLoadingdataAssessment} />
+          })
+        } */}
+      </Row>
+    </div >
+  );
+}
+
+
+const btnDownloadFile = {
+  float: "right",
+  height: "40px",
+  backgroundColor: "#20a8d8",
+  color: "white",
+  textAlign: "center",
+  padding: "8px",
+  borderRadius: "4px",
+  cursor: "pointer",
+  marginRight: "8px"
+}
+
+
+const iconStyle = {
+  height: "36px",
+  width: "36px",
+  borderRadius: "50%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "absolute",
+  right: "12px",
+  top: "12px",
+  background: "rgb(24, 144, 255)"
 }
 
 export default Dashboard;

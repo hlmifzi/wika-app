@@ -50,7 +50,7 @@ class Widget04 extends Component {
           </div>
           <div className="h4 mb-0">{header}</div>
           <small className="text-muted text-uppercase font-weight-bold">{children}</small>
-          <Progress className={progress.style} color={progress.color} value={progress.value} />
+          {/* <Progress className={progress.style} color={progress.color} value={progress.value} /> */}
         </CardBody>
       </Card>
     );
