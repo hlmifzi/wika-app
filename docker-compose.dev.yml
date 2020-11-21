@@ -1,0 +1,29 @@
+version: "3.6"
+
+services: 
+    ws-app:
+        container_name: ws-app
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        labels:
+            - traefik.backend.loadbalancer.sticky=true
+            - traefik.backend=ws-app
+            - traefik.enable=true
+            - traefik.http.services.ws-app.loadbalancer.server.port=80
+    
+            - traefik.http.routers.ws-app-router1.entrypoints=http
+            - traefik.http.routers.ws-app-router1.middlewares=ws-app-strip@docker
+            - traefik.http.routers.ws-app-router1.rule=Host(`docker.localhost`) && PathPrefix(`/staging/app`) 
+            # - traefik.http.routers.ws-app-router1.tls=true
+            # - traefik.http.routers.ws-app-router1.tls.certresolver=letsencrypt
+    
+            # - traefik.http.middlewares.ws-app-redirectscheme.redirectscheme.scheme=https
+            - traefik.http.middlewares.ws-app-strip.stripprefix.prefixes=/staging/app
+        networks: 
+            - proxy
+        restart: unless-stopped
+networks:
+    proxy:
+        external: 
+            name: proxy 

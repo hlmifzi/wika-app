@@ -1,0 +1,29 @@
+version: "3.6"
+
+services: 
+    wp-app:
+        container_name: wp-app
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        labels:
+            - traefik.backend.loadbalancer.sticky=true
+            - traefik.backend=wp-app
+            - traefik.enable=true
+            - traefik.http.services.wp-app.loadbalancer.server.port=80
+    
+            - traefik.http.routers.wp-app-router1.entrypoints=http
+            # - traefik.http.routers.wp-app-router1.middlewares=wp-app-strip@docker
+            - traefik.http.routers.wp-app-router1.rule=Host(`hc-dsu1.wika.co.id`)
+            # - traefik.http.routers.wp-app-router1.tls=true
+            # - traefik.http.routers.wp-app-router1.tls.certresolver=letsencrypt
+    
+            # - traefik.http.middlewares.wp-app-redirectscheme.redirectscheme.scheme=https
+            # - traefik.http.middlewares.wp-app-strip.stripprefix.prefixes=/production/app
+        networks: 
+            - proxy
+        restart: unless-stopped
+networks:
+    proxy:
+        external: 
+            name: proxy 
