@@ -591,34 +591,47 @@ const InputMutasiPromosiPegawai = (props) => {
 							<CardBody>
 								<Row>
 									<Col>
-										<Input
-											type="text"
-											id="addNewJabatan"
-											placeholder="Tambah jabatan baru"
-											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}
-											onChange={value => onChangeAddNewInput(value, 'addNewJabatan')}
-										/>
-										<Button color="primary" size="sm" onClick={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}><i className="fa fa-plus" ></i></Button>
+										<div style={{ display: 'flex' }}>
+											<Input
+												type="text"
+												id="addNewJabatan"
+												placeholder="Tambah jabatan baru"
+												onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}
+												onChange={value => onChangeAddNewInput(value, 'addNewJabatan')}
+											/>
+											<div id="addNewJabatan" onClick={(e) => onKeyDownAddNewInput(e, "addNewJabatan")}>
+												<Button color="primary" size="sm"><i className="fa fa-plus" ></i></Button>
+											</div>
+										</div>
 									</Col>
 									<Col>
-										<Input
-											type="text"
-											id="addNewPosisi"
-											placeholder="Tambah posisi baru"
-											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}
-											onChange={value => onChangeAddNewInput(value, 'addNewPosisi')}
-										/>
-										<Button color="primary" size="sm" onClick={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}><i className="fa fa-plus" ></i></Button>
+										<div style={{ display: 'flex' }}>
+											<Input
+												type="text"
+												id="addNewPosisi"
+												placeholder="Tambah posisi baru"
+												onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}
+												onChange={value => onChangeAddNewInput(value, 'addNewPosisi')}
+											/>
+											<div id="addNewPosisi" onClick={(e) => onKeyDownAddNewInput(e, "addNewPosisi")}>
+												<Button color="primary" size="sm"><i className="fa fa-plus" ></i></Button>
+											</div>
+										</div>
 									</Col>
 									<Col>
-										<Input
-											type="text"
-											id="addNewFungsiBidang"
-											placeholder="Tambah fungsi bidang baru"
-											onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}
-											onChange={value => onChangeAddNewInput(value, 'addNewFungsiBidang')}
-										/>
-										<Button color="primary" size="sm" onClick={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}><i className="fa fa-plus" ></i></Button>
+										<div style={{ display: 'flex' }}>
+											<Input
+												type="text"
+												id="addNewFungsiBidang"
+												placeholder="Tambah fungsi bidang baru"
+												onKeyDown={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}
+												onChange={value => onChangeAddNewInput(value, 'addNewFungsiBidang')}
+											/>
+											<div id="addNewFungsiBidang" onClick={(e) => onKeyDownAddNewInput(e, "addNewFungsiBidang")}>
+												<Button color="primary" size="sm" ><i className="fa fa-plus" ></i></Button>
+											</div>
+										</div>
+
 									</Col>
 								</Row>
 							</CardBody>
