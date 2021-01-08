@@ -229,10 +229,6 @@ const InputMutasiPromosiPegawai = (props) => {
 
 
 	const _handleSelectInputHelper = (value, name, i, checked = false) => {
-		console.log("value", value)
-		console.log("name", name)
-		console.log("i", i)
-		console.log("checked", checked)
 		immerSetState(draft => {
 			if (name !== "employeeStatus" && name !== "titleName" && name !== "bodGroup") {
 				draft[i][name] = parseInt(value)
@@ -305,10 +301,22 @@ const InputMutasiPromosiPegawai = (props) => {
 		setDataPosisiRangkapan(data)
 	}
 
+	function compareBod(a, b) {
+		if (a.bodGroup < b.bodGroup) return -1;
+		if (a.bodGroup > b.bodGroup) return 1;
+		return 0;
+	}
+
+	function compareGrade(a, b) {
+		if (a.class < b.class) return -1;
+		if (a.class > b.class) return 1;
+		return 0;
+	}
+
 	const _handeGetBodGroup = async () => {
 		let { data } = await getBodGroup()
 		if (!data) return
-		setDataBodGroup(data)
+		setDataBodGroup(data.sort(compareBod))
 	}
 
 	const getFungsiBidang = async () => {
@@ -320,7 +328,7 @@ const InputMutasiPromosiPegawai = (props) => {
 	const getGradeId = async () => {
 		let { data } = await getGrade()
 		if (!data) return
-		setDataGrade(data)
+		setDataGrade(data.sort(compareGrade))
 	}
 
 	const getJabatan = async () => {
@@ -674,7 +682,7 @@ const InputMutasiPromosiPegawai = (props) => {
 										<Card>
 											<CardHeader>
 												<i className="fa fa-user"></i>Mutasi Jabatan
-                                        </CardHeader>
+                      </CardHeader>
 											<CardBody>
 												<Row>
 													<Col xs="4">
