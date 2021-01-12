@@ -3,27 +3,44 @@ version: "3.6"
 services: 
     ws-app:
         container_name: ws-app
-        build: 
-            context: .
-            dockerfile: Dockerfile
-        labels:
-            - traefik.backend.loadbalancer.sticky=true
-            - traefik.backend=ws-app
-            - traefik.enable=true
-            - traefik.http.services.ws-app.loadbalancer.server.port=80
-    
-            - traefik.http.routers.ws-app-router1.entrypoints=http
-            - traefik.http.routers.ws-app-router1.middlewares=ws-app-strip@docker
-            - traefik.http.routers.ws-app-router1.rule=Host(`hc-dsu1.wika.co.id`) && PathPrefix(`/staging/app`) 
-            # - traefik.http.routers.ws-app-router1.tls=true
-            # - traefik.http.routers.ws-app-router1.tls.certresolver=letsencrypt
-    
-            # - traefik.http.middlewares.ws-app-redirectscheme.redirectscheme.scheme=https
-            - traefik.http.middlewares.ws-app-strip.stripprefix.prefixes=/staging/app
+        image: docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.1
+        # build: 
+        #     context: .
+        #     dockerfile: Dockerfile
+        deploy:
+            replicas: 1
+            resources:
+                limits:
+                    cpus: "0.8"
+                    memory: 1000m
+                reservations:
+                    cpus: "0.4"
+                    memory: 500m
+            restart_policy:
+                condition: on-failure
+            labels:
+                - traefik.enable=true
+                - traefik.docker.lbswarm=true
+                - traefik.http.services.ws-app.loadbalancer.server.port=80
+                
+                #http
+                - traefik.http.routers.ws-app-router.entrypoints=http
+                - traefik.http.routers.ws-app-router.middlewares=ws-app-strip@docker
+                # ,ws-app-redirectscheme@docker
+                - traefik.http.routers.ws-app-router.rule=PathPrefix(`/staging/app`)
+
+                # https
+                - traefik.http.routers.ws-app-router1.entrypoints=https
+                - traefik.http.routers.ws-app-router1.middlewares=ws-app-strip@docker
+                - traefik.http.routers.ws-app-router1.rule=Host(`hc-dsu1.wika.co.id`) && PathPrefix(`/staging/app`)
+                - traefik.http.routers.ws-app-router1.tls=true
+                - traefik.http.routers.ws-app-router1.tls.certresolver=letsencrypt
+
+                - traefik.http.middlewares.ws-app-redirectscheme.redirectscheme.scheme=https
+                - traefik.http.middlewares.ws-app-strip.stripprefix.prefixes=/staging/app
         networks: 
-            - proxy
-        restart: unless-stopped
+            - wika-net
 networks:
-    proxy:
-        external: 
-            name: proxy 
+    wika-net:
+        external: true
+        name: wika-net

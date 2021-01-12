@@ -3,27 +3,44 @@ version: "3.6"
 services: 
     wp-app:
         container_name: wp-app
-        build: 
-            context: .
-            dockerfile: Dockerfile
-        labels:
-            - traefik.backend.loadbalancer.sticky=true
-            - traefik.backend=wp-app
-            - traefik.enable=true
-            - traefik.http.services.wp-app.loadbalancer.server.port=80
-    
-            - traefik.http.routers.wp-app-router1.entrypoints=http
-            - traefik.http.routers.wp-app-router1.middlewares=wp-app-strip@docker
-            - traefik.http.routers.wp-app-router1.rule=Host(`hc-dsu1.wika.co.id`) && PathPrefix(`/production/app`) 
-            # - traefik.http.routers.wp-app-router1.tls=true
-            # - traefik.http.routers.wp-app-router1.tls.certresolver=letsencrypt
-    
-            # - traefik.http.middlewares.wp-app-redirectscheme.redirectscheme.scheme=https
-            - traefik.http.middlewares.wp-app-strip.stripprefix.prefixes=/production/app
+        image: docker.pkg.github.com/hlmifzi/wika-app/wika-app:prod-0.0.1
+        # build: 
+        #     context: .
+        #     dockerfile: Dockerfile
+        deploy:
+            replicas: 1
+            resources:
+                limits:
+                    cpus: "0.8"
+                    memory: 1000m
+                reservations:
+                    cpus: "0.4"
+                    memory: 500m
+            restart_policy:
+                condition: on-failure
+            labels:
+                - traefik.enable=true
+                - traefik.docker.lbswarm=true
+                - traefik.http.services.wp-app.loadbalancer.server.port=80
+                
+                #http
+                - traefik.http.routers.wp-app-router.entrypoints=http
+                - traefik.http.routers.wp-app-router.middlewares=wp-app-strip@docker
+                # ,wp-app-redirectscheme@docker
+                - traefik.http.routers.wp-app-router.rule=PathPrefix(`/staging/app`)
+
+                # https
+                - traefik.http.routers.wp-app-router1.entrypoints=https
+                - traefik.http.routers.wp-app-router1.middlewares=wp-app-strip@docker
+                - traefik.http.routers.wp-app-router1.rule=Host(`hc-dsu1.wika.co.id`) && PathPrefix(`/staging/app`)
+                - traefik.http.routers.wp-app-router1.tls=true
+                - traefik.http.routers.wp-app-router1.tls.certresolver=letsencrypt
+
+                - traefik.http.middlewares.wp-app-redirectscheme.redirectscheme.scheme=https
+                - traefik.http.middlewares.wp-app-strip.stripprefix.prefixes=/staging/app
         networks: 
-            - proxy
-        restart: unless-stopped
+            - wika-net
 networks:
-    proxy:
-        external: 
-            name: proxy 
+    wika-net:
+        external: true
+        name: wika-net
