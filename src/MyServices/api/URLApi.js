@@ -2,7 +2,7 @@ import axios from 'axios';
 // import axiosRetry from 'axios-retry';
 import NotifSwal from '../../MyComponent/notification/Swal'
 const developmentHost = 'http://hc-dsu1.wika.co.id/staging/api/'
-const productionHost = 'http://hc-dsu1.wika.co.id/production/api/'
+const productionHost = 'http://hc-dsu1.wika.co.id/staging/api/'
 
 export const urlBackend = `${process.env.NODE_ENV === "development" ? developmentHost : productionHost}`
 const ROOT_API = axios.create({
