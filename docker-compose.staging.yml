@@ -3,7 +3,7 @@ version: "3.6"
 services: 
     ws-app:
         container_name: ws-app
-        image: docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.1
+        image: docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.2
         # build: 
         #     context: .
         #     dockerfile: Dockerfile
