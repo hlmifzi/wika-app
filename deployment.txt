@@ -1,12 +1,12 @@
 ##staging
-docker build -t docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.3 . &&
-docker push docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.3 &&
-docker stack deploy -c ~/project/wika-app/docker-compose.staging.yml ws-api --with-registry-auth
+docker build -t docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.4 . &&
+docker push docker.pkg.github.com/hlmifzi/wika-app/wika-app:stg-0.0.4 &&
+docker stack deploy -c ~/project/wika-app/docker-compose.staging.yml ws-app--with-registry-auth
 
 ##production
-docker build -t docker.pkg.github.com/hlmifzi/wika-app/wika-app:prod-0.0.3 . &&
-docker push docker.pkg.github.com/hlmifzi/wika-app/wika-app:prod-0.0.3 &&
-docker stack deploy -c ~/project/wika-app/docker-compose.production.yml wp-api --with-registry-auth
+docker build -t docker.pkg.github.com/hlmifzi/wika-app/wika-app:prod-0.0.4 . &&
+docker push docker.pkg.github.com/hlmifzi/wika-app/wika-app:prod-0.0.4 &&
+docker stack deploy -c ~/project/wika-app/docker-compose.production.yml wp-app --with-registry-auth
 
 
 Swarm initialized: current node (tirugkr5uaovi5xkn4mfhi75l) is now a manager.
