@@ -29,7 +29,7 @@ class Login extends Component {
     if (!action.data) return action
     localStorage.setItem('JWT', action.data.token);
     Toast.info(`Welcome to HRMIS Management`)
-    window.location.href = "#/dashboard"
+    window.location.href = "#/pjs-orientasi"
 
   }
 
