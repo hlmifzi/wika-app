@@ -19,14 +19,14 @@ const menuAdmin = {
     //   "url": "/karyawan",
     //   "icon": "icon-user"
     // },
-    // {
-    //   "title": true,
-    //   "name": "POSISI PEGAWAI",
-    //   "wrapper": {
-    //     "element": "",
-    //     "attributes": {}
-    //   }
-    // },
+    {
+      "title": true,
+      "name": "POSISI PEGAWAI",
+      "wrapper": {
+        "element": "",
+        "attributes": {}
+      }
+    },
     {
       "name": "Analytic",
       "url": "/Transaction",
