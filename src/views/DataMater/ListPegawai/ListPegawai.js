@@ -10,6 +10,7 @@ import { urlBackend } from '../../../MyServices/api/URLApi'
 
 const ListPegawai = ({ match }) => {
   const [dataPegawai, setDataPegawai] = useState([], 'dataPegawai')
+  console.log("🚀 ~ file: ListPegawai.js ~ line 13 ~ ListPegawai ~ dataPegawai", dataPegawai)
   const [dataJabatan, setDataJabatan] = useState([], 'jabatan')
   const [dataBodGroup, setDataBodGroup] = useState([], 'bodGroup')
   const [filter, setFilter] = useState({ type: '', field: '' }, 'filter')

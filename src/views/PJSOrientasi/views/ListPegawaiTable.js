@@ -3,6 +3,7 @@ import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { getDataGetAllFungsi, getDataFilterJabatan } from '../../DataMater/ListPegawai/endpoint/ListPegawaiEndpoint'
 import { Link } from 'react-router-dom';
+import { getPosition } from '../../MutasiPromosiPegawai/endpoint/mutationUserEndpoint';
 
 class ListPegawaiTable extends React.Component {
     state = {
@@ -27,6 +28,12 @@ class ListPegawaiTable extends React.Component {
         }))
         this.setState({ filterJabatan: dataJabatanFilter })
 
+        let { data: dataPosisi } = await getPosition()
+        const dataPosisiFilter = dataPosisi.map((v, i) => ({
+            text: v.name,
+            value: v.name
+        }))
+        this.setState({ filterPosition: dataPosisiFilter })
     }
 
 
@@ -119,13 +126,6 @@ class ListPegawaiTable extends React.Component {
 
             },
             {
-                title: 'Profil',
-                dataIndex: 'profilePicture',
-                key: 'profilePicture',
-                width: 80,
-                render: (text, value) => <img alt="profile-picture" className="width-50" src={` ${value.profilePicture ? value.profilePicture.replace("public/uploads/profiles//public/uploads/profiles/", "public/uploads/profiles/") : 'https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png'}`} />
-            },
-            {
                 title: 'Nama',
                 dataIndex: 'name',
                 key: 'name',
@@ -134,10 +134,41 @@ class ListPegawaiTable extends React.Component {
                 ...this.getColumnSearchProps('name'),
             },
             {
+                title: 'Unit Kerja',
+                dataIndex: 'workUnit',
+                key: 'workUnit',
+                width: 150,
+                sorter: (a, b) => a.workUnit.localeCompare(b.workUnit),
+                filters: this.state.filterUnitKerja,
+                filteredValue: filteredInfo.workUnit || null,
+                onFilter: (value, record) => record.workUnit.includes(value),
+
+            },
+            {
+                title: 'Jabatan',
+                dataIndex: 'positionName',
+                key: 'positionName',
+                width: '12%',
+                filters: this.state.filterJabatan,
+                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
+                filteredValue: filteredInfo.positionName || null,
+                onFilter: (value, record) => record.positionName.includes(value),
+            },
+            {
+                title: 'Posisi',
+                dataIndex: 'position',
+                key: 'position',
+                width: '12%',
+                filters: this.state.filterPosition,
+                sorter: (a, b) => a.position.localeCompare(b.position),
+                filteredValue: filteredInfo.position || null,
+                onFilter: (value, record) => record.position.includes(value),
+            },
+            {
                 title: 'Status',
                 dataIndex: 'employeeStatus',
                 key: 'employeeStatus',
-                width: 100,
+                width: "10%",
                 sorter: (a, b) => a.employeeStatus.localeCompare(b.employeeStatus),
                 filters: [
                     { text: 'Organik', value: 'Organik' },
@@ -146,26 +177,16 @@ class ListPegawaiTable extends React.Component {
                 filteredValue: filteredInfo.employeeStatus || null,
                 onFilter: (value, record) => record.employeeStatus.includes(value),
             },
-            {
-                title: 'Fungsi',
-                dataIndex: 'fieldFunctionName',
-                key: 'fieldFunctionName',
-                width: 100,
-                sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
-                filters: this.state.filterFungsi,
-                filteredValue: filteredInfo.fieldFunctionName || null,
-                onFilter: (value, record) => record.fieldFunctionName.includes(value),
-            },
-            {
-                title: 'Jabatan',
-                dataIndex: 'positionName',
-                key: 'positionName',
-                width: '10%',
-                filters: this.state.filterJabatan,
-                sorter: (a, b) => a.positionName.localeCompare(b.positionName),
-                filteredValue: filteredInfo.positionName || null,
-                onFilter: (value, record) => record.positionName.includes(value),
-            },
+            // {
+            //     title: 'Fungsi',
+            //     dataIndex: 'fieldFunctionName',
+            //     key: 'fieldFunctionName',
+            //     width: 100,
+            //     sorter: (a, b) => a.fieldFunctionName.localeCompare(b.fieldFunctionName),
+            //     filters: this.state.filterFungsi,
+            //     filteredValue: filteredInfo.fieldFunctionName || null,
+            //     onFilter: (value, record) => record.fieldFunctionName.includes(value),
+            // },
             {
                 title: 'Tanggal Mulai PJS',
                 dataIndex: 'startDateOfPjs',
@@ -177,7 +198,6 @@ class ListPegawaiTable extends React.Component {
                 title: 'Perhitungan Waktu',
                 dataIndex: 'durationOfPjs',
                 key: 'durationOfPjs',
-                width: 150,
             },
         ];
 
